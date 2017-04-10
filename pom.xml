@@ -1,0 +1,179 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cn.jxufe</groupId>
+  <artifactId>HouseManager</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>HouseManager Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <!--各软件版本设置-->
+    <!--国际化-->
+    <project.build.locales>zh_CN</project.build.locales>
+    <!--jdk 版本-->
+    <project.build.jdk>1.8</project.build.jdk>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!--maven自身版本-->
+    <plugin.maven-compiler>3.1</plugin.maven-compiler>
+      <slf4j.version>1.6.6</slf4j.version>
+      <log4j.version>1.2.12</log4j.version>
+      <spring.version>4.1.7.RELEASE</spring.version>
+      <mysql.connector.version>5.1.35</mysql.connector.version>
+      <c3p0.version>0.9.1.2</c3p0.version>
+      <mybatis.version>3.3.0</mybatis.version>
+      <mybatis.spring.version>1.2.3</mybatis.spring.version>
+      <jstl.version>1.2</jstl.version>
+      <taglibs.version>1.1.2</taglibs.version>
+      <jackson.databind.version>2.5.4</jackson.databind.version>
+      <javax.servlet.version>3.1.0</javax.servlet.version>
+  </properties>
+  <dependencies>
+      <!--junit4 测试框架-->
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.11</version>
+          <scope>test</scope>
+      </dependency>
+      <!--1：日志-->
+      <!--引入lfj4j日志规范-->
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>${slf4j.version}</version>
+      </dependency>
+      <!--使用log4j日志输出-->
+      <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>${log4j.version}</version>
+      </dependency>
+
+      <!--2：数据库相关依赖-->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>${mysql.connector.version}</version>
+          <scope>runtime</scope>
+      </dependency>
+      <!--c3p0连接池用于优化连接成本-->
+      <dependency>
+          <groupId>c3p0</groupId>
+          <artifactId>c3p0</artifactId>
+          <version>${c3p0.version}</version>
+      </dependency>
+
+      <!--Dao：Mybaitis本身依赖-->
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis</artifactId>
+          <version>${mybatis.version}</version>
+      </dependency>
+
+      <!--spring整合mybaties依赖-->
+
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis-spring</artifactId>
+          <version>${mybatis.spring.version}</version>
+      </dependency>
+
+      <!--3：Servlet web依赖-->
+      <dependency>
+          <groupId>taglibs</groupId>
+          <artifactId>standard</artifactId>
+          <version>${taglibs.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>jstl</artifactId>
+          <version>${jstl.version}</version>
+      </dependency>
+      <!--ajex用的是jackson而不是jsp-->
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>${jackson.databind.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>javax.servlet-api</artifactId>
+          <version>${javax.servlet.version}</version>
+      </dependency>
+
+      <!--4spring依赖-->
+      <!--spring核心-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-core</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-beans</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <!--spring dao-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-tx</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <!--spring web-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-webmvc</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <!--spring text-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-test</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+
+  </dependencies>
+
+
+
+  <build>
+    <finalName>HouseManager</finalName>
+    <plugins>
+      <!--jdk-环境 编码-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${plugin.maven-compiler}</version>
+        <configuration>
+            <!--编译前jdk版本-->
+          <source>${project.build.jdk}</source>
+            <!--编译后的jdk版本-->
+          <target>${project.build.jdk}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

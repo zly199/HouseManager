@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="housemgr@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+    <root id="1"/>
+    <schema id="2" parent="1" name="housemgr">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sakila"/>
+    <schema id="7" parent="1" name="seckill"/>
+    <schema id="8" parent="1" name="test"/>
+    <schema id="9" parent="1" name="world"/>
+    <table id="10" parent="2" name="login_log">
+      <Comment>登录日志</Comment>
+    </table>
+    <table id="11" parent="2" name="t_user">
+      <Comment>用户信息表</Comment>
+    </table>
+    <column id="12" parent="10" name="login_log_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="13" parent="10" name="user_id">
+      <Position>2</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="14" parent="10" name="ip">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="15" parent="10" name="login_date">
+      <Position>4</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <index id="16" parent="10" name="login_log_t_user_user_id_fk">
+      <ColNames>user_id</ColNames>
+    </index>
+    <key id="17" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>login_log_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="18" parent="10" name="login_log_t_user_user_id_fk">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>housemgr</RefSchemaName>
+      <RefTableName>t_user</RefTableName>
+      <RefColNames>user_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="19" parent="11" name="user_id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="20" parent="11" name="user_name">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="21" parent="11" name="password">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="22" parent="11" name="sex">
+      <Position>4</Position>
+      <DataType>varchar(2)|0</DataType>
+    </column>
+    <column id="23" parent="11" name="last_ip">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <index id="24" parent="11" name="User_user_id_uindex">
+      <ColNames>user_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="25" parent="11" name="User_user_name_uindex">
+      <ColNames>user_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="26" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="27" parent="11" name="User_user_id_uindex">
+      <ColNames>user_id</ColNames>
+      <UnderlyingIndexName>User_user_id_uindex</UnderlyingIndexName>
+    </key>
+    <key id="28" parent="11" name="User_user_name_uindex">
+      <ColNames>user_name</ColNames>
+      <UnderlyingIndexName>User_user_name_uindex</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
