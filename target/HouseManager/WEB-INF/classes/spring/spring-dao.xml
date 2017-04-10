@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/beans/spring-context.xsd">
+
+
+    <!--配置Mybaitis-->
+    <!--数据库参数-->
+<!--<context:property-placeholder location="jdbc.properties"/>-->
+
+    <bean id="dateSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          p:driverClass="com.mysql.jdbc.Driver"
+          p:jdbcUrl="jdbc:mysql://localhost:3306/housemgr?useUnicode=true&amp;characterEncoding=utf8"
+          p:user="root"
+          p:password="123456"
+          p:maxPoolSize="30"
+          p:minPoolSize="3"
+          p:autoCommitOnClose="false"
+          p:checkoutTimeout="10000"
+          p:acquireRetryAttempts="2"
+    />
+
+    <!--3:配置sqlsession-->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+    p:dataSource-ref="dateSource"
+    p:configLocation="classpath:mybaitis-config.xml"
+          p:mapperLocations="classpath:mapper/*/*.xml"
+    />
+    <!--注入数据库连接池-->
+    <!--配置Mybaitis全局配置文件-->
+
+    <!--配置扫描dao接口，动态实现dao接口，并注入到spring容器中-->
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+        p:sqlSessionFactoryBeanName="sessionFactory"
+          p:basePackage="cn.*.dao"
+    />
+
+</beans>
