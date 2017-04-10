@@ -21,4 +21,11 @@ public interface UserService {
      */
     public int loginSuccess(User user);
 
+    /**
+     * 根据userId查找用户
+     * @param userId
+     * @return
+     */
+    public User findUserById(long userId);
+
 }

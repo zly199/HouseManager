@@ -38,7 +38,13 @@ public class UserServiceImpl implements UserService {
         loginLog.setUserId(user.getUserId());
         loginLog.setLoginDate(new Date());
         loginLog.setIp(user.getLastIp());
+        userDao.updateUser(user);
         int number = loginLogDao.insertLoginLog(loginLog);
         return number;
+    }
+
+    @Override
+    public User findUserById(long userId) {
+        return userDao.findUserByUserId(userId);
     }
 }

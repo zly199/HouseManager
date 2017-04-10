@@ -22,5 +22,10 @@ public interface UserDao {
      */
     User findUserByUserId(@Param("userId") long userId);
 
-
+    /**
+     * 更新user信息
+     * @param user
+     * @return
+     */
+    int updateUser(User user);
 }
