@@ -28,5 +28,5 @@
           p:suffix=".jsp"
     />
     <!--4*扫描web相关bean-->
-    <context:component-scan base-package="cn.*.web"/>
+    <context:component-scan base-package="cn.web"/>
 </beans>

@@ -1,6 +1,6 @@
-package cn.login.service;
+package cn.service;
 
-import cn.login.entity.User;
+import cn.entity.User;
 
 /**
  * Created by ZLY on 2017-03-30.

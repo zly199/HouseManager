@@ -1,10 +1,9 @@
-package cn.login.entity;
+package cn.entity;
 
 /**
  * Created by ZLY on 2017-03-24.
  */
 
-import java.io.Serializable;
 import java.io.Serializable;
 import java.util.Date;
 

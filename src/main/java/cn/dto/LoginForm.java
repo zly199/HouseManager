@@ -1,4 +1,4 @@
-package cn.login.dto;
+package cn.dto;
 
 import java.io.Serializable;
 

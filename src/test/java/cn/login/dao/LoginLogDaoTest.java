@@ -1,18 +1,15 @@
 package cn.login.dao;
 
-import cn.login.entity.LoginLog;
-import cn.login.entity.User;
+import cn.dao.LoginLogDao;
+import cn.entity.LoginLog;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by ZLY on 2017-03-24.

@@ -1,4 +1,4 @@
-package cn.login.entity;
+package cn.entity;
 
 import java.io.Serializable;
 

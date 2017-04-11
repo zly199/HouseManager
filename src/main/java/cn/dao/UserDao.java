@@ -1,6 +1,6 @@
-package cn.login.dao;
+package cn.dao;
 
-import cn.login.entity.User;
+import cn.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 /**

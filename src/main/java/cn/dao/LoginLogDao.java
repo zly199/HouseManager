@@ -1,6 +1,6 @@
-package cn.login.dao;
+package cn.dao;
 
-import cn.login.entity.LoginLog;
+import cn.entity.LoginLog;
 
 import java.util.List;
 

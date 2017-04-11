@@ -1,10 +1,10 @@
-package cn.login.service.Impl;
+package cn.service.Impl;
 
-import cn.login.dao.LoginLogDao;
-import cn.login.dao.UserDao;
-import cn.login.entity.LoginLog;
-import cn.login.entity.User;
-import cn.login.service.UserService;
+import cn.dao.LoginLogDao;
+import cn.dao.UserDao;
+import cn.entity.LoginLog;
+import cn.entity.User;
+import cn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

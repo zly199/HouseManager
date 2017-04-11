@@ -29,16 +29,17 @@
     <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
     p:dataSource-ref="dateSource"
     p:configLocation="classpath:mybaitis-config.xml"
-          p:mapperLocations="classpath:mapper/*/*.xml"
+          p:mapperLocations="classpath:mapper/*.xml"
+          p:typeAliasesPackage="cn.entity"
     />
     <!--注入数据库连接池-->
     <!--配置Mybaitis全局配置文件-->
-
+    <!-- 扫描entity包 使用别名 -->
     <!--配置扫描dao接口，动态实现dao接口，并注入到spring容器中-->
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
         p:sqlSessionFactoryBeanName="sessionFactory"
-          p:basePackage="cn.*.dao"
+          p:basePackage="cn.dao"
     />
 
 </beans>
