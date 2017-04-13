@@ -6,14 +6,14 @@ import java.io.Serializable;
  * Created by ZLY on 2017-04-10.
  */
 public class LoginForm implements Serializable {
-    private long  userId;
+    private int userId;
     private String password;
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

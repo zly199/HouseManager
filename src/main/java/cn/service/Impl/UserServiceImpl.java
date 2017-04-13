@@ -1,7 +1,7 @@
 package cn.service.Impl;
 
-import cn.dao.LoginLogDao;
-import cn.dao.UserDao;
+import cn.dao.LoginLogMapper;
+import cn.dao.UserMapper;
 import cn.entity.LoginLog;
 import cn.entity.User;
 import cn.service.UserService;
@@ -16,17 +16,26 @@ import java.util.Date;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
-    private UserDao userDao;
+    private UserMapper userMapper;
     @Autowired
-    private LoginLogDao loginLogDao;
+    private LoginLogMapper loginLogMapper;
 
 
     @Override
-    public boolean hasMatchUser(long userId, String password) {
+    public boolean hasMatchUser(int userId, String password) {
 
-        int count = userDao.getMatchCount(userId,password);
-        return count>0;
+        User user = userMapper.selectByPrimaryKey(userId);
+        if (user!=null){
+            if (user.getUserPsd().equals(password)&&user.getUserId().equals(userId)){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
 
     }
 
@@ -36,15 +45,15 @@ public class UserServiceImpl implements UserService {
 
         LoginLog loginLog = new LoginLog();
         loginLog.setUserId(user.getUserId());
-        loginLog.setLoginDate(new Date());
-        loginLog.setIp(user.getLastIp());
-        userDao.updateUser(user);
-        int number = loginLogDao.insertLoginLog(loginLog);
+        loginLog.setLoginTime(new Date());
+        loginLog.setIp(user.getUserLastIp());
+        userMapper.updateByPrimaryKeySelective(user);
+        int number = loginLogMapper.insertSelective(loginLog);
         return number;
     }
 
     @Override
-    public User findUserById(long userId) {
-        return userDao.findUserByUserId(userId);
+    public User findUserById(int userId) {
+        return userMapper.selectByPrimaryKey(userId);
     }
 }

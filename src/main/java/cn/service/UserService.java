@@ -13,7 +13,7 @@ public interface UserService {
      * @param password  密码
      * @return true有 fasle 无
      */
-    public boolean hasMatchUser(long userId,String password);
+    public boolean hasMatchUser(int userId,String password);
 
     /**
      * 登录成功后的一些信息更新，日志插入等
@@ -26,6 +26,6 @@ public interface UserService {
      * @param userId
      * @return
      */
-    public User findUserById(long userId);
+    public User findUserById(int userId);
 
 }

@@ -35,23 +35,23 @@ public class LoginController {
             try {
                 if (userService.hasMatchUser(loginForm.getUserId(),loginForm.getPassword())){
                     User user = userService.findUserById(loginForm.getUserId());
-                    user.setLastIp(getIpAddr(httpServletRequest));
+                    user.setUserLastIp(getIpAddr(httpServletRequest));
                     userService.loginSuccess(user);
                     attributes.addFlashAttribute("user",user);
-                    return "redirect:/main";
+                    return "redirect:/index";
                 }
             } catch (Exception e) {
-                return "login";
+                return "redirect:/login";
             }
         }
-        return "login";
+        return "redirect:/login";
     }
-    @RequestMapping(value = "/main",method = RequestMethod.GET)
-    public String main(@ModelAttribute("user") User user){
-        if (user==null||user.getUserId()==0){
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    public String index(@ModelAttribute("user") User user){
+       if (user==null||user.getUserId()==null||user.getUserId()==0){
             return "redirect:/login";
         }
-        return "main";
+        return "index";
     }
 
     /**
@@ -69,7 +69,7 @@ public class LoginController {
         }
         if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
-            if(ip.equals("127.0.0.1")){
+            if(ip.equals("127.0.0.1")||ip.equals("localhost")){
                 //根据网卡取本机配置的IP
                 InetAddress inet=null;
                 try {

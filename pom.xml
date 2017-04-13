@@ -76,7 +76,12 @@
           <artifactId>mybatis</artifactId>
           <version>${mybatis.version}</version>
       </dependency>
-
+      <!--mybatis自动生成实体类-->
+      <dependency>
+          <groupId>org.mybatis.generator</groupId>
+          <artifactId>mybatis-generator-core</artifactId>
+          <version>1.3.2</version>
+      </dependency>
       <!--spring整合mybaties依赖-->
 
       <dependency>
