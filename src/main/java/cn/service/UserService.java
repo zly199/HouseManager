@@ -9,11 +9,11 @@ import cn.entity.User;
 public interface UserService {
     /**
      * 根据账号密码查询是否有改用户
-     * @param userId 用户id
+     * @param email 用户email
      * @param password  密码
      * @return true有 fasle 无
      */
-    public boolean hasMatchUser(int userId,String password);
+    public boolean hasMatchUser(String email,String password);
 
     /**
      * 登录成功后的一些信息更新，日志插入等
@@ -27,5 +27,11 @@ public interface UserService {
      * @return
      */
     public User findUserById(int userId);
+    /**
+     * 根据email查找用户
+     * @param email
+     * @return
+     */
+    public User findUserByEmail(String email);
 
 }

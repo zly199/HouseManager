@@ -50,4 +50,11 @@ public interface UserMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(User record);
+
+    /**
+     * 通过email查找用户
+     * @param email
+     * @return
+     */
+    User selectByEmail(String email);
 }

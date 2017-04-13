@@ -1,6 +1,7 @@
 package cn.web;
 
 import cn.dto.LoginForm;
+import cn.dto.RegisterForm;
 import cn.entity.User;
 import cn.service.UserService;
 import org.apache.log4j.Logger;
@@ -36,8 +37,8 @@ public class LoginController {
     public String doLogin(LoginForm loginForm){
         if (loginForm!=null){
             try {
-                if (userService.hasMatchUser(loginForm.getUserId(),loginForm.getPassword())){
-                    User user = userService.findUserById(loginForm.getUserId());
+                if (userService.hasMatchUser(loginForm.getUsername(),loginForm.getPassword())){
+                    User user = userService.findUserByEmail(loginForm.getUsername());
                     user.setUserLastIp(getIpAddr(request));
                     userService.loginSuccess(user);
                     request.getSession().setAttribute("user",user);
@@ -49,6 +50,13 @@ public class LoginController {
         }
         return "redirect:/login";
     }
+
+    @RequestMapping(value = "/Register",method = RequestMethod.POST)
+    public String Register(RegisterForm registerForm){
+        //todo
+        return "login";
+    }
+
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(){
         User user = (User)request.getSession().getAttribute("user");

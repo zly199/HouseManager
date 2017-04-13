@@ -24,11 +24,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public boolean hasMatchUser(int userId, String password) {
+    public boolean hasMatchUser(String email, String password) {
 
-        User user = userMapper.selectByPrimaryKey(userId);
+        User user = userMapper.selectByEmail(email);
         if (user!=null){
-            if (user.getUserPsd().equals(password)&&user.getUserId().equals(userId)){
+            if (user.getUserPsd().equals(password)&&user.getUserEmail().equals(email)){
                 return true;
             }
             else {
@@ -55,5 +55,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(int userId) {
         return userMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userMapper.selectByEmail(email);
     }
 }

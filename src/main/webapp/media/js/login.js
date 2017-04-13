@@ -174,7 +174,7 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "#";
+                    form.submit();
 	            }
 	        });
 

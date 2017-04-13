@@ -1,8 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="textml;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -15,43 +16,43 @@
 
 <head>
 
+    <meta charset="utf-8" />
 
+    <title>Metronic | Login Page</title>
 
-	<title>Metronic | Login Page</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
 
-	<meta content="" name="description" />
+    <meta content="" name="author" />
 
-	<meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
 
-	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="<%=path%>/media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-	<link href="<%=path %>/media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=path%>/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
 
-	<link href="<%=path %>/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=path%>/media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
-	<link href="<%=path %>/media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=path%>/media/css/style-metro.css" rel="stylesheet" type="text/css"/>
 
-	<link href="<%=path %>/media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=path%>/media/css/style.css" rel="stylesheet" type="text/css"/>
 
-	<link href="<%=path %>/media/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=path%>/media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
 
-	<link href="<%=path %>/media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=path%>/media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 
-	<link href="<%=path %>/media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="<%=path%>/media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 
-	<link href="<%=path %>/media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
 
-	<!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
 
-	<!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="<%=path%>/media/css/login.css" rel="stylesheet" type="text/css"/>
 
-	<link href="<%=path %>/media/css/login.css" rel="stylesheet" type="text/css"/>
+    <!-- END PAGE LEVEL STYLES -->
 
-	<!-- END PAGE LEVEL STYLES -->
-
-	<link rel="shortcut icon" href="<%=path %>/media/image/favicon.ico" />
+    <%--<link rel="shortcut icon" href="<%=path%>/media/image/favicon.ico" />--%>
 
 </head>
 
@@ -61,354 +62,390 @@
 
 <body class="login">
 
-	<!-- BEGIN LOGO -->
+<!-- BEGIN LOGO -->
 
-	<div class="logo">
+<div class="logo">
 
-		<img src="<%=path %>/media/image/logo-big.png" alt="" />
+    <%--<img src="<%=path%>/media/image/logo-big.png" alt="" />--%>
 
-	</div>
+</div>
 
-	<!-- END LOGO -->
+<!-- END LOGO -->
 
-	<!-- BEGIN LOGIN -->
+<!-- BEGIN LOGIN -->
 
-	<div class="content">
+<div class="content">
 
-		<!-- BEGIN LOGIN FORM -->
+    <!-- BEGIN LOGIN FORM -->
 
-		<form class="form-vertical login-form" action="doLogin" method="post">
+    <form class="form-vertical login-form" method="POST" action="doLogin">
 
+        <h3 class="form-title">Login to your account</h3>
 
-			<h3 class="form-title">登录你的账户</h3>
+        <div class="alert alert-error hide">
 
-			<div class="alert alert-error hide">
+            <button class="close" data-dismiss="alert"></button>
 
-				<button class="close" data-dismiss="alert"></button>
+            <span>Enter any username and password.</span>
 
-				<span>Enter any username and password.</span>
+        </div>
 
-			</div>
+        <div class="control-group">
 
-			<div class="control-group">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 
-				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+            <label class="control-label visible-ie8 visible-ie9">Username</label>
 
-				<label class="control-label visible-ie8 visible-ie9">Username</label>
+            <div class="controls">
 
-				<div class="controls">
+                <div class="input-icon left">
 
-					<div class="input-icon left">
+                    <i class="icon-user"></i>
 
-						<i class="icon-user"></i>
+                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="E-mail" name="username"/>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="userId" name="userId"/>
+                </div>
 
-					</div>
+            </div>
 
-				</div>
+        </div>
 
-			</div>
+        <div class="control-group">
 
-			<div class="control-group">
+            <label class="control-label visible-ie8 visible-ie9">Password</label>
 
-				<label class="control-label visible-ie8 visible-ie9">Password</label>
+            <div class="controls">
 
-				<div class="controls">
+                <div class="input-icon left">
 
-					<div class="input-icon left">
+                    <i class="icon-lock"></i>
 
-						<i class="icon-lock"></i>
+                    <input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password"/>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password"/>
+                </div>
 
-					</div>
+            </div>
 
-				</div>
+        </div>
 
-			</div>
+        <div class="form-actions">
 
-			<div class="form-actions">
+            <label class="checkbox">
 
-				<label class="checkbox">
+                <input type="checkbox" name="remember" value="1"/> Remember me
 
-				<input type="checkbox" name="remember" value="1"/> 记住我
+            </label>
 
-				</label>
+            <button type="submit" class="btn green pull-right">
 
-				<button type="submit" class="btn green pull-right">
+                Login <i class="m-icon-swapright m-icon-white"></i>
 
-				登录 <i class="m-icon-swapright m-icon-white"></i>
+            </button>
 
-				</button>            
+        </div>
 
-			</div>
+        <div class="forget-password">
 
-			<div class="forget-password">
+            <h4>Forgot your password ?</h4>
 
-				<h4>忘记密码 ?</h4>
+            <p>
 
-				<p>
+                no worries, click <a href="javascript:;" class="" id="forget-password">here</a>
 
-					不用担心, 点击 <a href="javascript:;" class="" id="forget-password">这里</a>
+                to reset your password.
 
-					找回你的密码。
+            </p>
 
-				</p>
+        </div>
 
-			</div>
+        <div class="create-account">
 
-			<div class="create-account">
+            <p>
 
-				<p>
+                Don't have an account yet ?&nbsp;
 
-					还没有账号 ?&nbsp;
+                <a href="javascript:;" id="register-btn" class="">Create an account</a>
 
-					<a href="javascript:;" id="register-btn" class="">创建一个用户</a>
+            </p>
 
-				</p>
+        </div>
 
-			</div>
+    </form>
 
-		</form>
+    <!-- END LOGIN FORM -->
 
-		<!-- END LOGIN FORM -->        
+    <!-- BEGIN FORGOT PASSWORD FORM -->
 
-		<!-- BEGIN FORGOT PASSWORD FORM -->
+    <form class="form-vertical forget-form" action="#">
 
-		<form class="form-vertical forget-form" action="#">
+        <h3 class="">Forget Password ?</h3>
 
-			<h3 class="">忘记密码 ?</h3>
+        <p>Enter your e-mail address below to reset your password.</p>
 
-			<p>输入你的邮箱地址找回密码</p>
+        <div class="control-group">
 
-			<div class="control-group">
+            <div class="controls">
 
-				<div class="controls">
+                <div class="input-icon left">
 
-					<div class="input-icon left">
+                    <i class="icon-envelope"></i>
 
-						<i class="icon-envelope"></i>
+                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email" />
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email" />
+                </div>
 
-					</div>
+            </div>
 
-				</div>
+        </div>
 
-			</div>
+        <div class="form-actions">
 
-			<div class="form-actions">
+            <button type="button" id="back-btn" class="btn">
 
-				<button type="button" id="back-btn" class="btn">
+                <i class="m-icon-swapleft"></i> Back
 
-				<i class="m-icon-swapleft"></i> Back
+            </button>
 
-				</button>
+            <button type="submit" class="btn green pull-right">
 
-				<button type="submit" class="btn green pull-right">
+                Submit <i class="m-icon-swapright m-icon-white"></i>
 
-				Submit <i class="m-icon-swapright m-icon-white"></i>
+            </button>
 
-				</button>            
+        </div>
 
-			</div>
+    </form>
 
-		</form>
+    <!-- END FORGOT PASSWORD FORM -->
 
-		<!-- END FORGOT PASSWORD FORM -->
+    <!-- BEGIN REGISTRATION FORM -->
 
-		<!-- BEGIN REGISTRATION FORM -->
+    <form class="form-vertical register-form" method="POST" action="Register">
 
-		<form class="form-vertical register-form" action="#">
+        <h3 class="">Sign Up</h3>
 
-			<h3 class="">Sign Up</h3>
+        <p>Enter your account details below:</p>
 
-			<p>Enter your account details below:</p>
+        <div class="control-group">
 
-			<div class="control-group">
+            <label class="control-label visible-ie8 visible-ie9">Username</label>
 
-				<label class="control-label visible-ie8 visible-ie9">Username</label>
+            <div class="controls">
 
-				<div class="controls">
+                <div class="input-icon left">
 
-					<div class="input-icon left">
+                    <i class="icon-user"></i>
 
-						<i class="icon-user"></i>
+                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username"/>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username"/>
+                </div>
 
-					</div>
+            </div>
 
-				</div>
+        </div>
 
-			</div>
 
-			<div class="control-group">
+        <div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">Password</label>
+            <label class="control-label visible-ie8 visible-ie9">userAge</label>
 
-				<div class="controls">
+            <div class="controls">
 
-					<div class="input-icon left">
+                <div class="input-icon left">
 
-						<i class="icon-lock"></i>
+                    <i class="icon-time"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="Password" name="password"/>
+                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="userAge" name="userAge"/>
 
-					</div>
+                </div>
 
-				</div>
+            </div>
 
-			</div>
+        </div>
 
-			<div class="control-group">
+        <div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+            <label class="control-label visible-ie8 visible-ie9">userPhone</label>
 
-				<div class="controls">
+            <div class="controls">
 
-					<div class="input-icon left">
+                <div class="input-icon left">
 
-						<i class="icon-ok"></i>
+                    <i class="icon-home"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Re-type Your Password" name="rpassword"/>
+                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="userPhone" name="userPhone"/>
 
-					</div>
+                </div>
 
-				</div>
+            </div>
 
-			</div>
+        </div>
 
-			<div class="control-group">
+        <div class="control-group">
 
-				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+            <label class="control-label visible-ie8 visible-ie9">Password</label>
 
-				<label class="control-label visible-ie8 visible-ie9">Email</label>
+            <div class="controls">
 
-				<div class="controls">
+                <div class="input-icon left">
 
-					<div class="input-icon left">
+                    <i class="icon-lock"></i>
 
-						<i class="icon-envelope"></i>
+                    <input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="Password" name="password"/>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email"/>
+                </div>
 
-					</div>
+            </div>
 
-				</div>
+        </div>
 
-			</div>
+        <div class="control-group">
 
-			<div class="control-group">
+            <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
 
-				<div class="controls">
+            <div class="controls">
 
-					<label class="checkbox">
+                <div class="input-icon left">
 
-					<input type="checkbox" name="tnc"/> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    <i class="icon-ok"></i>
 
-					</label>  
+                    <input class="m-wrap placeholder-no-fix" type="password" placeholder="Re-type Your Password" name="rpassword"/>
 
-					<div id="register_tnc_error"></div>
+                </div>
 
-				</div>
+            </div>
 
-			</div>
+        </div>
 
-			<div class="form-actions">
+        <div class="control-group">
 
-				<button id="register-back-btn" type="button" class="btn">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 
-				<i class="m-icon-swapleft"></i>  Back
+            <label class="control-label visible-ie8 visible-ie9">Email</label>
 
-				</button>
+            <div class="controls">
 
-				<button type="submit" id="register-submit-btn" class="btn green pull-right">
+                <div class="input-icon left">
 
-				Sign Up <i class="m-icon-swapright m-icon-white"></i>
+                    <i class="icon-envelope"></i>
 
-				</button>            
+                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email"/>
 
-			</div>
+                </div>
 
-		</form>
+            </div>
 
-		<!-- END REGISTRATION FORM -->
+        </div>
 
-	</div>
+        <div class="control-group">
 
-	<!-- END LOGIN -->
+            <div class="controls">
 
-	<!-- BEGIN COPYRIGHT -->
+                <label class="checkbox">
+<%--todo--%>
+                    <input type="checkbox" name="tnc"/> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
 
-	<div class="copyright">
+                </label>
 
-		2013 &copy; Metronic. Admin Dashboard Template.
+                <div id="register_tnc_error"></div>
 
-	</div>
+            </div>
 
-	<!-- END COPYRIGHT -->
+        </div>
 
-	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+        <div class="form-actions">
 
-	<!-- BEGIN CORE PLUGINS -->
+            <button id="register-back-btn" type="button" class="btn">
 
-	<script src="<%=path %>/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+                <i class="m-icon-swapleft"></i>  Back
 
-	<script src="<%=path %>/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+            </button>
 
-	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+            <button type="submit" id="register-submit-btn" class="btn green pull-right">
 
-	<script src="<%=path %>/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+                Sign Up <i class="m-icon-swapright m-icon-white"></i>
 
-	<script src="<%=path %>/media/js/bootstrap.min.js" type="text/javascript"></script>
+            </button>
 
-	<!--[if lt IE 9]>
+        </div>
 
-	<script src="<%=path %>/media/js/excanvas.min.js"></script>
+    </form>
 
-	<script src="<%=path %>/media/js/respond.min.js"></script>
+    <!-- END REGISTRATION FORM -->
 
-	<![endif]-->   
+</div>
 
-	<script src="<%=path %>/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+<!-- END LOGIN -->
 
-	<script src="<%=path %>/media/js/jquery.blockui.min.js" type="text/javascript"></script>
+<!-- BEGIN COPYRIGHT -->
 
-	<script src="<%=path %>/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+<div class="copyright">
 
-	<script src="<%=path %>/media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+    2013 &copy; Metronic. Admin Dashboard Template.
 
-	<!-- END CORE PLUGINS -->
+</div>
 
-	<!-- BEGIN PAGE LEVEL PLUGINS -->
+<!-- END COPYRIGHT -->
 
-	<script src="<%=path %>/media/js/jquery.validate.min.js" type="text/javascript"></script>
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 
-	<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN CORE PLUGINS -->
 
-	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="<%=path%>/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
 
-	<script src="<%=path %>/media/js/app.js" type="text/javascript"></script>
+<script src="<%=path%>/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
 
-	<script src="<%=path %>/media/js/login.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 
-	<!-- END PAGE LEVEL SCRIPTS --> 
+<script src="<%=path%>/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
 
-	<script>
+<script src="<%=path%>/media/js/bootstrap.min.js" type="text/javascript"></script>
 
-		jQuery(document).ready(function() {     
+<!--[if lt IE 9]>
 
-		  App.init();
+<script src="media/js/excanvas.min.js"></script>
 
-		  Login.init();
+<script src="media/js/respond.min.js"></script>
 
-		});
+<![endif]-->
 
-	</script>
+<script src="<%=path%>/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
 
-	<!-- END JAVASCRIPTS -->
+<script src="<%=path%>/media/js/jquery.blockui.min.js" type="text/javascript"></script>
+
+<script src="<%=path%>/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+
+<script src="<%=path%>/media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+<script src="<%=path%>/media/js/jquery.validate.min.js" type="text/javascript"></script>
+
+<!-- END PAGE LEVEL PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+<script src="<%=path%>/media/js/app.js" type="text/javascript"></script>
+
+<script src="<%=path%>/media/js/login.js" type="text/javascript"></script>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<script>
+
+    jQuery(document).ready(function() {
+
+        App.init();
+
+        Login.init();
+
+    });
+
+</script>
+
+<!-- END JAVASCRIPTS -->
 
 </body>
 
