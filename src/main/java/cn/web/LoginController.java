@@ -24,20 +24,23 @@ public class LoginController {
     private static Logger logger = Logger.getLogger(LoginController.class);
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private  HttpServletRequest request;
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String Login(){
         return "login";
     }
 
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
-    public String doLogin(RedirectAttributes attributes,HttpServletRequest httpServletRequest, LoginForm loginForm){
+    public String doLogin(LoginForm loginForm){
         if (loginForm!=null){
             try {
                 if (userService.hasMatchUser(loginForm.getUserId(),loginForm.getPassword())){
                     User user = userService.findUserById(loginForm.getUserId());
-                    user.setUserLastIp(getIpAddr(httpServletRequest));
+                    user.setUserLastIp(getIpAddr(request));
                     userService.loginSuccess(user);
-                    attributes.addFlashAttribute("user",user);
+                    request.getSession().setAttribute("user",user);
                     return "redirect:/index";
                 }
             } catch (Exception e) {
@@ -47,7 +50,8 @@ public class LoginController {
         return "redirect:/login";
     }
     @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public String index(@ModelAttribute("user") User user){
+    public String index(){
+        User user = (User)request.getSession().getAttribute("user");
        if (user==null||user.getUserId()==null||user.getUserId()==0){
             return "redirect:/login";
         }
