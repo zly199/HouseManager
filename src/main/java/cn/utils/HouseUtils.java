@@ -57,6 +57,7 @@ public class HouseUtils {
         //设置主题
         message.setSubject("来自房产中介公司的激活邮件");
         //发送正文
+        //todo:乱码问题
         message.setContent(
                 "<h1>来自房产中介公司的激活邮件</h1>" +
                         "<h3><a href="+registerUrl+"></a>"+registerUrl+"</h3>",

@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `housemgr` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+CREATE DATABASE  IF NOT EXISTS `housemgr` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `housemgr`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -18,22 +18,67 @@ USE `housemgr`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `login_log`
+-- Dumping data for table `comments`
 --
 
-DROP TABLE IF EXISTS `login_log`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `login_log` (
-  `login_log_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `ip` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `login_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`login_log_id`),
-  KEY `login_log_t_user_user_id_fk` (`user_id`),
-  CONSTRAINT `login_log_t_user_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `t_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='登录日志';
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `contract`
+--
+
+LOCK TABLES `contract` WRITE;
+/*!40000 ALTER TABLE `contract` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contract` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `custom`
+--
+
+LOCK TABLES `custom` WRITE;
+/*!40000 ALTER TABLE `custom` DISABLE KEYS */;
+/*!40000 ALTER TABLE `custom` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `custom_trail`
+--
+
+LOCK TABLES `custom_trail` WRITE;
+/*!40000 ALTER TABLE `custom_trail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `custom_trail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `host`
+--
+
+LOCK TABLES `host` WRITE;
+/*!40000 ALTER TABLE `host` DISABLE KEYS */;
+/*!40000 ALTER TABLE `host` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `house_msg`
+--
+
+LOCK TABLES `house_msg` WRITE;
+/*!40000 ALTER TABLE `house_msg` DISABLE KEYS */;
+/*!40000 ALTER TABLE `house_msg` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `house_trail`
+--
+
+LOCK TABLES `house_trail` WRITE;
+/*!40000 ALTER TABLE `house_trail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `house_trail` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping data for table `login_log`
@@ -41,37 +86,73 @@ CREATE TABLE `login_log` (
 
 LOCK TABLES `login_log` WRITE;
 /*!40000 ALTER TABLE `login_log` DISABLE KEYS */;
-INSERT INTO `login_log` VALUES (1,100000,'192.168.1.3','2017-03-30 00:41:00'),(2,100000,'192.168.1.105','2017-03-30 02:31:28'),(3,100000,NULL,'2017-03-30 02:37:51'),(4,100000,NULL,'2017-03-30 02:38:35'),(7,100000,NULL,'2017-03-30 02:50:59'),(8,100000,'0:0:0:0:0:0:0:1','2017-04-10 10:36:40'),(9,100000,'0:0:0:0:0:0:0:1','2017-04-10 10:38:04'),(10,100000,'0:0:0:0:0:0:0:1','2017-04-10 10:39:07'),(11,100000,'0:0:0:0:0:0:0:1','2017-04-10 10:51:33'),(12,100000,'0:0:0:0:0:0:0:1','2017-04-10 10:54:53'),(13,100000,'0:0:0:0:0:0:0:1','2017-04-10 10:57:00'),(14,100000,'0:0:0:0:0:0:0:1','2017-04-10 11:02:45'),(15,100000,'0:0:0:0:0:0:0:1','2017-04-10 11:03:37'),(16,100000,'0:0:0:0:0:0:0:1','2017-04-10 11:09:26'),(17,100000,'0:0:0:0:0:0:0:1','2017-04-10 11:23:21'),(18,100000,'0:0:0:0:0:0:0:1','2017-04-10 11:24:15'),(19,100000,'0:0:0:0:0:0:0:1','2017-04-10 11:26:07'),(20,100000,NULL,'2017-04-10 11:29:34'),(21,100000,'0:0:0:0:0:0:0:1','2017-04-10 11:33:45'),(22,100000,'0:0:0:0:0:0:0:1','2017-04-10 11:33:51');
+INSERT INTO `login_log` VALUES (1,100000,'2017-04-13 08:22:32','0:0:0:0:0:0:0:1'),(2,100000,'2017-04-13 08:23:15','0:0:0:0:0:0:0:1'),(3,100000,'2017-04-13 08:24:36','0:0:0:0:0:0:0:1'),(4,100000,'2017-04-13 08:29:33','0:0:0:0:0:0:0:1'),(5,100000,'2017-04-13 08:35:50','0:0:0:0:0:0:0:1'),(6,100000,'2017-04-13 08:38:04','0:0:0:0:0:0:0:1'),(7,100000,'2017-04-13 08:39:18','0:0:0:0:0:0:0:1'),(8,100000,'2017-04-13 08:41:24','0:0:0:0:0:0:0:1'),(9,100000,'2017-04-13 08:44:17','0:0:0:0:0:0:0:1'),(10,100000,'2017-04-13 08:44:41','0:0:0:0:0:0:0:1'),(11,100000,'2017-04-13 08:46:10','0:0:0:0:0:0:0:1'),(12,100000,'2017-04-13 09:53:16','0:0:0:0:0:0:0:1'),(13,100000,'2017-04-13 11:42:28','0:0:0:0:0:0:0:1'),(14,100000,'2017-04-13 12:01:39','0:0:0:0:0:0:0:1'),(15,100000,'2017-04-13 12:02:04','0:0:0:0:0:0:0:1'),(16,100000,'2017-04-13 12:57:59','0:0:0:0:0:0:0:1'),(17,100000,'2017-04-13 13:09:07','0:0:0:0:0:0:0:1'),(18,100000,'2017-04-13 13:09:37','0:0:0:0:0:0:0:1'),(19,100000,'2017-04-13 13:24:43','0:0:0:0:0:0:0:1'),(20,100000,'2017-04-13 13:30:12','0:0:0:0:0:0:0:1'),(21,100000,'2017-04-13 13:46:31','0:0:0:0:0:0:0:1'),(22,100000,'2017-04-13 14:10:36','0:0:0:0:0:0:0:1'),(23,100000,'2017-04-13 14:12:49','0:0:0:0:0:0:0:1'),(24,100000,'2017-04-13 14:45:28','0:0:0:0:0:0:0:1'),(25,100000,'2017-04-13 14:54:27','0:0:0:0:0:0:0:1'),(26,100018,'2017-04-14 06:53:26','0:0:0:0:0:0:0:1'),(27,100000,'2017-04-14 07:38:56','0:0:0:0:0:0:0:1'),(28,100000,'2017-04-14 07:40:03','0:0:0:0:0:0:0:1'),(29,100000,'2017-04-14 07:44:27','0:0:0:0:0:0:0:1'),(30,100000,'2017-04-14 07:50:39','0:0:0:0:0:0:0:1'),(31,100000,'2017-04-14 07:58:51','0:0:0:0:0:0:0:1'),(32,100018,'2017-04-14 07:59:29','0:0:0:0:0:0:0:1'),(33,100018,'2017-04-14 08:03:06','0:0:0:0:0:0:0:1'),(34,100018,'2017-04-14 08:04:48','0:0:0:0:0:0:0:1'),(35,100000,'2017-04-14 08:05:34','0:0:0:0:0:0:0:1');
 /*!40000 ALTER TABLE `login_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `t_user`
+-- Dumping data for table `news`
 --
 
-DROP TABLE IF EXISTS `t_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `t_user` (
-  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `password` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sex` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_ip` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `User_user_id_uindex` (`user_id`),
-  UNIQUE KEY `User_user_name_uindex` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=100001 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `news` WRITE;
+/*!40000 ALTER TABLE `news` DISABLE KEYS */;
+/*!40000 ALTER TABLE `news` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Dumping data for table `t_user`
+-- Dumping data for table `parameter`
 --
 
-LOCK TABLES `t_user` WRITE;
-/*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` VALUES (100000,'admin','123456','女','0:0:0:0:0:0:0:1');
-/*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
+LOCK TABLES `parameter` WRITE;
+/*!40000 ALTER TABLE `parameter` DISABLE KEYS */;
+INSERT INTO `parameter` VALUES (0,0,0,0,0,0,0,0,0),(1,1,1,1,1,1,1,1,1),(2,1,1,1,1,1,1,1,1);
+/*!40000 ALTER TABLE `parameter` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `property`
+--
+
+LOCK TABLES `property` WRITE;
+/*!40000 ALTER TABLE `property` DISABLE KEYS */;
+/*!40000 ALTER TABLE `property` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `school`
+--
+
+LOCK TABLES `school` WRITE;
+/*!40000 ALTER TABLE `school` DISABLE KEYS */;
+/*!40000 ALTER TABLE `school` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `sell`
+--
+
+LOCK TABLES `sell` WRITE;
+/*!40000 ALTER TABLE `sell` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sell` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (100000,'管理员',18,1,'123456',13684875130,'919672913@qq.com','0:0:0:0:0:0:0:1');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `village`
+--
+
+LOCK TABLES `village` WRITE;
+/*!40000 ALTER TABLE `village` DISABLE KEYS */;
+/*!40000 ALTER TABLE `village` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -91,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-10 21:33:12
+-- Dump completed on 2017-04-16 15:29:00

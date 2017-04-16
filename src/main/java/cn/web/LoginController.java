@@ -33,7 +33,7 @@ public class LoginController {
     private  HttpServletRequest request;
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String Login(){
-        return "login";
+        return "login_soft";
     }
 
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
