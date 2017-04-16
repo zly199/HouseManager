@@ -87,7 +87,6 @@ public class LoginController {
         //根据激活码(暂存在lastIP上)查询用户
         SelcetResult<User> selcetResult = userService.findUserByLastIp(actionCode);
         if (selcetResult.isSuccess()!=true){
-            //todo:文字封装
             model.addAttribute("isSuccessMeg", LoginModelEnum.ACTIVE_URL_FAILED.getContext());
             return "register";
         }else {
@@ -97,7 +96,6 @@ public class LoginController {
         }
         if (count>0){
             //修改成功，延迟返回激活成功界面
-            //todo:文字封装
             model.addAttribute("isSuccessMeg",selcetResult.getData().getUserName()+LoginModelEnum.ACTIVE_SUCCESS.getContext());
         }else {
             model.addAttribute("isSuccessMeg",selcetResult.getData().getUserName()+LoginModelEnum.ACTIVE_FAILED.getContext());
