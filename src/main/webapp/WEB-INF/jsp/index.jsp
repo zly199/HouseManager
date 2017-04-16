@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="textml;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -368,7 +369,7 @@
 
             </li>
 
-            <li>
+            <li class="">
 
                 <a class="active" href="javascript:;">
 
@@ -400,7 +401,7 @@
 
             </li>
 
-            <li>
+            <li class="">
 
                 <a href="javascript:;">
 
@@ -524,6 +525,7 @@
                 </ul>
 
             </li>
+            <c:if test="${parameter.userInf>0}">
             <li class="">
 
                 <a href="javascript:;">
@@ -556,6 +558,7 @@
                 </ul>
 
             </li>
+            </c:if>
             <li class="">
 
                 <a href="javascript:;">

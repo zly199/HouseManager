@@ -57,4 +57,11 @@ public interface UserMapper {
      * @return
      */
     User selectByEmail(String email);
+
+    /**
+     * 通过lastIP查找用户
+     * @param actionCode
+     * @return
+     */
+    User selectByLastIp(String actionCode);
 }

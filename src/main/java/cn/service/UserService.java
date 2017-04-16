@@ -1,5 +1,7 @@
 package cn.service;
 
+import cn.dto.SelcetResult;
+import cn.entity.Parameter;
 import cn.entity.User;
 
 /**
@@ -34,4 +36,44 @@ public interface UserService {
      */
     public User findUserByEmail(String email);
 
+    /**
+     * 创建新用户
+     * @param User User
+     * @return
+     */
+    public int insertNewUser(User User);
+
+    /**
+     * 根据注册表单创建新用户
+     * @param User
+     * @return
+     */
+    public int updateUser(User User);
+
+    /**
+     * 新注册用户的激活操作
+     * @param user
+     * @return 修改的函数1：正常 0：失败
+     */
+    public int activeUser(User user);
+
+    /**
+     * 发送激活邮件
+     * @param mail 要发送的邮件地址
+     * @param code 邮件激活码
+     * @return
+     */
+    public SelcetResult<Integer> postMail(String mail,String code);
+
+    /**
+     * 根据激活码查询用户（lastIp）
+     * @param actionCode
+     * @return
+     */
+    SelcetResult<User> findUserByLastIp(String actionCode);
+
+    public SelcetResult<Parameter> findPowerByPowerId(int powerId);
+
+
+    ;
 }

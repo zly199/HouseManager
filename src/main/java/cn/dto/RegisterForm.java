@@ -1,9 +1,11 @@
 package cn.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by ZLY on 2017-04-13.
  */
-public class RegisterForm {
+public class RegisterForm implements Serializable{
 
     private String username;
 

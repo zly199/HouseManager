@@ -342,7 +342,7 @@
             <div class="controls">
 
                 <label class="checkbox">
-<%--todo--%>
+
                     <input type="checkbox" name="tnc"/> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
 
                 </label>

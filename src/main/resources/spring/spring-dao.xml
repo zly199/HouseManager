@@ -21,7 +21,7 @@
           p:maxPoolSize="30"
           p:minPoolSize="3"
           p:autoCommitOnClose="false"
-          p:checkoutTimeout="10000"
+          p:checkoutTimeout="3000"
           p:acquireRetryAttempts="2"
     />
 
