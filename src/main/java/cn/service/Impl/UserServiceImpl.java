@@ -7,7 +7,7 @@ import cn.dto.SelcetResult;
 import cn.entity.LoginLog;
 import cn.entity.Parameter;
 import cn.entity.User;
-import cn.exception.RegisterException;
+import cn.enums.UserPowerEnum;
 import cn.service.UserService;
 import cn.utils.HouseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,8 +84,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public int activeUser(User user) {
-        //todo:文字封装
-        user.setUserPower(1);
+
+        user.setUserPower(UserPowerEnum.NORMAL_USER.getPowerId());
         return userMapper.updateByPrimaryKeySelective(user);
     }
 

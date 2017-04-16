@@ -4,6 +4,8 @@ import cn.dto.LoginForm;
 import cn.dto.RegisterForm;
 import cn.dto.SelcetResult;
 import cn.entity.User;
+import cn.enums.LoginModelEnum;
+import cn.enums.UserPowerEnum;
 import cn.service.UserService;
 import cn.utils.HouseUtils;
 import org.apache.log4j.Logger;
@@ -13,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
@@ -64,8 +65,7 @@ public class LoginController {
         User user = new User();
         user.setUserEmail(registerForm.getEmail());
         //先把权限设为0
-        user.setUserPower(0);//0:未激活 1：受限用户（未经管理员授权） 2:普通用户 3：管理员用户 4：超级管理员
-        user.setUserPsd(registerForm.getPassword());
+        user.setUserPower(UserPowerEnum.NOT_ACTIVE_USER.getPowerId());user.setUserPsd(registerForm.getPassword());
         user.setUserPhone(registerForm.getUserPhone());
         user.setUserName(registerForm.getUsername());
         user.setUserAge(registerForm.getUserAge());
@@ -77,7 +77,7 @@ public class LoginController {
         userService.insertNewUser(user);
         //向用户发送激活邮件
         userService.postMail(user.getUserEmail(),user.getUserLastIp());
-        model.addAttribute("isSuccessMeg","注册成功，请到邮箱"+user.getUserEmail()+"继续操作");
+        model.addAttribute("isSuccessMeg",LoginModelEnum.REGISTER_SUCCESS.getContext()+user.getUserEmail());
         return "register";
     }
     //"http://localhost:8080/HouseMgr/actionUser?code="+code;
@@ -88,7 +88,7 @@ public class LoginController {
         SelcetResult<User> selcetResult = userService.findUserByLastIp(actionCode);
         if (selcetResult.isSuccess()!=true){
             //todo:文字封装
-            model.addAttribute("isSuccessMeg","激活失败,链接过期或者不可用");
+            model.addAttribute("isSuccessMeg", LoginModelEnum.ACTIVE_URL_FAILED.getContext());
             return "register";
         }else {
             //已经查询到，修改用户状态
@@ -98,9 +98,9 @@ public class LoginController {
         if (count>0){
             //修改成功，延迟返回激活成功界面
             //todo:文字封装
-            model.addAttribute("isSuccessMeg","用户,"+selcetResult.getData().getUserName()+",激活成功,");
+            model.addAttribute("isSuccessMeg",selcetResult.getData().getUserName()+LoginModelEnum.ACTIVE_SUCCESS.getContext());
         }else {
-            model.addAttribute("isSuccessMeg","用户,"+selcetResult.getData().getUserName()+",权限变更失败");
+            model.addAttribute("isSuccessMeg",selcetResult.getData().getUserName()+LoginModelEnum.ACTIVE_FAILED.getContext());
             return "register";
         }
         request.getSession().setAttribute("user",selcetResult.getData());

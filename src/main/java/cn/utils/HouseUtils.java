@@ -1,7 +1,8 @@
 package cn.utils;
 
+import cn.enums.ActionMailEnum;
+
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
@@ -28,19 +29,20 @@ public class HouseUtils {
      * @param code 邮件激活码
      */
     public static void senMail(String to,String code) throws MessagingException {
+        //todo:周谦页面设计
         //创建连接对象
         //用户名
-        String userName = "houseadmin@rain594230.cn";
+        String userName = ActionMailEnum.MAIL_FROM_USERNAME.getContext();
         //密码
-        String pwd = "123456";
+        String pwd = ActionMailEnum.MAIL_FROM_PWD.getContext();
         //邮箱服务器
-        String servceUrl = "smtp.rain594230.cn";
+
+        String serviceUrl = ActionMailEnum.MAIL_SERVICE_SMTP.getContext();
         //激活链接
-        String registerUrl = "http://localhost:8080/HouseMgr/activeUser/"+code;
-        String port = "25";
+        String registerUrl = ActionMailEnum.REGISTER_URL.getContext();
         Properties props = new Properties();
-        props.put("mail.smtp.host", servceUrl);
-        props.put("mail.smtp.port", port);
+        props.put("mail.smtp.host", serviceUrl);
+        props.put("mail.smtp.port", "25");
         props.put("mail.smtp.auth", "true");
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
@@ -55,13 +57,14 @@ public class HouseUtils {
         //设置收件人
         message.setRecipient(Message.RecipientType.TO,new InternetAddress(to));
         //设置主题
-        message.setSubject("来自房产中介公司的激活邮件");
+        message.setSubject(ActionMailEnum.MAIL_TITLE.getContext());
         //发送正文
-        //todo:乱码问题
+
         message.setContent(
-                "<h1>来自房产中介公司的激活邮件</h1>" +
-                        "<h3><a href="+registerUrl+"></a>"+registerUrl+"</h3>",
-                "text/html;chatset=UTF-8");
+                "<h1>"+ ActionMailEnum.CONTEXT_TITLE.getContext()+"</h1>"
+                        +"<h2>"+ ActionMailEnum.CONTEXT_MAIN.getContext()+"</h2>"
+                        +"<h3><a href="+registerUrl+""+code+">"+registerUrl+""+code+"</a></h3>",
+                "text/html;charset=UTF-8");
 
         //发送激活邮件
         /*Transport transport = session.getTransport("smtp");
