@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="textml;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -82,14 +83,20 @@
 
 			<div class="alert alert-error hide">
 
-
 				<button class="close" data-dismiss="alert"></button>
-
 
 				<span>Enter any username and password.</span>
 
+			</div>
+		<c:if test="${loginResult.success==false}">
+			<div class="alert alert-error">
+
+				<button class="close" data-dismiss="alert"></button>
+
+				<span>${loginResult.error}</span>
 
 			</div>
+		</c:if>
 
 
 			<div class="control-group">
@@ -109,7 +116,7 @@
 						<i class="icon-user"></i>
 
 
-                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="E-mail" name="username"/>
+                        <input class="m-wrap placeholder-no-fix" type="text" placeholder="E-mail" name="username" value="${loginResult.data.username}"/>
 
 
 					</div>
@@ -135,8 +142,7 @@
 						<i class="icon-lock"></i>
 
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password"/>
-
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password" value="${loginResult.data.password}"/>
 
 					</div>
 
@@ -338,7 +344,6 @@
                     <i class="icon-time"></i>
 
 
-
                     <input class="m-wrap placeholder-no-fix" type="text" placeholder="userAge" name="userAge"/>
 
 
@@ -453,6 +458,7 @@
 						<i class="icon-envelope"></i>
 
 
+
 						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email"/>
 
 
@@ -529,7 +535,7 @@
 	<div class="copyright">
 
 
-		2013 &copy; Metronic - Admin Dashboard Template.
+		2017 &copy; jxufe - Admin Dashboard Template.
 
 
 	</div>

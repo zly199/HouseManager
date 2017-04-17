@@ -13,7 +13,7 @@
     <!--数据库参数-->
 <!--<context:property-placeholder location="jdbc.properties"/>-->
 
-    <bean id="dateSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
+    <bean id="dateSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           p:driverClass="com.mysql.jdbc.Driver"
           p:jdbcUrl="jdbc:mysql://localhost:3306/housemgr?useUnicode=true&amp;characterEncoding=utf8"
           p:user="root"

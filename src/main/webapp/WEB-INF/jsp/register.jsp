@@ -11,6 +11,6 @@
     <title>激活</title>
 </head>
 <body>
-<h2>${isSuccessMeg}</h2>
+    <h2>${isSuccessMeg}</h2>
 </body>
 </html>

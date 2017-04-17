@@ -21,6 +21,12 @@ public class SelcetResult<T> {
         this.data = data;
     }
 
+    public SelcetResult(boolean success, T data, String error) {
+        this.success = success;
+        this.data = data;
+        this.error = error;
+    }
+
     public boolean isSuccess() {
         return success;
     }

@@ -729,9 +729,7 @@
                     <!-- BEGIN PAGE TITLE & BREADCRUMB-->
 
                     <h3 class="page-title">
-
-                        欢迎来到房屋中介管理系统 您登陆的ip为：${user.userLastIp}
-
+                        欢迎来到房屋中介管理系统 您上次登陆的ip为：${user.userLastIp}
                     </h3>
 
                     <ul class="breadcrumb">
@@ -740,7 +738,7 @@
 
                             <i class="icon-home"></i>
 
-                            <a href="#">Home</a>
+                            <a href="index">Home</a>
 
                             <i class="icon-angle-right"></i>
 

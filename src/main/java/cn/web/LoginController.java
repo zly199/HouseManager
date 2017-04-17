@@ -1,5 +1,6 @@
 package cn.web;
 
+
 import cn.dto.LoginForm;
 import cn.dto.RegisterForm;
 import cn.dto.SelcetResult;
@@ -15,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
@@ -38,33 +41,45 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
-    public String doLogin(LoginForm loginForm){
-        //todo:返回错误信息，权限判断；
-        if (loginForm!=null){
+    public String doLogin(LoginForm loginForm,RedirectAttributes attr){
+        //todo:权限判断；
             try {
+                //验证邮箱和密码是否匹配
                 if (userService.hasMatchUser(loginForm.getUsername(),loginForm.getPassword())){
                     User user = userService.findUserByEmail(loginForm.getUsername());
+                    //写入session便于读取(此时为上次登录的IP)
+                    request.getSession().setAttribute("user",user);
+                    //更新ip（更新本次登陆ip）
                     user.setUserLastIp(getIpAddr(request));
                     userService.loginSuccess(user);
-                    //写入session便于读取
-                    request.getSession().setAttribute("user",user);
+
                     //根据powerID查询查询权限信息
                     return "redirect:/index";
                 }
             } catch (Exception e) {
                 return "redirect:/login";
             }
-        }
+        //用户密码不正确,返回错误信息
+        SelcetResult<LoginForm> selcetResult = new SelcetResult<LoginForm>(false,loginForm,LoginModelEnum.LOGIN_FAILED.getContext());
+        attr.addFlashAttribute("loginResult",selcetResult);
+
+        System.out.println(attr.getFlashAttributes().toString());
         return "redirect:/login";
     }
 
+    /**
+     * 注册链接
+     * @param registerForm 注册信息
+     * @param model 响应参数
+     * @return
+     */
     @RequestMapping(value = "/Register",method = RequestMethod.POST)
     public String Register(RegisterForm registerForm,Model model){
-        //todo:返回错误信息；字段为空或（邮箱，手机）重复；
+
         //处理表单内容
         User user = new User();
         user.setUserEmail(registerForm.getEmail());
-        //先把权限设为0
+        //先把权限设为为激活态
         user.setUserPower(UserPowerEnum.NOT_ACTIVE_USER.getPowerId());user.setUserPsd(registerForm.getPassword());
         user.setUserPhone(registerForm.getUserPhone());
         user.setUserName(registerForm.getUsername());
@@ -80,6 +95,14 @@ public class LoginController {
         model.addAttribute("isSuccessMeg",LoginModelEnum.REGISTER_SUCCESS.getContext()+user.getUserEmail());
         return "register";
     }
+
+
+    /**
+     * 激活链接
+     * @param actionCode
+     * @param model
+     * @return
+     */
     //"http://localhost:8080/HouseMgr/actionUser?code="+code;
     @RequestMapping(value = "/activeUser/{actionCode}",method = RequestMethod.GET)
     public String activeUser(@PathVariable("actionCode")String actionCode,Model model){
@@ -105,14 +128,39 @@ public class LoginController {
         return "register";
     }
 
+    /**
+     * 主页响应
+     * @return
+     */
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(){
 
         User user = (User)request.getSession().getAttribute("user");
        if (user==null||user.getUserId()==null||user.getUserId()==0){
+
             return "redirect:/login";
         }
         return "index";
+    }
+
+    /**
+     * 前端验证邮箱是否可用api
+     * @param email
+     * @return
+     */
+    @RequestMapping(value = "/isEmailAvailable",method = RequestMethod.POST)
+    @ResponseBody
+    public Boolean isEmailAvailable(String email){
+        //不为空时进行验证
+        if (email!=null&&!email.equals("")) {
+            //通过邮箱查找用户
+            User user = userService.findUserByEmail(email);
+
+            if (user==null){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

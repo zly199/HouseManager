@@ -7,7 +7,8 @@ public enum LoginModelEnum {
     REGISTER_SUCCESS("注册成功","注册成功，请到以下邮箱继续操作："),
     ACTIVE_URL_FAILED("注册失败","激活失败,链接过期或者不可用"),
     ACTIVE_SUCCESS("激活成功","恭喜您，激活成功，您可以登陆了"),
-    ACTIVE_FAILED("激活失败","很抱歉，激活失败")
+    ACTIVE_FAILED("激活失败","很抱歉，激活失败"),
+    LOGIN_FAILED("登录失败","用户名或密码错误"),
     ;
     private String name;
     private String context;
