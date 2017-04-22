@@ -11,6 +11,7 @@ public enum ActionMailEnum {
     //todo:周谦页面设计
     CONTEXT_MAIN("正文内容","来自房产中介公司的激活邮件"),
     CONTEXT_TITLE("正文标题","欢迎加入我公司！"),
+    /*REGISTER_URL("激活地址前缀","http://www.rain594230.cn/activeUser/")*/
     REGISTER_URL("激活地址前缀","http://localhost:8080/HouseMgr/activeUser/")
     ;
     private String name;

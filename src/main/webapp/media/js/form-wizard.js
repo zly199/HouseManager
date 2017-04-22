@@ -38,7 +38,6 @@ var FormWizard = function () {
                         minlength: 5,
                         required: true
                     },
-
                     password: {
                         minlength: 5,
                         required: true

@@ -128,10 +128,10 @@ public class LoginController {
         return "register";
     }
 
-    /**
+/*    *//**
      * 主页响应
      * @return
-     */
+     *//*
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(){
 
@@ -140,6 +140,15 @@ public class LoginController {
 
             return "redirect:/login";
         }
+        return "index";
+    }*/
+    /**
+     * 主页响应 todo:调试版
+     * @return
+     */
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    public String index(){
+
         return "index";
     }
 

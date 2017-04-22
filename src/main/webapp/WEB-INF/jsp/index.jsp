@@ -123,7 +123,7 @@
 
                     <ul class="dropdown-menu">
 
-                        <li><a href="#"><i class="icon-user"></i> 个人信息</a></li>
+                        <li><a href="UserMgr/UserMeg"><i class="icon-user"></i> 个人信息</a></li>
                         <li><a href="#"><i class="icon-key"></i> Log Out</a></li>
 
                     </ul>
@@ -221,7 +221,7 @@
 
                     <li >
 
-                        <a href="#">
+                        <a href="UserMgr/list">
 
                             用户查询</a>
 
@@ -229,7 +229,7 @@
 
                     <li >
 
-                        <a href="#">
+                        <a href="UserMgr/add">
 
                             添加用户</a>
 
@@ -254,7 +254,7 @@
 
                     <li >
 
-                        <a href="#">
+                        <a href="UserMgr/list">
 
                             房源查询</a>
 
@@ -262,7 +262,7 @@
 
                     <li >
 
-                        <a href="#">
+                        <a href="HSource/add">
 
                             增加房源</a>
 
@@ -432,9 +432,9 @@
 
                             <li><a href="#"><i class="icon-globe"></i>  统计求购房源</a></li>
 
-                            <li><a href="#"><i class="icon-globe"></i> 统计出租房源</a></li>
+                            <li><a href="count/rentTo"><i class="icon-globe"></i> 统计出租房源</a></li>
 
-                            <li><a href="#"><i class="icon-globe"></i> 统计出售房源 </a></li>
+                            <li><a href="count/soldTo"><i class="icon-globe"></i> 统计出售房源 </a></li>
 
 
 

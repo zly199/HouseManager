@@ -12,5 +12,7 @@
 </head>
 <body>
     <a href="login">登录页面</a>
+    <a href="http://localhost:8080/HouseMgr/index">主页</a>
+
 </body>
 </html>
