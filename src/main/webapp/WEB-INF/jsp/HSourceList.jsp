@@ -17,12 +17,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible"content="IE=9; IE=8; IE=7; IE=EDGE" />
     <title>内容列表页面</title>
-    <link href="<%= basePath %>resources/css/all.css" rel="stylesheet" type="text/css" />
-    <script src="<%= basePath %>resources/js/common/jquery-1.8.0.min.js"></script>
-    <script src="<%= basePath %>resources/js/back/list.js"></script>
+    <link href="resources/css/all.css" rel="stylesheet" type="text/css" />
+    <script src="resources/js/common/jquery-1.8.0.min.js"></script>
+    <script src="resources/js/back/list.js"></script>
 </head>
 <body style="background: #e1e9eb;">
-<form action="<%= basePath %>List.action" id="mainForm" method="post">
+<form action="List.action" id="mainForm" method="post">
     <input type="hidden" name="currentPage" id="currentPage" value="${page.currentPage}"/>
 
     <div class="right">

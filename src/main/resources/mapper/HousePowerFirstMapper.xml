@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.HousePowerFirstMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.HousePowerFirst" >
+    <id column="house_power_first_id" property="housePowerFirstId" jdbcType="BIGINT" />
+    <result column="disk_type" property="diskType" jdbcType="VARCHAR" />
+    <result column="list_or_detil_view" property="listOrDetilView" jdbcType="VARCHAR" />
+    <result column="follow_up_view" property="followUpView" jdbcType="VARCHAR" />
+    <result column="list_item_view" property="listItemView" jdbcType="VARCHAR" />
+    <result column="list_item_detail" property="listItemDetail" jdbcType="VARCHAR" />
+    <result column="detail_item_view" property="detailItemView" jdbcType="VARCHAR" />
+    <result column="detail_item_detail" property="detailItemDetail" jdbcType="VARCHAR" />
+    <result column="house_power_firstcol" property="housePowerFirstcol" jdbcType="VARCHAR" />
+    <result column="host_view" property="hostView" jdbcType="VARCHAR" />
+    <result column="disk_set" property="diskSet" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    house_power_first_id, disk_type, list_or_detil_view, follow_up_view, list_item_view, 
+    list_item_detail, detail_item_view, detail_item_detail, house_power_firstcol, host_view, 
+    disk_set
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from house_power_first
+    where house_power_first_id = #{housePowerFirstId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from house_power_first
+    where house_power_first_id = #{housePowerFirstId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.HousePowerFirst" >
+    insert into house_power_first (house_power_first_id, disk_type, list_or_detil_view, 
+      follow_up_view, list_item_view, list_item_detail, 
+      detail_item_view, detail_item_detail, house_power_firstcol, 
+      host_view, disk_set)
+    values (#{housePowerFirstId,jdbcType=BIGINT}, #{diskType,jdbcType=VARCHAR}, #{listOrDetilView,jdbcType=VARCHAR}, 
+      #{followUpView,jdbcType=VARCHAR}, #{listItemView,jdbcType=VARCHAR}, #{listItemDetail,jdbcType=VARCHAR}, 
+      #{detailItemView,jdbcType=VARCHAR}, #{detailItemDetail,jdbcType=VARCHAR}, #{housePowerFirstcol,jdbcType=VARCHAR}, 
+      #{hostView,jdbcType=VARCHAR}, #{diskSet,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.HousePowerFirst" >
+    insert into house_power_first
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="housePowerFirstId != null" >
+        house_power_first_id,
+      </if>
+      <if test="diskType != null" >
+        disk_type,
+      </if>
+      <if test="listOrDetilView != null" >
+        list_or_detil_view,
+      </if>
+      <if test="followUpView != null" >
+        follow_up_view,
+      </if>
+      <if test="listItemView != null" >
+        list_item_view,
+      </if>
+      <if test="listItemDetail != null" >
+        list_item_detail,
+      </if>
+      <if test="detailItemView != null" >
+        detail_item_view,
+      </if>
+      <if test="detailItemDetail != null" >
+        detail_item_detail,
+      </if>
+      <if test="housePowerFirstcol != null" >
+        house_power_firstcol,
+      </if>
+      <if test="hostView != null" >
+        host_view,
+      </if>
+      <if test="diskSet != null" >
+        disk_set,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="housePowerFirstId != null" >
+        #{housePowerFirstId,jdbcType=BIGINT},
+      </if>
+      <if test="diskType != null" >
+        #{diskType,jdbcType=VARCHAR},
+      </if>
+      <if test="listOrDetilView != null" >
+        #{listOrDetilView,jdbcType=VARCHAR},
+      </if>
+      <if test="followUpView != null" >
+        #{followUpView,jdbcType=VARCHAR},
+      </if>
+      <if test="listItemView != null" >
+        #{listItemView,jdbcType=VARCHAR},
+      </if>
+      <if test="listItemDetail != null" >
+        #{listItemDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="detailItemView != null" >
+        #{detailItemView,jdbcType=VARCHAR},
+      </if>
+      <if test="detailItemDetail != null" >
+        #{detailItemDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="housePowerFirstcol != null" >
+        #{housePowerFirstcol,jdbcType=VARCHAR},
+      </if>
+      <if test="hostView != null" >
+        #{hostView,jdbcType=VARCHAR},
+      </if>
+      <if test="diskSet != null" >
+        #{diskSet,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.HousePowerFirst" >
+    update house_power_first
+    <set >
+      <if test="diskType != null" >
+        disk_type = #{diskType,jdbcType=VARCHAR},
+      </if>
+      <if test="listOrDetilView != null" >
+        list_or_detil_view = #{listOrDetilView,jdbcType=VARCHAR},
+      </if>
+      <if test="followUpView != null" >
+        follow_up_view = #{followUpView,jdbcType=VARCHAR},
+      </if>
+      <if test="listItemView != null" >
+        list_item_view = #{listItemView,jdbcType=VARCHAR},
+      </if>
+      <if test="listItemDetail != null" >
+        list_item_detail = #{listItemDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="detailItemView != null" >
+        detail_item_view = #{detailItemView,jdbcType=VARCHAR},
+      </if>
+      <if test="detailItemDetail != null" >
+        detail_item_detail = #{detailItemDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="housePowerFirstcol != null" >
+        house_power_firstcol = #{housePowerFirstcol,jdbcType=VARCHAR},
+      </if>
+      <if test="hostView != null" >
+        host_view = #{hostView,jdbcType=VARCHAR},
+      </if>
+      <if test="diskSet != null" >
+        disk_set = #{diskSet,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where house_power_first_id = #{housePowerFirstId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.HousePowerFirst" >
+    update house_power_first
+    set disk_type = #{diskType,jdbcType=VARCHAR},
+      list_or_detil_view = #{listOrDetilView,jdbcType=VARCHAR},
+      follow_up_view = #{followUpView,jdbcType=VARCHAR},
+      list_item_view = #{listItemView,jdbcType=VARCHAR},
+      list_item_detail = #{listItemDetail,jdbcType=VARCHAR},
+      detail_item_view = #{detailItemView,jdbcType=VARCHAR},
+      detail_item_detail = #{detailItemDetail,jdbcType=VARCHAR},
+      house_power_firstcol = #{housePowerFirstcol,jdbcType=VARCHAR},
+      host_view = #{hostView,jdbcType=VARCHAR},
+      disk_set = #{diskSet,jdbcType=VARCHAR}
+    where house_power_first_id = #{housePowerFirstId,jdbcType=BIGINT}
+  </update>
+</mapper>

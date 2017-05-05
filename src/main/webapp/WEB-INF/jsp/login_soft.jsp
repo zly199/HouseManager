@@ -28,31 +28,31 @@
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
 
-    <link href="<%=path%>/media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-    <link href="<%=path%>/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
 
-    <link href="<%=path%>/media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
-    <link href="<%=path%>/media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+    <link href="media/css/style-metro.css" rel="stylesheet" type="text/css"/>
 
-    <link href="<%=path%>/media/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="media/css/style.css" rel="stylesheet" type="text/css"/>
 
-    <link href="<%=path%>/media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
 
-    <link href="<%=path%>/media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 
-    <link href="<%=path%>/media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 
 	<!-- END GLOBAL MANDATORY STYLES -->
 
 	<!-- BEGIN PAGE LEVEL STYLES -->
 
-    <link href="<%=path%>/media/css/login-soft.css" rel="stylesheet" type="text/css"/>
+    <link href="media/css/login-soft.css" rel="stylesheet" type="text/css"/>
 
 	<!-- END PAGE LEVEL STYLES -->
 
-    <%--<link rel="shortcut icon" href="<%=path%>/media/image/favicon.ico" />--%>
+    <%--<link rel="shortcut icon" href="media/image/favicon.ico" />--%>
 
 </head>
 
@@ -64,7 +64,7 @@
 	<!-- BEGIN LOGO -->
 <div class="logo">
 
-    <%--<img src="<%=path%>/media/image/logo-big.png" alt="" />--%>
+    <%--<img src="media/image/logo-big.png" alt="" />--%>
 
 </div>
 	<!-- END LOGO -->
@@ -551,18 +551,18 @@
 
 
 
-<script src="<%=path%>/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
 
-<script src="<%=path%>/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
 
 
 	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 
 
 
-<script src="<%=path%>/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+<script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
 
-<script src="<%=path%>/media/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
 
 
 	<!--[if lt IE 9]>
@@ -577,13 +577,13 @@
 
 
 
-<script src="<%=path%>/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
 
-<script src="<%=path%>/media/js/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>
 
-<script src="<%=path%>/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
 
-<script src="<%=path%>/media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+<script src="media/js/jquery.uniform.min.js" type="text/javascript" ></script>
 
 
 	<!-- END CORE PLUGINS -->
@@ -591,17 +591,17 @@
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 
 
-	<script src="<%=path%>/media/js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="media/js/jquery.validate.min.js" type="text/javascript"></script>
 
-	<script src="<%=path%>/media/js/jquery.backstretch.min.js" type="text/javascript"></script>
+	<script src="media/js/jquery.backstretch.min.js" type="text/javascript"></script>
 
 	<!-- END PAGE LEVEL PLUGINS -->
 
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
-<script src="<%=path%>/media/js/app.js" type="text/javascript"></script>
+<script src="media/js/app.js" type="text/javascript"></script>
 
-	<script src="<%=path%>/media/js/login-soft.js" type="text/javascript"></script>      
+	<script src="media/js/login-soft.js" type="text/javascript"></script>
 
 	<!-- END PAGE LEVEL SCRIPTS --> 
 

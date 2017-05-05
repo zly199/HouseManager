@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.UserAbnormalMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.UserAbnormal" >
+    <id column="abnormal_id" property="abnormalId" jdbcType="INTEGER" />
+    <result column="action_time" property="actionTime" jdbcType="TIMESTAMP" />
+    <result column="action_style" property="actionStyle" jdbcType="VARCHAR" />
+    <result column="old_data" property="oldData" jdbcType="VARCHAR" />
+    <result column="new_data" property="newData" jdbcType="VARCHAR" />
+    <result column="abnormal_user" property="abnormalUser" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    abnormal_id, action_time, action_style, old_data, new_data, abnormal_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_abnormal
+    where abnormal_id = #{abnormalId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_abnormal
+    where abnormal_id = #{abnormalId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.UserAbnormal" >
+    insert into user_abnormal (abnormal_id, action_time, action_style, 
+      old_data, new_data, abnormal_user
+      )
+    values (#{abnormalId,jdbcType=INTEGER}, #{actionTime,jdbcType=TIMESTAMP}, #{actionStyle,jdbcType=VARCHAR}, 
+      #{oldData,jdbcType=VARCHAR}, #{newData,jdbcType=VARCHAR}, #{abnormalUser,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.UserAbnormal" >
+    insert into user_abnormal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="abnormalId != null" >
+        abnormal_id,
+      </if>
+      <if test="actionTime != null" >
+        action_time,
+      </if>
+      <if test="actionStyle != null" >
+        action_style,
+      </if>
+      <if test="oldData != null" >
+        old_data,
+      </if>
+      <if test="newData != null" >
+        new_data,
+      </if>
+      <if test="abnormalUser != null" >
+        abnormal_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="abnormalId != null" >
+        #{abnormalId,jdbcType=INTEGER},
+      </if>
+      <if test="actionTime != null" >
+        #{actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionStyle != null" >
+        #{actionStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="oldData != null" >
+        #{oldData,jdbcType=VARCHAR},
+      </if>
+      <if test="newData != null" >
+        #{newData,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalUser != null" >
+        #{abnormalUser,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.UserAbnormal" >
+    update user_abnormal
+    <set >
+      <if test="actionTime != null" >
+        action_time = #{actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actionStyle != null" >
+        action_style = #{actionStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="oldData != null" >
+        old_data = #{oldData,jdbcType=VARCHAR},
+      </if>
+      <if test="newData != null" >
+        new_data = #{newData,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormalUser != null" >
+        abnormal_user = #{abnormalUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    where abnormal_id = #{abnormalId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.UserAbnormal" >
+    update user_abnormal
+    set action_time = #{actionTime,jdbcType=TIMESTAMP},
+      action_style = #{actionStyle,jdbcType=VARCHAR},
+      old_data = #{oldData,jdbcType=VARCHAR},
+      new_data = #{newData,jdbcType=VARCHAR},
+      abnormal_user = #{abnormalUser,jdbcType=BIGINT}
+    where abnormal_id = #{abnormalId,jdbcType=INTEGER}
+  </update>
+</mapper>

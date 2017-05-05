@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.PersonalInformationMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.PersonalInformation" >
+    <id column="person_id" property="personId" jdbcType="BIGINT" />
+    <result column="id_card" property="idCard" jdbcType="BIGINT" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="bank_account" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
+    <result column="resume" property="resume" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="native_place" property="nativePlace" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="political_status" property="politicalStatus" jdbcType="VARCHAR" />
+    <result column="educational_background" property="educationalBackground" jdbcType="VARCHAR" />
+    <result column="personal_informationcol" property="personalInformationcol" jdbcType="VARCHAR" />
+    <result column="graduate_institutions" property="graduateInstitutions" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="tip" property="tip" jdbcType="VARCHAR" />
+    <result column="attachment" property="attachment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    person_id, id_card, nation, email, address, bank_account, signature, resume, sex, 
+    native_place, birthday, political_status, educational_background, personal_informationcol, 
+    graduate_institutions, major, tip, attachment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from personal_information
+    where person_id = #{personId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from personal_information
+    where person_id = #{personId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.PersonalInformation" >
+    insert into personal_information (person_id, id_card, nation, 
+      email, address, bank_account, 
+      signature, resume, sex, 
+      native_place, birthday, political_status, 
+      educational_background, personal_informationcol, 
+      graduate_institutions, major, tip, 
+      attachment)
+    values (#{personId,jdbcType=BIGINT}, #{idCard,jdbcType=BIGINT}, #{nation,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, 
+      #{signature,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{nativePlace,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{politicalStatus,jdbcType=VARCHAR}, 
+      #{educationalBackground,jdbcType=VARCHAR}, #{personalInformationcol,jdbcType=VARCHAR}, 
+      #{graduateInstitutions,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{tip,jdbcType=VARCHAR}, 
+      #{attachment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.PersonalInformation" >
+    insert into personal_information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="personId != null" >
+        person_id,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="bankAccount != null" >
+        bank_account,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
+      <if test="resume != null" >
+        resume,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="nativePlace != null" >
+        native_place,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="politicalStatus != null" >
+        political_status,
+      </if>
+      <if test="educationalBackground != null" >
+        educational_background,
+      </if>
+      <if test="personalInformationcol != null" >
+        personal_informationcol,
+      </if>
+      <if test="graduateInstitutions != null" >
+        graduate_institutions,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="tip != null" >
+        tip,
+      </if>
+      <if test="attachment != null" >
+        attachment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="personId != null" >
+        #{personId,jdbcType=BIGINT},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=BIGINT},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null" >
+        #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null" >
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="politicalStatus != null" >
+        #{politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="educationalBackground != null" >
+        #{educationalBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="personalInformationcol != null" >
+        #{personalInformationcol,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateInstitutions != null" >
+        #{graduateInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null" >
+        #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null" >
+        #{attachment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.PersonalInformation" >
+    update personal_information
+    <set >
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=BIGINT},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null" >
+        resume = #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null" >
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="politicalStatus != null" >
+        political_status = #{politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="educationalBackground != null" >
+        educational_background = #{educationalBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="personalInformationcol != null" >
+        personal_informationcol = #{personalInformationcol,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateInstitutions != null" >
+        graduate_institutions = #{graduateInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null" >
+        tip = #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null" >
+        attachment = #{attachment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where person_id = #{personId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.PersonalInformation" >
+    update personal_information
+    set id_card = #{idCard,jdbcType=BIGINT},
+      nation = #{nation,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      resume = #{resume,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      native_place = #{nativePlace,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      political_status = #{politicalStatus,jdbcType=VARCHAR},
+      educational_background = #{educationalBackground,jdbcType=VARCHAR},
+      personal_informationcol = #{personalInformationcol,jdbcType=VARCHAR},
+      graduate_institutions = #{graduateInstitutions,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      tip = #{tip,jdbcType=VARCHAR},
+      attachment = #{attachment,jdbcType=VARCHAR}
+    where person_id = #{personId,jdbcType=BIGINT}
+  </update>
+</mapper>

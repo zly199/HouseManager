@@ -29,6 +29,7 @@
     />
     <!--4*扫描web相关bean-->
     <context:component-scan base-package="cn.web"/>
-    
+    <!--5静态资源的获取-->
+    <mvc:resources mapping="media" location="/media"/>
     
 </beans>

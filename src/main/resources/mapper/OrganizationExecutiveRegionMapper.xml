@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.OrganizationExecutiveRegionMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.OrganizationExecutiveRegion" >
+    <id column="organization_executive_region_id" property="organizationExecutiveRegionId" jdbcType="VARCHAR" />
+    <id column="organization_id" property="organizationId" jdbcType="VARCHAR" />
+    <result column="trading_area_id" property="tradingAreaId" jdbcType="INTEGER" />
+    <result column="house_visiable" property="houseVisiable" jdbcType="BIT" />
+    <result column="custom_visiable" property="customVisiable" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    organization_executive_region_id, organization_id, trading_area_id, house_visiable, 
+    custom_visiable
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="cn.entity.OrganizationExecutiveRegionKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from organization_executive_region
+    where organization_executive_region_id = #{organizationExecutiveRegionId,jdbcType=VARCHAR}
+      and organization_id = #{organizationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.entity.OrganizationExecutiveRegionKey" >
+    delete from organization_executive_region
+    where organization_executive_region_id = #{organizationExecutiveRegionId,jdbcType=VARCHAR}
+      and organization_id = #{organizationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.OrganizationExecutiveRegion" >
+    insert into organization_executive_region (organization_executive_region_id, organization_id, 
+      trading_area_id, house_visiable, custom_visiable
+      )
+    values (#{organizationExecutiveRegionId,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}, 
+      #{tradingAreaId,jdbcType=INTEGER}, #{houseVisiable,jdbcType=BIT}, #{customVisiable,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.OrganizationExecutiveRegion" >
+    insert into organization_executive_region
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="organizationExecutiveRegionId != null" >
+        organization_executive_region_id,
+      </if>
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
+      <if test="tradingAreaId != null" >
+        trading_area_id,
+      </if>
+      <if test="houseVisiable != null" >
+        house_visiable,
+      </if>
+      <if test="customVisiable != null" >
+        custom_visiable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="organizationExecutiveRegionId != null" >
+        #{organizationExecutiveRegionId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradingAreaId != null" >
+        #{tradingAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="houseVisiable != null" >
+        #{houseVisiable,jdbcType=BIT},
+      </if>
+      <if test="customVisiable != null" >
+        #{customVisiable,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.OrganizationExecutiveRegion" >
+    update organization_executive_region
+    <set >
+      <if test="tradingAreaId != null" >
+        trading_area_id = #{tradingAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="houseVisiable != null" >
+        house_visiable = #{houseVisiable,jdbcType=BIT},
+      </if>
+      <if test="customVisiable != null" >
+        custom_visiable = #{customVisiable,jdbcType=BIT},
+      </if>
+    </set>
+    where organization_executive_region_id = #{organizationExecutiveRegionId,jdbcType=VARCHAR}
+      and organization_id = #{organizationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.OrganizationExecutiveRegion" >
+    update organization_executive_region
+    set trading_area_id = #{tradingAreaId,jdbcType=INTEGER},
+      house_visiable = #{houseVisiable,jdbcType=BIT},
+      custom_visiable = #{customVisiable,jdbcType=BIT}
+    where organization_executive_region_id = #{organizationExecutiveRegionId,jdbcType=VARCHAR}
+      and organization_id = #{organizationId,jdbcType=VARCHAR}
+  </update>
+</mapper>

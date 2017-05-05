@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.OrganizationStructureMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.OrganizationStructure" >
+    <id column="organization_id" property="organizationId" jdbcType="VARCHAR" />
+    <result column="organization_name" property="organizationName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="number_pre" property="numberPre" jdbcType="VARCHAR" />
+    <result column="organization_style" property="organizationStyle" jdbcType="VARCHAR" />
+    <result column="is_business" property="isBusiness" jdbcType="BIT" />
+    <result column="store_attributes" property="storeAttributes" jdbcType="VARCHAR" />
+    <result column="is_store" property="isStore" jdbcType="BIT" />
+    <result column="department_phone" property="departmentPhone" jdbcType="BIGINT" />
+    <result column="department_address" property="departmentAddress" jdbcType="VARCHAR" />
+    <result column="department_coordinate" property="departmentCoordinate" jdbcType="VARCHAR" />
+    <result column="sharing_circle" property="sharingCircle" jdbcType="VARCHAR" />
+    <result column="plan_performance" property="planPerformance" jdbcType="INTEGER" />
+    <result column="Actual_performance" property="actualPerformance" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="VARCHAR" />
+    <result column="department_number" property="departmentNumber" jdbcType="VARCHAR" />
+    <result column="extension_range" property="extensionRange" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    organization_id, organization_name, parent_id, number_pre, organization_style, is_business, 
+    store_attributes, is_store, department_phone, department_address, department_coordinate, 
+    sharing_circle, plan_performance, Actual_performance, add_time, department_number, 
+    extension_range
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from organization_structure
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from organization_structure
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.OrganizationStructure" >
+    insert into organization_structure (organization_id, organization_name, 
+      parent_id, number_pre, organization_style, 
+      is_business, store_attributes, is_store, 
+      department_phone, department_address, department_coordinate, 
+      sharing_circle, plan_performance, Actual_performance, 
+      add_time, department_number, extension_range
+      )
+    values (#{organizationId,jdbcType=VARCHAR}, #{organizationName,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=VARCHAR}, #{numberPre,jdbcType=VARCHAR}, #{organizationStyle,jdbcType=VARCHAR}, 
+      #{isBusiness,jdbcType=BIT}, #{storeAttributes,jdbcType=VARCHAR}, #{isStore,jdbcType=BIT}, 
+      #{departmentPhone,jdbcType=BIGINT}, #{departmentAddress,jdbcType=VARCHAR}, #{departmentCoordinate,jdbcType=VARCHAR}, 
+      #{sharingCircle,jdbcType=VARCHAR}, #{planPerformance,jdbcType=INTEGER}, #{actualPerformance,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=VARCHAR}, #{departmentNumber,jdbcType=VARCHAR}, #{extensionRange,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.OrganizationStructure" >
+    insert into organization_structure
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
+      <if test="organizationName != null" >
+        organization_name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="numberPre != null" >
+        number_pre,
+      </if>
+      <if test="organizationStyle != null" >
+        organization_style,
+      </if>
+      <if test="isBusiness != null" >
+        is_business,
+      </if>
+      <if test="storeAttributes != null" >
+        store_attributes,
+      </if>
+      <if test="isStore != null" >
+        is_store,
+      </if>
+      <if test="departmentPhone != null" >
+        department_phone,
+      </if>
+      <if test="departmentAddress != null" >
+        department_address,
+      </if>
+      <if test="departmentCoordinate != null" >
+        department_coordinate,
+      </if>
+      <if test="sharingCircle != null" >
+        sharing_circle,
+      </if>
+      <if test="planPerformance != null" >
+        plan_performance,
+      </if>
+      <if test="actualPerformance != null" >
+        Actual_performance,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="departmentNumber != null" >
+        department_number,
+      </if>
+      <if test="extensionRange != null" >
+        extension_range,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationName != null" >
+        #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="numberPre != null" >
+        #{numberPre,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationStyle != null" >
+        #{organizationStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="isBusiness != null" >
+        #{isBusiness,jdbcType=BIT},
+      </if>
+      <if test="storeAttributes != null" >
+        #{storeAttributes,jdbcType=VARCHAR},
+      </if>
+      <if test="isStore != null" >
+        #{isStore,jdbcType=BIT},
+      </if>
+      <if test="departmentPhone != null" >
+        #{departmentPhone,jdbcType=BIGINT},
+      </if>
+      <if test="departmentAddress != null" >
+        #{departmentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentCoordinate != null" >
+        #{departmentCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="sharingCircle != null" >
+        #{sharingCircle,jdbcType=VARCHAR},
+      </if>
+      <if test="planPerformance != null" >
+        #{planPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="actualPerformance != null" >
+        #{actualPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentNumber != null" >
+        #{departmentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionRange != null" >
+        #{extensionRange,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.OrganizationStructure" >
+    update organization_structure
+    <set >
+      <if test="organizationName != null" >
+        organization_name = #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="numberPre != null" >
+        number_pre = #{numberPre,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationStyle != null" >
+        organization_style = #{organizationStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="isBusiness != null" >
+        is_business = #{isBusiness,jdbcType=BIT},
+      </if>
+      <if test="storeAttributes != null" >
+        store_attributes = #{storeAttributes,jdbcType=VARCHAR},
+      </if>
+      <if test="isStore != null" >
+        is_store = #{isStore,jdbcType=BIT},
+      </if>
+      <if test="departmentPhone != null" >
+        department_phone = #{departmentPhone,jdbcType=BIGINT},
+      </if>
+      <if test="departmentAddress != null" >
+        department_address = #{departmentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentCoordinate != null" >
+        department_coordinate = #{departmentCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="sharingCircle != null" >
+        sharing_circle = #{sharingCircle,jdbcType=VARCHAR},
+      </if>
+      <if test="planPerformance != null" >
+        plan_performance = #{planPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="actualPerformance != null" >
+        Actual_performance = #{actualPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentNumber != null" >
+        department_number = #{departmentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionRange != null" >
+        extension_range = #{extensionRange,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.OrganizationStructure" >
+    update organization_structure
+    set organization_name = #{organizationName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=VARCHAR},
+      number_pre = #{numberPre,jdbcType=VARCHAR},
+      organization_style = #{organizationStyle,jdbcType=VARCHAR},
+      is_business = #{isBusiness,jdbcType=BIT},
+      store_attributes = #{storeAttributes,jdbcType=VARCHAR},
+      is_store = #{isStore,jdbcType=BIT},
+      department_phone = #{departmentPhone,jdbcType=BIGINT},
+      department_address = #{departmentAddress,jdbcType=VARCHAR},
+      department_coordinate = #{departmentCoordinate,jdbcType=VARCHAR},
+      sharing_circle = #{sharingCircle,jdbcType=VARCHAR},
+      plan_performance = #{planPerformance,jdbcType=INTEGER},
+      Actual_performance = #{actualPerformance,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      department_number = #{departmentNumber,jdbcType=VARCHAR},
+      extension_range = #{extensionRange,jdbcType=VARCHAR}
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </update>
+</mapper>

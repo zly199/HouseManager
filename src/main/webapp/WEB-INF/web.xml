@@ -46,4 +46,9 @@
             org.springframework.web.context.request.RequestContextListener
         </listener-class>
     </listener>
+    <!--错误页面-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/media/page/404.jsp</location>
+    </error-page>
 </web-app>

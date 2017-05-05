@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.HousePowerSecondMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.HousePowerSecond" >
+    <id column="house_power_second_id" property="housePowerSecondId" jdbcType="BIGINT" />
+    <result column="house_add" property="houseAdd" jdbcType="VARCHAR" />
+    <result column="house_delete" property="houseDelete" jdbcType="VARCHAR" />
+    <result column="public_house_followup" property="publicHouseFollowup" jdbcType="BIT" />
+    <result column="ownership_transfer" property="ownershipTransfer" jdbcType="BIT" />
+    <result column="host_phone_view" property="hostPhoneView" jdbcType="INTEGER" />
+    <result column="purpos_view" property="purposView" jdbcType="VARCHAR" />
+    <result column="consignment_date" property="consignmentDate" jdbcType="VARCHAR" />
+    <result column="house_state" property="houseState" jdbcType="VARCHAR" />
+    <result column="book_host_phone_view" property="bookHostPhoneView" jdbcType="BIT" />
+    <result column="ban_host_view" property="banHostView" jdbcType="BIT" />
+    <result column="host_view_without_apply" property="hostViewWithoutApply" jdbcType="BIT" />
+    <result column="house_view_without_followup" property="houseViewWithoutFollowup" jdbcType="BIT" />
+    <result column="house_host_view" property="houseHostView" jdbcType="VARCHAR" />
+    <result column="followup_add_self" property="followupAddSelf" jdbcType="BIT" />
+    <result column="followup_modify_self" property="followupModifySelf" jdbcType="BIT" />
+    <result column="followup_delete_self" property="followupDeleteSelf" jdbcType="VARCHAR" />
+    <result column="house_active" property="houseActive" jdbcType="VARCHAR" />
+    <result column="house_tag" property="houseTag" jdbcType="VARCHAR" />
+    <result column="house_examine" property="houseExamine" jdbcType="VARCHAR" />
+    <result column="house_out" property="houseOut" jdbcType="BIT" />
+    <result column="key_manager" property="keyManager" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    house_power_second_id, house_add, house_delete, public_house_followup, ownership_transfer, 
+    host_phone_view, purpos_view, consignment_date, house_state, book_host_phone_view, 
+    ban_host_view, host_view_without_apply, house_view_without_followup, house_host_view, 
+    followup_add_self, followup_modify_self, followup_delete_self, house_active, house_tag, 
+    house_examine, house_out, key_manager
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from house_power_second
+    where house_power_second_id = #{housePowerSecondId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from house_power_second
+    where house_power_second_id = #{housePowerSecondId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.HousePowerSecond" >
+    insert into house_power_second (house_power_second_id, house_add, house_delete, 
+      public_house_followup, ownership_transfer, host_phone_view, 
+      purpos_view, consignment_date, house_state, 
+      book_host_phone_view, ban_host_view, host_view_without_apply, 
+      house_view_without_followup, house_host_view, followup_add_self, 
+      followup_modify_self, followup_delete_self, house_active, 
+      house_tag, house_examine, house_out, 
+      key_manager)
+    values (#{housePowerSecondId,jdbcType=BIGINT}, #{houseAdd,jdbcType=VARCHAR}, #{houseDelete,jdbcType=VARCHAR}, 
+      #{publicHouseFollowup,jdbcType=BIT}, #{ownershipTransfer,jdbcType=BIT}, #{hostPhoneView,jdbcType=INTEGER}, 
+      #{purposView,jdbcType=VARCHAR}, #{consignmentDate,jdbcType=VARCHAR}, #{houseState,jdbcType=VARCHAR}, 
+      #{bookHostPhoneView,jdbcType=BIT}, #{banHostView,jdbcType=BIT}, #{hostViewWithoutApply,jdbcType=BIT}, 
+      #{houseViewWithoutFollowup,jdbcType=BIT}, #{houseHostView,jdbcType=VARCHAR}, #{followupAddSelf,jdbcType=BIT}, 
+      #{followupModifySelf,jdbcType=BIT}, #{followupDeleteSelf,jdbcType=VARCHAR}, #{houseActive,jdbcType=VARCHAR}, 
+      #{houseTag,jdbcType=VARCHAR}, #{houseExamine,jdbcType=VARCHAR}, #{houseOut,jdbcType=BIT}, 
+      #{keyManager,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.HousePowerSecond" >
+    insert into house_power_second
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="housePowerSecondId != null" >
+        house_power_second_id,
+      </if>
+      <if test="houseAdd != null" >
+        house_add,
+      </if>
+      <if test="houseDelete != null" >
+        house_delete,
+      </if>
+      <if test="publicHouseFollowup != null" >
+        public_house_followup,
+      </if>
+      <if test="ownershipTransfer != null" >
+        ownership_transfer,
+      </if>
+      <if test="hostPhoneView != null" >
+        host_phone_view,
+      </if>
+      <if test="purposView != null" >
+        purpos_view,
+      </if>
+      <if test="consignmentDate != null" >
+        consignment_date,
+      </if>
+      <if test="houseState != null" >
+        house_state,
+      </if>
+      <if test="bookHostPhoneView != null" >
+        book_host_phone_view,
+      </if>
+      <if test="banHostView != null" >
+        ban_host_view,
+      </if>
+      <if test="hostViewWithoutApply != null" >
+        host_view_without_apply,
+      </if>
+      <if test="houseViewWithoutFollowup != null" >
+        house_view_without_followup,
+      </if>
+      <if test="houseHostView != null" >
+        house_host_view,
+      </if>
+      <if test="followupAddSelf != null" >
+        followup_add_self,
+      </if>
+      <if test="followupModifySelf != null" >
+        followup_modify_self,
+      </if>
+      <if test="followupDeleteSelf != null" >
+        followup_delete_self,
+      </if>
+      <if test="houseActive != null" >
+        house_active,
+      </if>
+      <if test="houseTag != null" >
+        house_tag,
+      </if>
+      <if test="houseExamine != null" >
+        house_examine,
+      </if>
+      <if test="houseOut != null" >
+        house_out,
+      </if>
+      <if test="keyManager != null" >
+        key_manager,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="housePowerSecondId != null" >
+        #{housePowerSecondId,jdbcType=BIGINT},
+      </if>
+      <if test="houseAdd != null" >
+        #{houseAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="houseDelete != null" >
+        #{houseDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="publicHouseFollowup != null" >
+        #{publicHouseFollowup,jdbcType=BIT},
+      </if>
+      <if test="ownershipTransfer != null" >
+        #{ownershipTransfer,jdbcType=BIT},
+      </if>
+      <if test="hostPhoneView != null" >
+        #{hostPhoneView,jdbcType=INTEGER},
+      </if>
+      <if test="purposView != null" >
+        #{purposView,jdbcType=VARCHAR},
+      </if>
+      <if test="consignmentDate != null" >
+        #{consignmentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseState != null" >
+        #{houseState,jdbcType=VARCHAR},
+      </if>
+      <if test="bookHostPhoneView != null" >
+        #{bookHostPhoneView,jdbcType=BIT},
+      </if>
+      <if test="banHostView != null" >
+        #{banHostView,jdbcType=BIT},
+      </if>
+      <if test="hostViewWithoutApply != null" >
+        #{hostViewWithoutApply,jdbcType=BIT},
+      </if>
+      <if test="houseViewWithoutFollowup != null" >
+        #{houseViewWithoutFollowup,jdbcType=BIT},
+      </if>
+      <if test="houseHostView != null" >
+        #{houseHostView,jdbcType=VARCHAR},
+      </if>
+      <if test="followupAddSelf != null" >
+        #{followupAddSelf,jdbcType=BIT},
+      </if>
+      <if test="followupModifySelf != null" >
+        #{followupModifySelf,jdbcType=BIT},
+      </if>
+      <if test="followupDeleteSelf != null" >
+        #{followupDeleteSelf,jdbcType=VARCHAR},
+      </if>
+      <if test="houseActive != null" >
+        #{houseActive,jdbcType=VARCHAR},
+      </if>
+      <if test="houseTag != null" >
+        #{houseTag,jdbcType=VARCHAR},
+      </if>
+      <if test="houseExamine != null" >
+        #{houseExamine,jdbcType=VARCHAR},
+      </if>
+      <if test="houseOut != null" >
+        #{houseOut,jdbcType=BIT},
+      </if>
+      <if test="keyManager != null" >
+        #{keyManager,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.HousePowerSecond" >
+    update house_power_second
+    <set >
+      <if test="houseAdd != null" >
+        house_add = #{houseAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="houseDelete != null" >
+        house_delete = #{houseDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="publicHouseFollowup != null" >
+        public_house_followup = #{publicHouseFollowup,jdbcType=BIT},
+      </if>
+      <if test="ownershipTransfer != null" >
+        ownership_transfer = #{ownershipTransfer,jdbcType=BIT},
+      </if>
+      <if test="hostPhoneView != null" >
+        host_phone_view = #{hostPhoneView,jdbcType=INTEGER},
+      </if>
+      <if test="purposView != null" >
+        purpos_view = #{purposView,jdbcType=VARCHAR},
+      </if>
+      <if test="consignmentDate != null" >
+        consignment_date = #{consignmentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseState != null" >
+        house_state = #{houseState,jdbcType=VARCHAR},
+      </if>
+      <if test="bookHostPhoneView != null" >
+        book_host_phone_view = #{bookHostPhoneView,jdbcType=BIT},
+      </if>
+      <if test="banHostView != null" >
+        ban_host_view = #{banHostView,jdbcType=BIT},
+      </if>
+      <if test="hostViewWithoutApply != null" >
+        host_view_without_apply = #{hostViewWithoutApply,jdbcType=BIT},
+      </if>
+      <if test="houseViewWithoutFollowup != null" >
+        house_view_without_followup = #{houseViewWithoutFollowup,jdbcType=BIT},
+      </if>
+      <if test="houseHostView != null" >
+        house_host_view = #{houseHostView,jdbcType=VARCHAR},
+      </if>
+      <if test="followupAddSelf != null" >
+        followup_add_self = #{followupAddSelf,jdbcType=BIT},
+      </if>
+      <if test="followupModifySelf != null" >
+        followup_modify_self = #{followupModifySelf,jdbcType=BIT},
+      </if>
+      <if test="followupDeleteSelf != null" >
+        followup_delete_self = #{followupDeleteSelf,jdbcType=VARCHAR},
+      </if>
+      <if test="houseActive != null" >
+        house_active = #{houseActive,jdbcType=VARCHAR},
+      </if>
+      <if test="houseTag != null" >
+        house_tag = #{houseTag,jdbcType=VARCHAR},
+      </if>
+      <if test="houseExamine != null" >
+        house_examine = #{houseExamine,jdbcType=VARCHAR},
+      </if>
+      <if test="houseOut != null" >
+        house_out = #{houseOut,jdbcType=BIT},
+      </if>
+      <if test="keyManager != null" >
+        key_manager = #{keyManager,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where house_power_second_id = #{housePowerSecondId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.HousePowerSecond" >
+    update house_power_second
+    set house_add = #{houseAdd,jdbcType=VARCHAR},
+      house_delete = #{houseDelete,jdbcType=VARCHAR},
+      public_house_followup = #{publicHouseFollowup,jdbcType=BIT},
+      ownership_transfer = #{ownershipTransfer,jdbcType=BIT},
+      host_phone_view = #{hostPhoneView,jdbcType=INTEGER},
+      purpos_view = #{purposView,jdbcType=VARCHAR},
+      consignment_date = #{consignmentDate,jdbcType=VARCHAR},
+      house_state = #{houseState,jdbcType=VARCHAR},
+      book_host_phone_view = #{bookHostPhoneView,jdbcType=BIT},
+      ban_host_view = #{banHostView,jdbcType=BIT},
+      host_view_without_apply = #{hostViewWithoutApply,jdbcType=BIT},
+      house_view_without_followup = #{houseViewWithoutFollowup,jdbcType=BIT},
+      house_host_view = #{houseHostView,jdbcType=VARCHAR},
+      followup_add_self = #{followupAddSelf,jdbcType=BIT},
+      followup_modify_self = #{followupModifySelf,jdbcType=BIT},
+      followup_delete_self = #{followupDeleteSelf,jdbcType=VARCHAR},
+      house_active = #{houseActive,jdbcType=VARCHAR},
+      house_tag = #{houseTag,jdbcType=VARCHAR},
+      house_examine = #{houseExamine,jdbcType=VARCHAR},
+      house_out = #{houseOut,jdbcType=BIT},
+      key_manager = #{keyManager,jdbcType=VARCHAR}
+    where house_power_second_id = #{housePowerSecondId,jdbcType=BIGINT}
+  </update>
+</mapper>
