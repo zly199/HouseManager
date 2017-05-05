@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.EnterpriseDutiesMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.EnterpriseDuties" >
+    <id column="enterprise_duties_id" property="enterpriseDutiesId" jdbcType="TINYINT" />
+    <result column="duties_name" property="dutiesName" jdbcType="VARCHAR" />
+    <result column="basic_salary" property="basicSalary" jdbcType="INTEGER" />
+    <result column="rank" property="rank" jdbcType="TINYINT" />
+    <result column="job_attributes" property="jobAttributes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    enterprise_duties_id, duties_name, basic_salary, rank, job_attributes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select 
+    <include refid="Base_Column_List" />
+    from enterprise_duties
+    where enterprise_duties_id = #{enterpriseDutiesId,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from enterprise_duties
+    where enterprise_duties_id = #{enterpriseDutiesId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.EnterpriseDuties" >
+    insert into enterprise_duties (enterprise_duties_id, duties_name, basic_salary, 
+      rank, job_attributes)
+    values (#{enterpriseDutiesId,jdbcType=TINYINT}, #{dutiesName,jdbcType=VARCHAR}, #{basicSalary,jdbcType=INTEGER}, 
+      #{rank,jdbcType=TINYINT}, #{jobAttributes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.EnterpriseDuties" >
+    insert into enterprise_duties
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="enterpriseDutiesId != null" >
+        enterprise_duties_id,
+      </if>
+      <if test="dutiesName != null" >
+        duties_name,
+      </if>
+      <if test="basicSalary != null" >
+        basic_salary,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="jobAttributes != null" >
+        job_attributes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="enterpriseDutiesId != null" >
+        #{enterpriseDutiesId,jdbcType=TINYINT},
+      </if>
+      <if test="dutiesName != null" >
+        #{dutiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="basicSalary != null" >
+        #{basicSalary,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=TINYINT},
+      </if>
+      <if test="jobAttributes != null" >
+        #{jobAttributes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.EnterpriseDuties" >
+    update enterprise_duties
+    <set >
+      <if test="dutiesName != null" >
+        duties_name = #{dutiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="basicSalary != null" >
+        basic_salary = #{basicSalary,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=TINYINT},
+      </if>
+      <if test="jobAttributes != null" >
+        job_attributes = #{jobAttributes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where enterprise_duties_id = #{enterpriseDutiesId,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.EnterpriseDuties" >
+    update enterprise_duties
+    set duties_name = #{dutiesName,jdbcType=VARCHAR},
+      basic_salary = #{basicSalary,jdbcType=INTEGER},
+      rank = #{rank,jdbcType=TINYINT},
+      job_attributes = #{jobAttributes,jdbcType=VARCHAR}
+    where enterprise_duties_id = #{enterpriseDutiesId,jdbcType=TINYINT}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.UrbanDistrictMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.UrbanDistrict" >
+    <id column="idurban_district_id" property="idurbanDistrictId" jdbcType="INTEGER" />
+    <result column="urban_district_name" property="urbanDistrictName" jdbcType="VARCHAR" />
+    <result column="parent_idurban_district" property="parentIdurbanDistrict" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    idurban_district_id, urban_district_name, parent_idurban_district
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from urban_district
+    where idurban_district_id = #{idurbanDistrictId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from urban_district
+    where idurban_district_id = #{idurbanDistrictId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.UrbanDistrict" >
+    insert into urban_district (idurban_district_id, urban_district_name, 
+      parent_idurban_district)
+    values (#{idurbanDistrictId,jdbcType=INTEGER}, #{urbanDistrictName,jdbcType=VARCHAR}, 
+      #{parentIdurbanDistrict,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.UrbanDistrict" >
+    insert into urban_district
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idurbanDistrictId != null" >
+        idurban_district_id,
+      </if>
+      <if test="urbanDistrictName != null" >
+        urban_district_name,
+      </if>
+      <if test="parentIdurbanDistrict != null" >
+        parent_idurban_district,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idurbanDistrictId != null" >
+        #{idurbanDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="urbanDistrictName != null" >
+        #{urbanDistrictName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentIdurbanDistrict != null" >
+        #{parentIdurbanDistrict,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.UrbanDistrict" >
+    update urban_district
+    <set >
+      <if test="urbanDistrictName != null" >
+        urban_district_name = #{urbanDistrictName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentIdurbanDistrict != null" >
+        parent_idurban_district = #{parentIdurbanDistrict,jdbcType=INTEGER},
+      </if>
+    </set>
+    where idurban_district_id = #{idurbanDistrictId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.UrbanDistrict" >
+    update urban_district
+    set urban_district_name = #{urbanDistrictName,jdbcType=VARCHAR},
+      parent_idurban_district = #{parentIdurbanDistrict,jdbcType=INTEGER}
+    where idurban_district_id = #{idurbanDistrictId,jdbcType=INTEGER}
+  </update>
+</mapper>

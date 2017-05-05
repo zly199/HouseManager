@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.HousesDictionaryMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.HousesDictionary" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="urban" property="urban" jdbcType="VARCHAR" />
+    <result column="property" property="property" jdbcType="VARCHAR" />
+    <result column="trad_area" property="tradArea" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="property_right" property="propertyRight" jdbcType="VARCHAR" />
+    <result column="spelling_abbreviation" property="spellingAbbreviation" jdbcType="VARCHAR" />
+    <result column="sell_average_price" property="sellAveragePrice" jdbcType="INTEGER" />
+    <result column="houses_dictionarycol" property="housesDictionarycol" jdbcType="VARCHAR" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="building_area" property="buildingArea" jdbcType="INTEGER" />
+    <result column="english_name" property="englishName" jdbcType="VARCHAR" />
+    <result column="whole_clients" property="wholeClients" jdbcType="INTEGER" />
+    <result column="brief_address" property="briefAddress" jdbcType="VARCHAR" />
+    <result column="structure" property="structure" jdbcType="VARCHAR" />
+    <result column="detail_address" property="detailAddress" jdbcType="VARCHAR" />
+    <result column="outer_wall" property="outerWall" jdbcType="VARCHAR" />
+    <result column="english_address" property="englishAddress" jdbcType="VARCHAR" />
+    <result column="land_number" property="landNumber" jdbcType="INTEGER" />
+    <result column="house_owner" property="houseOwner" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="owner_telephone" property="ownerTelephone" jdbcType="INTEGER" />
+    <result column="property_managment" property="propertyManagment" jdbcType="VARCHAR" />
+    <result column="management_telephone" property="managementTelephone" jdbcType="INTEGER" />
+    <result column="management_cost" property="managementCost" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, urban, property, trad_area, type, name, property_right, spelling_abbreviation, 
+    sell_average_price, houses_dictionarycol, alias, building_area, english_name, whole_clients, 
+    brief_address, structure, detail_address, outer_wall, english_address, land_number, 
+    house_owner, remark, owner_telephone, property_managment, management_telephone, management_cost
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from houses_dictionary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from houses_dictionary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.HousesDictionary" >
+    insert into houses_dictionary (id, urban, property, 
+      trad_area, type, name, 
+      property_right, spelling_abbreviation, sell_average_price, 
+      houses_dictionarycol, alias, building_area, 
+      english_name, whole_clients, brief_address, 
+      structure, detail_address, outer_wall, 
+      english_address, land_number, house_owner, 
+      remark, owner_telephone, property_managment, 
+      management_telephone, management_cost)
+    values (#{id,jdbcType=INTEGER}, #{urban,jdbcType=VARCHAR}, #{property,jdbcType=VARCHAR}, 
+      #{tradArea,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{propertyRight,jdbcType=VARCHAR}, #{spellingAbbreviation,jdbcType=VARCHAR}, #{sellAveragePrice,jdbcType=INTEGER}, 
+      #{housesDictionarycol,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{buildingArea,jdbcType=INTEGER}, 
+      #{englishName,jdbcType=VARCHAR}, #{wholeClients,jdbcType=INTEGER}, #{briefAddress,jdbcType=VARCHAR}, 
+      #{structure,jdbcType=VARCHAR}, #{detailAddress,jdbcType=VARCHAR}, #{outerWall,jdbcType=VARCHAR}, 
+      #{englishAddress,jdbcType=VARCHAR}, #{landNumber,jdbcType=INTEGER}, #{houseOwner,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{ownerTelephone,jdbcType=INTEGER}, #{propertyManagment,jdbcType=VARCHAR}, 
+      #{managementTelephone,jdbcType=INTEGER}, #{managementCost,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.HousesDictionary" >
+    insert into houses_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="urban != null" >
+        urban,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="tradArea != null" >
+        trad_area,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="propertyRight != null" >
+        property_right,
+      </if>
+      <if test="spellingAbbreviation != null" >
+        spelling_abbreviation,
+      </if>
+      <if test="sellAveragePrice != null" >
+        sell_average_price,
+      </if>
+      <if test="housesDictionarycol != null" >
+        houses_dictionarycol,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="buildingArea != null" >
+        building_area,
+      </if>
+      <if test="englishName != null" >
+        english_name,
+      </if>
+      <if test="wholeClients != null" >
+        whole_clients,
+      </if>
+      <if test="briefAddress != null" >
+        brief_address,
+      </if>
+      <if test="structure != null" >
+        structure,
+      </if>
+      <if test="detailAddress != null" >
+        detail_address,
+      </if>
+      <if test="outerWall != null" >
+        outer_wall,
+      </if>
+      <if test="englishAddress != null" >
+        english_address,
+      </if>
+      <if test="landNumber != null" >
+        land_number,
+      </if>
+      <if test="houseOwner != null" >
+        house_owner,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="ownerTelephone != null" >
+        owner_telephone,
+      </if>
+      <if test="propertyManagment != null" >
+        property_managment,
+      </if>
+      <if test="managementTelephone != null" >
+        management_telephone,
+      </if>
+      <if test="managementCost != null" >
+        management_cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="urban != null" >
+        #{urban,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="tradArea != null" >
+        #{tradArea,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyRight != null" >
+        #{propertyRight,jdbcType=VARCHAR},
+      </if>
+      <if test="spellingAbbreviation != null" >
+        #{spellingAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="sellAveragePrice != null" >
+        #{sellAveragePrice,jdbcType=INTEGER},
+      </if>
+      <if test="housesDictionarycol != null" >
+        #{housesDictionarycol,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingArea != null" >
+        #{buildingArea,jdbcType=INTEGER},
+      </if>
+      <if test="englishName != null" >
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="wholeClients != null" >
+        #{wholeClients,jdbcType=INTEGER},
+      </if>
+      <if test="briefAddress != null" >
+        #{briefAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="structure != null" >
+        #{structure,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="outerWall != null" >
+        #{outerWall,jdbcType=VARCHAR},
+      </if>
+      <if test="englishAddress != null" >
+        #{englishAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="landNumber != null" >
+        #{landNumber,jdbcType=INTEGER},
+      </if>
+      <if test="houseOwner != null" >
+        #{houseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerTelephone != null" >
+        #{ownerTelephone,jdbcType=INTEGER},
+      </if>
+      <if test="propertyManagment != null" >
+        #{propertyManagment,jdbcType=VARCHAR},
+      </if>
+      <if test="managementTelephone != null" >
+        #{managementTelephone,jdbcType=INTEGER},
+      </if>
+      <if test="managementCost != null" >
+        #{managementCost,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.HousesDictionary" >
+    update houses_dictionary
+    <set >
+      <if test="urban != null" >
+        urban = #{urban,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        property = #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="tradArea != null" >
+        trad_area = #{tradArea,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyRight != null" >
+        property_right = #{propertyRight,jdbcType=VARCHAR},
+      </if>
+      <if test="spellingAbbreviation != null" >
+        spelling_abbreviation = #{spellingAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="sellAveragePrice != null" >
+        sell_average_price = #{sellAveragePrice,jdbcType=INTEGER},
+      </if>
+      <if test="housesDictionarycol != null" >
+        houses_dictionarycol = #{housesDictionarycol,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingArea != null" >
+        building_area = #{buildingArea,jdbcType=INTEGER},
+      </if>
+      <if test="englishName != null" >
+        english_name = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="wholeClients != null" >
+        whole_clients = #{wholeClients,jdbcType=INTEGER},
+      </if>
+      <if test="briefAddress != null" >
+        brief_address = #{briefAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="structure != null" >
+        structure = #{structure,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        detail_address = #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="outerWall != null" >
+        outer_wall = #{outerWall,jdbcType=VARCHAR},
+      </if>
+      <if test="englishAddress != null" >
+        english_address = #{englishAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="landNumber != null" >
+        land_number = #{landNumber,jdbcType=INTEGER},
+      </if>
+      <if test="houseOwner != null" >
+        house_owner = #{houseOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerTelephone != null" >
+        owner_telephone = #{ownerTelephone,jdbcType=INTEGER},
+      </if>
+      <if test="propertyManagment != null" >
+        property_managment = #{propertyManagment,jdbcType=VARCHAR},
+      </if>
+      <if test="managementTelephone != null" >
+        management_telephone = #{managementTelephone,jdbcType=INTEGER},
+      </if>
+      <if test="managementCost != null" >
+        management_cost = #{managementCost,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.HousesDictionary" >
+    update houses_dictionary
+    set urban = #{urban,jdbcType=VARCHAR},
+      property = #{property,jdbcType=VARCHAR},
+      trad_area = #{tradArea,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      property_right = #{propertyRight,jdbcType=VARCHAR},
+      spelling_abbreviation = #{spellingAbbreviation,jdbcType=VARCHAR},
+      sell_average_price = #{sellAveragePrice,jdbcType=INTEGER},
+      houses_dictionarycol = #{housesDictionarycol,jdbcType=VARCHAR},
+      alias = #{alias,jdbcType=VARCHAR},
+      building_area = #{buildingArea,jdbcType=INTEGER},
+      english_name = #{englishName,jdbcType=VARCHAR},
+      whole_clients = #{wholeClients,jdbcType=INTEGER},
+      brief_address = #{briefAddress,jdbcType=VARCHAR},
+      structure = #{structure,jdbcType=VARCHAR},
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
+      outer_wall = #{outerWall,jdbcType=VARCHAR},
+      english_address = #{englishAddress,jdbcType=VARCHAR},
+      land_number = #{landNumber,jdbcType=INTEGER},
+      house_owner = #{houseOwner,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      owner_telephone = #{ownerTelephone,jdbcType=INTEGER},
+      property_managment = #{propertyManagment,jdbcType=VARCHAR},
+      management_telephone = #{managementTelephone,jdbcType=INTEGER},
+      management_cost = #{managementCost,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

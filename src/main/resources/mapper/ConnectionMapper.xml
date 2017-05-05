@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.ConnectionMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.Connection" >
+    <id column="connection" property="connection" jdbcType="BIGINT" />
+    <id column="connection_user" property="connectionUser" jdbcType="BIGINT" />
+    <result column="style" property="style" jdbcType="VARCHAR" />
+    <result column="binding" property="binding" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    connection, connection_user, style, binding
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="cn.entity.ConnectionKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from connection
+    where connection = #{connection,jdbcType=BIGINT}
+      and connection_user = #{connectionUser,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.entity.ConnectionKey" >
+    delete from connection
+    where connection = #{connection,jdbcType=BIGINT}
+      and connection_user = #{connectionUser,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.Connection" >
+    insert into connection (connection, connection_user, style, 
+      binding)
+    values (#{connection,jdbcType=BIGINT}, #{connectionUser,jdbcType=BIGINT}, #{style,jdbcType=VARCHAR}, 
+      #{binding,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.Connection" >
+    insert into connection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="connection != null" >
+        connection,
+      </if>
+      <if test="connectionUser != null" >
+        connection_user,
+      </if>
+      <if test="style != null" >
+        style,
+      </if>
+      <if test="binding != null" >
+        binding,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="connection != null" >
+        #{connection,jdbcType=BIGINT},
+      </if>
+      <if test="connectionUser != null" >
+        #{connectionUser,jdbcType=BIGINT},
+      </if>
+      <if test="style != null" >
+        #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="binding != null" >
+        #{binding,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.Connection" >
+    update connection
+    <set >
+      <if test="style != null" >
+        style = #{style,jdbcType=VARCHAR},
+      </if>
+      <if test="binding != null" >
+        binding = #{binding,jdbcType=BIGINT},
+      </if>
+    </set>
+    where connection = #{connection,jdbcType=BIGINT}
+      and connection_user = #{connectionUser,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.Connection" >
+    update connection
+    set style = #{style,jdbcType=VARCHAR},
+      binding = #{binding,jdbcType=BIGINT}
+    where connection = #{connection,jdbcType=BIGINT}
+      and connection_user = #{connectionUser,jdbcType=BIGINT}
+  </update>
+</mapper>

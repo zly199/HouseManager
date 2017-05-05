@@ -1,3 +1,9 @@
+function EmailAndPhone(Email,Phone){
+    var o = {};
+    o.email = email;
+    o.phone = phone;
+    return o;
+}
 var Login = function () {
     
     return {
@@ -48,14 +54,14 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "index.html";
+	                form.submit();
 	            }
 	        });
 
 	        $('.login-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.login-form').validate().form()) {
-	                    window.location.href = "index.html";
+	                    window.location.href = "#";
 	                }
 	                return false;
 	            }
@@ -75,7 +81,7 @@ var Login = function () {
 
 	            messages: {
 	                email: {
-	                    required: "Email is required."
+	                    required: "email is required."
 	                }
 	            },
 
@@ -98,14 +104,14 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "index.html";
+                    form.submit();
 	            }
 	        });
 
 	        $('.forget-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.forget-form').validate().form()) {
-	                    window.location.href = "index.html";
+	                    window.location.href = "#";
 	                }
 	                return false;
 	            }
@@ -130,6 +136,16 @@ var Login = function () {
 	                username: {
 	                    required: true
 	                },
+                    userAge: {
+                        required: true
+                    },
+                    userPhone: {
+	                    //必须输入11位的电话号码
+                        required: true,
+                        digits:true,
+                        rangelength:[11,11]
+
+                    },
 	                password: {
 	                    required: true
 	                },
@@ -138,7 +154,28 @@ var Login = function () {
 	                },
 	                email: {
 	                    required: true,
-	                    email: true
+	                    email: true,
+						//采用ajax验证邮箱的可用性，邮箱必须为注册
+						remote:{
+	                    	url:"isEmailAvailable",
+                            type:"post",
+                            dateType:"json",
+                            date:{
+                                email:function () {
+                                    return $("email").val(); //获取填入的邮箱
+                                }
+                            },
+                            dateFilter:function (date) {
+                                if(date==true){
+                                    return true;
+                                }
+                                else {
+                                    return false;
+                                }
+                            }
+                            
+                            
+						}
 	                },
 	                tnc: {
 	                    required: true
@@ -147,8 +184,31 @@ var Login = function () {
 
 	            messages: { // custom messages for radio buttons and checkboxes
 	                tnc: {
-	                    required: "Please accept TNC first."
-	                }
+	                    required: "请先同意协议！"
+	                },
+                    username: {
+                        required: "请输入用户名"
+                    },
+                    userAge: {
+                        required: "请输入你的年龄"
+                    },
+                    userPhone: {
+                        required: "手机号不能为空哦",
+                        digits: "请输入有效的手机号码",
+                        rangelength: "无效的手机号码"
+                    },
+                    password: {
+                        required: "密码不能为空哦"
+                    },
+                    rpassword: {
+                        equalTo: "两次输入不一致"
+                    },
+
+                    email:{
+                        email:"请输入一个有效的邮箱地址",
+                        required:"请输入您的邮箱！",
+                        remote:"该邮箱已被注册！"
+                    }
 	            },
 
 	            invalidHandler: function (event, validator) { //display error alert on form submit   
@@ -174,7 +234,7 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "index.html";
+                    form.submit();
 	            }
 	        });
 

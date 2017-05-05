@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.CustomPowerMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.CustomPower" >
+    <id column="custom_power_id" property="customPowerId" jdbcType="BIGINT" />
+    <result column="public_custom_visiable" property="publicCustomVisiable" jdbcType="TINYINT" />
+    <result column="private_custom_visiable" property="privateCustomVisiable" jdbcType="TINYINT" />
+    <result column="private_host_visiable" property="privateHostVisiable" jdbcType="TINYINT" />
+    <result column="followup_house_visibale" property="followupHouseVisibale" jdbcType="TINYINT" />
+    <result column="costom_add" property="costomAdd" jdbcType="TINYINT" />
+    <result column="custom_all_modify" property="customAllModify" jdbcType="TINYINT" />
+    <result column="custom_part_modify" property="customPartModify" jdbcType="TINYINT" />
+    <result column="custom_part_detail" property="customPartDetail" jdbcType="VARCHAR" />
+    <result column="custom_transaction_visiable" property="customTransactionVisiable" jdbcType="VARCHAR" />
+    <result column="custom_delete" property="customDelete" jdbcType="TINYINT" />
+    <result column="private_set" property="privateSet" jdbcType="TINYINT" />
+    <result column="ownership_transfer" property="ownershipTransfer" jdbcType="BIT" />
+    <result column="custom_examine" property="customExamine" jdbcType="TINYINT" />
+    <result column="entrust_date_modify" property="entrustDateModify" jdbcType="TINYINT" />
+    <result column="custom_state" property="customState" jdbcType="VARCHAR" />
+    <result column="book_custom_phone_visiable" property="bookCustomPhoneVisiable" jdbcType="BIT" />
+    <result column="custom_view_without_followup" property="customViewWithoutFollowup" jdbcType="BIT" />
+    <result column="custom_view_time" property="customViewTime" jdbcType="INTEGER" />
+    <result column="entrust_save" property="entrustSave" jdbcType="VARCHAR" />
+    <result column="public_custom_followup_visiable" property="publicCustomFollowupVisiable" jdbcType="TINYINT" />
+    <result column="private_custom_followup_visiable" property="privateCustomFollowupVisiable" jdbcType="TINYINT" />
+    <result column="custom_followup_add" property="customFollowupAdd" jdbcType="BIT" />
+    <result column="custom_followup_modify" property="customFollowupModify" jdbcType="BIT" />
+    <result column="custom_followup_delete" property="customFollowupDelete" jdbcType="BIT" />
+    <result column="public_user_modify_belonging" property="publicUserModifyBelonging" jdbcType="BIT" />
+    <result column="custom_phone_view_time" property="customPhoneViewTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    custom_power_id, public_custom_visiable, private_custom_visiable, private_host_visiable, 
+    followup_house_visibale, costom_add, custom_all_modify, custom_part_modify, custom_part_detail, 
+    custom_transaction_visiable, custom_delete, private_set, ownership_transfer, custom_examine, 
+    entrust_date_modify, custom_state, book_custom_phone_visiable, custom_view_without_followup, 
+    custom_view_time, entrust_save, public_custom_followup_visiable, private_custom_followup_visiable, 
+    custom_followup_add, custom_followup_modify, custom_followup_delete, public_user_modify_belonging, 
+    custom_phone_view_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from custom_power
+    where custom_power_id = #{customPowerId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from custom_power
+    where custom_power_id = #{customPowerId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.CustomPower" >
+    insert into custom_power (custom_power_id, public_custom_visiable, 
+      private_custom_visiable, private_host_visiable, 
+      followup_house_visibale, costom_add, custom_all_modify, 
+      custom_part_modify, custom_part_detail, custom_transaction_visiable, 
+      custom_delete, private_set, ownership_transfer, 
+      custom_examine, entrust_date_modify, custom_state, 
+      book_custom_phone_visiable, custom_view_without_followup, 
+      custom_view_time, entrust_save, public_custom_followup_visiable, 
+      private_custom_followup_visiable, custom_followup_add, 
+      custom_followup_modify, custom_followup_delete, public_user_modify_belonging, 
+      custom_phone_view_time)
+    values (#{customPowerId,jdbcType=BIGINT}, #{publicCustomVisiable,jdbcType=TINYINT}, 
+      #{privateCustomVisiable,jdbcType=TINYINT}, #{privateHostVisiable,jdbcType=TINYINT}, 
+      #{followupHouseVisibale,jdbcType=TINYINT}, #{costomAdd,jdbcType=TINYINT}, #{customAllModify,jdbcType=TINYINT}, 
+      #{customPartModify,jdbcType=TINYINT}, #{customPartDetail,jdbcType=VARCHAR}, #{customTransactionVisiable,jdbcType=VARCHAR}, 
+      #{customDelete,jdbcType=TINYINT}, #{privateSet,jdbcType=TINYINT}, #{ownershipTransfer,jdbcType=BIT}, 
+      #{customExamine,jdbcType=TINYINT}, #{entrustDateModify,jdbcType=TINYINT}, #{customState,jdbcType=VARCHAR}, 
+      #{bookCustomPhoneVisiable,jdbcType=BIT}, #{customViewWithoutFollowup,jdbcType=BIT}, 
+      #{customViewTime,jdbcType=INTEGER}, #{entrustSave,jdbcType=VARCHAR}, #{publicCustomFollowupVisiable,jdbcType=TINYINT}, 
+      #{privateCustomFollowupVisiable,jdbcType=TINYINT}, #{customFollowupAdd,jdbcType=BIT}, 
+      #{customFollowupModify,jdbcType=BIT}, #{customFollowupDelete,jdbcType=BIT}, #{publicUserModifyBelonging,jdbcType=BIT}, 
+      #{customPhoneViewTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.CustomPower" >
+    insert into custom_power
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customPowerId != null" >
+        custom_power_id,
+      </if>
+      <if test="publicCustomVisiable != null" >
+        public_custom_visiable,
+      </if>
+      <if test="privateCustomVisiable != null" >
+        private_custom_visiable,
+      </if>
+      <if test="privateHostVisiable != null" >
+        private_host_visiable,
+      </if>
+      <if test="followupHouseVisibale != null" >
+        followup_house_visibale,
+      </if>
+      <if test="costomAdd != null" >
+        costom_add,
+      </if>
+      <if test="customAllModify != null" >
+        custom_all_modify,
+      </if>
+      <if test="customPartModify != null" >
+        custom_part_modify,
+      </if>
+      <if test="customPartDetail != null" >
+        custom_part_detail,
+      </if>
+      <if test="customTransactionVisiable != null" >
+        custom_transaction_visiable,
+      </if>
+      <if test="customDelete != null" >
+        custom_delete,
+      </if>
+      <if test="privateSet != null" >
+        private_set,
+      </if>
+      <if test="ownershipTransfer != null" >
+        ownership_transfer,
+      </if>
+      <if test="customExamine != null" >
+        custom_examine,
+      </if>
+      <if test="entrustDateModify != null" >
+        entrust_date_modify,
+      </if>
+      <if test="customState != null" >
+        custom_state,
+      </if>
+      <if test="bookCustomPhoneVisiable != null" >
+        book_custom_phone_visiable,
+      </if>
+      <if test="customViewWithoutFollowup != null" >
+        custom_view_without_followup,
+      </if>
+      <if test="customViewTime != null" >
+        custom_view_time,
+      </if>
+      <if test="entrustSave != null" >
+        entrust_save,
+      </if>
+      <if test="publicCustomFollowupVisiable != null" >
+        public_custom_followup_visiable,
+      </if>
+      <if test="privateCustomFollowupVisiable != null" >
+        private_custom_followup_visiable,
+      </if>
+      <if test="customFollowupAdd != null" >
+        custom_followup_add,
+      </if>
+      <if test="customFollowupModify != null" >
+        custom_followup_modify,
+      </if>
+      <if test="customFollowupDelete != null" >
+        custom_followup_delete,
+      </if>
+      <if test="publicUserModifyBelonging != null" >
+        public_user_modify_belonging,
+      </if>
+      <if test="customPhoneViewTime != null" >
+        custom_phone_view_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customPowerId != null" >
+        #{customPowerId,jdbcType=BIGINT},
+      </if>
+      <if test="publicCustomVisiable != null" >
+        #{publicCustomVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="privateCustomVisiable != null" >
+        #{privateCustomVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="privateHostVisiable != null" >
+        #{privateHostVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="followupHouseVisibale != null" >
+        #{followupHouseVisibale,jdbcType=TINYINT},
+      </if>
+      <if test="costomAdd != null" >
+        #{costomAdd,jdbcType=TINYINT},
+      </if>
+      <if test="customAllModify != null" >
+        #{customAllModify,jdbcType=TINYINT},
+      </if>
+      <if test="customPartModify != null" >
+        #{customPartModify,jdbcType=TINYINT},
+      </if>
+      <if test="customPartDetail != null" >
+        #{customPartDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="customTransactionVisiable != null" >
+        #{customTransactionVisiable,jdbcType=VARCHAR},
+      </if>
+      <if test="customDelete != null" >
+        #{customDelete,jdbcType=TINYINT},
+      </if>
+      <if test="privateSet != null" >
+        #{privateSet,jdbcType=TINYINT},
+      </if>
+      <if test="ownershipTransfer != null" >
+        #{ownershipTransfer,jdbcType=BIT},
+      </if>
+      <if test="customExamine != null" >
+        #{customExamine,jdbcType=TINYINT},
+      </if>
+      <if test="entrustDateModify != null" >
+        #{entrustDateModify,jdbcType=TINYINT},
+      </if>
+      <if test="customState != null" >
+        #{customState,jdbcType=VARCHAR},
+      </if>
+      <if test="bookCustomPhoneVisiable != null" >
+        #{bookCustomPhoneVisiable,jdbcType=BIT},
+      </if>
+      <if test="customViewWithoutFollowup != null" >
+        #{customViewWithoutFollowup,jdbcType=BIT},
+      </if>
+      <if test="customViewTime != null" >
+        #{customViewTime,jdbcType=INTEGER},
+      </if>
+      <if test="entrustSave != null" >
+        #{entrustSave,jdbcType=VARCHAR},
+      </if>
+      <if test="publicCustomFollowupVisiable != null" >
+        #{publicCustomFollowupVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="privateCustomFollowupVisiable != null" >
+        #{privateCustomFollowupVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="customFollowupAdd != null" >
+        #{customFollowupAdd,jdbcType=BIT},
+      </if>
+      <if test="customFollowupModify != null" >
+        #{customFollowupModify,jdbcType=BIT},
+      </if>
+      <if test="customFollowupDelete != null" >
+        #{customFollowupDelete,jdbcType=BIT},
+      </if>
+      <if test="publicUserModifyBelonging != null" >
+        #{publicUserModifyBelonging,jdbcType=BIT},
+      </if>
+      <if test="customPhoneViewTime != null" >
+        #{customPhoneViewTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.CustomPower" >
+    update custom_power
+    <set >
+      <if test="publicCustomVisiable != null" >
+        public_custom_visiable = #{publicCustomVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="privateCustomVisiable != null" >
+        private_custom_visiable = #{privateCustomVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="privateHostVisiable != null" >
+        private_host_visiable = #{privateHostVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="followupHouseVisibale != null" >
+        followup_house_visibale = #{followupHouseVisibale,jdbcType=TINYINT},
+      </if>
+      <if test="costomAdd != null" >
+        costom_add = #{costomAdd,jdbcType=TINYINT},
+      </if>
+      <if test="customAllModify != null" >
+        custom_all_modify = #{customAllModify,jdbcType=TINYINT},
+      </if>
+      <if test="customPartModify != null" >
+        custom_part_modify = #{customPartModify,jdbcType=TINYINT},
+      </if>
+      <if test="customPartDetail != null" >
+        custom_part_detail = #{customPartDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="customTransactionVisiable != null" >
+        custom_transaction_visiable = #{customTransactionVisiable,jdbcType=VARCHAR},
+      </if>
+      <if test="customDelete != null" >
+        custom_delete = #{customDelete,jdbcType=TINYINT},
+      </if>
+      <if test="privateSet != null" >
+        private_set = #{privateSet,jdbcType=TINYINT},
+      </if>
+      <if test="ownershipTransfer != null" >
+        ownership_transfer = #{ownershipTransfer,jdbcType=BIT},
+      </if>
+      <if test="customExamine != null" >
+        custom_examine = #{customExamine,jdbcType=TINYINT},
+      </if>
+      <if test="entrustDateModify != null" >
+        entrust_date_modify = #{entrustDateModify,jdbcType=TINYINT},
+      </if>
+      <if test="customState != null" >
+        custom_state = #{customState,jdbcType=VARCHAR},
+      </if>
+      <if test="bookCustomPhoneVisiable != null" >
+        book_custom_phone_visiable = #{bookCustomPhoneVisiable,jdbcType=BIT},
+      </if>
+      <if test="customViewWithoutFollowup != null" >
+        custom_view_without_followup = #{customViewWithoutFollowup,jdbcType=BIT},
+      </if>
+      <if test="customViewTime != null" >
+        custom_view_time = #{customViewTime,jdbcType=INTEGER},
+      </if>
+      <if test="entrustSave != null" >
+        entrust_save = #{entrustSave,jdbcType=VARCHAR},
+      </if>
+      <if test="publicCustomFollowupVisiable != null" >
+        public_custom_followup_visiable = #{publicCustomFollowupVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="privateCustomFollowupVisiable != null" >
+        private_custom_followup_visiable = #{privateCustomFollowupVisiable,jdbcType=TINYINT},
+      </if>
+      <if test="customFollowupAdd != null" >
+        custom_followup_add = #{customFollowupAdd,jdbcType=BIT},
+      </if>
+      <if test="customFollowupModify != null" >
+        custom_followup_modify = #{customFollowupModify,jdbcType=BIT},
+      </if>
+      <if test="customFollowupDelete != null" >
+        custom_followup_delete = #{customFollowupDelete,jdbcType=BIT},
+      </if>
+      <if test="publicUserModifyBelonging != null" >
+        public_user_modify_belonging = #{publicUserModifyBelonging,jdbcType=BIT},
+      </if>
+      <if test="customPhoneViewTime != null" >
+        custom_phone_view_time = #{customPhoneViewTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where custom_power_id = #{customPowerId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.CustomPower" >
+    update custom_power
+    set public_custom_visiable = #{publicCustomVisiable,jdbcType=TINYINT},
+      private_custom_visiable = #{privateCustomVisiable,jdbcType=TINYINT},
+      private_host_visiable = #{privateHostVisiable,jdbcType=TINYINT},
+      followup_house_visibale = #{followupHouseVisibale,jdbcType=TINYINT},
+      costom_add = #{costomAdd,jdbcType=TINYINT},
+      custom_all_modify = #{customAllModify,jdbcType=TINYINT},
+      custom_part_modify = #{customPartModify,jdbcType=TINYINT},
+      custom_part_detail = #{customPartDetail,jdbcType=VARCHAR},
+      custom_transaction_visiable = #{customTransactionVisiable,jdbcType=VARCHAR},
+      custom_delete = #{customDelete,jdbcType=TINYINT},
+      private_set = #{privateSet,jdbcType=TINYINT},
+      ownership_transfer = #{ownershipTransfer,jdbcType=BIT},
+      custom_examine = #{customExamine,jdbcType=TINYINT},
+      entrust_date_modify = #{entrustDateModify,jdbcType=TINYINT},
+      custom_state = #{customState,jdbcType=VARCHAR},
+      book_custom_phone_visiable = #{bookCustomPhoneVisiable,jdbcType=BIT},
+      custom_view_without_followup = #{customViewWithoutFollowup,jdbcType=BIT},
+      custom_view_time = #{customViewTime,jdbcType=INTEGER},
+      entrust_save = #{entrustSave,jdbcType=VARCHAR},
+      public_custom_followup_visiable = #{publicCustomFollowupVisiable,jdbcType=TINYINT},
+      private_custom_followup_visiable = #{privateCustomFollowupVisiable,jdbcType=TINYINT},
+      custom_followup_add = #{customFollowupAdd,jdbcType=BIT},
+      custom_followup_modify = #{customFollowupModify,jdbcType=BIT},
+      custom_followup_delete = #{customFollowupDelete,jdbcType=BIT},
+      public_user_modify_belonging = #{publicUserModifyBelonging,jdbcType=BIT},
+      custom_phone_view_time = #{customPhoneViewTime,jdbcType=INTEGER}
+    where custom_power_id = #{customPowerId,jdbcType=BIGINT}
+  </update>
+</mapper>

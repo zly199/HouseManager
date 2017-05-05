@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.TakeLookMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.TakeLook" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
+    <result column="look_times" property="lookTimes" jdbcType="INTEGER" />
+    <result column="houseid" property="houseid" jdbcType="INTEGER" />
+    <result column="housesid" property="housesid" jdbcType="INTEGER" />
+    <result column="take_number" property="takeNumber" jdbcType="VARCHAR" />
+    <result column="trail" property="trail" jdbcType="VARCHAR" />
+    <result column="house_number" property="houseNumber" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="inspector" property="inspector" jdbcType="VARCHAR" />
+    <result column="inspect_time" property="inspectTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, last_time, look_times, houseid, housesid, take_number, trail, house_number, status, 
+    creat_time, inspector, inspect_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from takelook
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from takelook
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.TakeLook" >
+    insert into takelook (id, last_time, look_times, 
+      houseid, housesid, take_number, 
+      trail, house_number, status, 
+      creat_time, inspector, inspect_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{lastTime,jdbcType=TIMESTAMP}, #{lookTimes,jdbcType=INTEGER}, 
+      #{houseid,jdbcType=INTEGER}, #{housesid,jdbcType=INTEGER}, #{takeNumber,jdbcType=VARCHAR}, 
+      #{trail,jdbcType=VARCHAR}, #{houseNumber,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=TIMESTAMP}, #{inspector,jdbcType=VARCHAR}, #{inspectTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.TakeLook" >
+    insert into takelook
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lastTime != null" >
+        last_time,
+      </if>
+      <if test="lookTimes != null" >
+        look_times,
+      </if>
+      <if test="houseid != null" >
+        houseid,
+      </if>
+      <if test="housesid != null" >
+        housesid,
+      </if>
+      <if test="takeNumber != null" >
+        take_number,
+      </if>
+      <if test="trail != null" >
+        trail,
+      </if>
+      <if test="houseNumber != null" >
+        house_number,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="inspector != null" >
+        inspector,
+      </if>
+      <if test="inspectTime != null" >
+        inspect_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lastTime != null" >
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lookTimes != null" >
+        #{lookTimes,jdbcType=INTEGER},
+      </if>
+      <if test="houseid != null" >
+        #{houseid,jdbcType=INTEGER},
+      </if>
+      <if test="housesid != null" >
+        #{housesid,jdbcType=INTEGER},
+      </if>
+      <if test="takeNumber != null" >
+        #{takeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="trail != null" >
+        #{trail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNumber != null" >
+        #{houseNumber,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inspector != null" >
+        #{inspector,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectTime != null" >
+        #{inspectTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.TakeLook" >
+    update takelook
+    <set >
+      <if test="lastTime != null" >
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lookTimes != null" >
+        look_times = #{lookTimes,jdbcType=INTEGER},
+      </if>
+      <if test="houseid != null" >
+        houseid = #{houseid,jdbcType=INTEGER},
+      </if>
+      <if test="housesid != null" >
+        housesid = #{housesid,jdbcType=INTEGER},
+      </if>
+      <if test="takeNumber != null" >
+        take_number = #{takeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="trail != null" >
+        trail = #{trail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNumber != null" >
+        house_number = #{houseNumber,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inspector != null" >
+        inspector = #{inspector,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectTime != null" >
+        inspect_time = #{inspectTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.entity.TakeLook" >
+    update takelook
+    set last_time = #{lastTime,jdbcType=TIMESTAMP},
+      look_times = #{lookTimes,jdbcType=INTEGER},
+      houseid = #{houseid,jdbcType=INTEGER},
+      housesid = #{housesid,jdbcType=INTEGER},
+      take_number = #{takeNumber,jdbcType=VARCHAR},
+      trail = #{trail,jdbcType=VARCHAR},
+      house_number = #{houseNumber,jdbcType=BIGINT},
+      status = #{status,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      inspector = #{inspector,jdbcType=VARCHAR},
+      inspect_time = #{inspectTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
