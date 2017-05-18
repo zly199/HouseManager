@@ -14,7 +14,7 @@ public class EnterpriseDuties {
     /**
      * 底薪
      */
-    private Integer basicSalary;
+    private Double basicSalary;
 
     /**
      * 级别
@@ -22,7 +22,7 @@ public class EnterpriseDuties {
     private Byte rank;
 
     /**
-     * 职务属性
+     * 职务属性（业务，管理等）
      */
     private String jobAttributes;
 
@@ -62,7 +62,7 @@ public class EnterpriseDuties {
      * 底薪
      * @return basic_salary 底薪
      */
-    public Integer getBasicSalary() {
+    public Double getBasicSalary() {
         return basicSalary;
     }
 
@@ -70,7 +70,7 @@ public class EnterpriseDuties {
      * 底薪
      * @param basicSalary 底薪
      */
-    public void setBasicSalary(Integer basicSalary) {
+    public void setBasicSalary(Double basicSalary) {
         this.basicSalary = basicSalary;
     }
 
@@ -91,16 +91,16 @@ public class EnterpriseDuties {
     }
 
     /**
-     * 职务属性
-     * @return job_attributes 职务属性
+     * 职务属性（业务，管理等）
+     * @return job_attributes 职务属性（业务，管理等）
      */
     public String getJobAttributes() {
         return jobAttributes;
     }
 
     /**
-     * 职务属性
-     * @param jobAttributes 职务属性
+     * 职务属性（业务，管理等）
+     * @param jobAttributes 职务属性（业务，管理等）
      */
     public void setJobAttributes(String jobAttributes) {
         this.jobAttributes = jobAttributes == null ? null : jobAttributes.trim();

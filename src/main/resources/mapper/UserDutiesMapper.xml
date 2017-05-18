@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.dao.UserDutiesMapper" >
   <resultMap id="BaseResultMap" type="cn.entity.UserDuties" >
-    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="locked" property="locked" jdbcType="BIT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="organization_id" property="organizationId" jdbcType="VARCHAR" />
     <result column="duties_id" property="dutiesId" jdbcType="TINYINT" />
@@ -13,48 +14,36 @@
     <result column="source" property="source" jdbcType="VARCHAR" />
     <result column="technical_title" property="technicalTitle" jdbcType="VARCHAR" />
     <result column="record" property="record" jdbcType="VARCHAR" />
-    <result column="mian_buildings" property="mianBuildings" jdbcType="VARCHAR" />
+    <result column="main_buildings" property="mainBuildings" jdbcType="VARCHAR" />
     <result column="chief_id" property="chiefId" jdbcType="BIGINT" />
     <result column="connecttion_way" property="connecttionWay" jdbcType="INTEGER" />
-    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="working_time" property="workingTime" jdbcType="TIME" />
     <result column="closing_time" property="closingTime" jdbcType="TIME" />
     <result column="user_persion" property="userPersion" jdbcType="BIGINT" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    user_id, user_name, organization_id, duties_id, state, entry_time, dimission_time, 
-    omni, source, technical_title, record, mian_buildings, chief_id, connecttion_way, 
-    passwd, working_time, closing_time, user_persion
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from user_duties
-    where user_id = #{userId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from user_duties
-    where user_id = #{userId,jdbcType=BIGINT}
-  </delete>
   <insert id="insert" parameterType="cn.entity.UserDuties" >
-    insert into user_duties (user_id, user_name, organization_id, 
-      duties_id, state, entry_time, 
-      dimission_time, omni, source, 
-      technical_title, record, mian_buildings, 
-      chief_id, connecttion_way, passwd, 
-      working_time, closing_time, user_persion
-      )
-    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}, 
-      #{dutiesId,jdbcType=TINYINT}, #{state,jdbcType=VARCHAR}, #{entryTime,jdbcType=TIMESTAMP}, 
-      #{dimissionTime,jdbcType=TIMESTAMP}, #{omni,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
-      #{technicalTitle,jdbcType=VARCHAR}, #{record,jdbcType=VARCHAR}, #{mianBuildings,jdbcType=VARCHAR}, 
-      #{chiefId,jdbcType=BIGINT}, #{connecttionWay,jdbcType=INTEGER}, #{passwd,jdbcType=VARCHAR}, 
-      #{workingTime,jdbcType=TIME}, #{closingTime,jdbcType=TIME}, #{userPersion,jdbcType=BIGINT}
-      )
+    insert into user_duties (locked, user_id, user_name, 
+      organization_id, duties_id, state, 
+      entry_time, dimission_time, omni, 
+      source, technical_title, record, 
+      main_buildings, chief_id, connecttion_way, 
+      password, working_time, closing_time, 
+      user_persion)
+    values (#{locked,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{organizationId,jdbcType=VARCHAR}, #{dutiesId,jdbcType=TINYINT}, #{state,jdbcType=VARCHAR}, 
+      #{entryTime,jdbcType=TIMESTAMP}, #{dimissionTime,jdbcType=TIMESTAMP}, #{omni,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{technicalTitle,jdbcType=VARCHAR}, #{record,jdbcType=VARCHAR}, 
+      #{mainBuildings,jdbcType=VARCHAR}, #{chiefId,jdbcType=BIGINT}, #{connecttionWay,jdbcType=INTEGER}, 
+      #{password,jdbcType=VARCHAR}, #{workingTime,jdbcType=TIME}, #{closingTime,jdbcType=TIME}, 
+      #{userPersion,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.UserDuties" >
     insert into user_duties
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="locked != null" >
+        locked,
+      </if>
       <if test="userId != null" >
         user_id,
       </if>
@@ -88,8 +77,8 @@
       <if test="record != null" >
         record,
       </if>
-      <if test="mianBuildings != null" >
-        mian_buildings,
+      <if test="mainBuildings != null" >
+        main_buildings,
       </if>
       <if test="chiefId != null" >
         chief_id,
@@ -97,8 +86,8 @@
       <if test="connecttionWay != null" >
         connecttion_way,
       </if>
-      <if test="passwd != null" >
-        passwd,
+      <if test="password != null" >
+        password,
       </if>
       <if test="workingTime != null" >
         working_time,
@@ -111,6 +100,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="locked != null" >
+        #{locked,jdbcType=BIT},
+      </if>
       <if test="userId != null" >
         #{userId,jdbcType=BIGINT},
       </if>
@@ -144,8 +136,8 @@
       <if test="record != null" >
         #{record,jdbcType=VARCHAR},
       </if>
-      <if test="mianBuildings != null" >
-        #{mianBuildings,jdbcType=VARCHAR},
+      <if test="mainBuildings != null" >
+        #{mainBuildings,jdbcType=VARCHAR},
       </if>
       <if test="chiefId != null" >
         #{chiefId,jdbcType=BIGINT},
@@ -153,8 +145,8 @@
       <if test="connecttionWay != null" >
         #{connecttionWay,jdbcType=INTEGER},
       </if>
-      <if test="passwd != null" >
-        #{passwd,jdbcType=VARCHAR},
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
       <if test="workingTime != null" >
         #{workingTime,jdbcType=TIME},
@@ -167,82 +159,4 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.UserDuties" >
-    update user_duties
-    <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="organizationId != null" >
-        organization_id = #{organizationId,jdbcType=VARCHAR},
-      </if>
-      <if test="dutiesId != null" >
-        duties_id = #{dutiesId,jdbcType=TINYINT},
-      </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="entryTime != null" >
-        entry_time = #{entryTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="dimissionTime != null" >
-        dimission_time = #{dimissionTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="omni != null" >
-        omni = #{omni,jdbcType=VARCHAR},
-      </if>
-      <if test="source != null" >
-        source = #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="technicalTitle != null" >
-        technical_title = #{technicalTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="record != null" >
-        record = #{record,jdbcType=VARCHAR},
-      </if>
-      <if test="mianBuildings != null" >
-        mian_buildings = #{mianBuildings,jdbcType=VARCHAR},
-      </if>
-      <if test="chiefId != null" >
-        chief_id = #{chiefId,jdbcType=BIGINT},
-      </if>
-      <if test="connecttionWay != null" >
-        connecttion_way = #{connecttionWay,jdbcType=INTEGER},
-      </if>
-      <if test="passwd != null" >
-        passwd = #{passwd,jdbcType=VARCHAR},
-      </if>
-      <if test="workingTime != null" >
-        working_time = #{workingTime,jdbcType=TIME},
-      </if>
-      <if test="closingTime != null" >
-        closing_time = #{closingTime,jdbcType=TIME},
-      </if>
-      <if test="userPersion != null" >
-        user_persion = #{userPersion,jdbcType=BIGINT},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.entity.UserDuties" >
-    update user_duties
-    set user_name = #{userName,jdbcType=VARCHAR},
-      organization_id = #{organizationId,jdbcType=VARCHAR},
-      duties_id = #{dutiesId,jdbcType=TINYINT},
-      state = #{state,jdbcType=VARCHAR},
-      entry_time = #{entryTime,jdbcType=TIMESTAMP},
-      dimission_time = #{dimissionTime,jdbcType=TIMESTAMP},
-      omni = #{omni,jdbcType=VARCHAR},
-      source = #{source,jdbcType=VARCHAR},
-      technical_title = #{technicalTitle,jdbcType=VARCHAR},
-      record = #{record,jdbcType=VARCHAR},
-      mian_buildings = #{mianBuildings,jdbcType=VARCHAR},
-      chief_id = #{chiefId,jdbcType=BIGINT},
-      connecttion_way = #{connecttionWay,jdbcType=INTEGER},
-      passwd = #{passwd,jdbcType=VARCHAR},
-      working_time = #{workingTime,jdbcType=TIME},
-      closing_time = #{closingTime,jdbcType=TIME},
-      user_persion = #{userPersion,jdbcType=BIGINT}
-    where user_id = #{userId,jdbcType=BIGINT}
-  </update>
 </mapper>

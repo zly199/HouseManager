@@ -69,11 +69,6 @@ public class PersonalInformation {
     private String educationalBackground;
 
     /**
-     * 
-     */
-    private String personalInformationcol;
-
-    /**
      * 毕业院校
      */
     private String graduateInstitutions;
@@ -299,22 +294,6 @@ public class PersonalInformation {
      */
     public void setEducationalBackground(String educationalBackground) {
         this.educationalBackground = educationalBackground == null ? null : educationalBackground.trim();
-    }
-
-    /**
-     * 
-     * @return personal_informationcol 
-     */
-    public String getPersonalInformationcol() {
-        return personalInformationcol;
-    }
-
-    /**
-     * 
-     * @param personalInformationcol 
-     */
-    public void setPersonalInformationcol(String personalInformationcol) {
-        this.personalInformationcol = personalInformationcol == null ? null : personalInformationcol.trim();
     }
 
     /**

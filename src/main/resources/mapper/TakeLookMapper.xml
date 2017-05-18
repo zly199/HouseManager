@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.dao.TakeLookMapper" >
-  <resultMap id="BaseResultMap" type="cn.entity.TakeLook" >
+<mapper namespace="cn.dao.TakelookMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.Takelook" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
     <result column="look_times" property="lookTimes" jdbcType="INTEGER" />
@@ -29,7 +29,7 @@
     delete from takelook
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.entity.TakeLook" >
+  <insert id="insert" parameterType="cn.entity.Takelook" >
     insert into takelook (id, last_time, look_times, 
       houseid, housesid, take_number, 
       trail, house_number, status, 
@@ -41,7 +41,7 @@
       #{creatTime,jdbcType=TIMESTAMP}, #{inspector,jdbcType=VARCHAR}, #{inspectTime,jdbcType=DATE}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.entity.TakeLook" >
+  <insert id="insertSelective" parameterType="cn.entity.Takelook" >
     insert into takelook
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.TakeLook" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.Takelook" >
     update takelook
     <set >
       <if test="lastTime != null" >
@@ -159,7 +159,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.entity.TakeLook" >
+  <update id="updateByPrimaryKey" parameterType="cn.entity.Takelook" >
     update takelook
     set last_time = #{lastTime,jdbcType=TIMESTAMP},
       look_times = #{lookTimes,jdbcType=INTEGER},

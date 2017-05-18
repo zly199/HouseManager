@@ -5,6 +5,7 @@
     <id column="organization_id" property="organizationId" jdbcType="VARCHAR" />
     <result column="organization_name" property="organizationName" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
     <result column="number_pre" property="numberPre" jdbcType="VARCHAR" />
     <result column="organization_style" property="organizationStyle" jdbcType="VARCHAR" />
     <result column="is_business" property="isBusiness" jdbcType="BIT" />
@@ -21,8 +22,8 @@
     <result column="extension_range" property="extensionRange" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    organization_id, organization_name, parent_id, number_pre, organization_style, is_business, 
-    store_attributes, is_store, department_phone, department_address, department_coordinate, 
+    organization_id, organization_name, parent_id, parent_ids, number_pre, organization_style, 
+    is_business, store_attributes, is_store, department_phone, department_address, department_coordinate, 
     sharing_circle, plan_performance, Actual_performance, add_time, department_number, 
     extension_range
   </sql>
@@ -38,19 +39,19 @@
   </delete>
   <insert id="insert" parameterType="cn.entity.OrganizationStructure" >
     insert into organization_structure (organization_id, organization_name, 
-      parent_id, number_pre, organization_style, 
-      is_business, store_attributes, is_store, 
-      department_phone, department_address, department_coordinate, 
-      sharing_circle, plan_performance, Actual_performance, 
-      add_time, department_number, extension_range
-      )
+      parent_id, parent_ids, number_pre, 
+      organization_style, is_business, store_attributes, 
+      is_store, department_phone, department_address, 
+      department_coordinate, sharing_circle, plan_performance, 
+      Actual_performance, add_time, department_number, 
+      extension_range)
     values (#{organizationId,jdbcType=VARCHAR}, #{organizationName,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=VARCHAR}, #{numberPre,jdbcType=VARCHAR}, #{organizationStyle,jdbcType=VARCHAR}, 
-      #{isBusiness,jdbcType=BIT}, #{storeAttributes,jdbcType=VARCHAR}, #{isStore,jdbcType=BIT}, 
-      #{departmentPhone,jdbcType=BIGINT}, #{departmentAddress,jdbcType=VARCHAR}, #{departmentCoordinate,jdbcType=VARCHAR}, 
-      #{sharingCircle,jdbcType=VARCHAR}, #{planPerformance,jdbcType=INTEGER}, #{actualPerformance,jdbcType=INTEGER}, 
-      #{addTime,jdbcType=VARCHAR}, #{departmentNumber,jdbcType=VARCHAR}, #{extensionRange,jdbcType=VARCHAR}
-      )
+      #{parentId,jdbcType=VARCHAR}, #{parentIds,jdbcType=VARCHAR}, #{numberPre,jdbcType=VARCHAR}, 
+      #{organizationStyle,jdbcType=VARCHAR}, #{isBusiness,jdbcType=BIT}, #{storeAttributes,jdbcType=VARCHAR}, 
+      #{isStore,jdbcType=BIT}, #{departmentPhone,jdbcType=BIGINT}, #{departmentAddress,jdbcType=VARCHAR}, 
+      #{departmentCoordinate,jdbcType=VARCHAR}, #{sharingCircle,jdbcType=VARCHAR}, #{planPerformance,jdbcType=INTEGER}, 
+      #{actualPerformance,jdbcType=INTEGER}, #{addTime,jdbcType=VARCHAR}, #{departmentNumber,jdbcType=VARCHAR}, 
+      #{extensionRange,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.OrganizationStructure" >
     insert into organization_structure
@@ -63,6 +64,9 @@
       </if>
       <if test="parentId != null" >
         parent_id,
+      </if>
+      <if test="parentIds != null" >
+        parent_ids,
       </if>
       <if test="numberPre != null" >
         number_pre,
@@ -117,6 +121,9 @@
       <if test="parentId != null" >
         #{parentId,jdbcType=VARCHAR},
       </if>
+      <if test="parentIds != null" >
+        #{parentIds,jdbcType=VARCHAR},
+      </if>
       <if test="numberPre != null" >
         #{numberPre,jdbcType=VARCHAR},
       </if>
@@ -170,6 +177,9 @@
       <if test="parentId != null" >
         parent_id = #{parentId,jdbcType=VARCHAR},
       </if>
+      <if test="parentIds != null" >
+        parent_ids = #{parentIds,jdbcType=VARCHAR},
+      </if>
       <if test="numberPre != null" >
         number_pre = #{numberPre,jdbcType=VARCHAR},
       </if>
@@ -219,6 +229,7 @@
     update organization_structure
     set organization_name = #{organizationName,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=VARCHAR},
+      parent_ids = #{parentIds,jdbcType=VARCHAR},
       number_pre = #{numberPre,jdbcType=VARCHAR},
       organization_style = #{organizationStyle,jdbcType=VARCHAR},
       is_business = #{isBusiness,jdbcType=BIT},

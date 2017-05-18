@@ -1,41 +1,41 @@
 package cn.dao;
 
-import cn.entity.TakeLook;
+import cn.entity.Takelook;
 
-public interface TakeLookMapper {
+public interface TakelookMapper {
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    int insert(TakeLook record);
+    int insert(Takelook record);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    int insertSelective(TakeLook record);
+    int insertSelective(Takelook record);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    TakeLook selectByPrimaryKey(Integer id);
+    Takelook selectByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    int updateByPrimaryKeySelective(TakeLook record);
+    int updateByPrimaryKeySelective(Takelook record);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    int updateByPrimaryKey(TakeLook record);
+    int updateByPrimaryKey(Takelook record);
 }

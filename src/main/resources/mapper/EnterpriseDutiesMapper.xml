@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="cn.entity.EnterpriseDuties" >
     <id column="enterprise_duties_id" property="enterpriseDutiesId" jdbcType="TINYINT" />
     <result column="duties_name" property="dutiesName" jdbcType="VARCHAR" />
-    <result column="basic_salary" property="basicSalary" jdbcType="INTEGER" />
+    <result column="basic_salary" property="basicSalary" jdbcType="DOUBLE" />
     <result column="rank" property="rank" jdbcType="TINYINT" />
     <result column="job_attributes" property="jobAttributes" jdbcType="VARCHAR" />
   </resultMap>
@@ -24,7 +24,7 @@
   <insert id="insert" parameterType="cn.entity.EnterpriseDuties" >
     insert into enterprise_duties (enterprise_duties_id, duties_name, basic_salary, 
       rank, job_attributes)
-    values (#{enterpriseDutiesId,jdbcType=TINYINT}, #{dutiesName,jdbcType=VARCHAR}, #{basicSalary,jdbcType=INTEGER}, 
+    values (#{enterpriseDutiesId,jdbcType=TINYINT}, #{dutiesName,jdbcType=VARCHAR}, #{basicSalary,jdbcType=DOUBLE}, 
       #{rank,jdbcType=TINYINT}, #{jobAttributes,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.EnterpriseDuties" >
@@ -54,7 +54,7 @@
         #{dutiesName,jdbcType=VARCHAR},
       </if>
       <if test="basicSalary != null" >
-        #{basicSalary,jdbcType=INTEGER},
+        #{basicSalary,jdbcType=DOUBLE},
       </if>
       <if test="rank != null" >
         #{rank,jdbcType=TINYINT},
@@ -71,7 +71,7 @@
         duties_name = #{dutiesName,jdbcType=VARCHAR},
       </if>
       <if test="basicSalary != null" >
-        basic_salary = #{basicSalary,jdbcType=INTEGER},
+        basic_salary = #{basicSalary,jdbcType=DOUBLE},
       </if>
       <if test="rank != null" >
         rank = #{rank,jdbcType=TINYINT},
@@ -85,7 +85,7 @@
   <update id="updateByPrimaryKey" parameterType="cn.entity.EnterpriseDuties" >
     update enterprise_duties
     set duties_name = #{dutiesName,jdbcType=VARCHAR},
-      basic_salary = #{basicSalary,jdbcType=INTEGER},
+      basic_salary = #{basicSalary,jdbcType=DOUBLE},
       rank = #{rank,jdbcType=TINYINT},
       job_attributes = #{jobAttributes,jdbcType=VARCHAR}
     where enterprise_duties_id = #{enterpriseDutiesId,jdbcType=TINYINT}

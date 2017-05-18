@@ -63,11 +63,11 @@
           <version>${mysql.connector.version}</version>
           <scope>runtime</scope>
       </dependency>
-      <!--c3p0连接池用于优化连接成本-->
+      <!--druid连接池用于优化连接成本-->
       <dependency>
-          <groupId>c3p0</groupId>
-          <artifactId>c3p0</artifactId>
-          <version>${c3p0.version}</version>
+          <groupId>com.alibaba</groupId>
+          <artifactId>druid</artifactId>
+          <version>1.0.31</version>
       </dependency>
 
       <!--Dao：Mybaitis本身依赖-->
@@ -163,6 +163,23 @@
           <groupId>javax.mail</groupId>
           <artifactId>mail</artifactId>
           <version>1.5.0-b01</version>
+      </dependency>
+        <!--shiro包-->
+      <dependency>
+          <groupId>org.apache.shiro</groupId>
+          <artifactId>shiro-core</artifactId>
+          <version>1.2.4</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.shiro</groupId>
+          <artifactId>shiro-web</artifactId>
+          <version>1.2.4</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.shiro</groupId>
+          <artifactId>shiro-spring</artifactId>
+          <version>1.2.4</version>
       </dependency>
 
   </dependencies>

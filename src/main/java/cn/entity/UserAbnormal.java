@@ -14,7 +14,7 @@ public class UserAbnormal {
     private Date actionTime;
 
     /**
-     * 异动类别
+     * 移动类别
      */
     private String actionStyle;
 
@@ -29,7 +29,7 @@ public class UserAbnormal {
     private String newData;
 
     /**
-     * 
+     * 涉及的员工id
      */
     private Long abnormalUser;
 
@@ -66,16 +66,16 @@ public class UserAbnormal {
     }
 
     /**
-     * 异动类别
-     * @return action_style 异动类别
+     * 移动类别
+     * @return action_style 移动类别
      */
     public String getActionStyle() {
         return actionStyle;
     }
 
     /**
-     * 异动类别
-     * @param actionStyle 异动类别
+     * 移动类别
+     * @param actionStyle 移动类别
      */
     public void setActionStyle(String actionStyle) {
         this.actionStyle = actionStyle == null ? null : actionStyle.trim();
@@ -114,16 +114,16 @@ public class UserAbnormal {
     }
 
     /**
-     * 
-     * @return abnormal_user 
+     * 涉及的员工id
+     * @return abnormal_user 涉及的员工id
      */
     public Long getAbnormalUser() {
         return abnormalUser;
     }
 
     /**
-     * 
-     * @param abnormalUser 
+     * 涉及的员工id
+     * @param abnormalUser 涉及的员工id
      */
     public void setAbnormalUser(Long abnormalUser) {
         this.abnormalUser = abnormalUser;

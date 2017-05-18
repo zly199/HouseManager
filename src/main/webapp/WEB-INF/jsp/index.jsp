@@ -1,11 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="textml;charset=UTF-8" language="java" %>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -17,52 +14,38 @@
 <!-- BEGIN HEAD -->
 
 <head>
+	<base href="<%=basePath%>">
+	<meta charset="utf-8" />
 
-    <meta charset="utf-8" />
+	<title>房屋中介管理系统</title>
 
-    <title>房屋中介管理系统</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
 
-    <meta content="" name="description" />
+	<meta content="" name="author" />
 
-    <meta content="" name="author" />
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-
-    <link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-    <link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
-
-    <link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
-    <link href="media/css/style-metro.css" rel="stylesheet" type="text/css"/>
-
-    <link href="media/css/style.css" rel="stylesheet" type="text/css"/>
-
-    <link href="media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-
-    <link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-
-    <link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-
-    <!-- END GLOBAL MANDATORY STYLES -->
-
-    <!-- BEGIN PAGE LEVEL STYLES -->
-
-    <link href="media/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
-
-    <link href="media/css/daterangepicker.css" rel="stylesheet" type="text/css" />
-
-    <link href="media/css/fullcalendar.css" rel="stylesheet" type="text/css"/>
-
-    <link href="media/css/jqvmap.css" rel="stylesheet" type="text/css" media="screen"/>
-
-    <link href="media/css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
-
-    <!-- END PAGE LEVEL STYLES -->
-
-    <link rel="shortcut icon" href="media/image/favicon.ico" />
+	<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	
+	<link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	
+	<link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	
+	<link href="media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	
+	<link href="media/css/style.css" rel="stylesheet" type="text/css"/>
+	
+	<link href="media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	
+	<link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	
+	<link href="https://cdn.bootcss.com/bootstrap-submenu/2.0.4/css/bootstrap-submenu.css" rel="stylesheet">
+	
+	<link href="https://cdn.bootcss.com/bootstrap-submenu/2.0.4/css/bootstrap-submenu.min.css" rel="stylesheet">
+	
+	<link rel="shortcut icon" href="media/image/favicon.ico" />
 
 </head>
 
@@ -72,953 +55,927 @@
 
 <body class="page-header-fixed">
 
-<!-- BEGIN HEADER -->
+	<!-- BEGIN HEADER -->
 
-<div class="header navbar navbar-inverse navbar-fixed-top">
+	<div class="header navbar navbar-inverse navbar-fixed-top">
 
-    <!-- BEGIN TOP NAVIGATION BAR -->
+		<!-- BEGIN TOP NAVIGATION BAR -->
 
-    <div class="navbar-inner">
+		<div class="navbar-inner">
 
-        <div class="container-fluid">
+			<div class="container-fluid">
 
-            <!-- logo标志 -->
+				<!-- logo标志 -->
 
-            <a class="brand" href="#">
+				<a class="brand" href="index.html">
 
-                <img src="media/image/logo.png" alt="logo"/>
+				<img src="media/image/logo.png" alt="logo"/>
 
-            </a>
+				</a>
 
-            <!-- END LOGO -->
+				<!-- END LOGO -->
 
-            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 
-            <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+				<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
 
-                <img src="media/image/menu-toggler.png" alt="" />
+				<img src="media/image/menu-toggler.png" alt="" />
 
-            </a>
+				</a>          
 
-            <!-- END RESPONSIVE MENU TOGGLER -->
+				<!-- END RESPONSIVE MENU TOGGLER -->            
 
-            <!-- BEGIN TOP NAVIGATION MENU -->
+				<!-- BEGIN TOP NAVIGATION MENU -->              
 
-            <ul class="nav pull-right">
+				<ul class="nav pull-right">
 
+             
+					<!-- 开始右边用户信息以及图像-->
 
-                <!-- 开始右边用户信息以及图像-->
+					<li class="dropdown user">
 
-                <li class="dropdown user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<img alt="" src="media/image/avatar1_small.jpg" />
 
-                        <img alt="" src="media/image/avatar1_small.jpg" />
+						<span class="username">Bob Nilson</span>
 
-                        <span class="username">${user.userName}</span>
+						<i class="icon-angle-down"></i>
 
-                        <i class="icon-angle-down"></i>
+						</a>
 
-                    </a>
+						<ul class="dropdown-menu">
 
-                    <ul class="dropdown-menu">
+							<li><a href="profile.html"><i class="icon-user"></i> 个人信息</a></li>
+							<li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
 
-                        <li><a href="UserMgr/UserMeg"><i class="icon-user"></i> 个人信息</a></li>
-                        <li><a href="#"><i class="icon-key"></i> Log Out</a></li>
+						</ul>
 
-                    </ul>
+					</li>
 
-                </li>
+					<!-- END USER LOGIN DROPDOWN -->
 
-                <!-- END USER LOGIN DROPDOWN -->
+				</ul>
 
-            </ul>
+				<!-- END TOP NAVIGATION MENU --> 
 
-            <!-- END TOP NAVIGATION MENU -->
+			</div>
 
-        </div>
+		</div>
 
-    </div>
+		<!-- END TOP NAVIGATION BAR -->
 
-    <!-- END TOP NAVIGATION BAR -->
+	</div>
 
-</div>
+	<!-- END HEADER -->
+    <div class="copyrights">Collect from <a href="http://www.jxufe.145com/" >房屋中介</a></div>
 
-<!-- END HEADER -->
-<div class="copyrights">Collect from <a href="http://www.jxufe.145com/" >房屋中介</a></div>
+	<!-- BEGIN CONTAINER -->
 
-<!-- BEGIN CONTAINER -->
+	<div class="page-container">
 
-<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
 
-    <!-- BEGIN SIDEBAR -->
+		<div class="page-sidebar nav-collapse collapse">
 
-    <div class="page-sidebar nav-collapse collapse">
+			<!-- BEGIN SIDEBAR MENU -->        
 
-        <!-- BEGIN SIDEBAR MENU -->
+			<ul class="page-sidebar-menu">
 
-        <ul class="page-sidebar-menu">
+				<li>
 
-            <li>
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
-                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+					<div class="sidebar-toggler hidden-phone"></div>
 
-                <div class="sidebar-toggler hidden-phone"></div>
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
-                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+				</li>
+<!--去除搜素框-->
+				<!--<li>
 
-            </li>
-            <!--去除搜素框-->
-            <!--<li>
+					 BEGIN RESPONSIVE QUICK SEARCH FORM 
 
-                 BEGIN RESPONSIVE QUICK SEARCH FORM
+					<form class="sidebar-search">
 
-                <form class="sidebar-search">
+						<div class="input-box">
 
-                    <div class="input-box">
+							<a href="javascript:;" class="remove"></a>
 
-                        <a href="javascript:;" class="remove"></a>
+							<input type="text" placeholder="Search..." />
 
-                        <input type="text" placeholder="Search..." />
+							<input type="button" class="submit" value=" " />
 
-                        <input type="button" class="submit" value=" " />
+						</div>
 
-                    </div>
+					</form>
 
-                </form>
-<%--END RESPONSIVE QUICK SEARCH FORM--%>
+					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 
-<%--</li>--%>
-            </li>-->
+				<!--</li>-->
 
-            <li class="start active ">
+				<li class="start active ">
 
-                <a href="#">
+					<a href="#">
 
-                    <i class="icon-home"></i>
+					<i class="icon-home"></i> 
 
-                    <span class="title">主页</span>
+					<span class="title">主页</span>
 
-                    <span class="selected"></span>
+					<span class="selected"></span>
 
-                </a>
+					</a>
 
-            </li>
+				</li>
 
-            <li class="">
+				<li class="">
 
-                <a href="javascript:;">
+					<a href="javascript:;">
 
-                    <i class="icon-user"></i>
+					<i class="icon-user"></i> 
 
-                    <span class="title">用户管理</span>
+					<span class="title">用户管理</span>
 
-                    <span class="arrow "></span>
+					<span class="arrow "></span>
 
-                </a>
+					</a>
 
-                <ul class="sub-menu">
+					<ul class="sub-menu">
 
-                    <li >
+						<li >
 
-                        <a href="UserMgr/list">
+							<a href="userselect.html">
 
-                            用户查询</a>
+							用户查询</a>
 
-                    </li>
+						</li>
 
-                    <li >
+						<li >
 
-                        <a href="UserMgr/add">
+							<a href="addUser.html">
 
-                            添加用户</a>
+							添加用户</a>
 
-                    </li>
-                </ul>
+						</li>
+					</ul>
 
-            </li>
+				</li>
 
-            <li class="">
+				<li class="">
 
-                <a href="javascript:;">
+					<a href="javascript:;">
 
-                    <i class="icon-bookmark-empty"></i>
+					<i class="icon-bookmark-empty"></i> 
 
-                    <span class="title">房源管理</span>
+					<span class="title">房源管理</span>
 
-                    <span class="arrow "></span>
+					<span class="arrow "></span>
 
-                </a>
+					</a>
 
-                <ul class="sub-menu">
+					<ul class="sub-menu">
 
-                    <li >
+						<li >
 
-                        <a href="UserMgr/list">
+							<a href="#">
 
-                            房源查询</a>
+							房源查询</a>
 
-                    </li>
+						</li>
 
-                    <li >
+						<li >
 
-                        <a href="HSource/add">
+							<a href="#">
 
-                            增加房源</a>
+							增加房源</a>
 
-                    </li>
+						</li>
 
-                </ul>
+					</ul>
 
-            </li>
+				</li>
 
-            <li class="">
+				<li class="">
 
-                <a href="javascript:;">
+					<a href="javascript:;">
 
-                    <i class="icon-table"></i>
+					<i class="icon-table"></i> 
 
-                    <span class="title">房源跟进</span>
+					<span class="title">房源跟进</span>
 
-                    <span class="arrow "></span>
+					<span class="arrow "></span>
 
-                </a>
+					</a>
 
-                <ul class="sub-menu">
+					<ul class="sub-menu">
 
-                    <li >
+						<li >
 
-                        <a href="#">
+							<a href="#">
 
-                            跟进查询</a>
+							跟进查询</a>
 
-                    </li>
+						</li>
 
-                    <li >
+						<li >
 
-                        <a href="#">
+							<a href="#">
 
-                            登记跟进记录</a>
+							登记跟进记录</a>
 
-                    </li>
-                </ul>
+						</li>
+					</ul>
 
-            </li>
+				</li>
 
-            <li class="">
+				<li class="">
 
-                <a href="javascript:;">
+					<a href="javascript:;">
 
-                    <i class="icon-th-large"></i>
+					<i class="icon-th-large"></i> 
 
-                    <span class="title">合同管理</span>
+					<span class="title">合同管理</span>
 
-                    <span class="arrow "></span>
+					<span class="arrow "></span>
 
-                </a>
+					</a>
 
-                <ul class="sub-menu">
+					<ul class="sub-menu">
 
-                    <li >
+						<li>
 
-                        <a href="#">
-                            合同查询</a>
+								<a href="#">
+									出租合同查询</a>
 
-                    </li>
+							</li>
+							<li>
 
-                    <li >
+								<a href="#">
+									出售合同查询</a>
 
-                        <a href="#">
-                            增加合同</a>
+							</li>
 
-                    </li>
-                </ul>
+						<li >
 
-            </li>
+							<a href="#">
+							增加合同</a>
 
-            <li class="">
+						</li>
+					</ul>
 
-                <a href="javascript:;">
+				</li>
 
-                    <i class="icon-gift"></i>
+				<li class="">
 
-                    <span class="title">销售管理</span>
+					<a href="javascript:;">
 
-                    <span class="arrow "></span>
+					<i class="icon-gift"></i> 
 
-                </a>
+					<span class="title">销售管理</span>
 
-                <ul class="sub-menu">
+					<span class="arrow "></span>
 
-                    <li >
+					</a>
 
-                        <a href="#">
+					<ul class="sub-menu">
 
-                            销售查询</a>
+						<li >
 
-                    </li>
+							<a href="#">
 
-                    <li >
+							销售查询</a>
 
-                        <a href="#">
+						</li>
 
-                            增加销售信息</a>
+						<li >
 
-                    </li>
-                </ul>
+							<a href="#">
 
-            </li>
+							增加销售信息</a>
 
-            <li class="">
+						</li>
+					</ul>
 
-                <a class="active" href="javascript:;">
+				</li>
 
-                    <i class="icon-sitemap"></i>
+				<li>
 
-                    <span class="title">新闻管理</span>
+					<a class="active" href="javascript:;">
 
-                    <span class="arrow "></span>
+					<i class="icon-sitemap"></i> 
 
-                </a>
+					<span class="title">新闻管理</span>
 
-                <ul class="sub-menu">
-                    <li >
+					<span class="arrow "></span>
 
-                        <a href="#">
+					</a>
 
-                            新闻查询</a>
+					<ul class="sub-menu">
+							<li >
 
-                    </li>
-                    <li >
+							<a href="#">
 
-                        <a href="#">
+							新闻查询</a>
 
-                            增加新闻</a>
+						</li>
+						<li >
 
-                    </li>
+							<a href="#">
 
-                </ul>
+							增加新闻</a>
 
-            </li>
+						</li>
 
-            <li class="">
+					</ul>
 
-                <a href="javascript:;">
+				</li>
 
-                    <i class="icon-folder-open"></i>
+				<li>
 
-                    <span class="title">综合统计</span>
+					<a href="javascript:;">
 
-                    <span class="arrow "></span>
+					<i class="icon-folder-open"></i> 
 
-                </a>
+					<span class="title">综合统计</span>
 
-                <ul class="sub-menu">
+					<span class="arrow "></span>
 
-                    <li>
+					</a>
 
-                        <a href="javascript:;">
+					<ul class="sub-menu">
 
-                            <i class="icon-folder-open"></i>
+						<li>
 
-                            统计房源
+							<a href="javascript:;">
 
-                            <span class="arrow"></span>
+							<i class="icon-folder-open"></i> 
 
-                        </a>
+							统计房源
 
-                        <ul class="sub-menu">
-                            <li><a href="#"><i class="icon-globe"></i>统计求租房源 </a></li>
+							<span class="arrow"></span>
 
-                            <li><a href="#"><i class="icon-globe"></i>  统计求购房源</a></li>
+							</a>
 
-                            <li><a href="count/rentTo"><i class="icon-globe"></i> 统计出租房源</a></li>
+							<ul class="sub-menu">
+								<li><a href="#"><i class="icon-globe"></i>统计求租房源 </a></li>
 
-                            <li><a href="count/soldTo"><i class="icon-globe"></i> 统计出售房源 </a></li>
+								<li><a href="#"><i class="icon-globe"></i>  统计求购房源</a></li>
 
+								<li><a href="#"><i class="icon-globe"></i> 统计出租房源</a></li>
 
+								<li><a href="#"><i class="icon-globe"></i> 统计出售房源 </a></li>
+								
+							
 
-                        </ul>
+							</ul>
 
-                    </li>
+						</li>
 
-                    <li>
+						<li>
 
-                        <a href="javascript:;">
+							<a href="javascript:;">
 
-                            <i class="icon-folder-open"></i>
+							<i class="icon-folder-open"></i> 
 
-                            统计客源
+							统计客源
 
-                            <span class="arrow"></span>
+							<span class="arrow"></span>
 
-                        </a>
+							</a>
 
-                        <ul class="sub-menu">
+							<ul class="sub-menu">
 
-                            <li><a href="#"><i class="icon-globe"></i>统计出租人员</a></li>
+								<li><a href="#"><i class="icon-globe"></i>统计出租人员</a></li>
+								
+								<li><a href="#"><i class="icon-globe"></i>统计出售人员</a></li>
 
-                            <li><a href="#"><i class="icon-globe"></i>统计出售人员</a></li>
+								<li><a href="#"><i class="icon-globe"></i>统计求租人员</a></li>
 
-                            <li><a href="#"><i class="icon-globe"></i>统计求租人员</a></li>
+								<li><a href="#"><i class="icon-globe"></i>统计求售人员</a></li>
 
-                            <li><a href="#"><i class="icon-globe"></i>统计求售人员</a></li>
+							</ul>
 
-                        </ul>
+						</li>
 
-                    </li>
+						<li>
 
-                    <li>
+							<a href="#">
 
-                        <a href="#">
+							<i class="icon-folder-open"></i>
 
-                            <i class="icon-folder-open"></i>
+							统计销售额
+                           	<span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
 
-                            统计销售额
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu">
+								<li><a href="#"><i class="icon-globe"></i>统计出租销售额</a></li>
+								<li><a href="#"><i class="icon-globe"></i>统计出售销售额</a></li>
 
-                            <li><a href="#"><i class="icon-globe"></i>统计出租销售额</a></li>
-                            <li><a href="#"><i class="icon-globe"></i>统计出售销售额</a></li>
+								<li><a href="#"><i class="icon-globe"></i>统计求租销售额</a></li>
 
-                            <li><a href="#"><i class="icon-globe"></i>统计求租销售额</a></li>
+								<li><a href="#"><i class="icon-globe"></i>统计求售销售额</a></li>
 
-                            <li><a href="#"><i class="icon-globe"></i>统计求售销售额</a></li>
+							</ul>
 
-                        </ul>
+						</li>
 
-                    </li>
+					</ul>
 
-                </ul>
+				</li>
+				<li class="">
 
-            </li>
-            <li class="">
+					<a href="javascript:;">
 
-                <a href="javascript:;">
+					<i class="icon-th"></i> 
 
-                    <i class="icon-th"></i>
+					<span class="title">客源跟进</span>
 
-                    <span class="title">客源跟进</span>
+					<span class="arrow "></span>
 
-                    <span class="arrow "></span>
+					</a>
 
-                </a>
+					<ul class="sub-menu">
 
-                <ul class="sub-menu">
+						<li >
 
-                    <li >
+							<a href="table_basic.html">
 
-                        <a href="#">
+							查询客源跟进信息</a>
 
-                            查询客源跟进信息</a>
+						</li>
 
-                    </li>
+						<li >
 
-                    <li >
+							<a href="table_responsive.html">
 
-                        <a href="#">
+							增加客源跟进信息</a>
 
-                            增加客源跟进信息</a>
+						</li>
+					</ul>
 
-                    </li>
-                </ul>
+				</li>
+				<li class="">
 
-            </li>
-            <c:if test="${parameter.userInf>0}">
-            <li class="">
+					<a href="javascript:;">
 
-                <a href="javascript:;">
+					<i class="icon-map-marker"></i> 
 
-                    <i class="icon-user"></i>
+					<span class="title">Maps</span>
 
-                    <span class="title">员工信息</span>
+					<span class="arrow "></span>
 
-                    <span class="arrow "></span>
+					</a>
 
-                </a>
+					<ul class="sub-menu">
 
-                <ul class="sub-menu">
+						<li >
 
-                    <li >
+							<a href="#">
 
-                        <a href="#">
+							房源地图查询</a>
 
-                            查询员工信息</a>
+						</li>
 
-                    </li>
+						<li >
 
-                    <li >
+							<a href="#">
 
-                        <a href="#">
+							学区房地图查询</a>
 
-                            增加员工信息</a>
+						</li>
 
-                    </li>
-                </ul>
+					</ul>
 
-            </li>
-            </c:if>
-            <li class="">
+				</li>
+			</ul>
 
-                <a href="javascript:;">
+			<!-- END SIDEBAR MENU -->
 
-                    <i class="icon-map-marker"></i>
+		</div>
 
-                    <span class="title">Maps</span>
+		<!-- END SIDEBAR -->
 
-                    <span class="arrow "></span>
+		<!-- BEGIN PAGE -->
 
-                </a>
+		<div class="page-content">
 
-                <ul class="sub-menu">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 
-                    <li >
+			<!--<div id="portlet-config" class="modal hide">
 
-                        <a href="#">
+				<div class="modal-header">
 
-                            房源地图查询</a>
+					<button data-dismiss="modal" class="close" type="button"></button>
 
-                    </li>
+					<h3>Widget Settings</h3>
 
-                    <li >
+				</div>
 
-                        <a href="#">
+				<div class="modal-body">
 
-                            学区房地图查询</a>
+					Widget settings form goes here
 
-                    </li>
+				</div>
 
-                </ul>
+			</div>-->
 
-            </li>
-        </ul>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 
-        <!-- END SIDEBAR MENU -->
+			<!-- BEGIN PAGE CONTAINER-->
 
-    </div>
+			<div class="container-fluid">
 
-    <!-- END SIDEBAR -->
+				<!-- BEGIN PAGE HEADER-->
 
-    <!-- BEGIN PAGE -->
+				<div class="row-fluid">
 
-    <div class="page-content">
+					<div class="span12">
 
-        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+						<!-- BEGIN STYLE CUSTOMIZER -->
 
-        <!--<div id="portlet-config" class="modal hide">
+						<div class="color-panel hidden-phone">
 
-            <div class="modal-header">
+							<div class="color-mode-icons icon-color"></div>
 
-                <button data-dismiss="modal" class="close" type="button"></button>
+							<div class="color-mode-icons icon-color-close"></div>
 
-                <h3>Widget Settings</h3>
+							<div class="color-mode">
 
-            </div>
+								<p>THEME COLOR</p>
 
-            <div class="modal-body">
+								<ul class="inline">
 
-                Widget settings form goes here
+									<li class="color-black current color-default" data-style="default"></li>
 
-            </div>
+									<li class="color-blue" data-style="blue"></li>
 
-        </div>-->
+									<li class="color-brown" data-style="brown"></li>
 
-        <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+									<li class="color-purple" data-style="purple"></li>
 
-        <!-- BEGIN PAGE CONTAINER-->
+									<li class="color-grey" data-style="grey"></li>
 
-        <div class="container-fluid">
+									<li class="color-white color-light" data-style="light"></li>
 
-            <!-- BEGIN PAGE HEADER-->
+								</ul>
 
-            <div class="row-fluid">
+								<label>
 
-                <div class="span12">
+									<span>Layout</span>
 
-                    <!-- BEGIN STYLE CUSTOMIZER -->
+									<select class="layout-option m-wrap small">
 
-                    <div class="color-panel hidden-phone">
+										<option value="fluid" selected>Fluid</option>
 
-                        <div class="color-mode-icons icon-color"></div>
+										<option value="boxed">Boxed</option>
 
-                        <div class="color-mode-icons icon-color-close"></div>
+									</select>
 
-                        <div class="color-mode">
+								</label>
 
-                            <p>THEME COLOR</p>
+								<label>
 
-                            <ul class="inline">
+									<span>Header</span>
 
-                                <li class="color-black current color-default" data-style="default"></li>
+									<select class="header-option m-wrap small">
 
-                                <li class="color-blue" data-style="blue"></li>
+										<option value="fixed" selected>Fixed</option>
 
-                                <li class="color-brown" data-style="brown"></li>
+										<option value="default">Default</option>
 
-                                <li class="color-purple" data-style="purple"></li>
+									</select>
 
-                                <li class="color-grey" data-style="grey"></li>
+								</label>
 
-                                <li class="color-white color-light" data-style="light"></li>
+								<label>
 
-                            </ul>
+									<span>Sidebar</span>
 
-                            <label>
+									<select class="sidebar-option m-wrap small">
 
-                                <span>Layout</span>
+										<option value="fixed">Fixed</option>
 
-                                <select class="layout-option m-wrap small">
+										<option value="default" selected>Default</option>
 
-                                    <option value="fluid" selected>Fluid</option>
+									</select>
 
-                                    <option value="boxed">Boxed</option>
+								</label>
 
-                                </select>
+								<label>
 
-                            </label>
+									<span>Footer</span>
 
-                            <label>
+									<select class="footer-option m-wrap small">
 
-                                <span>Header</span>
+										<option value="fixed">Fixed</option>
 
-                                <select class="header-option m-wrap small">
+										<option value="default" selected>Default</option>
 
-                                    <option value="fixed" selected>Fixed</option>
+									</select>
 
-                                    <option value="default">Default</option>
+								</label>
 
-                                </select>
+							</div>
 
-                            </label>
+						</div>
 
-                            <label>
+						<!-- END BEGIN STYLE CUSTOMIZER -->    
 
-                                <span>Sidebar</span>
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 
-                                <select class="sidebar-option m-wrap small">
+						<h3 class="page-title">
 
-                                    <option value="fixed">Fixed</option>
+							欢迎来到房屋中介管理系统
 
-                                    <option value="default" selected>Default</option>
+						</h3>
 
-                                </select>
+						<ul class="breadcrumb">
 
-                            </label>
+							<li>
 
-                            <label>
+								<i class="icon-home"></i>
 
-                                <span>Footer</span>
+								<a href="index.html">Home</a> 
 
-                                <select class="footer-option m-wrap small">
+								<i class="icon-angle-right"></i>
 
-                                    <option value="fixed">Fixed</option>
+							</li>
 
-                                    <option value="default" selected>Default</option>
+							<li><a href="#">主页</a></li>
+						</ul>
 
-                                </select>
+						<!-- END PAGE TITLE & BREADCRUMB-->
 
-                            </label>
+					</div>
 
-                        </div>
+				</div>
 
-                    </div>
+				<!-- END PAGE HEADER-->
+						<div class="span6">
 
-                    <!-- END BEGIN STYLE CUSTOMIZER -->
+							<!-- BEGIN PORTLET-->
 
-                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+							<div class="portlet">
 
-                    <h3 class="page-title">
-                        欢迎来到房屋中介管理系统 您上次登陆的ip为：${user.userLastIp}
-                    </h3>
+								<div class="portlet-title line">
 
-                    <ul class="breadcrumb">
+									<div class="caption"><i class="icon-comments"></i>Chats</div>
 
-                        <li>
+									<div class="tools">
 
-                            <i class="icon-home"></i>
+										<a href="" class="collapse"></a>
 
-                            <a href="index">Home</a>
+										<a href="#portlet-config" data-toggle="modal" class="config"></a>
 
-                            <i class="icon-angle-right"></i>
+										<a href="" class="reload"></a>
 
-                        </li>
+										<a href="" class="remove"></a>
 
-                        <li><a href="#">主页</a></li>
-                    </ul>
+									</div>
 
-                    <!-- END PAGE TITLE & BREADCRUMB-->
+								</div>
 
-                </div>
+								<div class="portlet-body" id="chats">
 
-            </div>
+									<div class="scroller" data-height="435px" data-always-visible="1" data-rail-visible1="1">
 
-            <!-- END PAGE HEADER-->
-            <div class="span6">
+										<ul class="chats">
 
-                <!-- BEGIN PORTLET-->
+											<li class="in">
 
-                <div class="portlet">
+												<img class="avatar" alt="" src="media/image/avatar1.jpg" />
 
-                    <div class="portlet-title line">
+												<div class="message">
 
-                        <div class="caption"><i class="icon-comments"></i>Chats</div>
+													<span class="arrow"></span>
 
-                        <div class="tools">
+													<a href="#" class="name">Bob Nilson</a>
 
-                            <a href="" class="collapse"></a>
+													<span class="datetime">at Jul 25, 2012 11:09</span>
 
-                            <a href="#" data-toggle="modal" class="config"></a>
-
-                            <a href="" class="reload"></a>
-
-                            <a href="" class="remove"></a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="portlet-body" id="chats">
-
-                        <div class="scroller" data-height="435px" data-always-visible="1" data-rail-visible1="1">
-
-                            <ul class="chats">
-
-                                <li class="in">
-
-                                    <img class="avatar" alt="" src="media/image/avatar1.jpg" />
-
-                                    <div class="message">
-
-                                        <span class="arrow"></span>
-
-                                        <a href="#" class="name">${user.userName}</a>
-
-                                        <span class="datetime">at Jul 25, 2012 11:09</span>
-
-                                        <span class="body">
+													<span class="body">
 
 													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 													</span>
 
-                                    </div>
+												</div>
 
-                                </li>
+											</li>
 
-                                <li class="out">
+											<li class="out">
 
-                                    <img class="avatar" alt="" src="media/image/avatar2.jpg" />
+												<img class="avatar" alt="" src="media/image/avatar2.jpg" />
 
-                                    <div class="message">
+												<div class="message">
 
-                                        <span class="arrow"></span>
+													<span class="arrow"></span>
 
-                                        <a href="#" class="name">Lisa Wong</a>
+													<a href="#" class="name">Lisa Wong</a>
 
-                                        <span class="datetime">at Jul 25, 2012 11:09</span>
+													<span class="datetime">at Jul 25, 2012 11:09</span>
 
-                                        <span class="body">
-
-													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-
-													</span>
-
-                                    </div>
-
-                                </li>
-
-                                <li class="in">
-
-                                    <img class="avatar" alt="" src="media/image/avatar1.jpg" />
-
-                                    <div class="message">
-
-                                        <span class="arrow"></span>
-
-                                        <a href="#" class="name">${user.userName}</a>
-
-                                        <span class="datetime">at Jul 25, 2012 11:09</span>
-
-                                        <span class="body">
+													<span class="body">
 
 													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 													</span>
 
-                                    </div>
+												</div>
 
-                                </li>
+											</li>
 
-                                <li class="out">
+											<li class="in">
 
-                                    <img class="avatar" alt="" src="media/image/avatar3.jpg" />
+												<img class="avatar" alt="" src="media/image/avatar1.jpg" />
 
-                                    <div class="message">
+												<div class="message">
 
-                                        <span class="arrow"></span>
+													<span class="arrow"></span>
 
-                                        <a href="#" class="name">Richard Doe</a>
+													<a href="#" class="name">Bob Nilson</a>
 
-                                        <span class="datetime">at Jul 25, 2012 11:09</span>
+													<span class="datetime">at Jul 25, 2012 11:09</span>
 
-                                        <span class="body">
-
-													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-
-													</span>
-
-                                    </div>
-
-                                </li>
-
-                                <li class="in">
-
-                                    <img class="avatar" alt="" src="media/image/avatar3.jpg" />
-
-                                    <div class="message">
-
-                                        <span class="arrow"></span>
-
-                                        <a href="#" class="name">Richard Doe</a>
-
-                                        <span class="datetime">at Jul 25, 2012 11:09</span>
-
-                                        <span class="body">
+													<span class="body">
 
 													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 													</span>
 
-                                    </div>
+												</div>
 
-                                </li>
+											</li>
 
-                                <li class="out">
+											<li class="out">
 
-                                    <img class="avatar" alt="" src="media/image/avatar1.jpg" />
+												<img class="avatar" alt="" src="media/image/avatar3.jpg" />
 
-                                    <div class="message">
+												<div class="message">
 
-                                        <span class="arrow"></span>
+													<span class="arrow"></span>
 
-                                        <a href="#" class="name">${user.userName}</a>
+													<a href="#" class="name">Richard Doe</a>
 
-                                        <span class="datetime">at Jul 25, 2012 11:09</span>
+													<span class="datetime">at Jul 25, 2012 11:09</span>
 
-                                        <span class="body">
+													<span class="body">
 
 													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 													</span>
 
-                                    </div>
+												</div>
 
-                                </li>
+											</li>
 
-                                <li class="in">
+											<li class="in">
 
-                                    <img class="avatar" alt="" src="media/image/avatar3.jpg" />
+												<img class="avatar" alt="" src="media/image/avatar3.jpg" />
 
-                                    <div class="message">
+												<div class="message">
 
-                                        <span class="arrow"></span>
+													<span class="arrow"></span>
 
-                                        <a href="#" class="name">Richard Doe</a>
+													<a href="#" class="name">Richard Doe</a>
 
-                                        <span class="datetime">at Jul 25, 2012 11:09</span>
+													<span class="datetime">at Jul 25, 2012 11:09</span>
 
-                                        <span class="body">
+													<span class="body">
 
-													Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+													</span>
+
+												</div>
+
+											</li>
+
+											<li class="out">
+
+												<img class="avatar" alt="" src="media/image/avatar1.jpg" />
+
+												<div class="message">
+
+													<span class="arrow"></span>
+
+													<a href="#" class="name">Bob Nilson</a>
+
+													<span class="datetime">at Jul 25, 2012 11:09</span>
+
+													<span class="body">
+
+													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+													</span>
+
+												</div>
+
+											</li>
+
+											<li class="in">
+
+												<img class="avatar" alt="" src="media/image/avatar3.jpg" />
+
+												<div class="message">
+
+													<span class="arrow"></span>
+
+													<a href="#" class="name">Richard Doe</a>
+
+													<span class="datetime">at Jul 25, 2012 11:09</span>
+
+													<span class="body">
+
+													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
 
 													sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 													</span>
 
-                                    </div>
+												</div>
 
-                                </li>
+											</li>
 
-                                <li class="out">
+											<li class="out">
 
-                                    <img class="avatar" alt="" src="media/image/avatar1.jpg" />
+												<img class="avatar" alt="" src="media/image/avatar1.jpg" />
 
-                                    <div class="message">
+												<div class="message">
 
-                                        <span class="arrow"></span>
+													<span class="arrow"></span>
 
-                                        <a href="#" class="name">${user.userName}</a>
+													<a href="#" class="name">Bob Nilson</a>
 
-                                        <span class="datetime">at Jul 25, 2012 11:09</span>
+													<span class="datetime">at Jul 25, 2012 11:09</span>
 
-                                        <span class="body">
+													<span class="body">
 
 													Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. sed diam nonummy nibh euismod tincidunt ut laoreet.
 
 													</span>
 
-                                    </div>
+												</div>
 
-                                </li>
+											</li>
 
-                            </ul>
+										</ul>
 
-                        </div>
+									</div>
 
-                        <div class="chat-form">
+									<div class="chat-form">
 
-                            <div class="input-cont">
+										<div class="input-cont">   
 
-                                <input class="m-wrap" type="text" placeholder="Type a message here..." />
+											<input class="m-wrap" type="text" placeholder="Type a message here..." />
 
-                            </div>
+										</div>
 
-                            <div class="btn-cont">
+										<div class="btn-cont"> 
 
-                                <span class="arrow"></span>
+											<span class="arrow"></span>
 
-                                <a href="" class="btn blue icn-only"><i class="icon-ok icon-white"></i></a>
+											<a href="" class="btn blue icn-only"><i class="icon-ok icon-white"></i></a>
 
-                            </div>
+										</div>
 
-                        </div>
+									</div>
 
-                    </div>
+								</div>
 
-                </div>
+							</div>
 
-                <!-- END PORTLET-->
+							<!-- END PORTLET-->
 
-            </div>
+						</div>
 
-        </div>
+					</div>
 
-    </div>
+				</div>
 
-</div>
+			</div>
 
-<!-- END PAGE CONTAINER-->
+			<!-- END PAGE CONTAINER-->    
 
+		</div>
 
+		<!-- END PAGE -->
 
-<!-- END PAGE -->
+	</div>
 
+	<!-- END CONTAINER -->
 
+	<!-- BEGIN FOOTER -->
 
-<!-- END CONTAINER -->
+	<div class="footer">
 
-<!-- BEGIN FOOTER -->
+		<div class="footer-inner">
 
-<div class="footer">
+			<div style="text-align: center;">2017 &copy; 技术支持 <a href="http://www.jxufe.145com/" title="软件145" target="_blank">软件145</a> More IFORMATION <a href="http://www.jxufe.145com/" target="_blank" title="房屋中介">房屋中介</a></div>
 
-    <div class="footer-inner">
+		</div>
 
-        <div style="text-align: center;">2017 &copy; 技术支持 <a href="http://www.jxufe.145com/" title="软件145" target="_blank">软件145</a> More IFORMATION <a href="http://www.jxufe.145com/" target="_blank" title="房屋中介">房屋中介</a></div>
-
-    </div>
-
-    <div class="footer-tools">
+		<div class="footer-tools">
 
 			<span class="go-top">
 
@@ -1026,114 +983,54 @@
 
 			</span>
 
-    </div>
+		</div>
 
-</div>
+	</div>
 
-<!-- END FOOTER -->
+	<!-- END FOOTER -->
 
-<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 
-<!-- BEGIN CORE PLUGINS -->
+	<!-- BEGIN CORE PLUGINS -->
 
-<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 
-<script src="media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>   
 
-<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="https://cdn.bootcss.com/bootstrap-submenu/2.0.4/js/bootstrap-submenu.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap-submenu/2.0.4/js/bootstrap-submenu.min.js"></script>
 
-<script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+	<!--[if lt IE 9]>
 
-<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="media/js/excanvas.min.js"></script>
 
-<!--[if lt IE 9]>
+	<script src="media/js/respond.min.js"></script>  
 
-<script src="media/js/excanvas.min.js"></script>
+	<![endif]-->   
 
-<script src="media/js/respond.min.js"></script>
+	<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="media/js/app.js" type="text/javascript"></script>
 
-<![endif]-->
+	<script src="media/js/index.js" type="text/javascript"></script>        
 
-<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<!-- END PAGE LEVEL SCRIPTS -->  
 
-<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>
+	<script>
 
-<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
+		jQuery(document).ready(function() {    
 
-<script src="media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+		   App.init(); // initlayout and core plugins
 
-<!-- END CORE PLUGINS -->
+		   Index.init();
 
-<!-- BEGIN PAGE LEVEL PLUGINS -->
+//	       Index.initIntro();
 
-<script src="media/js/jquery.vmap.js" type="text/javascript"></script>
+		});
 
-<script src="media/js/jquery.vmap.russia.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.vmap.world.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.vmap.europe.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.vmap.germany.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.vmap.usa.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.flot.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.flot.resize.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.pulsate.min.js" type="text/javascript"></script>
-
-<script src="media/js/date.js" type="text/javascript"></script>
-
-<script src="media/js/daterangepicker.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.gritter.js" type="text/javascript"></script>
-
-<script src="media/js/fullcalendar.min.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.easy-pie-chart.js" type="text/javascript"></script>
-
-<script src="media/js/jquery.sparkline.min.js" type="text/javascript"></script>
-
-<!-- END PAGE LEVEL PLUGINS -->
-
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-
-<script src="media/js/app.js" type="text/javascript"></script>
-
-<script src="media/js/index.js" type="text/javascript"></script>
-
-<!-- END PAGE LEVEL SCRIPTS -->
-
-<script>
-
-    jQuery(document).ready(function() {
-
-        App.init(); // initlayout and core plugins
-
-        Index.init();
-
-        Index.initJQVMAP(); // init index page's custom scripts
-
-        Index.initCalendar(); // init index page's custom scripts
-
-        Index.initCharts(); // init index page's custom scripts
-
-        Index.initChat();
-
-        Index.initMiniCharts();
-
-        Index.initDashboardDaterange();
-
-        Index.initIntro();
-
-    });
-
-</script>
-<!-- END JAVASCRIPTS -->
+	</script>
+	<!-- END JAVASCRIPTS -->
 
 </body>
 

@@ -1,41 +1,41 @@
 package cn.dao;
 
-import cn.entity.HouseMsg;
+import cn.entity.Housemsg;
 
-public interface HouseMsgMapper {
+public interface HousemsgMapper {
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    int insert(HouseMsg record);
+    int insert(Housemsg record);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    int insertSelective(HouseMsg record);
+    int insertSelective(Housemsg record);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    HouseMsg selectByPrimaryKey(Integer id);
+    Housemsg selectByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    int updateByPrimaryKeySelective(HouseMsg record);
+    int updateByPrimaryKeySelective(Housemsg record);
 
     /**
      *
-     * @mbggenerated 2017-05-05
+     * @mbggenerated 2017-05-18
      */
-    int updateByPrimaryKey(HouseMsg record);
+    int updateByPrimaryKey(Housemsg record);
 }

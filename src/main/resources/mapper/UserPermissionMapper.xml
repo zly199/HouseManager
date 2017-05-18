@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.UserPermissionMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.UserPermissionKey" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <id column="permission_id" property="permissionId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="cn.entity.UserPermissionKey" >
+    delete from t_user_permission
+    where user_id = #{userId,jdbcType=BIGINT}
+      and permission_id = #{permissionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.entity.UserPermissionKey" >
+    insert into t_user_permission (user_id, permission_id)
+    values (#{userId,jdbcType=BIGINT}, #{permissionId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.entity.UserPermissionKey" >
+    insert into t_user_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="permissionId != null" >
+        permission_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

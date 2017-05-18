@@ -4,17 +4,22 @@ import java.util.Date;
 
 public class UserDuties {
     /**
+     * 
+     */
+    private Boolean locked;
+
+    /**
      * 员工编号
      */
     private Long userId;
 
     /**
-     * 员工姓名
+     * 
      */
     private String userName;
 
     /**
-     * 员工部门id
+     * 
      */
     private String organizationId;
 
@@ -24,7 +29,7 @@ public class UserDuties {
     private Byte dutiesId;
 
     /**
-     * 员工状态
+     * 
      */
     private String state;
 
@@ -39,29 +44,29 @@ public class UserDuties {
     private Date dimissionTime;
 
     /**
-     * 坐席
+     * 
      */
     private String omni;
 
     /**
-     * 来源
+     * 
      */
     private String source;
 
     /**
-     * 职称
+     * 
      */
     private String technicalTitle;
 
     /**
-     * 档案
+     * 
      */
     private String record;
 
     /**
-     * 主营楼盘
+     * 
      */
-    private String mianBuildings;
+    private String mainBuildings;
 
     /**
      * 上级的userid
@@ -74,9 +79,9 @@ public class UserDuties {
     private Integer connecttionWay;
 
     /**
-     * 密码
+     * 
      */
-    private String passwd;
+    private String password;
 
     /**
      * 上班时间
@@ -92,6 +97,22 @@ public class UserDuties {
      * 个人信息id
      */
     private Long userPersion;
+
+    /**
+     * 
+     * @return locked 
+     */
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    /**
+     * 
+     * @param locked 
+     */
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
 
     /**
      * 员工编号
@@ -110,32 +131,32 @@ public class UserDuties {
     }
 
     /**
-     * 员工姓名
-     * @return user_name 员工姓名
+     * 
+     * @return user_name 
      */
     public String getUserName() {
         return userName;
     }
 
     /**
-     * 员工姓名
-     * @param userName 员工姓名
+     * 
+     * @param userName 
      */
     public void setUserName(String userName) {
         this.userName = userName == null ? null : userName.trim();
     }
 
     /**
-     * 员工部门id
-     * @return organization_id 员工部门id
+     * 
+     * @return organization_id 
      */
     public String getOrganizationId() {
         return organizationId;
     }
 
     /**
-     * 员工部门id
-     * @param organizationId 员工部门id
+     * 
+     * @param organizationId 
      */
     public void setOrganizationId(String organizationId) {
         this.organizationId = organizationId == null ? null : organizationId.trim();
@@ -158,16 +179,16 @@ public class UserDuties {
     }
 
     /**
-     * 员工状态
-     * @return state 员工状态
+     * 
+     * @return state 
      */
     public String getState() {
         return state;
     }
 
     /**
-     * 员工状态
-     * @param state 员工状态
+     * 
+     * @param state 
      */
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
@@ -206,83 +227,83 @@ public class UserDuties {
     }
 
     /**
-     * 坐席
-     * @return omni 坐席
+     * 
+     * @return omni 
      */
     public String getOmni() {
         return omni;
     }
 
     /**
-     * 坐席
-     * @param omni 坐席
+     * 
+     * @param omni 
      */
     public void setOmni(String omni) {
         this.omni = omni == null ? null : omni.trim();
     }
 
     /**
-     * 来源
-     * @return source 来源
+     * 
+     * @return source 
      */
     public String getSource() {
         return source;
     }
 
     /**
-     * 来源
-     * @param source 来源
+     * 
+     * @param source 
      */
     public void setSource(String source) {
         this.source = source == null ? null : source.trim();
     }
 
     /**
-     * 职称
-     * @return technical_title 职称
+     * 
+     * @return technical_title 
      */
     public String getTechnicalTitle() {
         return technicalTitle;
     }
 
     /**
-     * 职称
-     * @param technicalTitle 职称
+     * 
+     * @param technicalTitle 
      */
     public void setTechnicalTitle(String technicalTitle) {
         this.technicalTitle = technicalTitle == null ? null : technicalTitle.trim();
     }
 
     /**
-     * 档案
-     * @return record 档案
+     * 
+     * @return record 
      */
     public String getRecord() {
         return record;
     }
 
     /**
-     * 档案
-     * @param record 档案
+     * 
+     * @param record 
      */
     public void setRecord(String record) {
         this.record = record == null ? null : record.trim();
     }
 
     /**
-     * 主营楼盘
-     * @return mian_buildings 主营楼盘
+     * 
+     * @return main_buildings 
      */
-    public String getMianBuildings() {
-        return mianBuildings;
+    public String getMainBuildings() {
+        return mainBuildings;
     }
 
     /**
-     * 主营楼盘
-     * @param mianBuildings 主营楼盘
+     * 
+     * @param mainBuildings 
      */
-    public void setMianBuildings(String mianBuildings) {
-        this.mianBuildings = mianBuildings == null ? null : mianBuildings.trim();
+    public void setMainBuildings(String mainBuildings) {
+        this.mainBuildings = mainBuildings == null ? null : mainBuildings.trim();
     }
 
     /**
@@ -318,19 +339,19 @@ public class UserDuties {
     }
 
     /**
-     * 密码
-     * @return passwd 密码
+     * 
+     * @return password 
      */
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * 密码
-     * @param passwd 密码
+     * 
+     * @param password 
      */
-    public void setPasswd(String passwd) {
-        this.passwd = passwd == null ? null : passwd.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     /**

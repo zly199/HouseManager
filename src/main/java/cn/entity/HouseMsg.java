@@ -2,7 +2,7 @@ package cn.entity;
 
 import java.util.Date;
 
-public class HouseMsg {
+public class Housemsg {
     /**
      * 房源id
      */
@@ -54,7 +54,7 @@ public class HouseMsg {
     private String status;
 
     /**
-     * 售价:***-***
+     * 售价:***'/***
      */
     private String sellPrice;
 
@@ -74,7 +74,7 @@ public class HouseMsg {
     private Date purchasingDate;
 
     /**
-     * 租价:***-***
+     * 租价:***'/***
      */
     private String rentPrice;
 
@@ -94,7 +94,7 @@ public class HouseMsg {
     private Date precatoryDate;
 
     /**
-     * 贷款：*-****
+     * 贷款：*'/****
      */
     private String loan;
 
@@ -384,16 +384,16 @@ public class HouseMsg {
     }
 
     /**
-     * 售价:***-***
-     * @return sell_price 售价:***-***
+     * 售价:***'/***
+     * @return sell_price 售价:***'/***
      */
     public String getSellPrice() {
         return sellPrice;
     }
 
     /**
-     * 售价:***-***
-     * @param sellPrice 售价:***-***
+     * 售价:***'/***
+     * @param sellPrice 售价:***'/***
      */
     public void setSellPrice(String sellPrice) {
         this.sellPrice = sellPrice == null ? null : sellPrice.trim();
@@ -448,16 +448,16 @@ public class HouseMsg {
     }
 
     /**
-     * 租价:***-***
-     * @return rent_price 租价:***-***
+     * 租价:***'/***
+     * @return rent_price 租价:***'/***
      */
     public String getRentPrice() {
         return rentPrice;
     }
 
     /**
-     * 租价:***-***
-     * @param rentPrice 租价:***-***
+     * 租价:***'/***
+     * @param rentPrice 租价:***'/***
      */
     public void setRentPrice(String rentPrice) {
         this.rentPrice = rentPrice == null ? null : rentPrice.trim();
@@ -512,16 +512,16 @@ public class HouseMsg {
     }
 
     /**
-     * 贷款：*-****
-     * @return loan 贷款：*-****
+     * 贷款：*'/****
+     * @return loan 贷款：*'/****
      */
     public String getLoan() {
         return loan;
     }
 
     /**
-     * 贷款：*-****
-     * @param loan 贷款：*-****
+     * 贷款：*'/****
+     * @param loan 贷款：*'/****
      */
     public void setLoan(String loan) {
         this.loan = loan == null ? null : loan.trim();

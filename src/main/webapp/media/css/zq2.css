@@ -1,0 +1,178 @@
+/* 最大面积和最小面积下拉css*/
+
+.none {
+	display: none;
+}
+.area em {
+	font-size: 14px;
+	color: #d80000;
+}
+
+.area ul {
+	display: inline-block;
+	margin-left: -4px;
+}
+
+.area ul li {
+	margin-right: 10px;
+	display: inline-block;
+}
+
+
+/*地区 选择 下拉*/
+
+.return_reques {
+	position: relative;
+}
+
+.return_reques input {
+	width: 80px;
+	height: 20px;
+	text-indent: 0.5rem;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	vertical-align: middle;
+	line-height: 30px;
+}
+
+.return_reques .local {
+	background: url(../image/bot_imgs.png) no-repeat;
+	background-position: 99% center;
+}
+
+.return_reques .local2 {
+	background: url(../image/bot_imgs.png) no-repeat;
+	background-position: 99% center;
+}
+
+.return_reques .bomb_con_style {
+	background-color: #fff;
+	position: absolute;
+	left: 0px;
+	z-index: 999999;
+	cursor: pointer;
+	f3478c;
+	border: 1px solid #ccc;
+	height: 130px;
+	overflow: auto;
+}
+
+.return_reques .bomb_con_style dd {
+	background-color: #fff;
+	height: 28px;
+	line-height: 28px;
+	color: #f3478c;
+	font-size: 12px;
+	color: #666;
+	text-indent: 0.5em;
+}
+
+.return_reques .bomb_con_style dd:hover {
+	background-color: #f3478c;
+	color: #fff;
+}
+
+.return_reque {
+	position: relative;
+}
+
+.return_reque input {
+	width: 80px;
+	height: 20px;
+	text-indent: 0.5rem;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	vertical-align: middle;
+	line-height: 30px;
+}
+
+.return_reque .local {
+	background: url(../image/bot_imgs.png) no-repeat;
+	background-position: 99% center;
+}
+
+.return_reque .local2 {
+	background: url(../image/bot_imgs.png) no-repeat;
+	background-position: 99% center;
+}
+
+.return_reque .bomb_con_style {
+	background-color: #fff;
+	position: absolute;
+	left: 0px;
+	z-index: 999999;
+	cursor: pointer;
+	f3478c;
+	border: 1px solid #ccc;
+	height: 130px;
+	overflow: auto;
+}
+
+.return_reque .bomb_con_style dd {
+	background-color: #fff;
+	height: 28px;
+	line-height: 28px;
+	color: #f3478c;
+	font-size: 12px;
+	color: #666;
+	text-indent: 0.5em;
+}
+
+.return_reque .bomb_con_style dd:hover {
+	background-color: #f3478c;
+	color: #fff;
+}
+
+.return_requ {
+	position: relative;
+}
+
+.return_requ input {
+	width: 220px;
+	height: 30px;
+	text-indent: 0.5rem;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	vertical-align: middle;
+	line-height: 30px;
+}
+
+.return_requ .local {
+	background: url(../image/bot_imgs.png) no-repeat;
+	background-position: 99% center;
+}
+
+.return_requ .local2 {
+	background: url(../image/bot_imgs.png) no-repeat;
+	background-position: 99% center;
+}
+
+.return_requ .bomb_con_style {
+	background-color: #fff;
+	position: absolute;
+	left: 0px;
+	z-index: 999999;
+	cursor: pointer;
+	f3478c;
+	border: 1px solid #ccc;
+	height: 130px;
+	overflow: auto;
+}
+
+.return_requ .bomb_con_style dd {
+	background-color: #fff;
+	height: 28px;
+	line-height: 28px;
+	color: #f3478c;
+	font-size: 12px;
+	color: #666;
+	text-indent: 0.5em;
+}
+
+.return_requ .bomb_con_style dd:hover {
+	background-color: #f3478c;
+	color: #fff;
+}
+
+
+}

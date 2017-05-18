@@ -18,7 +18,6 @@
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="deadline" property="deadline" jdbcType="VARCHAR" />
     <result column="intention" property="intention" jdbcType="VARCHAR" />
-    <result column="clientcol" property="clientcol" jdbcType="VARCHAR" />
     <result column="maturity" property="maturity" jdbcType="DATE" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="housetype" property="housetype" jdbcType="VARCHAR" />
@@ -36,8 +35,8 @@
   <sql id="Base_Column_List" >
     id, transaction, application, willing_address, status, area, attribute, purchasing_price, 
     precatory_date, rent_price, precatory_method, rank, source, type, deadline, intention, 
-    clientcol, maturity, remark, housetype, decoration, gener, development, orientation, 
-    floor, payment, now_address, payment_commission, client_age, address
+    maturity, remark, housetype, decoration, gener, development, orientation, floor, 
+    payment, now_address, payment_commission, client_age, address
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -55,23 +54,21 @@
       attribute, purchasing_price, precatory_date, 
       rent_price, precatory_method, rank, 
       source, type, deadline, 
-      intention, clientcol, maturity, 
-      remark, housetype, decoration, 
-      gener, development, orientation, 
-      floor, payment, now_address, 
-      payment_commission, client_age, address
-      )
+      intention, maturity, remark, 
+      housetype, decoration, gener, 
+      development, orientation, floor, 
+      payment, now_address, payment_commission, 
+      client_age, address)
     values (#{id,jdbcType=INTEGER}, #{transaction,jdbcType=VARCHAR}, #{application,jdbcType=VARCHAR}, 
       #{willingAddress,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
       #{attribute,jdbcType=VARCHAR}, #{purchasingPrice,jdbcType=VARCHAR}, #{precatoryDate,jdbcType=DATE}, 
       #{rentPrice,jdbcType=VARCHAR}, #{precatoryMethod,jdbcType=VARCHAR}, #{rank,jdbcType=VARCHAR}, 
       #{source,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{deadline,jdbcType=VARCHAR}, 
-      #{intention,jdbcType=VARCHAR}, #{clientcol,jdbcType=VARCHAR}, #{maturity,jdbcType=DATE}, 
-      #{remark,jdbcType=VARCHAR}, #{housetype,jdbcType=VARCHAR}, #{decoration,jdbcType=VARCHAR}, 
-      #{gener,jdbcType=VARCHAR}, #{development,jdbcType=VARCHAR}, #{orientation,jdbcType=VARCHAR}, 
-      #{floor,jdbcType=INTEGER}, #{payment,jdbcType=VARCHAR}, #{nowAddress,jdbcType=VARCHAR}, 
-      #{paymentCommission,jdbcType=VARCHAR}, #{clientAge,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
-      )
+      #{intention,jdbcType=VARCHAR}, #{maturity,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}, 
+      #{housetype,jdbcType=VARCHAR}, #{decoration,jdbcType=VARCHAR}, #{gener,jdbcType=VARCHAR}, 
+      #{development,jdbcType=VARCHAR}, #{orientation,jdbcType=VARCHAR}, #{floor,jdbcType=INTEGER}, 
+      #{payment,jdbcType=VARCHAR}, #{nowAddress,jdbcType=VARCHAR}, #{paymentCommission,jdbcType=VARCHAR}, 
+      #{clientAge,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.Client" >
     insert into client
@@ -123,9 +120,6 @@
       </if>
       <if test="intention != null" >
         intention,
-      </if>
-      <if test="clientcol != null" >
-        clientcol,
       </if>
       <if test="maturity != null" >
         maturity,
@@ -216,9 +210,6 @@
       <if test="intention != null" >
         #{intention,jdbcType=VARCHAR},
       </if>
-      <if test="clientcol != null" >
-        #{clientcol,jdbcType=VARCHAR},
-      </if>
       <if test="maturity != null" >
         #{maturity,jdbcType=DATE},
       </if>
@@ -308,9 +299,6 @@
       <if test="intention != null" >
         intention = #{intention,jdbcType=VARCHAR},
       </if>
-      <if test="clientcol != null" >
-        clientcol = #{clientcol,jdbcType=VARCHAR},
-      </if>
       <if test="maturity != null" >
         maturity = #{maturity,jdbcType=DATE},
       </if>
@@ -370,7 +358,6 @@
       type = #{type,jdbcType=VARCHAR},
       deadline = #{deadline,jdbcType=VARCHAR},
       intention = #{intention,jdbcType=VARCHAR},
-      clientcol = #{clientcol,jdbcType=VARCHAR},
       maturity = #{maturity,jdbcType=DATE},
       remark = #{remark,jdbcType=VARCHAR},
       housetype = #{housetype,jdbcType=VARCHAR},
