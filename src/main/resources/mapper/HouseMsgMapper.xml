@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.dao.HouseMsgMapper" >
-  <resultMap id="BaseResultMap" type="cn.entity.HouseMsg" >
+<mapper namespace="cn.dao.HousemsgMapper" >
+  <resultMap id="BaseResultMap" type="cn.entity.Housemsg" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="application" property="application" jdbcType="VARCHAR" />
     <result column="transaction" property="transaction" jdbcType="VARCHAR" />
@@ -66,7 +66,7 @@
     delete from housemsg
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.entity.HouseMsg" >
+  <insert id="insert" parameterType="cn.entity.Housemsg" >
     insert into housemsg (id, application, transaction, 
       address, area, type, 
       house_type, decoration, orientation, 
@@ -100,7 +100,7 @@
       #{certificateOfHouseProperty,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{precatoryBook,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.entity.HouseMsg" >
+  <insert id="insertSelective" parameterType="cn.entity.Housemsg" >
     insert into housemsg
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -371,7 +371,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.HouseMsg" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.entity.Housemsg" >
     update housemsg
     <set >
       <if test="application != null" >
@@ -506,7 +506,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.entity.HouseMsg" >
+  <update id="updateByPrimaryKey" parameterType="cn.entity.Housemsg" >
     update housemsg
     set application = #{application,jdbcType=VARCHAR},
       transaction = #{transaction,jdbcType=VARCHAR},

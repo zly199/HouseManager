@@ -11,7 +11,6 @@
     <result column="property_right" property="propertyRight" jdbcType="VARCHAR" />
     <result column="spelling_abbreviation" property="spellingAbbreviation" jdbcType="VARCHAR" />
     <result column="sell_average_price" property="sellAveragePrice" jdbcType="INTEGER" />
-    <result column="houses_dictionarycol" property="housesDictionarycol" jdbcType="VARCHAR" />
     <result column="alias" property="alias" jdbcType="VARCHAR" />
     <result column="building_area" property="buildingArea" jdbcType="INTEGER" />
     <result column="english_name" property="englishName" jdbcType="VARCHAR" />
@@ -31,9 +30,9 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, urban, property, trad_area, type, name, property_right, spelling_abbreviation, 
-    sell_average_price, houses_dictionarycol, alias, building_area, english_name, whole_clients, 
-    brief_address, structure, detail_address, outer_wall, english_address, land_number, 
-    house_owner, remark, owner_telephone, property_managment, management_telephone, management_cost
+    sell_average_price, alias, building_area, english_name, whole_clients, brief_address, 
+    structure, detail_address, outer_wall, english_address, land_number, house_owner, 
+    remark, owner_telephone, property_managment, management_telephone, management_cost
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -49,21 +48,21 @@
     insert into houses_dictionary (id, urban, property, 
       trad_area, type, name, 
       property_right, spelling_abbreviation, sell_average_price, 
-      houses_dictionarycol, alias, building_area, 
-      english_name, whole_clients, brief_address, 
-      structure, detail_address, outer_wall, 
-      english_address, land_number, house_owner, 
-      remark, owner_telephone, property_managment, 
-      management_telephone, management_cost)
+      alias, building_area, english_name, 
+      whole_clients, brief_address, structure, 
+      detail_address, outer_wall, english_address, 
+      land_number, house_owner, remark, 
+      owner_telephone, property_managment, management_telephone, 
+      management_cost)
     values (#{id,jdbcType=INTEGER}, #{urban,jdbcType=VARCHAR}, #{property,jdbcType=VARCHAR}, 
       #{tradArea,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{propertyRight,jdbcType=VARCHAR}, #{spellingAbbreviation,jdbcType=VARCHAR}, #{sellAveragePrice,jdbcType=INTEGER}, 
-      #{housesDictionarycol,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{buildingArea,jdbcType=INTEGER}, 
-      #{englishName,jdbcType=VARCHAR}, #{wholeClients,jdbcType=INTEGER}, #{briefAddress,jdbcType=VARCHAR}, 
-      #{structure,jdbcType=VARCHAR}, #{detailAddress,jdbcType=VARCHAR}, #{outerWall,jdbcType=VARCHAR}, 
-      #{englishAddress,jdbcType=VARCHAR}, #{landNumber,jdbcType=INTEGER}, #{houseOwner,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{ownerTelephone,jdbcType=INTEGER}, #{propertyManagment,jdbcType=VARCHAR}, 
-      #{managementTelephone,jdbcType=INTEGER}, #{managementCost,jdbcType=INTEGER})
+      #{alias,jdbcType=VARCHAR}, #{buildingArea,jdbcType=INTEGER}, #{englishName,jdbcType=VARCHAR}, 
+      #{wholeClients,jdbcType=INTEGER}, #{briefAddress,jdbcType=VARCHAR}, #{structure,jdbcType=VARCHAR}, 
+      #{detailAddress,jdbcType=VARCHAR}, #{outerWall,jdbcType=VARCHAR}, #{englishAddress,jdbcType=VARCHAR}, 
+      #{landNumber,jdbcType=INTEGER}, #{houseOwner,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{ownerTelephone,jdbcType=INTEGER}, #{propertyManagment,jdbcType=VARCHAR}, #{managementTelephone,jdbcType=INTEGER}, 
+      #{managementCost,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.HousesDictionary" >
     insert into houses_dictionary
@@ -94,9 +93,6 @@
       </if>
       <if test="sellAveragePrice != null" >
         sell_average_price,
-      </if>
-      <if test="housesDictionarycol != null" >
-        houses_dictionarycol,
       </if>
       <if test="alias != null" >
         alias,
@@ -175,9 +171,6 @@
       <if test="sellAveragePrice != null" >
         #{sellAveragePrice,jdbcType=INTEGER},
       </if>
-      <if test="housesDictionarycol != null" >
-        #{housesDictionarycol,jdbcType=VARCHAR},
-      </if>
       <if test="alias != null" >
         #{alias,jdbcType=VARCHAR},
       </if>
@@ -255,9 +248,6 @@
       <if test="sellAveragePrice != null" >
         sell_average_price = #{sellAveragePrice,jdbcType=INTEGER},
       </if>
-      <if test="housesDictionarycol != null" >
-        houses_dictionarycol = #{housesDictionarycol,jdbcType=VARCHAR},
-      </if>
       <if test="alias != null" >
         alias = #{alias,jdbcType=VARCHAR},
       </if>
@@ -319,7 +309,6 @@
       property_right = #{propertyRight,jdbcType=VARCHAR},
       spelling_abbreviation = #{spellingAbbreviation,jdbcType=VARCHAR},
       sell_average_price = #{sellAveragePrice,jdbcType=INTEGER},
-      houses_dictionarycol = #{housesDictionarycol,jdbcType=VARCHAR},
       alias = #{alias,jdbcType=VARCHAR},
       building_area = #{buildingArea,jdbcType=INTEGER},
       english_name = #{englishName,jdbcType=VARCHAR},

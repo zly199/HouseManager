@@ -2,7 +2,7 @@ package cn.entity;
 
 import java.util.Date;
 
-public class TakeLook {
+public class Takelook {
     /**
      * 
      */

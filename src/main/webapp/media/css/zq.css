@@ -1,5 +1,101 @@
 .size
 {
-	font-size: 14px;
+	font-size: 16px;
 	font-family : 微软雅黑,宋体;
+	
+}
+.size1
+{
+	width: 100px;
+}
+.size2
+{
+	font-size: 16px;
+	font-family : 微软雅黑,宋体;
+	color:#39250E;
+}
+/*新增客源*/
+.taright
+{
+	width: 300px; 
+	float: right;
+	margin-top: -1131px;
+	background-color:#eee;
+	
+}
+.taright1
+{
+	width: 300px; 
+	float: right;
+	margin-top: -651px;
+	background-color:#eee;
+}
+/*新增房源*/
+.taright2
+{
+	width: 300px; 
+	float: right;
+	margin-top: -1528px;
+	background-color:#eee;
+}
+.taright3
+{
+	width: 300px; 
+	float: right;
+	margin-top: -1050px;
+	background-color:#eee;
+}
+#point
+{
+	background-color:pink;
+	color:red;
+	border-color:green
+}
+.selecthouse1
+{
+	width: 100px;	
+}
+.selecthouse2
+{
+	width: 88px;	
+}
+
+
+/*.input1{
+	
+}
+.oninput1{
+	display: none;
+	width: 100px;
+}*/
+.watch
+{
+	font-family: "微软雅黑";
+}
+.watch1
+{
+	float: right;
+	margin-top: -36px;
+}
+.watch2
+{
+	background-color: #eee;
+}
+#watch2
+{
+	float: right;
+	margin-top: -5px;
+}
+.watch3
+{
+	margin-left: 60px;
+	margin-top: -25px;
+}
+#watch4:hover
+{
+	background-color: green;
+}
+td {
+      text-align:center; /*设置水平居中*/
+      vertical-align:middle;/*设置垂直居中*/
 }

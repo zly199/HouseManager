@@ -19,7 +19,7 @@ public class Client {
     private String application;
 
     /**
-     * 意向地址：***-***-******
+     * 意向地址：***'/***'/******
      */
     private String willingAddress;
 
@@ -82,11 +82,6 @@ public class Client {
      * 客户意向
      */
     private String intention;
-
-    /**
-     * 
-     */
-    private String clientcol;
 
     /**
      * 到期日 
@@ -202,16 +197,16 @@ public class Client {
     }
 
     /**
-     * 意向地址：***-***-******
-     * @return willing_address 意向地址：***-***-******
+     * 意向地址：***'/***'/******
+     * @return willing_address 意向地址：***'/***'/******
      */
     public String getWillingAddress() {
         return willingAddress;
     }
 
     /**
-     * 意向地址：***-***-******
-     * @param willingAddress 意向地址：***-***-******
+     * 意向地址：***'/***'/******
+     * @param willingAddress 意向地址：***'/***'/******
      */
     public void setWillingAddress(String willingAddress) {
         this.willingAddress = willingAddress == null ? null : willingAddress.trim();
@@ -407,22 +402,6 @@ public class Client {
      */
     public void setIntention(String intention) {
         this.intention = intention == null ? null : intention.trim();
-    }
-
-    /**
-     * 
-     * @return clientcol 
-     */
-    public String getClientcol() {
-        return clientcol;
-    }
-
-    /**
-     * 
-     * @param clientcol 
-     */
-    public void setClientcol(String clientcol) {
-        this.clientcol = clientcol == null ? null : clientcol.trim();
     }
 
     /**
@@ -631,41 +610,5 @@ public class Client {
      */
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", transaction='" + transaction + '\'' +
-                ", application='" + application + '\'' +
-                ", willingAddress='" + willingAddress + '\'' +
-                ", status='" + status + '\'' +
-                ", area='" + area + '\'' +
-                ", attribute='" + attribute + '\'' +
-                ", purchasingPrice='" + purchasingPrice + '\'' +
-                ", precatoryDate=" + precatoryDate +
-                ", rentPrice='" + rentPrice + '\'' +
-                ", precatoryMethod='" + precatoryMethod + '\'' +
-                ", rank='" + rank + '\'' +
-                ", source='" + source + '\'' +
-                ", type='" + type + '\'' +
-                ", deadline='" + deadline + '\'' +
-                ", intention='" + intention + '\'' +
-                ", clientcol='" + clientcol + '\'' +
-                ", maturity=" + maturity +
-                ", remark='" + remark + '\'' +
-                ", housetype='" + housetype + '\'' +
-                ", decoration='" + decoration + '\'' +
-                ", gener='" + gener + '\'' +
-                ", development='" + development + '\'' +
-                ", orientation='" + orientation + '\'' +
-                ", floor=" + floor +
-                ", payment='" + payment + '\'' +
-                ", nowAddress='" + nowAddress + '\'' +
-                ", paymentCommission='" + paymentCommission + '\'' +
-                ", clientAge='" + clientAge + '\'' +
-                ", address='" + address + '\'' +
-                '}';
     }
 }

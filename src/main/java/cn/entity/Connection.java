@@ -2,7 +2,7 @@ package cn.entity;
 
 public class Connection extends ConnectionKey {
     /**
-     * 电话类型（固话，手机，移动端等）
+     * 绑定类型（手机，微信..）
      */
     private String style;
 
@@ -12,16 +12,16 @@ public class Connection extends ConnectionKey {
     private Long binding;
 
     /**
-     * 电话类型（固话，手机，移动端等）
-     * @return style 电话类型（固话，手机，移动端等）
+     * 绑定类型（手机，微信..）
+     * @return style 绑定类型（手机，微信..）
      */
     public String getStyle() {
         return style;
     }
 
     /**
-     * 电话类型（固话，手机，移动端等）
-     * @param style 电话类型（固话，手机，移动端等）
+     * 绑定类型（手机，微信..）
+     * @param style 绑定类型（手机，微信..）
      */
     public void setStyle(String style) {
         this.style = style == null ? null : style.trim();

@@ -15,7 +15,6 @@
     <result column="birthday" property="birthday" jdbcType="DATE" />
     <result column="political_status" property="politicalStatus" jdbcType="VARCHAR" />
     <result column="educational_background" property="educationalBackground" jdbcType="VARCHAR" />
-    <result column="personal_informationcol" property="personalInformationcol" jdbcType="VARCHAR" />
     <result column="graduate_institutions" property="graduateInstitutions" jdbcType="VARCHAR" />
     <result column="major" property="major" jdbcType="VARCHAR" />
     <result column="tip" property="tip" jdbcType="VARCHAR" />
@@ -23,8 +22,8 @@
   </resultMap>
   <sql id="Base_Column_List" >
     person_id, id_card, nation, email, address, bank_account, signature, resume, sex, 
-    native_place, birthday, political_status, educational_background, personal_informationcol, 
-    graduate_institutions, major, tip, attachment
+    native_place, birthday, political_status, educational_background, graduate_institutions, 
+    major, tip, attachment
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -41,16 +40,16 @@
       email, address, bank_account, 
       signature, resume, sex, 
       native_place, birthday, political_status, 
-      educational_background, personal_informationcol, 
-      graduate_institutions, major, tip, 
-      attachment)
+      educational_background, graduate_institutions, 
+      major, tip, attachment
+      )
     values (#{personId,jdbcType=BIGINT}, #{idCard,jdbcType=BIGINT}, #{nation,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, 
       #{signature,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{nativePlace,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{politicalStatus,jdbcType=VARCHAR}, 
-      #{educationalBackground,jdbcType=VARCHAR}, #{personalInformationcol,jdbcType=VARCHAR}, 
-      #{graduateInstitutions,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{tip,jdbcType=VARCHAR}, 
-      #{attachment,jdbcType=VARCHAR})
+      #{educationalBackground,jdbcType=VARCHAR}, #{graduateInstitutions,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR}, #{tip,jdbcType=VARCHAR}, #{attachment,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.PersonalInformation" >
     insert into personal_information
@@ -93,9 +92,6 @@
       </if>
       <if test="educationalBackground != null" >
         educational_background,
-      </if>
-      <if test="personalInformationcol != null" >
-        personal_informationcol,
       </if>
       <if test="graduateInstitutions != null" >
         graduate_institutions,
@@ -150,9 +146,6 @@
       <if test="educationalBackground != null" >
         #{educationalBackground,jdbcType=VARCHAR},
       </if>
-      <if test="personalInformationcol != null" >
-        #{personalInformationcol,jdbcType=VARCHAR},
-      </if>
       <if test="graduateInstitutions != null" >
         #{graduateInstitutions,jdbcType=VARCHAR},
       </if>
@@ -206,9 +199,6 @@
       <if test="educationalBackground != null" >
         educational_background = #{educationalBackground,jdbcType=VARCHAR},
       </if>
-      <if test="personalInformationcol != null" >
-        personal_informationcol = #{personalInformationcol,jdbcType=VARCHAR},
-      </if>
       <if test="graduateInstitutions != null" >
         graduate_institutions = #{graduateInstitutions,jdbcType=VARCHAR},
       </if>
@@ -238,7 +228,6 @@
       birthday = #{birthday,jdbcType=DATE},
       political_status = #{politicalStatus,jdbcType=VARCHAR},
       educational_background = #{educationalBackground,jdbcType=VARCHAR},
-      personal_informationcol = #{personalInformationcol,jdbcType=VARCHAR},
       graduate_institutions = #{graduateInstitutions,jdbcType=VARCHAR},
       major = #{major,jdbcType=VARCHAR},
       tip = #{tip,jdbcType=VARCHAR},

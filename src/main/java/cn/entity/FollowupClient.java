@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class FollowupClient {
     /**
-     * id
+     * 员工id
      */
     private Integer id;
 
@@ -29,16 +29,16 @@ public class FollowupClient {
     private Integer clientid;
 
     /**
-     * id
-     * @return id id
+     * 员工id
+     * @return id 员工id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * id
-     * @param id id
+     * 员工id
+     * @param id 员工id
      */
     public void setId(Integer id) {
         this.id = id;

@@ -47,11 +47,6 @@ public class HousesDictionary {
     private Integer sellAveragePrice;
 
     /**
-     * 
-     */
-    private String housesDictionarycol;
-
-    /**
      * 别名
      */
     private String alias;
@@ -273,22 +268,6 @@ public class HousesDictionary {
      */
     public void setSellAveragePrice(Integer sellAveragePrice) {
         this.sellAveragePrice = sellAveragePrice;
-    }
-
-    /**
-     * 
-     * @return houses_dictionarycol 
-     */
-    public String getHousesDictionarycol() {
-        return housesDictionarycol;
-    }
-
-    /**
-     * 
-     * @param housesDictionarycol 
-     */
-    public void setHousesDictionarycol(String housesDictionarycol) {
-        this.housesDictionarycol = housesDictionarycol == null ? null : housesDictionarycol.trim();
     }
 
     /**

@@ -2,7 +2,7 @@ package cn.entity;
 
 public class OrganizationStructure {
     /**
-     * 组织机构id(1-1-1-1)
+     * 组织机构id
      */
     private String organizationId;
 
@@ -12,9 +12,14 @@ public class OrganizationStructure {
     private String organizationName;
 
     /**
-     * 上一级组织结构id 
+     * 上一级组织结构id\n
      */
     private String parentId;
+
+    /**
+     * 上一级完整的id
+     */
+    private String parentIds;
 
     /**
      * 房源/客源编号前缀（2-4为答谢字母或者数字）
@@ -77,7 +82,7 @@ public class OrganizationStructure {
     private String addTime;
 
     /**
-     * 门店号码
+     * 门店电话
      */
     private String departmentNumber;
 
@@ -87,16 +92,16 @@ public class OrganizationStructure {
     private String extensionRange;
 
     /**
-     * 组织机构id(1-1-1-1)
-     * @return organization_id 组织机构id(1-1-1-1)
+     * 组织机构id
+     * @return organization_id 组织机构id
      */
     public String getOrganizationId() {
         return organizationId;
     }
 
     /**
-     * 组织机构id(1-1-1-1)
-     * @param organizationId 组织机构id(1-1-1-1)
+     * 组织机构id
+     * @param organizationId 组织机构id
      */
     public void setOrganizationId(String organizationId) {
         this.organizationId = organizationId == null ? null : organizationId.trim();
@@ -119,19 +124,35 @@ public class OrganizationStructure {
     }
 
     /**
-     * 上一级组织结构id 
-     * @return parent_id 上一级组织结构id 
+     * 上一级组织结构id\n
+     * @return parent_id 上一级组织结构id\n
      */
     public String getParentId() {
         return parentId;
     }
 
     /**
-     * 上一级组织结构id 
-     * @param parentId 上一级组织结构id 
+     * 上一级组织结构id\n
+     * @param parentId 上一级组织结构id\n
      */
     public void setParentId(String parentId) {
         this.parentId = parentId == null ? null : parentId.trim();
+    }
+
+    /**
+     * 上一级完整的id
+     * @return parent_ids 上一级完整的id
+     */
+    public String getParentIds() {
+        return parentIds;
+    }
+
+    /**
+     * 上一级完整的id
+     * @param parentIds 上一级完整的id
+     */
+    public void setParentIds(String parentIds) {
+        this.parentIds = parentIds == null ? null : parentIds.trim();
     }
 
     /**
@@ -327,16 +348,16 @@ public class OrganizationStructure {
     }
 
     /**
-     * 门店号码
-     * @return department_number 门店号码
+     * 门店电话
+     * @return department_number 门店电话
      */
     public String getDepartmentNumber() {
         return departmentNumber;
     }
 
     /**
-     * 门店号码
-     * @param departmentNumber 门店号码
+     * 门店电话
+     * @param departmentNumber 门店电话
      */
     public void setDepartmentNumber(String departmentNumber) {
         this.departmentNumber = departmentNumber == null ? null : departmentNumber.trim();

@@ -5,9 +5,10 @@
     <id column="idurban_district_id" property="idurbanDistrictId" jdbcType="INTEGER" />
     <result column="urban_district_name" property="urbanDistrictName" jdbcType="VARCHAR" />
     <result column="parent_idurban_district" property="parentIdurbanDistrict" jdbcType="INTEGER" />
+    <result column="parents_idurban" property="parentsIdurban" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    idurban_district_id, urban_district_name, parent_idurban_district
+    idurban_district_id, urban_district_name, parent_idurban_district, parents_idurban
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -21,9 +22,9 @@
   </delete>
   <insert id="insert" parameterType="cn.entity.UrbanDistrict" >
     insert into urban_district (idurban_district_id, urban_district_name, 
-      parent_idurban_district)
+      parent_idurban_district, parents_idurban)
     values (#{idurbanDistrictId,jdbcType=INTEGER}, #{urbanDistrictName,jdbcType=VARCHAR}, 
-      #{parentIdurbanDistrict,jdbcType=INTEGER})
+      #{parentIdurbanDistrict,jdbcType=INTEGER}, #{parentsIdurban,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.UrbanDistrict" >
     insert into urban_district
@@ -37,6 +38,9 @@
       <if test="parentIdurbanDistrict != null" >
         parent_idurban_district,
       </if>
+      <if test="parentsIdurban != null" >
+        parents_idurban,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="idurbanDistrictId != null" >
@@ -47,6 +51,9 @@
       </if>
       <if test="parentIdurbanDistrict != null" >
         #{parentIdurbanDistrict,jdbcType=INTEGER},
+      </if>
+      <if test="parentsIdurban != null" >
+        #{parentsIdurban,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -59,13 +66,17 @@
       <if test="parentIdurbanDistrict != null" >
         parent_idurban_district = #{parentIdurbanDistrict,jdbcType=INTEGER},
       </if>
+      <if test="parentsIdurban != null" >
+        parents_idurban = #{parentsIdurban,jdbcType=VARCHAR},
+      </if>
     </set>
     where idurban_district_id = #{idurbanDistrictId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.entity.UrbanDistrict" >
     update urban_district
     set urban_district_name = #{urbanDistrictName,jdbcType=VARCHAR},
-      parent_idurban_district = #{parentIdurbanDistrict,jdbcType=INTEGER}
+      parent_idurban_district = #{parentIdurbanDistrict,jdbcType=INTEGER},
+      parents_idurban = #{parentsIdurban,jdbcType=VARCHAR}
     where idurban_district_id = #{idurbanDistrictId,jdbcType=INTEGER}
   </update>
 </mapper>
