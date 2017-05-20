@@ -2,6 +2,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -67,7 +68,7 @@
 
 				<!-- logo标志 -->
 
-				<a class="brand" href="index.html">
+				<a class="brand" href="back/user/index">
 
 				<img src="media/image/logo.png" alt="logo"/>
 
@@ -98,7 +99,7 @@
 
 						<img alt="" src="media/image/avatar1_small.jpg" />
 
-						<span class="username">Bob Nilson</span>
+						<span class="username"><shiro:principal/></span>
 
 						<i class="icon-angle-down"></i>
 
@@ -107,7 +108,7 @@
 						<ul class="dropdown-menu">
 
 							<li><a href="profile.html"><i class="icon-user"></i> 个人信息</a></li>
-							<li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+							<li><a href="back/user/loginOut"><i class="icon-key"></i> Log Out</a></li>
 
 						</ul>
 
@@ -220,7 +221,7 @@
 					</ul>
 
 				</li>
-
+					<shiro:hasPermission name="house">
 				<li class="">
 
 					<a href="javascript:;">
@@ -234,27 +235,28 @@
 					</a>
 
 					<ul class="sub-menu">
-
+						<shiro:hasPermission name="house:view">
 						<li >
 
-							<a href="#">
+							<a href="back/house/view">
 
 							房源查询</a>
 
 						</li>
-
+						</shiro:hasPermission>
+						<shiro:hasPermission name="house:add">
 						<li >
 
-							<a href="#">
+							<a href="back/house/add">
 
 							增加房源</a>
 
 						</li>
-
+						</shiro:hasPermission>
 					</ul>
 
 				</li>
-
+					</shiro:hasPermission>
 				<li class="">
 
 					<a href="javascript:;">
@@ -695,13 +697,13 @@
 
 								<i class="icon-home"></i>
 
-								<a href="index.html">Home</a> 
+								<a href="back/user/index">Home</a>
 
 								<i class="icon-angle-right"></i>
 
 							</li>
 
-							<li><a href="#">主页</a></li>
+							<li><a href="back/user/index">主页</a></li>
 						</ul>
 
 						<!-- END PAGE TITLE & BREADCRUMB-->

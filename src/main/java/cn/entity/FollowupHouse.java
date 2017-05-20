@@ -6,7 +6,7 @@ public class FollowupHouse {
     /**
      * 房源跟进信息id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 跟进内容
@@ -21,7 +21,7 @@ public class FollowupHouse {
     /**
      * 房源id
      */
-    private Integer houseid;
+    private String houseid;
 
     /**
      * 跟进时间
@@ -34,20 +34,10 @@ public class FollowupHouse {
     private String method;
 
     /**
-     * 状态
-     */
-    private String status;
-
-    /**
-     * 交易
-     */
-    private String trail;
-
-    /**
      * 房源跟进信息id
      * @return id 房源跟进信息id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -55,7 +45,7 @@ public class FollowupHouse {
      * 房源跟进信息id
      * @param id 房源跟进信息id
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -95,7 +85,7 @@ public class FollowupHouse {
      * 房源id
      * @return houseid 房源id
      */
-    public Integer getHouseid() {
+    public String getHouseid() {
         return houseid;
     }
 
@@ -103,8 +93,8 @@ public class FollowupHouse {
      * 房源id
      * @param houseid 房源id
      */
-    public void setHouseid(Integer houseid) {
-        this.houseid = houseid;
+    public void setHouseid(String houseid) {
+        this.houseid = houseid == null ? null : houseid.trim();
     }
 
     /**
@@ -137,37 +127,5 @@ public class FollowupHouse {
      */
     public void setMethod(String method) {
         this.method = method == null ? null : method.trim();
-    }
-
-    /**
-     * 状态
-     * @return status 状态
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * 状态
-     * @param status 状态
-     */
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
-    }
-
-    /**
-     * 交易
-     * @return trail 交易
-     */
-    public String getTrail() {
-        return trail;
-    }
-
-    /**
-     * 交易
-     * @param trail 交易
-     */
-    public void setTrail(String trail) {
-        this.trail = trail == null ? null : trail.trim();
     }
 }

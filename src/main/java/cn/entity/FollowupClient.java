@@ -6,7 +6,7 @@ public class FollowupClient {
     /**
      * 员工id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 跟进内容
@@ -32,7 +32,7 @@ public class FollowupClient {
      * 员工id
      * @return id 员工id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -40,7 +40,7 @@ public class FollowupClient {
      * 员工id
      * @param id 员工id
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

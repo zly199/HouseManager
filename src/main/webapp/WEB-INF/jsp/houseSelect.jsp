@@ -1,3 +1,10 @@
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<base href="<%=basePath%>">
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -83,7 +90,7 @@
 
 					<!-- logo标志 -->
 
-					<a class="brand" href="index.html">
+					<a class="brand" href="back/user/index">
 
 						<img src="media/image/logo.png" alt="logo" />
 
@@ -687,14 +694,14 @@
 
 									<i class="icon-home"></i>
 
-									<a href="index.html">Home</a>
+									<a href="back/user/index">Home</a>
 
 									<i class="icon-angle-right"></i>
 
 								</li>
 
 								<li>
-									<a href="houseSelect.html">房源查询</a>
+									<a href="back/house/view">房源查询</a>
 								</li>
 							</ul>
 
@@ -1375,9 +1382,10 @@
 
 		<script type="text/javascript">
 			$(function() {
+
 				$('#reportTable').bootstrapTable({
-					method: 'POST',
-					url: '',
+					method: 'GET',
+					url: 'back/house/getHouseData',
 					cache: false,
 					striped: true,
 					pagination: true,
@@ -1395,126 +1403,122 @@
 						checkbox: true,
 						width: 10
 					}, {
-						field: "",
+						field: "tag",
 						title: "*",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					}, {
-						field: "custom_id",
+					},
+                        {
+						field: "id",
 						title: "房源编号",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					}, {
-						field: "custom_name",
+					},
+                        {
+						field: "transaction",
 						title: "交易",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_eamil",
+						field: "status",
 						title: "状态",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_phone",
+						field: "city",
 						title: "城区",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_state",
+						field: "trade",
 						title: "商圈",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_date",
+						field: "dictionaries",
 						title: "楼盘字典",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_min_acreage",
+						field: "building",
 						title: "栋座",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_max_acreage",
+						field: "roomNumber",
 						title: "房号",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_property_id",
+						field: "totalFloor",
 						title: "总楼层",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_property_id",
+						field: "houseType",
 						title: "房型",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_village_id",
+						field: "sellPrice",
 						title: "售总价",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_decoration",
+						field: "rentPrice",
 						title: "租总价",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_room",
-						title: "全景",
-						align: "center",
-						valign: "middle",
-						sortable: "true"
-					}, {
-						field: "custom_user_id",
+						field: "seeTheHouse",
 						title: "看房",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, 
 					{
-						field: "custom_compeleted_min_year",
+						field: "organization",
 						title: "部门",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					},
 					{
-						field: "custom_property_use",
+						field: "userName",
 						title: "员工",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					},
 					{
-						field: "custom_property_use",
+						field: "attribute",
 						title: "公私",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					},
 					{
-						field: "custom_property_use",
+						field: "lastFollowDate",
 						title: "最后跟进日",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					},
 					{
-						field: "custom_property_use",
+						field: "phoneCount",
 						title: "照片",
 						align: "center",
 						valign: "middle",
@@ -1527,7 +1531,7 @@
 						valign: "middle",
 						sortable: "true",
 						formatter: function(value, row, index) {
-							var e = '<a href="houseedit.html" >编辑</a> ';
+							var e = '<a href="houseedit.html?" >编辑</a> ';
 							var d = '<a href="#" >删除</a> ';
 							var i = '<a href="#" >楼盘字典</a> ';
 							return e + d + i ;

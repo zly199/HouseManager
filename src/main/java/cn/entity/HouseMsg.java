@@ -6,7 +6,7 @@ public class Housemsg {
     /**
      * 房源id
      */
-    private Integer id;
+    private String id;
 
     /**
      * 房源用途
@@ -54,9 +54,9 @@ public class Housemsg {
     private String status;
 
     /**
-     * 售价:***'/***
+     * 售总价
      */
-    private String sellPrice;
+    private Double sellPrice;
 
     /**
      * 属性
@@ -66,7 +66,7 @@ public class Housemsg {
     /**
      * 售低价
      */
-    private Integer sellLowprice;
+    private Double sellLowprice;
 
     /**
      * 购买时间
@@ -74,9 +74,9 @@ public class Housemsg {
     private Date purchasingDate;
 
     /**
-     * 租价:***'/***
+     * 租总价
      */
-    private String rentPrice;
+    private Double rentPrice;
 
     /**
      * 唯一住房：返回bool型数值是为1；否为0
@@ -86,7 +86,7 @@ public class Housemsg {
     /**
      * 租低价
      */
-    private Integer rentLowprice;
+    private Double rentLowprice;
 
     /**
      * 委托日期
@@ -94,9 +94,9 @@ public class Housemsg {
     private Date precatoryDate;
 
     /**
-     * 贷款：*'/****
+     * 贷款
      */
-    private String loan;
+    private Double loan;
 
     /**
      * 委托方式
@@ -111,7 +111,7 @@ public class Housemsg {
     /**
      * 委托编号
      */
-    private Integer precatoryNumber;
+    private String precatoryNumber;
 
     /**
      * 交房日期
@@ -121,7 +121,7 @@ public class Housemsg {
     /**
      * 备案号
      */
-    private Integer recordNumber;
+    private String recordNumber;
 
     /**
      * 标签
@@ -166,12 +166,12 @@ public class Housemsg {
     /**
      * 原始购价
      */
-    private Integer originalyPurchasingPrice;
+    private Double originalyPurchasingPrice;
 
     /**
      * 管理费
      */
-    private Integer managementCost;
+    private Double managementCost;
 
     /**
      * 家电
@@ -201,7 +201,7 @@ public class Housemsg {
     /**
      * 产证号
      */
-    private Integer productionLicenseNumber;
+    private String productionLicenseNumber;
 
     /**
      * 产权年限
@@ -224,10 +224,25 @@ public class Housemsg {
     private String precatoryBook;
 
     /**
+     * 业主id
+     */
+    private Integer clientId;
+
+    /**
+     * 相关员工
+     */
+    private String userId;
+
+    /**
+     * 部门id
+     */
+    private String organizationId;
+
+    /**
      * 房源id
      * @return id 房源id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -235,8 +250,8 @@ public class Housemsg {
      * 房源id
      * @param id 房源id
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     /**
@@ -384,19 +399,19 @@ public class Housemsg {
     }
 
     /**
-     * 售价:***'/***
-     * @return sell_price 售价:***'/***
+     * 售总价
+     * @return sell_price 售总价
      */
-    public String getSellPrice() {
+    public Double getSellPrice() {
         return sellPrice;
     }
 
     /**
-     * 售价:***'/***
-     * @param sellPrice 售价:***'/***
+     * 售总价
+     * @param sellPrice 售总价
      */
-    public void setSellPrice(String sellPrice) {
-        this.sellPrice = sellPrice == null ? null : sellPrice.trim();
+    public void setSellPrice(Double sellPrice) {
+        this.sellPrice = sellPrice;
     }
 
     /**
@@ -419,7 +434,7 @@ public class Housemsg {
      * 售低价
      * @return sell_lowPrice 售低价
      */
-    public Integer getSellLowprice() {
+    public Double getSellLowprice() {
         return sellLowprice;
     }
 
@@ -427,7 +442,7 @@ public class Housemsg {
      * 售低价
      * @param sellLowprice 售低价
      */
-    public void setSellLowprice(Integer sellLowprice) {
+    public void setSellLowprice(Double sellLowprice) {
         this.sellLowprice = sellLowprice;
     }
 
@@ -448,19 +463,19 @@ public class Housemsg {
     }
 
     /**
-     * 租价:***'/***
-     * @return rent_price 租价:***'/***
+     * 租总价
+     * @return rent_price 租总价
      */
-    public String getRentPrice() {
+    public Double getRentPrice() {
         return rentPrice;
     }
 
     /**
-     * 租价:***'/***
-     * @param rentPrice 租价:***'/***
+     * 租总价
+     * @param rentPrice 租总价
      */
-    public void setRentPrice(String rentPrice) {
-        this.rentPrice = rentPrice == null ? null : rentPrice.trim();
+    public void setRentPrice(Double rentPrice) {
+        this.rentPrice = rentPrice;
     }
 
     /**
@@ -483,7 +498,7 @@ public class Housemsg {
      * 租低价
      * @return rent_lowPrice 租低价
      */
-    public Integer getRentLowprice() {
+    public Double getRentLowprice() {
         return rentLowprice;
     }
 
@@ -491,7 +506,7 @@ public class Housemsg {
      * 租低价
      * @param rentLowprice 租低价
      */
-    public void setRentLowprice(Integer rentLowprice) {
+    public void setRentLowprice(Double rentLowprice) {
         this.rentLowprice = rentLowprice;
     }
 
@@ -512,19 +527,19 @@ public class Housemsg {
     }
 
     /**
-     * 贷款：*'/****
-     * @return loan 贷款：*'/****
+     * 贷款
+     * @return loan 贷款
      */
-    public String getLoan() {
+    public Double getLoan() {
         return loan;
     }
 
     /**
-     * 贷款：*'/****
-     * @param loan 贷款：*'/****
+     * 贷款
+     * @param loan 贷款
      */
-    public void setLoan(String loan) {
-        this.loan = loan == null ? null : loan.trim();
+    public void setLoan(Double loan) {
+        this.loan = loan;
     }
 
     /**
@@ -563,7 +578,7 @@ public class Housemsg {
      * 委托编号
      * @return precatory_number 委托编号
      */
-    public Integer getPrecatoryNumber() {
+    public String getPrecatoryNumber() {
         return precatoryNumber;
     }
 
@@ -571,8 +586,8 @@ public class Housemsg {
      * 委托编号
      * @param precatoryNumber 委托编号
      */
-    public void setPrecatoryNumber(Integer precatoryNumber) {
-        this.precatoryNumber = precatoryNumber;
+    public void setPrecatoryNumber(String precatoryNumber) {
+        this.precatoryNumber = precatoryNumber == null ? null : precatoryNumber.trim();
     }
 
     /**
@@ -595,7 +610,7 @@ public class Housemsg {
      * 备案号
      * @return record_number 备案号
      */
-    public Integer getRecordNumber() {
+    public String getRecordNumber() {
         return recordNumber;
     }
 
@@ -603,8 +618,8 @@ public class Housemsg {
      * 备案号
      * @param recordNumber 备案号
      */
-    public void setRecordNumber(Integer recordNumber) {
-        this.recordNumber = recordNumber;
+    public void setRecordNumber(String recordNumber) {
+        this.recordNumber = recordNumber == null ? null : recordNumber.trim();
     }
 
     /**
@@ -739,7 +754,7 @@ public class Housemsg {
      * 原始购价
      * @return originaly_purchasing_price 原始购价
      */
-    public Integer getOriginalyPurchasingPrice() {
+    public Double getOriginalyPurchasingPrice() {
         return originalyPurchasingPrice;
     }
 
@@ -747,7 +762,7 @@ public class Housemsg {
      * 原始购价
      * @param originalyPurchasingPrice 原始购价
      */
-    public void setOriginalyPurchasingPrice(Integer originalyPurchasingPrice) {
+    public void setOriginalyPurchasingPrice(Double originalyPurchasingPrice) {
         this.originalyPurchasingPrice = originalyPurchasingPrice;
     }
 
@@ -755,7 +770,7 @@ public class Housemsg {
      * 管理费
      * @return management_cost 管理费
      */
-    public Integer getManagementCost() {
+    public Double getManagementCost() {
         return managementCost;
     }
 
@@ -763,7 +778,7 @@ public class Housemsg {
      * 管理费
      * @param managementCost 管理费
      */
-    public void setManagementCost(Integer managementCost) {
+    public void setManagementCost(Double managementCost) {
         this.managementCost = managementCost;
     }
 
@@ -851,7 +866,7 @@ public class Housemsg {
      * 产证号
      * @return production_license_number 产证号
      */
-    public Integer getProductionLicenseNumber() {
+    public String getProductionLicenseNumber() {
         return productionLicenseNumber;
     }
 
@@ -859,8 +874,8 @@ public class Housemsg {
      * 产证号
      * @param productionLicenseNumber 产证号
      */
-    public void setProductionLicenseNumber(Integer productionLicenseNumber) {
-        this.productionLicenseNumber = productionLicenseNumber;
+    public void setProductionLicenseNumber(String productionLicenseNumber) {
+        this.productionLicenseNumber = productionLicenseNumber == null ? null : productionLicenseNumber.trim();
     }
 
     /**
@@ -925,5 +940,53 @@ public class Housemsg {
      */
     public void setPrecatoryBook(String precatoryBook) {
         this.precatoryBook = precatoryBook == null ? null : precatoryBook.trim();
+    }
+
+    /**
+     * 业主id
+     * @return client_id 业主id
+     */
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    /**
+     * 业主id
+     * @param clientId 业主id
+     */
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
+
+    /**
+     * 相关员工
+     * @return user_id 相关员工
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * 相关员工
+     * @param userId 相关员工
+     */
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    /**
+     * 部门id
+     * @return organization_id 部门id
+     */
+    public String getOrganizationId() {
+        return organizationId;
+    }
+
+    /**
+     * 部门id
+     * @param organizationId 部门id
+     */
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId == null ? null : organizationId.trim();
     }
 }

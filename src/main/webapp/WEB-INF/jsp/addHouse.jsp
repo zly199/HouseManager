@@ -1,5 +1,12 @@
-<!DOCTYPE html>
 
+
+<!DOCTYPE html>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -76,7 +83,7 @@
 
 					<!-- logo标志 -->
 
-					<a class="brand" href="index.html">
+					<a class="brand" href="back/user/index">
 
 						<img src="media/image/logo.png" alt="logo" />
 
@@ -667,7 +674,7 @@
 
 									<i class="icon-home"></i>
 
-									<a href="index.html">Home</a>
+									<a href="back/user/index">Home</a>
 
 									<i class="icon-angle-right"></i>
 

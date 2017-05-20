@@ -14,13 +14,13 @@
         <!-- Shiro的核心安全接口,这个属性是必须的 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 身份认证失败，则跳转到登录页面的配置 -->
-        <property name="loginUrl" value="/back/login"/>
+        <property name="loginUrl" value="/back/user/login"/>
         <!-- 权限认证失败，则跳转到指定页面 todo:权限认证失败页面-->
         <property name="unauthorizedUrl" value="/unauthor.jsp"/>
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <property name="filterChainDefinitions">
             <value>
-                /login=anon
+                /back/user/login=anon
                 /back*/**=authc
 <!--                /student=roles[teacher]
                 /teacher=perms["user:create"]-->

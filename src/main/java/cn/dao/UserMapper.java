@@ -3,6 +3,7 @@ package cn.dao;
 import cn.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserMapper {
     /*
@@ -17,5 +18,19 @@ public interface UserMapper {
      */
     User selectByUserName(String userName);
 
+    /**
+     * 通过用户名查询角色(职务)信息
+     * @param userName
+     * @return
+     */
+    Set<String> selectRoleByUserName(String userName);
 
+    /**
+     * 通过用户名查询权限信息
+     * @param userName
+     * @return
+     */
+    Set<String> selectPermissionsByUserName(String userName);
+
+    User selectByPrimaryKey(String userId);
 }

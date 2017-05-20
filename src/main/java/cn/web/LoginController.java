@@ -1,6 +1,7 @@
 package cn.web;
 
 import cn.dto.LoginForm;
+import cn.dto.ResultData;
 import cn.entity.User;
 import cn.utils.CryptographyUtil;
 import org.apache.shiro.SecurityUtils;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by ZLY on 2017-05-18.
  */
 @Controller
-@RequestMapping("/back")
+@RequestMapping("/back/user")
 public class LoginController {
     @RequestMapping(value = "/login")
     public String login(LoginForm user, Model model) {
@@ -33,15 +34,23 @@ public class LoginController {
             } catch (Exception e) {
                 e.printStackTrace();
                 model.addAttribute("user", user);
-                model.addAttribute("errorMsg", "用户名或密码错误");
+                model.addAttribute("loginResult", new ResultData<User>(false,"用户名或者密码错误"));
                 return "login_soft";
             }
         }
         return "login_soft";
     }
+
     @RequestMapping(value = "/index")
     @RequiresAuthentication
     public String index() {
         return "index";
+    }
+
+    @RequestMapping("/loginOut")
+    public String loginOut(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:login";
     }
 }

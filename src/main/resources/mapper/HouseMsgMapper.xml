@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.dao.HousemsgMapper" >
   <resultMap id="BaseResultMap" type="cn.entity.Housemsg" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="application" property="application" jdbcType="VARCHAR" />
     <result column="transaction" property="transaction" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
@@ -12,20 +12,20 @@
     <result column="decoration" property="decoration" jdbcType="VARCHAR" />
     <result column="orientation" property="orientation" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
-    <result column="sell_price" property="sellPrice" jdbcType="VARCHAR" />
+    <result column="sell_price" property="sellPrice" jdbcType="DOUBLE" />
     <result column="attribute" property="attribute" jdbcType="VARCHAR" />
-    <result column="sell_lowPrice" property="sellLowprice" jdbcType="INTEGER" />
+    <result column="sell_lowPrice" property="sellLowprice" jdbcType="DOUBLE" />
     <result column="purchasing_date" property="purchasingDate" jdbcType="DATE" />
-    <result column="rent_price" property="rentPrice" jdbcType="VARCHAR" />
+    <result column="rent_price" property="rentPrice" jdbcType="DOUBLE" />
     <result column="uniqueHouse" property="uniquehouse" jdbcType="BIT" />
-    <result column="rent_lowPrice" property="rentLowprice" jdbcType="INTEGER" />
+    <result column="rent_lowPrice" property="rentLowprice" jdbcType="DOUBLE" />
     <result column="precatory_date" property="precatoryDate" jdbcType="DATE" />
-    <result column="loan" property="loan" jdbcType="VARCHAR" />
+    <result column="loan" property="loan" jdbcType="DOUBLE" />
     <result column="precatory_method" property="precatoryMethod" jdbcType="VARCHAR" />
     <result column="resource" property="resource" jdbcType="VARCHAR" />
-    <result column="precatory_number" property="precatoryNumber" jdbcType="INTEGER" />
+    <result column="precatory_number" property="precatoryNumber" jdbcType="VARCHAR" />
     <result column="lunch_time" property="lunchTime" jdbcType="DATE" />
-    <result column="record_number" property="recordNumber" jdbcType="INTEGER" />
+    <result column="record_number" property="recordNumber" jdbcType="VARCHAR" />
     <result column="tag" property="tag" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="build_year" property="buildYear" jdbcType="DATE" />
@@ -34,18 +34,21 @@
     <result column="development" property="development" jdbcType="VARCHAR" />
     <result column="including" property="including" jdbcType="VARCHAR" />
     <result column="furniture" property="furniture" jdbcType="VARCHAR" />
-    <result column="originaly_purchasing_price" property="originalyPurchasingPrice" jdbcType="INTEGER" />
-    <result column="management_cost" property="managementCost" jdbcType="INTEGER" />
+    <result column="originaly_purchasing_price" property="originalyPurchasingPrice" jdbcType="DOUBLE" />
+    <result column="management_cost" property="managementCost" jdbcType="DOUBLE" />
     <result column="household_applicances" property="householdApplicances" jdbcType="VARCHAR" />
     <result column="payment_has" property="paymentHas" jdbcType="VARCHAR" />
     <result column="parking_plot" property="parkingPlot" jdbcType="VARCHAR" />
     <result column="payment_method" property="paymentMethod" jdbcType="VARCHAR" />
     <result column="see_the_house" property="seeTheHouse" jdbcType="VARCHAR" />
-    <result column="production_license_number" property="productionLicenseNumber" jdbcType="INTEGER" />
+    <result column="production_license_number" property="productionLicenseNumber" jdbcType="VARCHAR" />
     <result column="year_of_property_right" property="yearOfPropertyRight" jdbcType="DATE" />
     <result column="certificate_of_house_property" property="certificateOfHouseProperty" jdbcType="VARCHAR" />
     <result column="id_card" property="idCard" jdbcType="VARCHAR" />
     <result column="precatory_book" property="precatoryBook" jdbcType="VARCHAR" />
+    <result column="client_id" property="clientId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="organization_id" property="organizationId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, application, transaction, address, area, type, house_type, decoration, orientation, 
@@ -54,17 +57,23 @@
     lunch_time, record_number, tag, remark, build_year, status_quo, propertyRight, development, 
     including, furniture, originaly_purchasing_price, management_cost, household_applicances, 
     payment_has, parking_plot, payment_method, see_the_house, production_license_number, 
-    year_of_property_right, certificate_of_house_property, id_card, precatory_book
+    year_of_property_right, certificate_of_house_property, id_card, precatory_book, client_id, 
+    user_id, organization_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from housemsg
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <select id="selectAll" resultType="cn.entity.Housemsg">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM housemsg
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from housemsg
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="cn.entity.Housemsg" >
     insert into housemsg (id, application, transaction, 
@@ -81,23 +90,25 @@
       management_cost, household_applicances, payment_has, 
       parking_plot, payment_method, see_the_house, 
       production_license_number, year_of_property_right, 
-      certificate_of_house_property, id_card, precatory_book
+      certificate_of_house_property, id_card, precatory_book, 
+      client_id, user_id, organization_id
       )
-    values (#{id,jdbcType=INTEGER}, #{application,jdbcType=VARCHAR}, #{transaction,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{application,jdbcType=VARCHAR}, #{transaction,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
       #{houseType,jdbcType=VARCHAR}, #{decoration,jdbcType=VARCHAR}, #{orientation,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{sellPrice,jdbcType=VARCHAR}, #{attribute,jdbcType=VARCHAR}, 
-      #{sellLowprice,jdbcType=INTEGER}, #{purchasingDate,jdbcType=DATE}, #{rentPrice,jdbcType=VARCHAR}, 
-      #{uniquehouse,jdbcType=BIT}, #{rentLowprice,jdbcType=INTEGER}, #{precatoryDate,jdbcType=DATE}, 
-      #{loan,jdbcType=VARCHAR}, #{precatoryMethod,jdbcType=VARCHAR}, #{resource,jdbcType=VARCHAR}, 
-      #{precatoryNumber,jdbcType=INTEGER}, #{lunchTime,jdbcType=DATE}, #{recordNumber,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{sellPrice,jdbcType=DOUBLE}, #{attribute,jdbcType=VARCHAR}, 
+      #{sellLowprice,jdbcType=DOUBLE}, #{purchasingDate,jdbcType=DATE}, #{rentPrice,jdbcType=DOUBLE}, 
+      #{uniquehouse,jdbcType=BIT}, #{rentLowprice,jdbcType=DOUBLE}, #{precatoryDate,jdbcType=DATE}, 
+      #{loan,jdbcType=DOUBLE}, #{precatoryMethod,jdbcType=VARCHAR}, #{resource,jdbcType=VARCHAR}, 
+      #{precatoryNumber,jdbcType=VARCHAR}, #{lunchTime,jdbcType=DATE}, #{recordNumber,jdbcType=VARCHAR}, 
       #{tag,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{buildYear,jdbcType=DATE}, 
       #{statusQuo,jdbcType=VARCHAR}, #{propertyright,jdbcType=VARCHAR}, #{development,jdbcType=VARCHAR}, 
-      #{including,jdbcType=VARCHAR}, #{furniture,jdbcType=VARCHAR}, #{originalyPurchasingPrice,jdbcType=INTEGER}, 
-      #{managementCost,jdbcType=INTEGER}, #{householdApplicances,jdbcType=VARCHAR}, #{paymentHas,jdbcType=VARCHAR}, 
+      #{including,jdbcType=VARCHAR}, #{furniture,jdbcType=VARCHAR}, #{originalyPurchasingPrice,jdbcType=DOUBLE}, 
+      #{managementCost,jdbcType=DOUBLE}, #{householdApplicances,jdbcType=VARCHAR}, #{paymentHas,jdbcType=VARCHAR}, 
       #{parkingPlot,jdbcType=VARCHAR}, #{paymentMethod,jdbcType=VARCHAR}, #{seeTheHouse,jdbcType=VARCHAR}, 
-      #{productionLicenseNumber,jdbcType=INTEGER}, #{yearOfPropertyRight,jdbcType=DATE}, 
-      #{certificateOfHouseProperty,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{precatoryBook,jdbcType=VARCHAR}
+      #{productionLicenseNumber,jdbcType=VARCHAR}, #{yearOfPropertyRight,jdbcType=DATE}, 
+      #{certificateOfHouseProperty,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{precatoryBook,jdbcType=VARCHAR}, 
+      #{clientId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.Housemsg" >
@@ -235,10 +246,19 @@
       <if test="precatoryBook != null" >
         precatory_book,
       </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="application != null" >
         #{application,jdbcType=VARCHAR},
@@ -268,31 +288,31 @@
         #{status,jdbcType=VARCHAR},
       </if>
       <if test="sellPrice != null" >
-        #{sellPrice,jdbcType=VARCHAR},
+        #{sellPrice,jdbcType=DOUBLE},
       </if>
       <if test="attribute != null" >
         #{attribute,jdbcType=VARCHAR},
       </if>
       <if test="sellLowprice != null" >
-        #{sellLowprice,jdbcType=INTEGER},
+        #{sellLowprice,jdbcType=DOUBLE},
       </if>
       <if test="purchasingDate != null" >
         #{purchasingDate,jdbcType=DATE},
       </if>
       <if test="rentPrice != null" >
-        #{rentPrice,jdbcType=VARCHAR},
+        #{rentPrice,jdbcType=DOUBLE},
       </if>
       <if test="uniquehouse != null" >
         #{uniquehouse,jdbcType=BIT},
       </if>
       <if test="rentLowprice != null" >
-        #{rentLowprice,jdbcType=INTEGER},
+        #{rentLowprice,jdbcType=DOUBLE},
       </if>
       <if test="precatoryDate != null" >
         #{precatoryDate,jdbcType=DATE},
       </if>
       <if test="loan != null" >
-        #{loan,jdbcType=VARCHAR},
+        #{loan,jdbcType=DOUBLE},
       </if>
       <if test="precatoryMethod != null" >
         #{precatoryMethod,jdbcType=VARCHAR},
@@ -301,13 +321,13 @@
         #{resource,jdbcType=VARCHAR},
       </if>
       <if test="precatoryNumber != null" >
-        #{precatoryNumber,jdbcType=INTEGER},
+        #{precatoryNumber,jdbcType=VARCHAR},
       </if>
       <if test="lunchTime != null" >
         #{lunchTime,jdbcType=DATE},
       </if>
       <if test="recordNumber != null" >
-        #{recordNumber,jdbcType=INTEGER},
+        #{recordNumber,jdbcType=VARCHAR},
       </if>
       <if test="tag != null" >
         #{tag,jdbcType=VARCHAR},
@@ -334,10 +354,10 @@
         #{furniture,jdbcType=VARCHAR},
       </if>
       <if test="originalyPurchasingPrice != null" >
-        #{originalyPurchasingPrice,jdbcType=INTEGER},
+        #{originalyPurchasingPrice,jdbcType=DOUBLE},
       </if>
       <if test="managementCost != null" >
-        #{managementCost,jdbcType=INTEGER},
+        #{managementCost,jdbcType=DOUBLE},
       </if>
       <if test="householdApplicances != null" >
         #{householdApplicances,jdbcType=VARCHAR},
@@ -355,7 +375,7 @@
         #{seeTheHouse,jdbcType=VARCHAR},
       </if>
       <if test="productionLicenseNumber != null" >
-        #{productionLicenseNumber,jdbcType=INTEGER},
+        #{productionLicenseNumber,jdbcType=VARCHAR},
       </if>
       <if test="yearOfPropertyRight != null" >
         #{yearOfPropertyRight,jdbcType=DATE},
@@ -368,6 +388,15 @@
       </if>
       <if test="precatoryBook != null" >
         #{precatoryBook,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -402,31 +431,31 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
       <if test="sellPrice != null" >
-        sell_price = #{sellPrice,jdbcType=VARCHAR},
+        sell_price = #{sellPrice,jdbcType=DOUBLE},
       </if>
       <if test="attribute != null" >
         attribute = #{attribute,jdbcType=VARCHAR},
       </if>
       <if test="sellLowprice != null" >
-        sell_lowPrice = #{sellLowprice,jdbcType=INTEGER},
+        sell_lowPrice = #{sellLowprice,jdbcType=DOUBLE},
       </if>
       <if test="purchasingDate != null" >
         purchasing_date = #{purchasingDate,jdbcType=DATE},
       </if>
       <if test="rentPrice != null" >
-        rent_price = #{rentPrice,jdbcType=VARCHAR},
+        rent_price = #{rentPrice,jdbcType=DOUBLE},
       </if>
       <if test="uniquehouse != null" >
         uniqueHouse = #{uniquehouse,jdbcType=BIT},
       </if>
       <if test="rentLowprice != null" >
-        rent_lowPrice = #{rentLowprice,jdbcType=INTEGER},
+        rent_lowPrice = #{rentLowprice,jdbcType=DOUBLE},
       </if>
       <if test="precatoryDate != null" >
         precatory_date = #{precatoryDate,jdbcType=DATE},
       </if>
       <if test="loan != null" >
-        loan = #{loan,jdbcType=VARCHAR},
+        loan = #{loan,jdbcType=DOUBLE},
       </if>
       <if test="precatoryMethod != null" >
         precatory_method = #{precatoryMethod,jdbcType=VARCHAR},
@@ -435,13 +464,13 @@
         resource = #{resource,jdbcType=VARCHAR},
       </if>
       <if test="precatoryNumber != null" >
-        precatory_number = #{precatoryNumber,jdbcType=INTEGER},
+        precatory_number = #{precatoryNumber,jdbcType=VARCHAR},
       </if>
       <if test="lunchTime != null" >
         lunch_time = #{lunchTime,jdbcType=DATE},
       </if>
       <if test="recordNumber != null" >
-        record_number = #{recordNumber,jdbcType=INTEGER},
+        record_number = #{recordNumber,jdbcType=VARCHAR},
       </if>
       <if test="tag != null" >
         tag = #{tag,jdbcType=VARCHAR},
@@ -468,10 +497,10 @@
         furniture = #{furniture,jdbcType=VARCHAR},
       </if>
       <if test="originalyPurchasingPrice != null" >
-        originaly_purchasing_price = #{originalyPurchasingPrice,jdbcType=INTEGER},
+        originaly_purchasing_price = #{originalyPurchasingPrice,jdbcType=DOUBLE},
       </if>
       <if test="managementCost != null" >
-        management_cost = #{managementCost,jdbcType=INTEGER},
+        management_cost = #{managementCost,jdbcType=DOUBLE},
       </if>
       <if test="householdApplicances != null" >
         household_applicances = #{householdApplicances,jdbcType=VARCHAR},
@@ -489,7 +518,7 @@
         see_the_house = #{seeTheHouse,jdbcType=VARCHAR},
       </if>
       <if test="productionLicenseNumber != null" >
-        production_license_number = #{productionLicenseNumber,jdbcType=INTEGER},
+        production_license_number = #{productionLicenseNumber,jdbcType=VARCHAR},
       </if>
       <if test="yearOfPropertyRight != null" >
         year_of_property_right = #{yearOfPropertyRight,jdbcType=DATE},
@@ -503,8 +532,17 @@
       <if test="precatoryBook != null" >
         precatory_book = #{precatoryBook,jdbcType=VARCHAR},
       </if>
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        organization_id = #{organizationId,jdbcType=VARCHAR},
+      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.entity.Housemsg" >
     update housemsg
@@ -517,20 +555,20 @@
       decoration = #{decoration,jdbcType=VARCHAR},
       orientation = #{orientation,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
-      sell_price = #{sellPrice,jdbcType=VARCHAR},
+      sell_price = #{sellPrice,jdbcType=DOUBLE},
       attribute = #{attribute,jdbcType=VARCHAR},
-      sell_lowPrice = #{sellLowprice,jdbcType=INTEGER},
+      sell_lowPrice = #{sellLowprice,jdbcType=DOUBLE},
       purchasing_date = #{purchasingDate,jdbcType=DATE},
-      rent_price = #{rentPrice,jdbcType=VARCHAR},
+      rent_price = #{rentPrice,jdbcType=DOUBLE},
       uniqueHouse = #{uniquehouse,jdbcType=BIT},
-      rent_lowPrice = #{rentLowprice,jdbcType=INTEGER},
+      rent_lowPrice = #{rentLowprice,jdbcType=DOUBLE},
       precatory_date = #{precatoryDate,jdbcType=DATE},
-      loan = #{loan,jdbcType=VARCHAR},
+      loan = #{loan,jdbcType=DOUBLE},
       precatory_method = #{precatoryMethod,jdbcType=VARCHAR},
       resource = #{resource,jdbcType=VARCHAR},
-      precatory_number = #{precatoryNumber,jdbcType=INTEGER},
+      precatory_number = #{precatoryNumber,jdbcType=VARCHAR},
       lunch_time = #{lunchTime,jdbcType=DATE},
-      record_number = #{recordNumber,jdbcType=INTEGER},
+      record_number = #{recordNumber,jdbcType=VARCHAR},
       tag = #{tag,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       build_year = #{buildYear,jdbcType=DATE},
@@ -539,18 +577,21 @@
       development = #{development,jdbcType=VARCHAR},
       including = #{including,jdbcType=VARCHAR},
       furniture = #{furniture,jdbcType=VARCHAR},
-      originaly_purchasing_price = #{originalyPurchasingPrice,jdbcType=INTEGER},
-      management_cost = #{managementCost,jdbcType=INTEGER},
+      originaly_purchasing_price = #{originalyPurchasingPrice,jdbcType=DOUBLE},
+      management_cost = #{managementCost,jdbcType=DOUBLE},
       household_applicances = #{householdApplicances,jdbcType=VARCHAR},
       payment_has = #{paymentHas,jdbcType=VARCHAR},
       parking_plot = #{parkingPlot,jdbcType=VARCHAR},
       payment_method = #{paymentMethod,jdbcType=VARCHAR},
       see_the_house = #{seeTheHouse,jdbcType=VARCHAR},
-      production_license_number = #{productionLicenseNumber,jdbcType=INTEGER},
+      production_license_number = #{productionLicenseNumber,jdbcType=VARCHAR},
       year_of_property_right = #{yearOfPropertyRight,jdbcType=DATE},
       certificate_of_house_property = #{certificateOfHouseProperty,jdbcType=VARCHAR},
       id_card = #{idCard,jdbcType=VARCHAR},
-      precatory_book = #{precatoryBook,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+      precatory_book = #{precatoryBook,jdbcType=VARCHAR},
+      client_id = #{clientId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      organization_id = #{organizationId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

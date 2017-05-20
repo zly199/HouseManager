@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Created by ZLY on 2017-05-18.
  */
-public interface UserServie {
+public interface UserService {
 
     /**
      * 通过用户名查询用户

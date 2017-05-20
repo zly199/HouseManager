@@ -5,37 +5,37 @@ import cn.entity.FollowupClient;
 public interface FollowupClientMapper {
     /**
      *
-     * @mbggenerated 2017-05-18
+     * @mbggenerated 2017-05-20
      */
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     /**
      *
-     * @mbggenerated 2017-05-18
+     * @mbggenerated 2017-05-20
      */
     int insert(FollowupClient record);
 
     /**
      *
-     * @mbggenerated 2017-05-18
+     * @mbggenerated 2017-05-20
      */
     int insertSelective(FollowupClient record);
 
     /**
      *
-     * @mbggenerated 2017-05-18
+     * @mbggenerated 2017-05-20
      */
-    FollowupClient selectByPrimaryKey(Integer id);
+    FollowupClient selectByPrimaryKey(Long id);
 
     /**
      *
-     * @mbggenerated 2017-05-18
+     * @mbggenerated 2017-05-20
      */
     int updateByPrimaryKeySelective(FollowupClient record);
 
     /**
      *
-     * @mbggenerated 2017-05-18
+     * @mbggenerated 2017-05-20
      */
     int updateByPrimaryKey(FollowupClient record);
 }

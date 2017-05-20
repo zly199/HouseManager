@@ -21,6 +21,7 @@
     <result column="working_time" property="workingTime" jdbcType="TIME" />
     <result column="closing_time" property="closingTime" jdbcType="TIME" />
     <result column="user_persion" property="userPersion" jdbcType="BIGINT" />
+    <result column="user_house_pre" property="userHousePre" jdbcType="VARCHAR"/>
   </resultMap>
   <insert id="insert" parameterType="cn.entity.UserDuties" >
     insert into user_duties (locked, user_id, user_name, 
@@ -29,14 +30,14 @@
       source, technical_title, record, 
       main_buildings, chief_id, connecttion_way, 
       password, working_time, closing_time, 
-      user_persion)
+      user_persion, user_house_pre)
     values (#{locked,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
       #{organizationId,jdbcType=VARCHAR}, #{dutiesId,jdbcType=TINYINT}, #{state,jdbcType=VARCHAR}, 
       #{entryTime,jdbcType=TIMESTAMP}, #{dimissionTime,jdbcType=TIMESTAMP}, #{omni,jdbcType=VARCHAR}, 
       #{source,jdbcType=VARCHAR}, #{technicalTitle,jdbcType=VARCHAR}, #{record,jdbcType=VARCHAR}, 
       #{mainBuildings,jdbcType=VARCHAR}, #{chiefId,jdbcType=BIGINT}, #{connecttionWay,jdbcType=INTEGER}, 
       #{password,jdbcType=VARCHAR}, #{workingTime,jdbcType=TIME}, #{closingTime,jdbcType=TIME}, 
-      #{userPersion,jdbcType=BIGINT})
+      #{userPersion,jdbcType=BIGINT},#{userHousePre,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.UserDuties" >
     insert into user_duties
@@ -98,6 +99,9 @@
       <if test="userPersion != null" >
         user_persion,
       </if>
+      <if test="userHousePre !=null">
+        user_house_pre,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="locked != null" >
@@ -156,6 +160,9 @@
       </if>
       <if test="userPersion != null" >
         #{userPersion,jdbcType=BIGINT},
+      </if>
+      <if test="userHousePre !=null">
+        user_house_pre,
       </if>
     </trim>
   </insert>
