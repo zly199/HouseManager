@@ -71,6 +71,21 @@
     <include refid="Base_Column_List" />
     FROM housemsg
   </select>
+  <select id="selectByAttribute" resultType="cn.entity.Housemsg">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM housemsg
+    WHERE attribute IN 
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+  <select id="selectByOrganizationPre" resultType="cn.entity.Housemsg">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM housemsg
+    WHERE id LIKE #{primaryNumberPre}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from housemsg
     where id = #{id,jdbcType=VARCHAR}

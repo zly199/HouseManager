@@ -69,7 +69,7 @@ public class HouseList implements Serializable{
         this.organization = organization;
         this.userName = userName;
         this.attribute = attribute;
-        LastFollowDate = lastFollowDate;
+        this.LastFollowDate = lastFollowDate;
         this.phoneCount = phoneCount;
     }
 

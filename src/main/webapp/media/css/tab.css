@@ -1,0 +1,34 @@
+	.cell {
+	width: 25%;
+	float: left;
+	height:750px ;
+	margin-top: -20px;
+}
+
+.c1
+{
+	background-color: #ccc;
+}
+
+.c2
+ {
+	background-color: #ccc;
+	float: right;
+	width: 200px;
+	}
+#sp1
+{
+	padding-left: 10px;
+}
+#sp2
+{
+	padding-left: 160px;
+}
+#sp3
+{
+	padding-left: 20px;
+}
+#sp4
+{
+	padding-left: 400px;
+}

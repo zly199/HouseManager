@@ -221,7 +221,7 @@
 					</ul>
 
 				</li>
-					<shiro:hasPermission name="house">
+					<shiro:hasPermission name="houseManager">
 				<li class="">
 
 					<a href="javascript:;">
@@ -235,7 +235,7 @@
 					</a>
 
 					<ul class="sub-menu">
-						<shiro:hasPermission name="house:view">
+						<shiro:hasPermission name="house:viewPage">
 						<li >
 
 							<a href="back/house/view">
@@ -244,7 +244,7 @@
 
 						</li>
 						</shiro:hasPermission>
-						<shiro:hasPermission name="house:add">
+						<shiro:hasPermission name="house:addPage">
 						<li >
 
 							<a href="back/house/add">
@@ -261,44 +261,11 @@
 
 					<a href="javascript:;">
 
-					<i class="icon-table"></i> 
+						<i class="icon-th"></i>
 
-					<span class="title">房源跟进</span>
+						<span class="title">人事OA</span>
 
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-
-						<li >
-
-							<a href="#">
-
-							跟进查询</a>
-
-						</li>
-
-						<li >
-
-							<a href="#">
-
-							登记跟进记录</a>
-
-						</li>
-					</ul>
-
-				</li>
-
-				<li class="">
-
-					<a href="javascript:;">
-
-					<i class="icon-th-large"></i> 
-
-					<span class="title">合同管理</span>
-
-					<span class="arrow "></span>
+						<span class="arrow "></span>
 
 					</a>
 
@@ -306,216 +273,45 @@
 
 						<li>
 
-								<a href="#">
-									出租合同查询</a>
+							<a href="userPhone.html">
 
-							</li>
-							<li>
-
-								<a href="#">
-									出售合同查询</a>
-
-							</li>
-
-						<li >
-
-							<a href="#">
-							增加合同</a>
+								通讯录</a>
 
 						</li>
-					</ul>
-
-				</li>
-
-				<li class="">
-
-					<a href="javascript:;">
-
-					<i class="icon-gift"></i> 
-
-					<span class="title">销售管理</span>
-
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-
-						<li >
-
-							<a href="#">
-
-							销售查询</a>
-
-						</li>
-
-						<li >
-
-							<a href="#">
-
-							增加销售信息</a>
-
-						</li>
-					</ul>
-
-				</li>
-
-				<li>
-
-					<a class="active" href="javascript:;">
-
-					<i class="icon-sitemap"></i> 
-
-					<span class="title">新闻管理</span>
-
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-							<li >
-
-							<a href="#">
-
-							新闻查询</a>
-
-						</li>
-						<li >
-
-							<a href="#">
-
-							增加新闻</a>
-
-						</li>
-
-					</ul>
-
-				</li>
-
-				<li>
-
-					<a href="javascript:;">
-
-					<i class="icon-folder-open"></i> 
-
-					<span class="title">综合统计</span>
-
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-
 						<li>
 
-							<a href="javascript:;">
+							<a href="departmentPhone.html">
 
-							<i class="icon-folder-open"></i> 
-
-							统计房源
-
-							<span class="arrow"></span>
-
-							</a>
-
-							<ul class="sub-menu">
-								<li><a href="#"><i class="icon-globe"></i>统计求租房源 </a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>  统计求购房源</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i> 统计出租房源</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i> 统计出售房源 </a></li>
-								
-							
-
-							</ul>
+								部门通讯录</a>
 
 						</li>
 
 						<li>
 
-							<a href="javascript:;">
+							<a href="back/personnelMinistry/organization">
 
-							<i class="icon-folder-open"></i> 
-
-							统计客源
-
-							<span class="arrow"></span>
-
-							</a>
-
-							<ul class="sub-menu">
-
-								<li><a href="#"><i class="icon-globe"></i>统计出租人员</a></li>
-								
-								<li><a href="#"><i class="icon-globe"></i>统计出售人员</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>统计求租人员</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>统计求售人员</a></li>
-
-							</ul>
+								组织机构</a>
 
 						</li>
-
 						<li>
 
-							<a href="#">
+							<a href="addstaff.html">
 
-							<i class="icon-folder-open"></i>
-
-							统计销售额
-                           	<span class="arrow"></span>
-							</a>
-							<ul class="sub-menu">
-
-								<li><a href="#"><i class="icon-globe"></i>统计出租销售额</a></li>
-								<li><a href="#"><i class="icon-globe"></i>统计出售销售额</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>统计求租销售额</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>统计求售销售额</a></li>
-
-							</ul>
+								新增员工</a>
 
 						</li>
+						<li>
 
-					</ul>
+							<a href="detailOA.html">
 
-				</li>
-				<li class="">
-
-					<a href="javascript:;">
-
-					<i class="icon-th"></i> 
-
-					<span class="title">客源跟进</span>
-
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-
-						<li >
-
-							<a href="table_basic.html">
-
-							查询客源跟进信息</a>
-
-						</li>
-
-						<li >
-
-							<a href="table_responsive.html">
-
-							增加客源跟进信息</a>
+								人事OA详情信息</a>
 
 						</li>
 					</ul>
 
 				</li>
+
+
 				<li class="">
 
 					<a href="javascript:;">

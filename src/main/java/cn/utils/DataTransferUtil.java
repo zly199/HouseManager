@@ -4,7 +4,7 @@ import cn.dto.HouseList;
 import cn.dto.HouseMessageAvailable;
 import cn.entity.Housemsg;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * 用户数据库的字段到可用实体的转换工具
@@ -154,8 +154,43 @@ public class DataTransferUtil {
 
     }
 
-    public static void main(String[] args) {
-        String[] strings=StringToStringList("嘉定区/江桥/嘉秀新苑/06号/0/0601/0/7");
-        System.out.println(strings);
+    public static Set listToSet(List list){
+        return new HashSet(list);
+    }
+
+    public static List setToList(Set set){
+        return new ArrayList(set);
+    }
+    /**
+     * Housemegset彻底去重
+     * @param set1
+     * @param set2
+     * @return
+     */
+    public static Set<Housemsg> setRetainAll(Set<Housemsg> set1, Set<Housemsg> set2) {
+        Set<Housemsg> set3 = new HashSet<>();
+        Set<Housemsg> result = new HashSet<>();
+        Map<String,Housemsg> map = new HashMap<>();
+        for (Housemsg housemsg:set1){
+            map.put(housemsg.getId(),housemsg);
+        }
+        for (Map.Entry<String, Housemsg> entry : map.entrySet()) {
+            //Map.entry<Integer,String> 映射项（键-值对）  有几个方法：用上面的名字entry
+            //entry.getKey() ;entry.getValue(); entry.setValue();
+            //map.entrySet()  返回此映射中包含的映射关系的 Set视图。
+            set3.add(entry.getValue());
+        }
+        for (Housemsg housemsg:set2){
+            if(map.containsKey(housemsg.getId())){
+                result.add(housemsg);
+            }
+
+        }
+
+
+
+
+
+        return result;
     }
 }

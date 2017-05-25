@@ -1,12 +1,13 @@
 package cn.dto;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 
 /**
  * Created by ZLY on 2017-05-19.
  */
-public class HouseMessageAvailable {
+public class HouseMessageAvailable implements Serializable {
     /**
      * 房源id
      */

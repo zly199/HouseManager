@@ -1,9 +1,11 @@
 package cn.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by ZLY on 2017-05-18.
  */
-public class ResultData<T> {
+public class ResultData<T> implements Serializable {
     private boolean isSuccess;
     private T date;
     private String errorMessage;

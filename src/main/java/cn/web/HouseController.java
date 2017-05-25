@@ -7,6 +7,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,22 +24,32 @@ public class HouseController {
     HouseService houseService;
 
     @RequestMapping("/view")
-    @RequiresPermissions("house:view")
+    @RequiresPermissions("house:viewPage")
     public String houseView(Model model){
         return "houseSelect";
     }
 
     @RequestMapping("/getHouseData")
     @ResponseBody
-    @RequiresPermissions("house:view")
+    @RequiresPermissions("house:viewPage")
     public List<HouseList> getHouseData(){
-        return houseService.findAll();
+        return houseService.findHouseByPermission();
     }
 
     @RequestMapping("/add")
     @RequiresPermissions("house:add")
     public String houseAdd(){
         return "addHouse";
+    }
+    @RequestMapping("ediHouse/{houseId}")
+    public  String houseEdi(@PathVariable String houseId){
+        System.out.println(houseId);
+        return "houseDetail";
+    }
+    @RequestMapping("dictionary")
+    public String dictionary (){
+
+        return "dictionary";
     }
 
 

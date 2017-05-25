@@ -23,6 +23,45 @@
     <result column="user_persion" property="userPersion" jdbcType="BIGINT" />
     <result column="user_house_pre" property="userHousePre" jdbcType="VARCHAR"/>
   </resultMap>
+  <select id="selectByName" resultType="cn.entity.UserDuties">
+    SELECT
+        locked, user_id, user_name,
+        organization_id, duties_id, state,
+        entry_time, dimission_time, omni,
+        source, technical_title, record,
+        main_buildings, chief_id, connecttion_way,
+        password, working_time, closing_time,
+        user_persion, user_house_pre
+      FROM user_duties
+      WHERE user_name=#{userName}
+  </select>
+  <select id="selectByOrganizationName" resultType="cn.entity.UserDuties">
+    SELECT
+      locked, user_id, user_name,
+      organization_id, duties_id, state,
+      entry_time, dimission_time, omni,
+      source, technical_title, record,
+      main_buildings, chief_id, connecttion_way,
+      password, working_time, closing_time,
+      user_persion, user_house_pre
+    FROM user_duties
+    WHERE organization_id=(
+      SELECT organization_id
+      FROM organization_structure
+      WHERE organization_name=#{organizationName}
+    )
+  </select>
+  <select id="selectAll" resultType="cn.entity.UserDuties">
+    SELECT
+      locked, user_id, user_name,
+      organization_id, duties_id, state,
+      entry_time, dimission_time, omni,
+      source, technical_title, record,
+      main_buildings, chief_id, connecttion_way,
+      password, working_time, closing_time,
+      user_persion, user_house_pre
+    FROM user_duties
+  </select>
   <insert id="insert" parameterType="cn.entity.UserDuties" >
     insert into user_duties (locked, user_id, user_name, 
       organization_id, duties_id, state, 

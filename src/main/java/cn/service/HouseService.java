@@ -13,7 +13,7 @@ public interface HouseService {
      * 根据当前登录用户权限查询房源信息
      * @return
      */
-    List<Housemsg> findHouseByPermission();
+    List<HouseList> findHouseByPermission();
 
     /**
      *

@@ -12,6 +12,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Set;
+
 /**
  * Created by ZLY on 2017-05-18.
  */
@@ -29,6 +31,7 @@ public class MyRealm extends AuthorizingRealm{
         String userName = (String)principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         authorizationInfo.setRoles(userService.getRoles(userName));
+
         authorizationInfo.setStringPermissions(userService.getPermissions(userName));
         return authorizationInfo;
     }

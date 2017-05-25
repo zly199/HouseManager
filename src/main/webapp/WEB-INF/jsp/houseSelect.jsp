@@ -1160,7 +1160,7 @@
 							<div class="submit-btn" style="margin-top: 5px;">
 								<a href="housetapeWatch.html" class="btn green" id="tape" >填写带看单 </a>
 								<a href="#" class="btn green" data-toggle="modal" data-target="#move">归属转移 </a>
-								<a href="userDetail.html" class="btn green">查看详情 </a>
+								<a href="back/house/dictionary" class="btn green">楼盘字典 </a>
 								<a href="#" class="btn green" data-toggle="modal" data-target="#collection" >加入收藏 </a>
 							</div>
 						</div>
@@ -1446,31 +1446,38 @@
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					}, {
+					}, <shiro:hasPermission name="house:view:listAddress">
+						{
 						field: "building",
 						title: "栋座",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					}, {
+					},</shiro:hasPermission>
+						<shiro:hasPermission name="house:view:listHouseNumber">
+					 {
 						field: "roomNumber",
 						title: "房号",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					}, {
+					}, </shiro:hasPermission>
+                        <shiro:hasPermission name="house:view:listHouseFloor">
+						{
 						field: "totalFloor",
 						title: "总楼层",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					}, {
+					},</shiro:hasPermission>
+						{
 						field: "houseType",
 						title: "房型",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					}, {
+					},
+						{
 						field: "sellPrice",
 						title: "售总价",
 						align: "center",
@@ -1531,11 +1538,9 @@
 						valign: "middle",
 						sortable: "true",
 						formatter: function(value, row, index) {
-							var e = '<a href="houseedit.html?" >编辑</a> ';
-							var d = '<a href="#" >删除</a> ';
-							var i = '<a href="#" >楼盘字典</a> ';
-							return e + d + i ;
-						}
+                            var e = '<a href="back/house/ediHouse/'+row.id +'">' + "查看详情" + '</a>';
+                            return e;
+                        }
 
 					}],
 					data: [],
@@ -1565,6 +1570,7 @@
 				});
 			});
 		</script>
+
 
 		<script>
 			jQuery(document).ready(function() {

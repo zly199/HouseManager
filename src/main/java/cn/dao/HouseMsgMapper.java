@@ -2,7 +2,9 @@ package cn.dao;
 
 import cn.entity.Housemsg;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public interface HousemsgMapper {
     /**
@@ -42,4 +44,17 @@ public interface HousemsgMapper {
     int updateByPrimaryKey(Housemsg record);
 
     List<Housemsg> selectAll();
+
+    /**
+     * 根据属性查找房产 公盘，私盘，特盘，封盘
+     * @param attributeSet
+     * @return
+     */
+    List<Housemsg> selectByAttribute(List<String> attributeSet);
+    /**
+     * 根据房源的前缀查询房源(记得加%)
+     * @param primaryNumberPre
+     * @return
+     */
+    List<Housemsg> selectByOrganizationPre(String primaryNumberPre);
 }

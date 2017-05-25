@@ -1,6 +1,8 @@
 package cn.dao;
 
+import cn.dto.UserOa;
 import cn.entity.User;
+import cn.entity.UserDuties;
 
 import java.util.List;
 import java.util.Set;
@@ -32,5 +34,7 @@ public interface UserMapper {
      */
     Set<String> selectPermissionsByUserName(String userName);
 
-    User selectByPrimaryKey(String userId);
+    User selectByPrimaryKey(Long userId);
+
+
 }

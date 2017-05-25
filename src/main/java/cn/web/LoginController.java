@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import sun.misc.Cache;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,6 +27,7 @@ public class LoginController {
     public String login(LoginForm user, Model model) {
         if (user.getUsername()!=null&&user.getPassword()!=null) {
             Subject subject = SecurityUtils.getSubject();
+
             UsernamePasswordToken token =
                     new UsernamePasswordToken(user.getUsername(), CryptographyUtil.md5(user.getPassword(),user.getUsername()));
             try {
