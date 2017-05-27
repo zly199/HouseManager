@@ -10,6 +10,18 @@
     where user_id = #{userId,jdbcType=BIGINT}
       and permission_id = #{permissionId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByUserId">
+    DELETE
+    FROM t_user_permission
+    WHERE t_user_permission.user_id=#{userId}
+  </delete>
+  <insert id="insertByUserId" >
+    INSERT INTO t_user_permission
+            VALUES
+              <foreach item="item" collection="permissionIds" separator=",">
+                (#{userId},#{item})
+              </foreach>
+  </insert>
   <insert id="insert" parameterType="cn.entity.UserPermissionKey" >
     insert into t_user_permission (user_id, permission_id)
     values (#{userId,jdbcType=BIGINT}, #{permissionId,jdbcType=INTEGER})

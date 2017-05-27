@@ -221,7 +221,7 @@
 					</ul>
 
 				</li>
-					<shiro:hasPermission name="houseManager">
+
 				<li class="">
 
 					<a href="javascript:;">
@@ -235,7 +235,7 @@
 					</a>
 
 					<ul class="sub-menu">
-						<shiro:hasPermission name="house:viewPage">
+
 						<li >
 
 							<a href="back/house/view">
@@ -243,8 +243,7 @@
 							房源查询</a>
 
 						</li>
-						</shiro:hasPermission>
-						<shiro:hasPermission name="house:addPage">
+
 						<li >
 
 							<a href="back/house/add">
@@ -252,11 +251,11 @@
 							增加房源</a>
 
 						</li>
-						</shiro:hasPermission>
+
 					</ul>
 
 				</li>
-					</shiro:hasPermission>
+
 				<li class="">
 
 					<a href="javascript:;">

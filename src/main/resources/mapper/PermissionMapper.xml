@@ -13,6 +13,14 @@
   <sql id="Base_Column_List" >
     permission_id, name, permission_char, type, url, parent_id, parent_ids
   </sql>
+  <select id="selectByPermissionChar" resultType="Integer">
+    SELECT t_permission.permission_id
+      FROM t_permission
+    WHERE permission_char IN
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -23,6 +31,7 @@
     delete from t_permission
     where permission_id = #{permissionId,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="cn.entity.Permission" >
     insert into t_permission (permission_id, name, permission_char, 
       type, url, parent_id, 
@@ -114,4 +123,6 @@
       parent_ids = #{parentIds,jdbcType=VARCHAR}
     where permission_id = #{permissionId,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

@@ -1160,7 +1160,7 @@
 							<div class="submit-btn" style="margin-top: 5px;">
 								<a href="housetapeWatch.html" class="btn green" id="tape" >填写带看单 </a>
 								<a href="#" class="btn green" data-toggle="modal" data-target="#move">归属转移 </a>
-								<a href="back/house/dictionary" class="btn green">楼盘字典 </a>
+								<a href="back/dictionary/index" class="btn green">楼盘字典 </a>
 								<a href="#" class="btn green" data-toggle="modal" data-target="#collection" >加入收藏 </a>
 							</div>
 						</div>

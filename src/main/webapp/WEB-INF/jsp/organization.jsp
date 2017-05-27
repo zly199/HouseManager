@@ -800,7 +800,7 @@
 						sortable: "true",
 						formatter: function(value, row, index) {
 							var e = '<a href="detailOA.html" >查看详情</a> ';
-							var d = '<a data-toggle="modal"   data-target="#showModal" onclick=targetTo("'  + row.userId + '")>设置权限</a>';
+							var d = '<a data-toggle="modal"   data-target="#showModal" onclick=targetTo("'  + row.userId + '")>设置权限 </a>';
 							//var d = '<a href="back/permission/getPermission/'+row.userId +'" data-toggle="modal" data-target="#authority" >设置权限</a> ';
 							var h = '<a href="#" data-toggle="modal" data-target="#transaction">异动</a> ';
 							var i = '<a href="#" >删除</a> ';

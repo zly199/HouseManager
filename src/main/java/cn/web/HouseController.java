@@ -46,11 +46,7 @@ public class HouseController {
         System.out.println(houseId);
         return "houseDetail";
     }
-    @RequestMapping("dictionary")
-    public String dictionary (){
 
-        return "dictionary";
-    }
 
 
 }
