@@ -1446,30 +1446,28 @@
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					}, <shiro:hasPermission name="house:view:listAddress">
+					},
 						{
 						field: "building",
 						title: "栋座",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					},</shiro:hasPermission>
-						<shiro:hasPermission name="house:view:listHouseNumber">
+					},
 					 {
 						field: "roomNumber",
 						title: "房号",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					}, </shiro:hasPermission>
-                        <shiro:hasPermission name="house:view:listHouseFloor">
+					},
 						{
 						field: "totalFloor",
 						title: "总楼层",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
-					},</shiro:hasPermission>
+					},
 						{
 						field: "houseType",
 						title: "房型",

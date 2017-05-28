@@ -48,17 +48,7 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public List<HouseList> findHouseByPermission() {
 /*//查找两个合集
-        //公盘，私盘，特盘，封盘
-        //根据权限生成属性sql片段
-        Set<String> attributeSet= permissionToAttribute();
-        Set<Housemsg> housemsgSetByAttribute= new HashSet<>();
-        List<Housemsg> list1 = housemsgDao.selectByAttribute(DataTransferUtil.setToList(attributeSet));
-        housemsgSetByAttribute.addAll(list1);
 
-        //跨部，本部，本人，无的处理
-        List<Housemsg> list2 = permissionToDepartmenthouse();
-        Set<Housemsg> DepartmenthouseSet = new HashSet<>();
-        DepartmenthouseSet.addAll(list2);
         //TODO 地域跨区的的部门权限的查询(可以使用aop)
 
 //两个集合取交集(由于存储空间 不同所以不能用retainAll去重)
@@ -72,8 +62,73 @@ public class HouseServiceImpl implements HouseService {
         Map<String,String> sqlParam = permissionToParam();
         //根据参数查询房源
         Set<Housemsg> housemegSet = findBySqlParam(sqlParam);
+        //去重复
+        housemegSet = DataTransferUtil.setRetainAll(housemegSet,housemegSet);
+        //列表字段权限处理
+        housemegSet =  dealHouseListPermission(housemegSet);
+
         return HousemsgToHouseListWithNameTransfer(DataTransferUtil.setToList(housemegSet));
     }
+    /**
+     * 列表字段权限处理
+     * @param housemegSet
+     * @return
+     */
+    private Set<Housemsg> dealHouseListPermission(Set<Housemsg> housemegSet) {
+        Subject currentUser = SecurityUtils.getSubject();
+
+        Set<Housemsg> result = new HashSet<>();
+        //房源列表字段查看权限数组（不用多次验证权限）4*3 公，私，特，封*楼栋位置，房号，总楼层!!!!!!!
+        boolean[][] houseListPermission = new boolean[4][3];
+        houseListPermission[0][0]=currentUser.isPermitted("house:public:list:address");
+        houseListPermission[0][1]=currentUser.isPermitted("house:public:list:houseNumber");
+        houseListPermission[0][2]=currentUser.isPermitted("house:public:list:floor");
+
+        houseListPermission[1][0]=currentUser.isPermitted("house:private:list:address");
+        houseListPermission[1][1]=currentUser.isPermitted("house:private:list:houseNumber");
+        houseListPermission[1][2]=currentUser.isPermitted("house:private:list:floor");
+
+        houseListPermission[2][0]=currentUser.isPermitted("house:super:list:address");
+        houseListPermission[2][1]=currentUser.isPermitted("house:super:list:houseNumber");
+        houseListPermission[2][2]=currentUser.isPermitted("house:super:list:floor");
+
+        houseListPermission[3][0]=currentUser.isPermitted("house:dead:list:address");
+        houseListPermission[3][1]=currentUser.isPermitted("house:dead:list:houseNumber");
+        houseListPermission[3][2]=currentUser.isPermitted("house:dead:list:floor");
+
+        for (Housemsg housemsg:housemegSet){
+            String[] houseAddress = housemsg.getAddress().split("/");
+            if (housemsg.getAttribute().equals("公盘")){
+                if (houseListPermission[0][0]==false) houseAddress[3]="***";//栋座位置
+                if (houseListPermission[0][1]==false) houseAddress[5]="***";//房号
+                if (houseListPermission[0][2]==false) houseAddress[7]="***";//楼层
+            }
+            else if (housemsg.getAttribute().equals("私盘")){
+                if (houseListPermission[1][0]==false) houseAddress[3]="***";
+                if (houseListPermission[1][1]==false) houseAddress[5]="***";
+                if (houseListPermission[1][2]==false) houseAddress[7]="***";
+            }
+            else if (housemsg.getAttribute().equals("特盘")){
+                if (houseListPermission[2][0]==false) houseAddress[3]="***";
+                if (houseListPermission[2][1]==false) houseAddress[5]="***";
+                if (houseListPermission[2][2]==false) houseAddress[7]="***";
+            }
+            else if (housemsg.getAttribute().equals("封盘")){
+                if (houseListPermission[3][0]==false) houseAddress[3]="***";
+                if (houseListPermission[3][1]==false) houseAddress[5]="***";
+                if (houseListPermission[3][2]==false) houseAddress[7]="***";
+            }
+            StringBuilder houseAddressSB = new StringBuilder();
+            for (int i = 0;i<houseAddress.length;i++){
+                if (i!=houseAddress.length-1) houseAddressSB.append(houseAddress[i]+"/");
+                else houseAddressSB.append(houseAddress[i]);
+            }
+            housemsg.setAddress(houseAddressSB.toString());
+            result.add(housemsg);
+        }
+        return result;
+    }
+
 
     /**
      * 根据参数查询房源
