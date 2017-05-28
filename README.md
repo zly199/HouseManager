@@ -6,7 +6,7 @@
 #password:123456
 
 ##version0.0.1:
-	>访问地址：get url:localhost:8080/HouseManager/login <br>
+	>访问地址：get http://localhost:8080/HouseManagerV2/
 	完成搭建项目骨架的搭建
 ##Version5.0
     1、根据新要求项目全部重构

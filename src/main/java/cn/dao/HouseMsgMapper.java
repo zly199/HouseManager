@@ -2,9 +2,7 @@ package cn.dao;
 
 import cn.entity.Housemsg;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public interface HousemsgMapper {
     /**
@@ -57,4 +55,6 @@ public interface HousemsgMapper {
      * @return
      */
     List<Housemsg> selectByOrganizationPre(String primaryNumberPre);
+
+    Set<Housemsg> selectByAttributeAndDepartment(Map param);
 }

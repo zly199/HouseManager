@@ -86,6 +86,11 @@
     FROM housemsg
     WHERE id LIKE #{primaryNumberPre}
   </select>
+  <select id="selectByAttributeAndDepartment" resultType="cn.entity.Housemsg">
+    SELECT <include refid="Base_Column_List" />
+    FROM housemsg
+    WHERE attribute = #{attribute} AND id LIKE #{departmentPre}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from housemsg
     where id = #{id,jdbcType=VARCHAR}

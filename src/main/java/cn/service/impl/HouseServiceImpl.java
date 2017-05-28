@@ -4,12 +4,10 @@ import cn.dao.*;
 import cn.dto.HouseList;
 import cn.entity.FollowupHouse;
 import cn.entity.Housemsg;
-import cn.entity.OrganizationStructure;
 import cn.entity.UserDuties;
 import cn.service.HouseService;
 import cn.utils.DataTransferUtil;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.Permission;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +47,7 @@ public class HouseServiceImpl implements HouseService {
      */
     @Override
     public List<HouseList> findHouseByPermission() {
-//查找两个合集
+/*//查找两个合集
         //公盘，私盘，特盘，封盘
         //根据权限生成属性sql片段
         Set<String> attributeSet= permissionToAttribute();
@@ -68,9 +66,102 @@ public class HouseServiceImpl implements HouseService {
         Set<Housemsg> result = DataTransferUtil.setRetainAll(housemsgSetByAttribute,DepartmenthouseSet);
         //格式转换
 
-        return HousemsgToHouseListWithNameTransfer(DataTransferUtil.setToList(result));
+        return HousemsgToHouseListWithNameTransfer(DataTransferUtil.setToList(result));*/
+
+        //根据房源查看权限得到查询参数
+        Map<String,String> sqlParam = permissionToParam();
+        //根据参数查询房源
+        Set<Housemsg> housemegSet = findBySqlParam(sqlParam);
+        return HousemsgToHouseListWithNameTransfer(DataTransferUtil.setToList(housemegSet));
     }
 
+    /**
+     * 根据参数查询房源
+     * @param sqlParam
+     * @return
+     */
+    private Set<Housemsg> findBySqlParam(Map<String, String> sqlParam) {
+        Set<Housemsg> result = new HashSet<>();
+        //用于封装mybatis需要的参数Map
+        Map param = new HashMap();
+
+        if (sqlParam.containsKey("公盘")){
+            param.put("attribute","公盘");
+            param.put("departmentPre",sqlParam.get("公盘")+"%");
+            result.addAll(housemsgDao.selectByAttributeAndDepartment(param));
+        }
+        param.clear();
+        if (sqlParam.containsKey("私盘")){
+            param.put("attribute","私盘");
+            param.put("departmentPre",sqlParam.get("私盘")+"%");
+            result.addAll(housemsgDao.selectByAttributeAndDepartment(param));
+        }
+        param.clear();
+        if (sqlParam.containsKey("特盘")){
+            param.put("attribute","特盘");
+            param.put("departmentPre",sqlParam.get("特盘")+"%");
+            result.addAll(housemsgDao.selectByAttributeAndDepartment(param));
+        }
+        param.clear();
+        if (sqlParam.containsKey("封盘")){
+            param.put("attribute","封盘");
+            param.put("departmentPre",sqlParam.get("封盘")+"%");
+            result.addAll(housemsgDao.selectByAttributeAndDepartment(param));
+        }
+        return result;
+    }
+
+    /**
+     * 根据房源查看权限返回房源查询sql片段 String-List<String> 如：'公盘'-"'本部房源前缀','本人','跨部'"
+     * @return
+     */
+    private Map<String, String> permissionToParam() {
+        Subject currentUser = SecurityUtils.getSubject();
+        Map<String,String> sqlParam = new HashMap<>(); //如：'公盘'-"'本部房源前缀','本人','跨部'"
+
+        //获取部门的房源前缀
+        UserDuties user = userDutiesDao.selectByName(currentUser.getPrincipal().toString());
+        String departmentPre = organizationStructureDao.selectByPrimaryKey(user.getOrganizationId()).getNumberPre();
+        //获取个人房源前缀
+        String userPre = user.getUserHousePre();
+        //部门加个人前缀
+        String housePre = departmentPre+userPre;
+
+
+        /*公盘*/
+//        公盘跨部
+        if (currentUser.isPermitted("house:public:listOrDetailView:crossDepartment")) sqlParam.put("公盘","");
+//        公盘本部
+        else if (currentUser.isPermitted("house:public:listOrDetailView:ourDepartment")) sqlParam.put("公盘",departmentPre);
+//        公盘本人
+        else if (currentUser.isPermitted("house:public:listOrDetailView:ourselves")) sqlParam.put("公盘",housePre);
+
+        /*私盘*/
+//        私盘跨部
+        if (currentUser.isPermitted("house:private:listOrDetailView:crossDepartment"))sqlParam.put("私盘","");
+//        私盘本部
+        else if (currentUser.isPermitted("house:private:listOrDetailView:ourDepartment"))sqlParam.put("私盘",departmentPre);
+//        私盘本人
+        else if (currentUser.isPermitted("house:private:listOrDetailView:ourselves"))sqlParam.put("私盘",housePre);
+
+        /*特盘*/
+//        特盘跨部
+        if (currentUser.isPermitted("house:super:listOrDetailView:crossDepartment"))sqlParam.put("特盘","");
+//        特盘本部
+        else if (currentUser.isPermitted("house:super:listOrDetailView:ourDepartment"))sqlParam.put("特盘",departmentPre);
+//        特盘本人
+        else if (currentUser.isPermitted("house:super:listOrDetailView:ourselves"))sqlParam.put("特盘",housePre);
+
+        /*封盘*/
+//        封盘跨部
+        if (currentUser.isPermitted("house:dead:listOrDetailView:crossDepartment"))sqlParam.put("封盘","");
+//        封盘本部
+        else if (currentUser.isPermitted("house:dead:listOrDetailView:ourDepartment"))sqlParam.put("封盘",departmentPre);
+//       封盘本人
+        else if (currentUser.isPermitted("house:dead:listOrDetailView:ourselves"))sqlParam.put("封盘",housePre);
+
+        return sqlParam;
+    }
 
 
     /**
@@ -132,59 +223,5 @@ public class HouseServiceImpl implements HouseService {
         return houseListList;
     }
 
-    /**
-     * 根据用户权限生成SQL语句片段
-     * @return
-     */
-    private Set<String> permissionToAttribute(){
-        Set<String> attributeSet = new HashSet<>();
-        Subject subject = SecurityUtils.getSubject();
 
-        if (subject.isPermitted("house:view:public")) {
-            attributeSet.add("公盘");
-        }
-        if (subject.isPermitted("house:view:private")) attributeSet.add("私盘");//所有私盘
-        if (subject.isPermitted("house:view:super")) attributeSet.add("特盘");
-        if (subject.isPermitted("house:view:died")) attributeSet.add("封盘");
-        return attributeSet;
-    }
-
-    /**
-     * 根据跨部，本部，本人，无的房源返回房源信息
-     * @return
-     */
-    private List<Housemsg> permissionToDepartmenthouse() {
-        List<Housemsg> houseMsgByOrganizationPermission = new ArrayList<>();
-        Subject subject = SecurityUtils.getSubject();
-
-        if (subject.isPermitted("house:view:crossDepartment")){
-            /*查询跨部的房源*///todo:行政跨部，地域跨区的组织权限房源查询（用aop？）
-             houseMsgByOrganizationPermission=housemsgDao.selectAll();
-
-
-        }else if(subject.isPermitted("house:view:ourDepartment")){
-            /*查询本部的房源，根据房源的前缀查询*/
-//            查询用户的部门
-            UserDuties userDuties = userDutiesDao.selectByName(subject.getPrincipal().toString());
-            OrganizationStructure organizationStructure =
-                    organizationStructureDao.selectByPrimaryKey(userDuties.getOrganizationId());
-//            根据部门前缀查询房源
-             houseMsgByOrganizationPermission=housemsgDao.selectByOrganizationPre(organizationStructure.getNumberPre()+"%");
-
-        }else  if (subject.isPermitted("house:view:ourselves")){
-            /*查询本人的房源(本人私盘)*/
-            //查询用户的部门
-            UserDuties userDuties = userDutiesDao.selectByName(subject.getPrincipal().toString());
-            OrganizationStructure organizationStructure =
-                    organizationStructureDao.selectByPrimaryKey(userDuties.getOrganizationId());
-            //部门前缀+个人前缀搜索房源
-
-            houseMsgByOrganizationPermission=
-                    housemsgDao.selectByOrganizationPre(
-                    organizationStructure.getNumberPre()+userDuties.getUserHousePre()+"%")
-            ;
-        }
-
-        return houseMsgByOrganizationPermission;
-    }
 }
