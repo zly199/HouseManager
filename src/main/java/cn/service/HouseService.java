@@ -20,7 +20,6 @@ public interface HouseService {
     List<HouseList> findHouseByPermission();
 
     /**
-     *
      * @return
      */
     int add();

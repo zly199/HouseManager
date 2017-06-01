@@ -4,9 +4,11 @@ import cn.dao.HousemsgMapper;
 import cn.dao.PermissionMapper;
 import cn.dao.UserPermissionMapper;
 import cn.dto.FollowUpHouseAvailable;
+import cn.dto.HouseMessageAvailable;
 import cn.entity.HouseOwner;
 import cn.service.HouseService;
 import cn.service.PermisionService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,5 +109,120 @@ public class PermisionServiceImpl implements PermisionService {
         houseOwner.setComment("*********");
         houseOwner.setIdCard("**********");
         return houseOwner;
+    }
+
+    @Override
+    public HouseMessageAvailable houseDetailViewPermission(HouseMessageAvailable houseMessageAvailable, String houseId) {
+        Boolean[][] followUpPermissions =new Boolean[4][4];//0公盘跟进权限 1私盘跟进权限 2特盘跟进 3封盘跟进*0楼栋位置，1房号，2总楼层,3底价
+        Subject currentUser = SecurityUtils.getSubject();
+
+        //楼栋位置
+        followUpPermissions[0][0] = currentUser.isPermitted("house:public:detail:address");
+        followUpPermissions[1][0] = currentUser.isPermitted("house:private:detail:address");
+        followUpPermissions[2][0] = currentUser.isPermitted("house:super:detail:address");
+        followUpPermissions[3][0] = currentUser.isPermitted("house:dead:detail:address");
+//房号
+        followUpPermissions[0][1] = currentUser.isPermitted("house:public:detail:houseNumber");
+        followUpPermissions[1][1] = currentUser.isPermitted("house:private:detail:houseNumber");
+        followUpPermissions[2][1] = currentUser.isPermitted("house:super:detail:houseNumber");
+        followUpPermissions[3][1] = currentUser.isPermitted("house:dead:detail:houseNumber");
+//楼层
+        followUpPermissions[0][2] = currentUser.isPermitted("house:public:detail:floor");
+        followUpPermissions[1][2] = currentUser.isPermitted("house:private:detail:floor");
+        followUpPermissions[2][2] = currentUser.isPermitted("house:super:detail:floor");
+        followUpPermissions[3][2] = currentUser.isPermitted("house:dead:detail:floor");
+//底价
+        followUpPermissions[0][3] = currentUser.isPermitted("house:public:detail:lowPrice");
+        followUpPermissions[1][3] = currentUser.isPermitted("house:private:detail:lowPrice");
+        followUpPermissions[2][3] = currentUser.isPermitted("house:super:detail:lowPrice");
+        followUpPermissions[3][3] = currentUser.isPermitted("house:dead:detail:lowPrice");
+
+        String attribute = housemsgDao.selectByPrimaryKey(houseId).getAttribute();
+        //楼栋位置
+        if (attribute.equals("公盘")&&!followUpPermissions[0][0]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[3] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+        if (!attribute.equals("私盘")&&!followUpPermissions[1][0]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[3] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+        if (!attribute.equals("特盘")&&!followUpPermissions[2][0]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[3] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+        if (!attribute.equals("封盘")&&!followUpPermissions[3][0]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[3] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+//房号
+        if (attribute.equals("公盘")&&!followUpPermissions[0][1]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[5] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+        if (attribute.equals("私盘")&&!followUpPermissions[1][1]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[5] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+        if (attribute.equals("特盘")&&!followUpPermissions[2][1]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[5] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+        if (attribute.equals("封盘")&&!followUpPermissions[3][1]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[5] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+//楼层
+        if (attribute.equals("公盘")&&!followUpPermissions[0][2]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[6] = "*****";
+            address[7] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+        if (attribute.equals("私盘")&&!followUpPermissions[1][2]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[6] = "*****";
+            address[7] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+        if (attribute.equals("特盘")&&!followUpPermissions[2][2]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[6] = "*****";
+            address[7] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+        if (attribute.equals("封盘")&&!followUpPermissions[3][2]) {
+            String[] address = houseMessageAvailable.getAddress();
+            address[6] = "*****";
+            address[7] = "*****";
+            houseMessageAvailable.setAddress(address);
+        }
+//底价
+        if (attribute.equals("公盘")&&!followUpPermissions[0][3]) {
+            houseMessageAvailable.setSellLowprice(0.00);
+            houseMessageAvailable.setRentLowprice(0.00);
+        }
+        if (attribute.equals("私盘")&&!followUpPermissions[1][3]) {
+            houseMessageAvailable.setSellLowprice(0.00);
+            houseMessageAvailable.setRentLowprice(0.00);
+        }
+        if (attribute.equals("特盘")&&!followUpPermissions[2][3]) {
+            houseMessageAvailable.setSellLowprice(0.00);
+            houseMessageAvailable.setRentLowprice(0.00);
+        }
+        if (attribute.equals("封盘")&&!followUpPermissions[3][3]){
+            houseMessageAvailable.setSellLowprice(0.00);
+            houseMessageAvailable.setRentLowprice(0.00);
+        }
+
+        return houseMessageAvailable;
     }
 }

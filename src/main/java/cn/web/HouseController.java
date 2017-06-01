@@ -55,16 +55,16 @@ public class HouseController {
     }
     @RequestMapping("/detail/{houseId}")
     public String houseDetail(@PathVariable String houseId,Model model){
-        //房源信息
+        //房源信息-查找-权限判断-返回
         HouseMessageAvailable result = houseService.findById(houseId);
+        result = permisionService.houseDetailViewPermission(result,houseId);
         model.addAttribute("houseDetail",result);
-        //跟进信息
+        //跟进信息-查找-转换-权限判断-返回
         List<FollowupHouse> followupHouses = houseService.findFollowupByHouseId(houseId);
         List<FollowUpHouseAvailable> followUpHouseAvailables = houseService.followupHouseToFollowUpHouseAvailable(followupHouses);
-            //跟进权限判断
         followUpHouseAvailables = permisionService.folloUpViewPermission(followUpHouseAvailables,houseId);
         model.addAttribute("followUpList",followUpHouseAvailables);
-        //业主信息
+        //业主信息-查找-权限判断-返回
         HouseOwner houseOwner = houseService.findHouseOwner(houseId);
         houseOwner = permisionService.houseOwnerViewPermission(houseOwner,houseId);
         model.addAttribute("houseOwner",houseOwner);

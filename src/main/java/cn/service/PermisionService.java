@@ -1,6 +1,7 @@
 package cn.service;
 
 import cn.dto.FollowUpHouseAvailable;
+import cn.dto.HouseMessageAvailable;
 import cn.entity.HouseOwner;
 
 import java.util.List;
@@ -26,4 +27,12 @@ public interface PermisionService {
      * @return
      */
     HouseOwner houseOwnerViewPermission(HouseOwner houseOwner, String houseId);
+
+    /**
+     * 房源详情查看权限判断
+     * @param houseMessageAvailable
+     * @param houseId
+     * @return
+     */
+    HouseMessageAvailable houseDetailViewPermission(HouseMessageAvailable houseMessageAvailable,String houseId);
 }

@@ -1307,11 +1307,9 @@
 		</script>
 
 		<script>
-			$(document).on('ready', function() {
-				$("#input-4").fileinput({
-					showCaption: false;
-				});
-			});
+            $(document).on('ready', function() {
+                $("#input-4").fileinput({ showCaption: false });
+            });
 		</script>
 		
 			
