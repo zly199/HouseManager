@@ -1536,7 +1536,7 @@
 						valign: "middle",
 						sortable: "true",
 						formatter: function(value, row, index) {
-                            var e = '<a href="back/house/ediHouse/'+row.id +'">' + "查看详情" + '</a>';
+                            var e = '<a href="back/house/detail/'+row.id +'">' + "查看详情" + '</a>';
                             return e;
                         }
 

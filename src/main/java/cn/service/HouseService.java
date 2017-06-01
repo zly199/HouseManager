@@ -1,6 +1,10 @@
 package cn.service;
 
+import cn.dto.FollowUpHouseAvailable;
 import cn.dto.HouseList;
+import cn.dto.HouseMessageAvailable;
+import cn.entity.FollowupHouse;
+import cn.entity.HouseOwner;
 import cn.entity.Housemsg;
 
 import java.util.List;
@@ -28,4 +32,26 @@ public interface HouseService {
     List<HouseList> findAll();
 
 
+    HouseMessageAvailable findById(String houseId);
+
+    /**
+     * 通过houseId查找所有跟进记录
+     * @param houseId
+     * @return
+     */
+    List<FollowupHouse> findFollowupByHouseId(String houseId);
+
+    /**
+     * 跟进字段的处理 id-》名称
+     * @param followupHouses
+     * @return
+     */
+    List<FollowUpHouseAvailable> followupHouseToFollowUpHouseAvailable(List<FollowupHouse> followupHouses);
+
+    /**
+     * 根据房号查询业主
+     * @param houseId
+     * @return
+     */
+    HouseOwner findHouseOwner(String houseId);
 }

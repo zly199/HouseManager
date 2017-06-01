@@ -36,4 +36,6 @@ public interface UserDutiesMapper {
      * @return
      */
     List<UserDuties> selectAll();
+
+    UserDuties selectByUserId(Long userId);
 }

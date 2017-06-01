@@ -10,10 +10,13 @@ import cn.entity.User;
 import cn.entity.UserDuties;
 import cn.service.UserService;
 import cn.utils.DataTransferUtil;
+import javafx.scene.input.DataFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -84,7 +87,12 @@ public class UserServiceImpl implements UserService{
 
         //组织，职务，上级id到名称的转换
         //返回可用列表
-        return userAvailableToUserOa(userDutiesToUserAvailable(userDutiesList));
+        try {
+            return userAvailableToUserOa(userDutiesToUserAvailable(userDutiesList));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -103,6 +111,8 @@ public class UserServiceImpl implements UserService{
      */
     private List<UserOa> userAvailableToUserOa(List<UserAvailable> userAvailables) {
         List<UserOa> userOaList = new ArrayList<>();
+
+
         for (UserAvailable userAvailable:userAvailables){
             userOaList.add(
                     new UserOa(
@@ -127,10 +137,13 @@ public class UserServiceImpl implements UserService{
      * @param userDutiesList
      * @return
      */
-    private List<UserAvailable> userDutiesToUserAvailable(List<UserDuties> userDutiesList) {
+    private List<UserAvailable> userDutiesToUserAvailable(List<UserDuties> userDutiesList) throws ParseException {
         List<UserAvailable> userAvailableList = new ArrayList<>();
-
+        SimpleDateFormat dataFormat = new SimpleDateFormat ("hh:mm:ss");
         for (UserDuties userDutie:userDutiesList){
+            //格式化上下班时间
+
+
             userAvailableList.add(new UserAvailable(
                     userDutie.getLocked(),
                     userDutie.getUserId(),

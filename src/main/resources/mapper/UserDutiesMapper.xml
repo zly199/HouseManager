@@ -51,6 +51,18 @@
       WHERE organization_name=#{organizationName}
     )
   </select>
+  <select id="selectByUserId" resultType="cn.entity.UserDuties">
+    SELECT
+      locked, user_id, user_name,
+      organization_id, duties_id, state,
+      entry_time, dimission_time, omni,
+      source, technical_title, record,
+      main_buildings, chief_id, connecttion_way,
+      password, working_time, closing_time,
+      user_persion, user_house_pre
+    FROM user_duties
+    WHERE user_id = #{userId}
+  </select>
   <select id="selectAll" resultType="cn.entity.UserDuties">
     SELECT
       locked, user_id, user_name,

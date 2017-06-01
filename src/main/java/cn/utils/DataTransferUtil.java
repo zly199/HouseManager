@@ -1,7 +1,9 @@
 package cn.utils;
 
+import cn.dto.FollowUpHouseAvailable;
 import cn.dto.HouseList;
 import cn.dto.HouseMessageAvailable;
+import cn.entity.FollowupHouse;
 import cn.entity.Housemsg;
 
 import java.util.*;
@@ -193,4 +195,6 @@ public class DataTransferUtil {
 
         return result;
     }
+
+
 }

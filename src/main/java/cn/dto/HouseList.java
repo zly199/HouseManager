@@ -1,5 +1,8 @@
 package cn.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -43,6 +46,8 @@ public class HouseList implements Serializable{
     /*公私*/
     private String attribute;
     /*最后跟进日*/
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date LastFollowDate;
     /*照片*/
     private int phoneCount;

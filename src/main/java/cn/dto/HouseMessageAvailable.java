@@ -1,5 +1,7 @@
 package cn.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
@@ -76,6 +78,7 @@ public class HouseMessageAvailable implements Serializable {
     /**
      * 购买时间
      */
+
     private Date purchasingDate;
 
     /**
@@ -96,6 +99,7 @@ public class HouseMessageAvailable implements Serializable {
     /**
      * 委托日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date precatoryDate;
 
     /**
@@ -121,6 +125,7 @@ public class HouseMessageAvailable implements Serializable {
     /**
      * 交房日期
      */
+
     private Date lunchTime;
 
     /**
@@ -141,6 +146,7 @@ public class HouseMessageAvailable implements Serializable {
     /**
      * 建房年代
      */
+
     private Date buildYear;
 
     /**
@@ -211,6 +217,7 @@ public class HouseMessageAvailable implements Serializable {
     /**
      * 产权年限
      */
+
     private Date yearOfPropertyRight;
 
     /**

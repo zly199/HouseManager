@@ -16,6 +16,7 @@
     xml，json默认读写支持.
     -->
 
+    <!-- springmvc注解驱动-->
     <mvc:annotation-driven>
         <!-- 处理responseBody 里面日期类型 -->
         <mvc:message-converters>
@@ -24,7 +25,7 @@
                     <bean class="com.fasterxml.jackson.databind.ObjectMapper">
                         <property name="dateFormat">
                             <bean class="java.text.SimpleDateFormat">
-                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd" />
                             </bean>
                         </property>
                     </bean>

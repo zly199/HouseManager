@@ -104,6 +104,7 @@
           <version>${jstl.version}</version>
       </dependency>
       <!--ajex用的是jackson而不是jsp-->
+      <!-- json数据 -->
       <dependency>
           <groupId>org.codehaus.jackson</groupId>
           <artifactId>jackson-mapper-asl</artifactId>
@@ -112,12 +113,12 @@
       <dependency>
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-core</artifactId>
-          <version>${jackson.core.version}</version>
+          <version>2.5.1</version>
       </dependency>
       <dependency>
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-databind</artifactId>
-          <version>${jackson.core.version}</version>
+          <version>2.5.1</version>
       </dependency>
 
       <dependency>
@@ -125,11 +126,7 @@
           <artifactId>javax.servlet-api</artifactId>
           <version>${javax.servlet.version}</version>
       </dependency>
-      <dependency>
-          <groupId>org.codehaus.jackson</groupId>
-          <artifactId>jackson-core-asl</artifactId>
-          <version>${jackson.version}</version>
-      </dependency>
+
 
 
       <!--dateFormat使用-->

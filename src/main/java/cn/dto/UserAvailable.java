@@ -1,5 +1,9 @@
 package cn.dto;
 
+
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -41,11 +45,13 @@ public class UserAvailable implements Serializable {
     /**
      * 入职时间
      */
+    @JsonFormat(pattern = "hh:mm:ss", timezone = "GMT+8")
     private Date entryTime;
 
     /**
      * 离职时间
      */
+    @JsonFormat(pattern = "hh:mm:ss", timezone = "GMT+8")
     private Date dimissionTime;
 
     /**
@@ -91,11 +97,13 @@ public class UserAvailable implements Serializable {
     /**
      * 上班时间
      */
+    @JsonFormat(pattern = "hh:mm:ss")
     private Date workingTime;
 
     /**
      * 下班时间
      */
+    @JsonFormat(pattern = "hh:mm:ss")
     private Date closingTime;
 
     /**

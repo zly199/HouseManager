@@ -1,8 +1,13 @@
 package cn.web;
 
+import cn.dto.FollowUpHouseAvailable;
 import cn.dto.HouseList;
-import cn.entity.Housemsg;
+import cn.dto.HouseMessageAvailable;
+import cn.entity.FollowupHouse;
+import cn.entity.HouseOwner;
 import cn.service.HouseService;
+import cn.service.PermisionService;
+import cn.utils.DataTransferUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +27,8 @@ public class HouseController {
 
     @Autowired
     HouseService houseService;
+    @Autowired
+    PermisionService permisionService;
 
     @RequestMapping("/view")
     @RequiresPermissions("house:viewPage")
@@ -46,7 +53,27 @@ public class HouseController {
         System.out.println(houseId);
         return "houseDetail";
     }
-
-
-
+    @RequestMapping("/detail/{houseId}")
+    public String houseDetail(@PathVariable String houseId,Model model){
+        //房源信息
+        HouseMessageAvailable result = houseService.findById(houseId);
+        model.addAttribute("houseDetail",result);
+        //跟进信息
+        List<FollowupHouse> followupHouses = houseService.findFollowupByHouseId(houseId);
+        List<FollowUpHouseAvailable> followUpHouseAvailables = houseService.followupHouseToFollowUpHouseAvailable(followupHouses);
+            //跟进权限判断
+        followUpHouseAvailables = permisionService.folloUpViewPermission(followUpHouseAvailables,houseId);
+        model.addAttribute("followUpList",followUpHouseAvailables);
+        //业主信息
+        HouseOwner houseOwner = houseService.findHouseOwner(houseId);
+        houseOwner = permisionService.houseOwnerViewPermission(houseOwner,houseId);
+        model.addAttribute("houseOwner",houseOwner);
+        //其他相关信息
+//todo：其他信息
+        //照片
+        //todo:照片
+//        钥匙
+        //todo：钥匙
+        return "houseDetail";
+    }
 }

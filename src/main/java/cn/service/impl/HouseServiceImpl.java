@@ -1,8 +1,11 @@
 package cn.service.impl;
 
 import cn.dao.*;
+import cn.dto.FollowUpHouseAvailable;
 import cn.dto.HouseList;
+import cn.dto.HouseMessageAvailable;
 import cn.entity.FollowupHouse;
+import cn.entity.HouseOwner;
 import cn.entity.Housemsg;
 import cn.entity.UserDuties;
 import cn.service.HouseService;
@@ -39,6 +42,10 @@ public class HouseServiceImpl implements HouseService {
     //楼盘字典dao
     @Autowired
     HousesDictionaryMapper housesDictionaryDao;
+    @Autowired
+    EnterpriseDutiesMapper enterpriseDutiesDao;
+    @Autowired
+    HouseOwnerMapper houseOwnerDao;
 
     /**
      * 根据当前登录用户权限查询房源信息
@@ -67,8 +74,11 @@ public class HouseServiceImpl implements HouseService {
         //列表字段权限处理
         housemegSet =  dealHouseListPermission(housemegSet);
 
-        return HousemsgToHouseListWithNameTransfer(DataTransferUtil.setToList(housemegSet));
+
+            return HousemsgToHouseListWithNameTransfer(DataTransferUtil.setToList(housemegSet));
+
     }
+
     /**
      * 列表字段权限处理
      * @param housemegSet
@@ -236,14 +246,71 @@ public class HouseServiceImpl implements HouseService {
 
         List<Housemsg> housemsgList = housemsgDao.selectAll();
         //数据源到列表数据的转换
-        return HousemsgToHouseListWithNameTransfer(housemsgList);
+
+            return HousemsgToHouseListWithNameTransfer(housemsgList);
+
     }
 
-    private List<HouseList> HousemsgToHouseListWithNameTransfer( List<Housemsg> housemsgList){
+
+    @Override
+    public HouseMessageAvailable findById(String houseId) {
+        Housemsg result = housemsgDao.selectByPrimaryKey(houseId);
+        HouseMessageAvailable houseMessageAvailable = DataTransferUtil.HousemsgToHouseMessageAvailable(result);
+        return houseMessageAvailable;
+    }
+
+    /**
+     * 通过houseId查找所有跟进记录
+     * @param houseId
+     * @return
+     */
+    @Override
+    public List<FollowupHouse> findFollowupByHouseId(String houseId) {
+
+        return followupHouseDao.selectByHouseId(houseId);
+    }
+
+    /**
+     * 跟进字段的处理 id-》名称
+     * @param followupHouses
+     * @return
+     */
+    @Override
+    public List<FollowUpHouseAvailable> followupHouseToFollowUpHouseAvailable(List<FollowupHouse> followupHouses) {
+        List<FollowUpHouseAvailable> result = new ArrayList<>();
+        for (FollowupHouse followupHouse:followupHouses){
+            result.add(
+                    new FollowUpHouseAvailable(
+                            followupHouse.getContent(),
+                            userDao.selectByPrimaryKey(followupHouse.getUserid()).getUserName(),
+                            enterpriseDutiesDao.selectByPrimaryKey(userDutiesDao.selectByUserId(followupHouse.getUserid()).getDutiesId()).getDutiesName(),
+                            organizationStructureDao.selectByPrimaryKey(userDutiesDao.selectByUserId(followupHouse.getUserid()).getOrganizationId()).getOrganizationName(),
+                            followupHouse.getTime(),
+                            followupHouse.getMethod()
+                            )
+            );
+
+        }
+        return result;
+    }
+
+
+    /**
+     * 根据房号查询业主
+     * @param houseId
+     * @return
+     */
+    @Override
+    public HouseOwner findHouseOwner(String houseId) {
+
+        return houseOwnerDao.selectByPrimaryKey(housemsgDao.selectByPrimaryKey(houseId).getClientId());
+    }
+
+    private List<HouseList> HousemsgToHouseListWithNameTransfer( List<Housemsg> housemsgList) {
 
         //        从数据源到列表格式转换
         List<HouseList> houseListList = new ArrayList<>();
-        SimpleDateFormat  dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat  dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
         Date lastFollowDate=new Date();
         for (Housemsg housemsg:housemsgList){
             HouseList houseList=DataTransferUtil.HouseMsgToHouseList(housemsg);
@@ -260,7 +327,7 @@ public class HouseServiceImpl implements HouseService {
 //  确定最后跟进日
             List<FollowupHouse> followupHouses=followupHouseDao.selectByHouseId(houseList.getId());
             try {
-                lastFollowDate = dateFormat2.parse("1980-01-01 00:00:00");
+                lastFollowDate = dateFormat2.parse("1980-01-01");
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -270,6 +337,7 @@ public class HouseServiceImpl implements HouseService {
                         (lastFollowDate.before(followupHouse.getTime()))?
                                 followupHouse.getTime():lastFollowDate;
             }
+
             houseList.setLastFollowDate(lastFollowDate);
 
             houseListList.add(houseList);
