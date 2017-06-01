@@ -1,63 +1,86 @@
-.size
-{
+.size {
 	font-size: 16px;
-	font-family : 微软雅黑,宋体;
-	
+	font-family: 微软雅黑, 宋体;
 }
-.size1
-{
+
+.size1 {
 	width: 100px;
 }
-.size2
-{
+
+.size2 {
 	font-size: 16px;
-	font-family : 微软雅黑,宋体;
-	color:#39250E;
+	font-family: 微软雅黑, 宋体;
+	color: #39250E;
 }
-/*新增客源*/
-.taright
+#point1
 {
-	width: 300px; 
-	float: right;
-	margin-top: -1131px;
-	background-color:#eee;
+	width: 70px;
+	height: 30px;
+}
+#point2
+{
+	height: 30px;
 	
-}
-.taright1
-{
-	width: 300px; 
+	}
+
+
+
+
+
+
+
+
+
+/*新增客源*/
+
+.taright {
+	width: 300px;
 	float: right;
-	margin-top: -651px;
-	background-color:#eee;
+	margin-top: -1101px;
+	background-color: #eee;
 }
+
+.taright1 {
+	width: 300px;
+	float: right;
+	margin-top: 20px;
+	background-color: #eee;
+}
+
+
 /*新增房源*/
-.taright2
-{
-	width: 300px; 
+
+
+
+.taright2 {
+	width: 300px;
 	float: right;
-	margin-top: -1528px;
-	background-color:#eee;
+	margin-top: -1570px;
+	background-color: #eee;
 }
-.taright3
-{
-	width: 300px; 
+
+.taright3 {
+	width: 300px;
 	float: right;
-	margin-top: -1050px;
-	background-color:#eee;
+	margin-top: -1120px;
+	background-color: #eee;
 }
-#point
-{
-	background-color:pink;
-	color:red;
-	border-color:green
+.taright4 {
+	margin-top: 20px;
 }
-.selecthouse1
-{
-	width: 100px;	
+
+#point {
+	background-color: pink;
+	color: red;
+	border-color: green;
 }
-.selecthouse2
-{
-	width: 88px;	
+
+.selecthouse1 {
+	width: 100px;
+}
+
+.selecthouse2 {
+	width: 88px;
 }
 
 
@@ -68,34 +91,122 @@
 	display: none;
 	width: 100px;
 }*/
-.watch
-{
+
+.watch {
 	font-family: "微软雅黑";
 }
-.watch1
-{
+
+.watch1 {
 	float: right;
 	margin-top: -36px;
 }
-.watch2
-{
+
+.watch2 {
 	background-color: #eee;
 }
-#watch2
-{
+
+#watch2 {
 	float: right;
 	margin-top: -5px;
 }
-.watch3
-{
+
+.watch3 {
 	margin-left: 60px;
 	margin-top: -25px;
 }
-#watch4:hover
-{
+
+#watch4:hover {
 	background-color: green;
 }
-td {
-      text-align:center; /*设置水平居中*/
-      vertical-align:middle;/*设置垂直居中*/
+
+/*td {
+	text-align: center;
+	!*设置水平居中*!
+	!*vertical-align: middle;*!
+	!*设置垂直居中*!
+}*/
+
+
+/*房源详情页*/
+
+.detail1 {
+	background-color: #eee;
+	width: 1115px;
+	height: 80px;
+	margin-left: -30px;
+}
+
+.detail2 {
+	font-family: "微软雅黑";
+	color: green;
+	font-size: 25px;
+	padding-left: 100px;
+	padding-top: 15px;
+}
+
+.detail3 {
+	float: right;
+	padding-right: 100px;
+	margin-top: -30px;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	color: gray;
+}
+
+.detail4 {
+	height: 30px;
+	width: 30px;
+	color: red;
+	border: solid 3px;
+}
+
+.detail5 {
+	font-family: "微软雅黑";
+	color: green;
+	font-size: 15px;
+	padding-left: 100px;
+	padding-top: 5px;
+}
+
+#detail6 {
+	height: 20px;
+	width: 20px;
+	color: green;
+	border: solid 1px;
+}
+
+#detail7 {
+	height: 20px;
+	width: 20px;
+	color: blue;
+	border: solid 1px;
+	margin-left: 5px;
+}
+
+#detail8 {
+	height: 20px;
+	width: 20px;
+	color: yellow;
+	border: solid 1px;
+	margin-left: 5px;
+}
+
+.detail9 {
+	margin-left: 120px;
+	font-size: 13px;
+}
+
+#sp13 {
+	padding-left: 12px;
+}
+
+#sp14 {
+	padding-left: 20px;
+}
+
+.button11 {
+	margin-top: -180px;
+	margin-left: 800px;
+	width: 200px;
+	height: 400px;
 }

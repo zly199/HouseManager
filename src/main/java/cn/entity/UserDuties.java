@@ -99,6 +99,19 @@ public class UserDuties {
     private Long userPersion;
 
     /**
+     * 个人房源前缀（私盘）,不包括部门的房源前缀
+     */
+    private String userHousePre;
+
+    public String getUserHousePre() {
+        return userHousePre;
+    }
+
+    public void setUserHousePre(String userHousePre) {
+        this.userHousePre = userHousePre;
+    }
+
+    /**
      * 
      * @return locked 
      */

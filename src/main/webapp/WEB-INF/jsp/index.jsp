@@ -2,6 +2,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -67,7 +68,7 @@
 
 				<!-- logo标志 -->
 
-				<a class="brand" href="index.html">
+				<a class="brand" href="back/user/index">
 
 				<img src="media/image/logo.png" alt="logo"/>
 
@@ -98,7 +99,7 @@
 
 						<img alt="" src="media/image/avatar1_small.jpg" />
 
-						<span class="username">Bob Nilson</span>
+						<span class="username"><shiro:principal/></span>
 
 						<i class="icon-angle-down"></i>
 
@@ -107,7 +108,7 @@
 						<ul class="dropdown-menu">
 
 							<li><a href="profile.html"><i class="icon-user"></i> 个人信息</a></li>
-							<li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+							<li><a href="back/user/loginOut"><i class="icon-key"></i> Log Out</a></li>
 
 						</ul>
 
@@ -237,7 +238,7 @@
 
 						<li >
 
-							<a href="#">
+							<a href="back/house/view">
 
 							房源查询</a>
 
@@ -245,7 +246,7 @@
 
 						<li >
 
-							<a href="#">
+							<a href="back/house/add">
 
 							增加房源</a>
 
@@ -259,44 +260,11 @@
 
 					<a href="javascript:;">
 
-					<i class="icon-table"></i> 
+						<i class="icon-th"></i>
 
-					<span class="title">房源跟进</span>
+						<span class="title">人事OA</span>
 
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-
-						<li >
-
-							<a href="#">
-
-							跟进查询</a>
-
-						</li>
-
-						<li >
-
-							<a href="#">
-
-							登记跟进记录</a>
-
-						</li>
-					</ul>
-
-				</li>
-
-				<li class="">
-
-					<a href="javascript:;">
-
-					<i class="icon-th-large"></i> 
-
-					<span class="title">合同管理</span>
-
-					<span class="arrow "></span>
+						<span class="arrow "></span>
 
 					</a>
 
@@ -304,216 +272,45 @@
 
 						<li>
 
-								<a href="#">
-									出租合同查询</a>
+							<a href="userPhone.html">
 
-							</li>
-							<li>
-
-								<a href="#">
-									出售合同查询</a>
-
-							</li>
-
-						<li >
-
-							<a href="#">
-							增加合同</a>
+								通讯录</a>
 
 						</li>
-					</ul>
-
-				</li>
-
-				<li class="">
-
-					<a href="javascript:;">
-
-					<i class="icon-gift"></i> 
-
-					<span class="title">销售管理</span>
-
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-
-						<li >
-
-							<a href="#">
-
-							销售查询</a>
-
-						</li>
-
-						<li >
-
-							<a href="#">
-
-							增加销售信息</a>
-
-						</li>
-					</ul>
-
-				</li>
-
-				<li>
-
-					<a class="active" href="javascript:;">
-
-					<i class="icon-sitemap"></i> 
-
-					<span class="title">新闻管理</span>
-
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-							<li >
-
-							<a href="#">
-
-							新闻查询</a>
-
-						</li>
-						<li >
-
-							<a href="#">
-
-							增加新闻</a>
-
-						</li>
-
-					</ul>
-
-				</li>
-
-				<li>
-
-					<a href="javascript:;">
-
-					<i class="icon-folder-open"></i> 
-
-					<span class="title">综合统计</span>
-
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-
 						<li>
 
-							<a href="javascript:;">
+							<a href="departmentPhone.html">
 
-							<i class="icon-folder-open"></i> 
-
-							统计房源
-
-							<span class="arrow"></span>
-
-							</a>
-
-							<ul class="sub-menu">
-								<li><a href="#"><i class="icon-globe"></i>统计求租房源 </a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>  统计求购房源</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i> 统计出租房源</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i> 统计出售房源 </a></li>
-								
-							
-
-							</ul>
+								部门通讯录</a>
 
 						</li>
 
 						<li>
 
-							<a href="javascript:;">
+							<a href="back/personnelMinistry/organization">
 
-							<i class="icon-folder-open"></i> 
-
-							统计客源
-
-							<span class="arrow"></span>
-
-							</a>
-
-							<ul class="sub-menu">
-
-								<li><a href="#"><i class="icon-globe"></i>统计出租人员</a></li>
-								
-								<li><a href="#"><i class="icon-globe"></i>统计出售人员</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>统计求租人员</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>统计求售人员</a></li>
-
-							</ul>
+								组织机构</a>
 
 						</li>
-
 						<li>
 
-							<a href="#">
+							<a href="addstaff.html">
 
-							<i class="icon-folder-open"></i>
-
-							统计销售额
-                           	<span class="arrow"></span>
-							</a>
-							<ul class="sub-menu">
-
-								<li><a href="#"><i class="icon-globe"></i>统计出租销售额</a></li>
-								<li><a href="#"><i class="icon-globe"></i>统计出售销售额</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>统计求租销售额</a></li>
-
-								<li><a href="#"><i class="icon-globe"></i>统计求售销售额</a></li>
-
-							</ul>
+								新增员工</a>
 
 						</li>
+						<li>
 
-					</ul>
+							<a href="detailOA.html">
 
-				</li>
-				<li class="">
-
-					<a href="javascript:;">
-
-					<i class="icon-th"></i> 
-
-					<span class="title">客源跟进</span>
-
-					<span class="arrow "></span>
-
-					</a>
-
-					<ul class="sub-menu">
-
-						<li >
-
-							<a href="table_basic.html">
-
-							查询客源跟进信息</a>
-
-						</li>
-
-						<li >
-
-							<a href="table_responsive.html">
-
-							增加客源跟进信息</a>
+								人事OA详情信息</a>
 
 						</li>
 					</ul>
 
 				</li>
+
+
 				<li class="">
 
 					<a href="javascript:;">
@@ -695,13 +492,13 @@
 
 								<i class="icon-home"></i>
 
-								<a href="index.html">Home</a> 
+								<a href="back/user/index">Home</a>
 
 								<i class="icon-angle-right"></i>
 
 							</li>
 
-							<li><a href="#">主页</a></li>
+							<li><a href="back/user/index">主页</a></li>
 						</ul>
 
 						<!-- END PAGE TITLE & BREADCRUMB-->

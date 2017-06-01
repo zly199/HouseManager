@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by ZLY on 2017-05-18.
@@ -15,6 +16,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/spring-*.xml"})
 public class UserMapperTest {
+
 
     @Autowired
     UserMapper userMapper;
@@ -30,6 +32,18 @@ public class UserMapperTest {
     public void selectByUserName() throws Exception {
         User user = userMapper.selectByUserName("周谦");
         System.out.println(user.toString());
+    }
+
+    @Test
+    public void selectRoleByUserName() throws Exception {
+        Set<String> stringSet=userMapper.selectRoleByUserName("曾令勇");
+        System.out.println(stringSet);
+    }
+
+    @Test
+    public void selectPermissionsByUserName() throws Exception {
+        Set<String> stringSet=userMapper.selectPermissionsByUserName("曾令勇");
+        System.out.println(stringSet);
     }
 
 }

@@ -21,7 +21,59 @@
     <result column="working_time" property="workingTime" jdbcType="TIME" />
     <result column="closing_time" property="closingTime" jdbcType="TIME" />
     <result column="user_persion" property="userPersion" jdbcType="BIGINT" />
+    <result column="user_house_pre" property="userHousePre" jdbcType="VARCHAR"/>
   </resultMap>
+  <select id="selectByName" resultType="cn.entity.UserDuties">
+    SELECT
+        locked, user_id, user_name,
+        organization_id, duties_id, state,
+        entry_time, dimission_time, omni,
+        source, technical_title, record,
+        main_buildings, chief_id, connecttion_way,
+        password, working_time, closing_time,
+        user_persion, user_house_pre
+      FROM user_duties
+      WHERE user_name=#{userName}
+  </select>
+  <select id="selectByOrganizationName" resultType="cn.entity.UserDuties">
+    SELECT
+      locked, user_id, user_name,
+      organization_id, duties_id, state,
+      entry_time, dimission_time, omni,
+      source, technical_title, record,
+      main_buildings, chief_id, connecttion_way,
+      password, working_time, closing_time,
+      user_persion, user_house_pre
+    FROM user_duties
+    WHERE organization_id=(
+      SELECT organization_id
+      FROM organization_structure
+      WHERE organization_name=#{organizationName}
+    )
+  </select>
+  <select id="selectByUserId" resultType="cn.entity.UserDuties">
+    SELECT
+      locked, user_id, user_name,
+      organization_id, duties_id, state,
+      entry_time, dimission_time, omni,
+      source, technical_title, record,
+      main_buildings, chief_id, connecttion_way,
+      password, working_time, closing_time,
+      user_persion, user_house_pre
+    FROM user_duties
+    WHERE user_id = #{userId}
+  </select>
+  <select id="selectAll" resultType="cn.entity.UserDuties">
+    SELECT
+      locked, user_id, user_name,
+      organization_id, duties_id, state,
+      entry_time, dimission_time, omni,
+      source, technical_title, record,
+      main_buildings, chief_id, connecttion_way,
+      password, working_time, closing_time,
+      user_persion, user_house_pre
+    FROM user_duties
+  </select>
   <insert id="insert" parameterType="cn.entity.UserDuties" >
     insert into user_duties (locked, user_id, user_name, 
       organization_id, duties_id, state, 
@@ -29,14 +81,14 @@
       source, technical_title, record, 
       main_buildings, chief_id, connecttion_way, 
       password, working_time, closing_time, 
-      user_persion)
+      user_persion, user_house_pre)
     values (#{locked,jdbcType=BIT}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
       #{organizationId,jdbcType=VARCHAR}, #{dutiesId,jdbcType=TINYINT}, #{state,jdbcType=VARCHAR}, 
       #{entryTime,jdbcType=TIMESTAMP}, #{dimissionTime,jdbcType=TIMESTAMP}, #{omni,jdbcType=VARCHAR}, 
       #{source,jdbcType=VARCHAR}, #{technicalTitle,jdbcType=VARCHAR}, #{record,jdbcType=VARCHAR}, 
       #{mainBuildings,jdbcType=VARCHAR}, #{chiefId,jdbcType=BIGINT}, #{connecttionWay,jdbcType=INTEGER}, 
       #{password,jdbcType=VARCHAR}, #{workingTime,jdbcType=TIME}, #{closingTime,jdbcType=TIME}, 
-      #{userPersion,jdbcType=BIGINT})
+      #{userPersion,jdbcType=BIGINT},#{userHousePre,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.UserDuties" >
     insert into user_duties
@@ -98,6 +150,9 @@
       <if test="userPersion != null" >
         user_persion,
       </if>
+      <if test="userHousePre !=null">
+        user_house_pre,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="locked != null" >
@@ -156,6 +211,9 @@
       </if>
       <if test="userPersion != null" >
         #{userPersion,jdbcType=BIGINT},
+      </if>
+      <if test="userHousePre !=null">
+        user_house_pre,
       </if>
     </trim>
   </insert>

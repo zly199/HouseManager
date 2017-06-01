@@ -17,4 +17,26 @@
     FROM v_user
     WHERE user_name=#{userName}
   </select>
+  <select id="selectByPrimaryKey" resultType="cn.entity.User">
+    SELECT v_user.user_id,v_user.user_name,v_user.password,v_user.locked,v_user.role_id
+    FROM v_user
+    WHERE user_id=#{userId}
+  </select>
+
+  <select id="selectRoleByUserName" resultType="String">
+    SELECT epd.duties_name
+    FROM enterprise_duties epd,user_duties userd
+    WHERE userd.user_name=#{userName} and userd.duties_id=epd.enterprise_duties_id;
+  </select>
+
+  <select id="selectPermissionsByUserName" resultType="String">
+    select p.permission_char
+    from t_permission p
+    where permission_id
+          in (select
+                permission_id
+              from t_user_permission tup,v_user vu
+              where tup.user_id=vu.user_id and vu.user_name=#{userName}
+          );
+  </select>
 </mapper>

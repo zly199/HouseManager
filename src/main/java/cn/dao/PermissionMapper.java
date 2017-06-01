@@ -1,6 +1,10 @@
 package cn.dao;
 
 import cn.entity.Permission;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Set;
 
 public interface PermissionMapper {
     /**
@@ -38,4 +42,6 @@ public interface PermissionMapper {
      * @mbggenerated 2017-05-18
      */
     int updateByPrimaryKey(Permission record);
+    //通过权限字符串查找权限id
+    Set<Integer> selectByPermissionChar(List<String> permissionCharList);
 }

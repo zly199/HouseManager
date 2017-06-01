@@ -15,7 +15,24 @@
     (2)提供一系列：数据绑定，数字和日期format，@NumberFormat，@DataTimeFormat
     xml，json默认读写支持.
     -->
-    <mvc:annotation-driven/>
+
+    <!-- springmvc注解驱动-->
+    <mvc:annotation-driven>
+        <!-- 处理responseBody 里面日期类型 -->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd" />
+                            </bean>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
     <!-- 2*servlet-mapping 映射“/” -->
     <!-- 静态默认servlet配置
      1.js，GIF，png处理
@@ -31,5 +48,8 @@
     <context:component-scan base-package="cn.web"/>
     <!--5静态资源的获取-->
     <mvc:resources mapping="media" location="/media"/>
-    
+
+
+
+
 </beans>

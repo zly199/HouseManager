@@ -1,8 +1,11 @@
 package cn.dao;
 
+import cn.dto.UserOa;
 import cn.entity.User;
+import cn.entity.UserDuties;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserMapper {
     /*
@@ -16,6 +19,22 @@ public interface UserMapper {
      * @return
      */
     User selectByUserName(String userName);
+
+    /**
+     * 通过用户名查询角色(职务)信息
+     * @param userName
+     * @return
+     */
+    Set<String> selectRoleByUserName(String userName);
+
+    /**
+     * 通过用户名查询权限信息
+     * @param userName
+     * @return
+     */
+    Set<String> selectPermissionsByUserName(String userName);
+
+    User selectByPrimaryKey(Long userId);
 
 
 }

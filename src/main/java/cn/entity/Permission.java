@@ -2,7 +2,7 @@ package cn.entity;
 
 public class Permission {
     /**
-     * 权限id
+     * 权限id(**'/**'/**'/**)
      */
     private Integer permissionId;
 

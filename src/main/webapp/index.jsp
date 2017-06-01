@@ -11,8 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="back/login">登录页面</a>
-    <a href="http://localhost:8080/HouseManagerV2/back/index">主页</a>
+    <a href="back/user/login">登录页面</a>
+    <a href="http://localhost:8080/HouseManagerV2/back/user/index">主页</a>
 
 </body>
 </html>

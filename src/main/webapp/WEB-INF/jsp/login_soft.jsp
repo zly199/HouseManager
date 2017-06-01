@@ -78,7 +78,7 @@
 
 		<!-- BEGIN LOGIN FORM -->
 
-		<form class="form-vertical login-form" action="back/login" method="post">
+		<form class="form-vertical login-form" action="back/user/login" method="post">
 
 			<h3 class="form-title">Login to your account</h3>
 
@@ -89,13 +89,16 @@
 				<span>Enter any username and password.</span>
 
 			</div>
-            <div class="alert alert-error">
+			<c:if test="${loginResult.success==false}">
+				<div class="alert alert-error">
 
-                <button class="close" data-dismiss="alert"></button>
+					<button class="close" data-dismiss="alert"></button>
 
-                <span>账号或密码错误!</span>
+					<span>账号或密码错误!</span>
 
-            </div>
+				</div>
+			</c:if>
+
 
 			<div class="control-group">
 
@@ -183,7 +186,7 @@
 
 		<!-- BEGIN FORGOT PASSWORD FORM -->
 
-		<form class="form-vertical forget-form" action="index.html">
+		<form class="form-vertical forget-form" action="back/user/index">
 
 			<h3 class="">Forget Password ?</h3>
 
@@ -227,7 +230,7 @@
 
 		<!-- BEGIN REGISTRATION FORM -->
 
-		<form class="form-vertical register-form" action="index.html">
+		<form class="form-vertical register-form" action="back/user/index">
 
 			<h3 class="">Sign Up</h3>
 
