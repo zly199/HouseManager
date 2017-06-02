@@ -222,7 +222,6 @@ public class PermisionServiceImpl implements PermisionService {
             houseMessageAvailable.setSellLowprice(0.00);
             houseMessageAvailable.setRentLowprice(0.00);
         }
-
         return houseMessageAvailable;
     }
 }

@@ -187,200 +187,120 @@
 
                         <div class="cell c1" style="padding-left: 20px; width: 220px;">
                             <div style="margin-top: 10px;">
-                                <input type="checkbox" name="permissionSet" id="" />房源新增
-                                <select style="width: 60px;">
-                                    <option selected="selected">无</option>
-                                    <option>本人</option>
-                                    <option>本部</option>
-                                    <option>跨部</option>
+                                房源新增:
+                                <select style="width: 60px;" name="permissionSet">
+                                    <option>无</option>
+                                    <option <c:if test="${permissionSet.contains('house:add:ourselves')}"> selected="selected"</c:if> value="house:add:ourselves">本人</option>
+                                    <option <c:if test="${permissionSet.contains('house:add:ourDepartment')}"> selected="selected"</c:if> value="house:add:ourDepartment">本部</option>
+                                    <option <c:if test="${permissionSet.contains('house:add:crossDepartment')}"> selected="selected"</c:if> value="house:add:crossDepartment">跨部</option>
                                 </select>
                             </div>
-                            <input type="checkbox" name="permissionSet" id="" />房源删除
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
+                            房源删除:
+                            <select style="width: 60px;"  name="permissionSet">
+                                <option>无</option>
+                                <option <c:if test="${permissionSet.contains('house:delete:ourselves')}"> selected="selected"</c:if> value="house:delete:ourselves">本人</option>
+                                <option <c:if test="${permissionSet.contains('house:delete:ourDepartment')}"> selected="selected"</c:if> value="house:delete:ourDepartment">本部</option>
+                                <option <c:if test="${permissionSet.contains('house:delete:crossDepartment')}"> selected="selected"</c:if> value="house:delete:crossDepartment">跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />公共房源跟进可看
+                            <input type="checkbox" name="permissionSet" value="house:edi:userMove" <c:if test="${permissionSet.contains('house:edi:userMove')}"> checked="checked"</c:if>/>归属转移
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />归属转移
+                            <input type="checkbox" name="permissionSet" value="" />看业主电话
+                            <input type="text" name="" value="" style="width: 40px;" />次/天
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />看业主电话
-                            <input type="text" name="" id="" style="width: 40px;" />次/天
+                            <input type="text" name="" value="" placeholder="<999屏蔽电话且限制看的次数" disabled="disabled" style="width: 100px;" />
                             </br>
-                            <input type="text" name="" id="" placeholder="<999屏蔽电话且限制看的次数" disabled="disabled" style="width: 100px;" />
-                            </br>
-                            <input type="text" name="" id="" placeholder="=999明显显示电话" disabled="disabled" style="width: 100px;" />
+                            <input type="text" name="" value="" placeholder="=999明显显示电话" disabled="disabled" style="width: 100px;" />
                         </div>
                         <div class="cell c1" style="margin-left: 7px; padding-left: 20px; width: 200px;">
                             <h5>[用途]可查看</h5>
-                            <input type="checkbox" name="permissionSet" id="" />住宅
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:residence" <c:if test="${permissionSet.contains('house:detail:userage:residence')}"> checked="checked"</c:if>/>住宅
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />商铺
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:shops" <c:if test="${permissionSet.contains('house:detail:userage:shops')}"> checked="checked"</c:if>/>商铺
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />商住
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:commercial" <c:if test="${permissionSet.contains('house:detail:userage:commercial')}"> checked="checked"</c:if>/>商住
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />写字楼
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:officeBuilding" <c:if test="${permissionSet.contains('house:detail:userage:officeBuilding')}"> checked="checked"</c:if>/>写字楼
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />铺厂
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:factoryShop" <c:if test="${permissionSet.contains('house:detail:userage:factoryShop')}"> checked="checked"</c:if>/>铺厂
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />写厂
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:writeFactory" <c:if test="${permissionSet.contains('house:detail:userage:writeFactory')}"> checked="checked"</c:if>/>写厂
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />车位
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:parkinLot" <c:if test="${permissionSet.contains('house:detail:userage:parkinLot')}"> checked="checked"</c:if>/>车位
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />地皮
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:land" <c:if test="${permissionSet.contains('house:detail:userage:land')}"> checked="checked"</c:if>/>地皮
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />仓库
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:warehouse" <c:if test="${permissionSet.contains('house:detail:userage:warehouse')}"> checked="checked"</c:if>/>仓库
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />厂房
+                            <input type="checkbox" name="permissionSet" value="house:detail:userage:workshop" <c:if test="${permissionSet.contains('house:detail:userage:workshop')}"> checked="checked"</c:if>/>厂房
                         </div>
                         <div class="cell c1" style="margin-left: 7px; padding-left: 20px; width: 190px;">
                             <div style="margin-top: 10px;">
-                                <input type="checkbox" name="permissionSet" id="" />委托日期修改
-                                <select style="width: 60px;">
-                                    <option selected="selected">无</option>
-                                    <option>本人</option>
-                                    <option>本部</option>
-                                    <option>跨部</option>
+                                委托日期修改:
+                                <select style="width: 60px;" name="permissionSet">
+                                    <option>无</option>
+                                    <option <c:if test="${permissionSet.contains('house:detail:commissionDate:edi:ourselves')}"> selected="selected"</c:if> value="house:detail:commissionDate:edi:ourselves">本人</option>
+                                    <option <c:if test="${permissionSet.contains('house:detail:commissionDate:edi:ourDepartment')}"> selected="selected"</c:if> value="house:detail:commissionDate:edi:ourDepartment">本部</option>
+                                    <option <c:if test="${permissionSet.contains('house:detail:commissionDate:edi:crossDepartment')}"> selected="selected"</c:if> value="house:detail:commissionDate:edi:crossDepartment">跨部</option>
                                 </select>
                             </div>
-                            <input type="checkbox" name="permissionSet" id="" />[有效]-[预定]
+                            <input type="checkbox" name="permissionSet" value="house:detail:status:valid-book" <c:if test="${permissionSet.contains('house:detail:status:valid-book')}"> checked="checked"</c:if>/>[有效]-[预定]
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[有效]-[已售/我售]
+                            <input type="checkbox" name="permissionSet" value="house:detail:status:valid-sold" <c:if test="${permissionSet.contains('house:detail:status:valid-sold')}"> checked="checked"</c:if>/>[有效]-[已售/我售]
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[有效]-[已租/我租]
+                            <input type="checkbox" name="permissionSet" value="house:detail:status:valid-rent" <c:if test="${permissionSet.contains('house:detail:status:valid-rent')}"> checked="checked"</c:if>/>[有效]-[已租/我租]
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[有效]-[其他状态]
+                            <input type="checkbox" name="permissionSet" value="house:detail:status:valid-other" <c:if test="${permissionSet.contains('house:detail:status:valid-other')}"> checked="checked"</c:if>/>[有效]-[其他状态]
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[非有效]-[有效]
+                            <input type="checkbox" name="permissionSet" value="house:detail:status:unvalid-valid" <c:if test="${permissionSet.contains('house:detail:status:unvalid-valid')}"> checked="checked"</c:if>/>[非有效]-[有效]
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[预定]看业主电话
+                            <input type="checkbox" name="permissionSet" value="" />出售看业主<input type="text" name="" value="" style="width: 40px;" />次/天
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />(禁用看业主)设置
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
+                            <input type="checkbox" name="permissionSet" value="" />出租看业主<input type="text" name="" value="" style="width: 40px;" />次/天
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />看业主不必写审请
+                            <input type="checkbox" name="permissionSet" value="" />租售看业主<input type="text" name="" value="" style="width: 40px;" />次/天
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />看业主不必写跟进
+                            <input type="text" name="" value="" placeholder=">999不限次+记日志" disabled="disabled" style="width: 100px;" />
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />出售看业主<input type="text" name="" id="" style="width: 40px;" />次/天
-                            </br>
-                            <input type="checkbox" name="permissionSet" id="" />出租看业主<input type="text" name="" id="" style="width: 40px;" />次/天
-                            </br>
-                            <input type="checkbox" name="permissionSet" id="" />租售看业主<input type="text" name="" id="" style="width: 40px;" />次/天
-                            </br>
-                            <input type="text" name="" id="" placeholder=">999不限次+记日志" disabled="disabled" style="width: 100px;" />
-                            </br>
-                            <input type="text" name="" id="" placeholder="=999不限次+不记日志" disabled="disabled" style="width: 100px;" />
+                            <input type="text" name="" value="" placeholder="=999不限次+不记日志" disabled="disabled" style="width: 100px;" />
 
                         </div>
                         <div class="cell c2" style="padding-left: 20px; ">
                             <div style="margin-top: 10px;">
-                                <input type="checkbox" name="permissionSet" id="" />跟进新增【本人】
+                                <input type="checkbox" name="permissionSet" value="house:followup:add:ourselves" <c:if test="${permissionSet.contains('house:followup:add:ourselves')}"> checked="checked"</c:if>/>跟进新增【本人】
                             </div>
-                            <input type="checkbox" name="permissionSet" id="" />跟进修改【本人】
+                            <input type="checkbox" name="permissionSet" value="house:followup:edi:ourselves" <c:if test="${permissionSet.contains('house:followup:edi:ourselves')}"> checked="checked"</c:if>/>跟进修改【本人】
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />跟进删除
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
+                            跟进删除:
+                            <select style="width: 60px;" name="permissionSet">
+                                <option>无</option>
+                                <option <c:if test="${permissionSet.contains('house:followUp:delete:ourselves')}"> selected="selected"</c:if> value="house:followUp:delete:ourselves">本人</option>
+                                <option <c:if test="${permissionSet.contains('house:followUp:delete:ourDepartment')}"> selected="selected"</c:if> value="house:followUp:delete:ourDepartment">本部</option>
+                                <option <c:if test="${permissionSet.contains('house:followUp:delete:crossDepartment')}"> selected="selected"</c:if> value="house:followUp:delete:crossDepartment">跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />房源激活
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
+                            <input type="checkbox" name="permissionSet" value="house:detail:qualityRoom" <c:if test="${permissionSet.contains('house:detail:qualityRoom')}"> checked="checked"</c:if>/>优质房设置
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />修改共享账号房源第一人
-
+                            <input type="checkbox" name="permissionSet" value="house:detail:focusingRoom" <c:if test="${permissionSet.contains('house:detail:focusingRoom')}"> checked="checked"</c:if>/>聚焦房设置
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />优质房设置
+                            <input type="checkbox" name="permissionSet" value="house:detail:soShopRoom" <c:if test="${permissionSet.contains('house:detail:soShopRoom')}"> checked="checked"</c:if>/>速销房设置
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />聚焦房设置
-                            </br>
-                            <input type="checkbox" name="permissionSet" id="" />速销房设置
-                            </br>
-                            <input type="checkbox" name="permissionSet" id="" />不受(每房源看业主次数限制)
-
-                            </br>
-                            <input type="checkbox" name="permissionSet" id="" />房源审核
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
-                            </br>
-                            <input type="checkbox" name="permissionSet" id="" />房源导出
+                            <input type="checkbox" name="permissionSet" value="house:messageOutput" <c:if test="${permissionSet.contains('house:messageOutput')}"> checked="checked"</c:if>/>房源导出
                             </br>
                             <h5>钥匙管理</h5>
-                            <input type="checkbox" name="permissionSet" id="" />新增
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
+                            <input type="checkbox" name="permissionSet" value="house:key:add" <c:if test="${permissionSet.contains('house:key:add')}"> checked="checked"</c:if>/>新增
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />修改
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
+                            <input type="checkbox" name="permissionSet" value="house:key:edi" <c:if test="${permissionSet.contains('house:key:edi')}"> checked="checked"</c:if> />修改
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />删除
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
+                            <input type="checkbox" name="permissionSet" value="house:key:delete" <c:if test="${permissionSet.contains('house:key:delete')}"> checked="checked"</c:if>/>删除
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />借出
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
+                            <input type="checkbox" name="permissionSet" value="house:key:borrow" <c:if test="${permissionSet.contains('house:key:borrow')}"> checked="checked"</c:if>/>借出
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />归还
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
+                            <input type="checkbox" name="permissionSet" value="house:key:return" <c:if test="${permissionSet.contains('house:key:return')}"> checked="checked"</c:if>/>归还
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />收回
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
+                            <input type="checkbox" name="permissionSet" value="house:key:getBack" <c:if test="${permissionSet.contains('house:key:getBack')}"> checked="checked"</c:if>/>收回
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />查看密码
-                            <select style="width: 60px;">
-                                <option selected="selected">无</option>
-                                <option>本人</option>
-                                <option>本部</option>
-                                <option>跨部</option>
-                            </select>
+                            <input type="checkbox" name="permissionSet" value="house:key:passwordView" <c:if test="${permissionSet.contains('house:key:passwordView')}"> checked="checked"</c:if>/>查看密码
                         </div>
                     </div>
 
@@ -388,7 +308,7 @@
 
                         <div class="cell c1" style="padding-left: 20px; width: 220px;">
                             <div style="margin-top: 10px;">
-                                <input type="checkbox" name="permissionSet" id="" />全部修改
+                                <input type="checkbox" name="permissionSet" value="" />全部修改
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -396,7 +316,7 @@
                                     <option>跨部</option>
                                 </select>
                             </div>
-                            <input type="checkbox" name="permissionSet" id="" />部分修改
+                            <input type="checkbox" name="permissionSet" value="" />部分修改
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -404,25 +324,25 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />交易人 &nbsp; &nbsp;<input type="checkbox" name="permissionSet" id="" />归属人1
+                            <input type="checkbox" name="permissionSet" value="" />交易人 &nbsp; &nbsp;<input type="checkbox" name="permissionSet" value="" />归属人1
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />房型 <input type="checkbox" name="permissionSet" id="" style="margin-left: 24px;" />归属人2
+                            <input type="checkbox" name="permissionSet" value="" />房型 <input type="checkbox" name="permissionSet" value="" style="margin-left: 24px;" />归属人2
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />面积 <input type="checkbox" name="permissionSet" id="" style="margin-left: 24px;" />归属人3
+                            <input type="checkbox" name="permissionSet" value="" />面积 <input type="checkbox" name="permissionSet" value="" style="margin-left: 24px;" />归属人3
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />业主 <input type="checkbox" name="permissionSet" id="" style="margin-left: 24px;" />权益人
+                            <input type="checkbox" name="permissionSet" value="" />业主 <input type="checkbox" name="permissionSet" value="" style="margin-left: 24px;" />权益人
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />状态 <input type="checkbox" name="permissionSet" id="" style="margin-left: 24px;" />委托方式
+                            <input type="checkbox" name="permissionSet" value="" />状态 <input type="checkbox" name="permissionSet" value="" style="margin-left: 24px;" />委托方式
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />总层 <input type="checkbox" name="permissionSet" id="" style="margin-left: 24px;" />委托编号
+                            <input type="checkbox" name="permissionSet" value="" />总层 <input type="checkbox" name="permissionSet" value="" style="margin-left: 24px;" />委托编号
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />价格 <input type="checkbox" name="permissionSet" id="" style="margin-left: 24px;" />房产证
+                            <input type="checkbox" name="permissionSet" value="" />价格 <input type="checkbox" name="permissionSet" value="" style="margin-left: 24px;" />房产证
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />来源 <input type="checkbox" name="permissionSet" id="" style="margin-left: 24px;" />房源明细
+                            <input type="checkbox" name="permissionSet" value="" />来源 <input type="checkbox" name="permissionSet" value="" style="margin-left: 24px;" />房源明细
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />备注
+                            <input type="checkbox" name="permissionSet" value="" />备注
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />添加业主/联系人
+                            <input type="checkbox" name="permissionSet" value="" />添加业主/联系人
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -433,23 +353,23 @@
                         <div class="cell c1" style="margin-left: 7px; padding-left: 20px; width: 200px;">
                             <h5>交易可查看</h5>
                             <div style="padding-left: 20px;">
-                                <input type="checkbox" name="permissionSet" id="" />出售
+                                <input type="checkbox" name="permissionSet" value="" />出售
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />出租
+                                <input type="checkbox" name="permissionSet" value="" />出租
                             </div>
                             <h5>[委托]可保存</h5>
                             <div style="padding-left: 20px;">
-                                <input type="checkbox" name="permissionSet" id="" />A委托方式
+                                <input type="checkbox" name="permissionSet" value="" />A委托方式
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />B委托方式
+                                <input type="checkbox" name="permissionSet" value="" />B委托方式
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />C委托方式
+                                <input type="checkbox" name="permissionSet" value="" />C委托方式
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />X委托方式
+                                <input type="checkbox" name="permissionSet" value="" />X委托方式
                             </div>
                             <h5>图片</h5>
                             <div style="padding-left: 20px;">
-                                <input type="checkbox" name="permissionSet" id="" />查看
+                                <input type="checkbox" name="permissionSet" value="" />查看
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -457,7 +377,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />新增
+                                <input type="checkbox" name="permissionSet" value="" />新增
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -465,7 +385,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />修改
+                                <input type="checkbox" name="permissionSet" value="" />修改
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -473,7 +393,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />删除
+                                <input type="checkbox" name="permissionSet" value="" />删除
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -481,7 +401,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />下载
+                                <input type="checkbox" name="permissionSet" value="" />下载
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -492,7 +412,7 @@
                             </div>
                             <h5>全景看房</h5>
                             <div style="padding-left: 20px;">
-                                <input type="checkbox" name="permissionSet" id="" />关联/取消关联
+                                <input type="checkbox" name="permissionSet" value="" />关联/取消关联
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -502,7 +422,7 @@
                             </div>
                             <h5>协议附件</h5>
                             <div style="padding-left: 20px;">
-                                <input type="checkbox" name="permissionSet" id="" />上传
+                                <input type="checkbox" name="permissionSet" value="" />上传
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -510,7 +430,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />查看
+                                <input type="checkbox" name="permissionSet" value="" />查看
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -518,7 +438,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />下载
+                                <input type="checkbox" name="permissionSet" value="" />下载
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -526,7 +446,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />删除
+                                <input type="checkbox" name="permissionSet" value="" />删除
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -539,7 +459,7 @@
                         <div class="cell c1" style="margin-left: 7px; padding-left: 20px; width: 190px;">
                             <h5>房源描述</h5>
                             <div style="padding-left: 20px;">
-                                <input type="checkbox" name="permissionSet" id="" />全部修改
+                                <input type="checkbox" name="permissionSet" value="" />全部修改
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -549,7 +469,7 @@
                             </div>
                             <h5>资料房源</h5>
                             <div style="padding-left: 20px;">
-                                <input type="checkbox" name="permissionSet" id="" />资料房源查看
+                                <input type="checkbox" name="permissionSet" value="" />资料房源查看
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -557,9 +477,9 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />归属转移
+                                <input type="checkbox" name="permissionSet" value="" />归属转移
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />查看业主
+                                <input type="checkbox" name="permissionSet" value="" />查看业主
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -567,7 +487,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />全部修改
+                                <input type="checkbox" name="permissionSet" value="" />全部修改
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -577,7 +497,7 @@
                             </div>
                             <h5>部分修改</h5>
                             <div style="padding-left: 20px;">
-                                <input type="checkbox" name="permissionSet" id="" />交易
+                                <input type="checkbox" name="permissionSet" value="" />交易
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -585,7 +505,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />现状
+                                <input type="checkbox" name="permissionSet" value="" />现状
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -593,7 +513,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />来源
+                                <input type="checkbox" name="permissionSet" value="" />来源
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -601,7 +521,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />房型
+                                <input type="checkbox" name="permissionSet" value="" />房型
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -609,7 +529,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />面积
+                                <input type="checkbox" name="permissionSet" value="" />面积
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -617,7 +537,7 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />价格
+                                <input type="checkbox" name="permissionSet" value="" />价格
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -625,15 +545,15 @@
                                     <option>跨部</option>
                                 </select>
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />资料房源新增
+                                <input type="checkbox" name="permissionSet" value="" />资料房源新增
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />资料房源看更新
+                                <input type="checkbox" name="permissionSet" value="" />资料房源看更新
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />资料房源加备注
+                                <input type="checkbox" name="permissionSet" value="" />资料房源加备注
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />资料房源转正式
+                                <input type="checkbox" name="permissionSet" value="" />资料房源转正式
                                 </br>
-                                <input type="checkbox" name="permissionSet" id="" />资料房源删除
+                                <input type="checkbox" name="permissionSet" value="" />资料房源删除
                             </div>
                         </div>
 
@@ -643,7 +563,7 @@
 
                         <div class="cell c1" style="padding-left: 20px; width: 220px;">
                             <div style="margin-top: 10px;">
-                                <input type="checkbox" name="permissionSet" id="" />公客查看
+                                <input type="checkbox" name="permissionSet" value="" />公客查看
                                 <select style="width: 60px;">
                                     <option selected="selected">无</option>
                                     <option>本人</option>
@@ -651,7 +571,7 @@
                                     <option>跨部</option>
                                 </select>
                             </div>
-                            <input type="checkbox" name="permissionSet" id="" />私客查看
+                            <input type="checkbox" name="permissionSet" value="" />私客查看
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -659,7 +579,7 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />私客看客户
+                            <input type="checkbox" name="permissionSet" value="" />私客看客户
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -667,7 +587,7 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />带看房源查看
+                            <input type="checkbox" name="permissionSet" value="" />带看房源查看
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -675,7 +595,7 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />客源新增
+                            <input type="checkbox" name="permissionSet" value="" />客源新增
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -684,7 +604,7 @@
                             </select>
 
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />全部修改
+                            <input type="checkbox" name="permissionSet" value="" />全部修改
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -692,7 +612,7 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />部分修改
+                            <input type="checkbox" name="permissionSet" value="" />部分修改
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -700,29 +620,29 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />来源
+                            <input type="checkbox" name="permissionSet" value="" />来源
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />等级
+                            <input type="checkbox" name="permissionSet" value="" />等级
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />归属人1
+                            <input type="checkbox" name="permissionSet" value="" />归属人1
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />归属人2
+                            <input type="checkbox" name="permissionSet" value="" />归属人2
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />归属人3
+                            <input type="checkbox" name="permissionSet" value="" />归属人3
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />委托方式
+                            <input type="checkbox" name="permissionSet" value="" />委托方式
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />交易
+                            <input type="checkbox" name="permissionSet" value="" />交易
                         </div>
                         <div class="cell c1" style="margin-left: 7px; padding-left: 20px; width: 200px;">
                             <h5>[交易]可查看</h5>
-                            <input type="checkbox" name="permissionSet" id="" />求购
+                            <input type="checkbox" name="permissionSet" value="" />求购
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />求租
+                            <input type="checkbox" name="permissionSet" value="" />求租
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />租购
+                            <input type="checkbox" name="permissionSet" value="" />租购
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />客源删除
+                            <input type="checkbox" name="permissionSet" value="" />客源删除
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -730,7 +650,7 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />私客设置
+                            <input type="checkbox" name="permissionSet" value="" />私客设置
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -738,9 +658,9 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />归属转移
+                            <input type="checkbox" name="permissionSet" value="" />归属转移
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />客源审核
+                            <input type="checkbox" name="permissionSet" value="" />客源审核
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -748,7 +668,7 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />委托日期修改
+                            <input type="checkbox" name="permissionSet" value="" />委托日期修改
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -756,41 +676,41 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[有效]-[预定]
+                            <input type="checkbox" name="permissionSet" value="" />[有效]-[预定]
 
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[有效]-[已购/我购]
+                            <input type="checkbox" name="permissionSet" value="" />[有效]-[已购/我购]
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[有效]-[已租/我租]
+                            <input type="checkbox" name="permissionSet" value="" />[有效]-[已租/我租]
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[有效]-[其他状态]
+                            <input type="checkbox" name="permissionSet" value="" />[有效]-[其他状态]
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[非有效]-[有效]
+                            <input type="checkbox" name="permissionSet" value="" />[非有效]-[有效]
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />[预定]看客户电话
+                            <input type="checkbox" name="permissionSet" value="" />[预定]看客户电话
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />看客户不必写跟进
+                            <input type="checkbox" name="permissionSet" value="" />看客户不必写跟进
                         </div>
                         <div class="cell c1" style="margin-left: 7px; padding-left: 20px; width: 190px;">
                             <div style="margin-top: 10px;">
-                                <input type="checkbox" name="permissionSet" id="" />看客户 <input type="text" name="" id="" style="width: 40px;" />次/天
+                                <input type="checkbox" name="permissionSet" value="" />看客户 <input type="text" name="" value="" style="width: 40px;" />次/天
                                 </br>
-                                <input type="text" name="" id="" placeholder=">=900不限次+记日志" style="width: 140px;" disabled="disabled" />
+                                <input type="text" name="" value="" placeholder=">=900不限次+记日志" style="width: 140px;" disabled="disabled" />
                                 </br>
-                                <input type="text" name="" id="" placeholder="=900不限次+不记日志" style="width: 140px;" disabled="disabled" />
+                                <input type="text" name="" value="" placeholder="=900不限次+不记日志" style="width: 140px;" disabled="disabled" />
 
                             </div>
                             <h5>[委托]可保存</h5>
 
-                            <input type="checkbox" name="permissionSet" id="" />A委托方式
+                            <input type="checkbox" name="permissionSet" value="" />A委托方式
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />B委托方式
+                            <input type="checkbox" name="permissionSet" value="" />B委托方式
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />C委托方式
+                            <input type="checkbox" name="permissionSet" value="" />C委托方式
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />X委托方式
+                            <input type="checkbox" name="permissionSet" value="" />X委托方式
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />公客跟进查看
+                            <input type="checkbox" name="permissionSet" value="" />公客跟进查看
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -798,7 +718,7 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />私客跟进查看
+                            <input type="checkbox" name="permissionSet" value="" />私客跟进查看
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -806,12 +726,12 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />跟进新增【本人】
+                            <input type="checkbox" name="permissionSet" value="" />跟进新增【本人】
 
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />跟进修改【本人】
+                            <input type="checkbox" name="permissionSet" value="" />跟进修改【本人】
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />跟进删除
+                            <input type="checkbox" name="permissionSet" value="" />跟进删除
                             <select style="width: 60px;">
                                 <option selected="selected">无</option>
                                 <option>本人</option>
@@ -819,18 +739,18 @@
                                 <option>跨部</option>
                             </select>
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />不受[每客源跟进次数]限制
+                            <input type="checkbox" name="permissionSet" value="" />不受[每客源跟进次数]限制
                         </div>
                         <div class="cell c2" style="padding-left: 20px; ">
                             <div style="margin-top: 10px;">
-                                <input type="checkbox" name="permissionSet" id="" />公共账户修改[归属]
+                                <input type="checkbox" name="permissionSet" value="" />公共账户修改[归属]
                             </div>
-                            <input type="checkbox" name="permissionSet" id="" />公共客源跟进可看
+                            <input type="checkbox" name="permissionSet" value="" />公共客源跟进可看
                             </br>
-                            <input type="checkbox" name="permissionSet" id="" />看客户电话 <input type="text" name="" id="" value="999" style="width: 40px;" />次/天
+                            <input type="checkbox" name="permissionSet" value="" />看客户电话 <input type="text" name="" value="" value="999" style="width: 40px;" />次/天
                             </br>
-                            <input type="text" name="" id="" placeholder="<999屏蔽电话且限制看的次数" disabled="disabled" style="width:140px ;" />
-                            <input type="text" name="" id="" placeholder="=999明码显示电话" disabled="disabled" style="width:140px ;" />
+                            <input type="text" name="" value="" placeholder="<999屏蔽电话且限制看的次数" disabled="disabled" style="width:140px ;" />
+                            <input type="text" name="" value="" placeholder="=999明码显示电话" disabled="disabled" style="width:140px ;" />
                         </div>
                     </div>
 
