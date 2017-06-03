@@ -10,6 +10,7 @@ import cn.entity.Housemsg;
 import cn.entity.UserDuties;
 import cn.service.HouseService;
 import cn.utils.DataTransferUtil;
+import cn.utils.TinyUtilis;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,7 @@ public class HouseServiceImpl implements HouseService {
     @Autowired
     HouseOwnerMapper houseOwnerDao;
 
+
     /**
      * 根据当前登录用户权限查询房源信息
      *
@@ -77,6 +79,132 @@ public class HouseServiceImpl implements HouseService {
 
             return HousemsgToHouseListWithNameTransfer(DataTransferUtil.setToList(housemegSet));
 
+    }
+
+
+    /**
+     * 返回增加房源的主键
+     * @param houseMessageAvailable
+     * @return
+     */
+
+    @Override
+    public String add(HouseMessageAvailable houseMessageAvailable) {
+        Housemsg housemsg = houseMessageAvailableToHousemsg(houseMessageAvailable);
+        //生成主键
+        housemsg = addHousePrimaryKey(housemsg);
+        int i = housemsgDao.insertSelective(housemsg);
+        //主键重复，重新生成
+        if (i<=0){
+            for(i=-1;i<=0;i=housemsgDao.insertSelective(housemsg)){
+                housemsg = addHousePrimaryKey(housemsg);
+            }
+        }
+        return housemsg.getId();
+    }
+    /**
+     * 生成房源主键
+     * @param housemsg
+     * @return
+     */
+    private Housemsg addHousePrimaryKey(Housemsg housemsg) {
+        String houseId;
+        UserDuties userDuties = userDutiesDao.selectByUserId(Long.parseLong(housemsg.getUserId()));
+        String departmentHouseIdPre = organizationStructureDao.selectByPrimaryKey(userDuties.getOrganizationId()).getNumberPre();
+        String userHouseIdPre = userDuties.getUserHousePre();
+            //公盘时 组织前缀+数字随机(9)
+            if (housemsg.getAttribute().equals("公盘")) {
+                houseId = departmentHouseIdPre + TinyUtilis.getNumberRandom(9);
+            }
+            //私盘时 组织前缀+个人前缀+数字随机(6)
+            else {
+                houseId = departmentHouseIdPre + userHouseIdPre + TinyUtilis.getNumberRandom(6);
+            }
+            housemsg.setId(houseId);
+
+        //todo:封盘，特盘
+        return housemsg;
+    }
+
+    private Housemsg houseMessageAvailableToHousemsg(HouseMessageAvailable houseMessageAvailable) {
+        //解决tag数组过短的问题
+        if (houseMessageAvailable.getTag()==null){
+            houseMessageAvailable.setTag(new String[3]);
+        }
+       else if (houseMessageAvailable.getTag().length==1){
+            String[] tags = new String[3];
+            tags[0]=houseMessageAvailable.getTag()[0];
+            houseMessageAvailable.setTag(tags);
+        }
+        else if (houseMessageAvailable.getTag().length==2){
+            String[] tags = new String[3];
+            tags[0]=houseMessageAvailable.getTag()[0];
+            tags[1]=houseMessageAvailable.getTag()[1];
+            houseMessageAvailable.setTag(tags);
+        }
+        return new Housemsg(
+                houseMessageAvailable.getId(),
+                houseMessageAvailable.getApplication(),
+                houseMessageAvailable.getTransaction(),
+                houseMessageAvailable.getAddress()[0]+"/"+
+                        houseMessageAvailable.getAddress()[1]+"/"+
+                        houseMessageAvailable.getAddress()[2]+"/"+
+                        houseMessageAvailable.getAddress()[3]+"/"+
+                        houseMessageAvailable.getAddress()[4]+"/"+
+                        houseMessageAvailable.getAddress()[5]+"/"+
+                        houseMessageAvailable.getAddress()[6]+"/"+
+                        houseMessageAvailable.getAddress()[7],
+                houseMessageAvailable.getArea()[0]+"/"+
+                        houseMessageAvailable.getArea()[1],
+                houseMessageAvailable.getType(),
+                houseMessageAvailable.getHouseType()[0]+"/"+
+                        houseMessageAvailable.getHouseType()[1]+"/"+
+                        houseMessageAvailable.getHouseType()[2]+"/"+
+                        houseMessageAvailable.getHouseType()[3],
+                houseMessageAvailable.getDecoration(),
+                houseMessageAvailable.getOrientation(),
+                houseMessageAvailable.getStatus(),
+                houseMessageAvailable.getSellPrice(),
+                houseMessageAvailable.getAttribute(),
+                houseMessageAvailable.getSellLowprice(),
+                houseMessageAvailable.getPurchasingDate(),
+                houseMessageAvailable.getRentPrice(),
+                houseMessageAvailable.getUniquehouse(),
+                houseMessageAvailable.getRentLowprice(),
+                houseMessageAvailable.getPrecatoryDate(),
+                houseMessageAvailable.getLoan(),
+                houseMessageAvailable.getPrecatoryMethod(),
+                houseMessageAvailable.getResource(),
+                houseMessageAvailable.getPrecatoryNumber(),
+                houseMessageAvailable.getLunchTime(),
+                houseMessageAvailable.getRecordNumber(),
+                houseMessageAvailable.getTag()[0]+"/"+
+                        houseMessageAvailable.getTag()[1]+"/"+
+                        houseMessageAvailable.getTag()[2],
+                houseMessageAvailable.getRemark(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                houseMessageAvailable.getClientId(),
+                userDao.selectByUserName(houseMessageAvailable.getUserId()).getUserId().toString(),
+                userDutiesDao.selectByName(houseMessageAvailable.getUserId()).getOrganizationId()
+
+        );
     }
 
     /**
@@ -229,13 +357,6 @@ public class HouseServiceImpl implements HouseService {
     }
 
 
-    /**
-     * @return
-     */
-    @Override
-    public int add() {
-        return 0;
-    }
 
     /**
      * 查找全部房源到房源列表
@@ -304,6 +425,29 @@ public class HouseServiceImpl implements HouseService {
     public HouseOwner findHouseOwner(String houseId) {
 
         return houseOwnerDao.selectByPrimaryKey(housemsgDao.selectByPrimaryKey(houseId).getClientId());
+    }
+
+    /**
+     * 增加业主信息
+     * @param houseOwner
+     * @return 业主id
+     */
+    @Override
+    public int addHouseOwner(HouseOwner houseOwner) {
+        Long time = System.currentTimeMillis() / 1000;
+        int id = time.intValue();
+        houseOwner.setId(id);
+        int i=houseOwnerDao.insertSelective(houseOwner);
+        if (i<=0){
+            for(i=-1;i<=0;i = houseOwnerDao.insertSelective(houseOwner)){
+                time = System.currentTimeMillis() / 1000;
+                id = time.intValue();
+                houseOwner.setId(id);
+            }
+        }
+
+
+        return id;
     }
 
     private List<HouseList> HousemsgToHouseListWithNameTransfer( List<Housemsg> housemsgList) {

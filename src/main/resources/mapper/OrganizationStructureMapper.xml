@@ -33,6 +33,11 @@
     from organization_structure
     where organization_id = #{organizationId,jdbcType=VARCHAR}
   </select>
+<select id="selectNameAll" resultType="String">
+  SELECT organization_structure.organization_name
+    FROM organization_structure
+
+</select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from organization_structure
     where organization_id = #{organizationId,jdbcType=VARCHAR}

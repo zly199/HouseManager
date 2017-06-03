@@ -1,6 +1,7 @@
 package cn.service;
 
 import cn.dto.FollowUpHouseAvailable;
+import cn.dto.HouseAddActionList;
 import cn.dto.HouseMessageAvailable;
 import cn.entity.HouseOwner;
 
@@ -35,4 +36,8 @@ public interface PermisionService {
      * @return
      */
     HouseMessageAvailable houseDetailViewPermission(HouseMessageAvailable houseMessageAvailable,String houseId);
+
+    //根据权限返回新增房源的公盘私盘列表，以及部门人员信息下拉列表
+    HouseAddActionList houseAddPermission();
+
 }

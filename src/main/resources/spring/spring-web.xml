@@ -48,7 +48,17 @@
     <context:component-scan base-package="cn.web"/>
     <!--5静态资源的获取-->
     <mvc:resources mapping="media" location="/media"/>
-
+<!--6.捕获shiro认证失败页面异常，shiro过滤器没用的临时解决方案-->
+    <bean
+            class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.AuthorizationException">
+                    /index
+                </prop>
+            </props>
+        </property>
+    </bean>
 
 
 

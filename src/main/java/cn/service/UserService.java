@@ -3,6 +3,7 @@ package cn.service;
 import cn.dto.UserOa;
 import cn.entity.User;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -44,4 +45,10 @@ public interface UserService {
      */
     User getUserById(Long userId);
 
+
+    /**
+     * 返回所有的人员名称
+     * @return
+     */
+    List<String> findNameAll();
 }

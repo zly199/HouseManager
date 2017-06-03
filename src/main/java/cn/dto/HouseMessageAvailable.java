@@ -78,7 +78,7 @@ public class HouseMessageAvailable implements Serializable {
     /**
      * 购买时间
      */
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date purchasingDate;
 
     /**

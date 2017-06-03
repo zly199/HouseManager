@@ -2,6 +2,7 @@ package cn.service.impl;
 
 import cn.dao.UserMapper;
 import cn.service.UserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

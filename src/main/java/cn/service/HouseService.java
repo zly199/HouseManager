@@ -19,10 +19,14 @@ public interface HouseService {
      */
     List<HouseList> findHouseByPermission();
 
+
     /**
+     * 返回增加房源的主键
+     * @param houseMessageAvailable
      * @return
      */
-    int add();
+    String add(HouseMessageAvailable houseMessageAvailable);
+
 
     /**
      * 查找全部房源到房源列表
@@ -53,4 +57,11 @@ public interface HouseService {
      * @return
      */
     HouseOwner findHouseOwner(String houseId);
+
+    /**
+     * 增加业主信息
+     * @param houseOwner
+     * @return 业主id
+     */
+    int addHouseOwner(HouseOwner houseOwner);
 }

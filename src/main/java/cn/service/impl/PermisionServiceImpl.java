@@ -1,13 +1,15 @@
 package cn.service.impl;
 
-import cn.dao.HousemsgMapper;
-import cn.dao.PermissionMapper;
-import cn.dao.UserPermissionMapper;
+import cn.dao.*;
 import cn.dto.FollowUpHouseAvailable;
+import cn.dto.HouseAddActionList;
 import cn.dto.HouseMessageAvailable;
 import cn.entity.HouseOwner;
+import cn.entity.OrganizationStructure;
 import cn.service.HouseService;
+import cn.service.OrganizationStructService;
 import cn.service.PermisionService;
+import cn.service.UserService;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -25,6 +27,14 @@ public class PermisionServiceImpl implements PermisionService {
     UserPermissionMapper userPermissionDao;
     @Autowired
     HousemsgMapper housemsgDao;
+    @Autowired
+    UserDutiesMapper userDutiesDao;
+    @Autowired
+    OrganizationStructureMapper organizationStructureDao;
+    @Autowired
+    UserService userService;
+    @Autowired
+    OrganizationStructService organizationStructService;
     /**
      * 通过userId修改权限
      *
@@ -223,5 +233,59 @@ public class PermisionServiceImpl implements PermisionService {
             houseMessageAvailable.setRentLowprice(0.00);
         }
         return houseMessageAvailable;
+    }
+    //根据权限返回新增房源的公盘私盘列表，以及部门人员信息下拉列表
+    @Override
+    public HouseAddActionList houseAddPermission() {
+        HouseAddActionList houseAddActionList = new HouseAddActionList();
+        Subject currentUser = SecurityUtils.getSubject();
+
+        //    公盘和私盘和特盘列表
+        List<String> atrributes = new ArrayList<>();
+        //    部门列表
+        List<String> departments= new ArrayList<>();
+        //    人员列表
+        List<String> users= new ArrayList<>();
+
+        //本人 返回私盘；本部门；本人列表
+        if (currentUser.isPermitted("house:add:ourselves"))
+        {
+            atrributes.add("私盘");
+            departments.add(
+                    organizationStructureDao.selectByPrimaryKey(
+                            userDutiesDao.selectByName(currentUser.getPrincipal().toString()
+                            ).getOrganizationId()
+                    ).getOrganizationName()
+            );
+            users.add(currentUser.getPrincipal().toString());
+        }
+        //本部 返回公盘，私盘，特盘，封盘；本部门；本部门全部的人员
+        else if (currentUser.isPermitted("house:add:ourDepartment"))
+        {
+            atrributes.add("公盘");atrributes.add("私盘");atrributes.add("特盘");atrributes.add("封盘");
+            departments.add(
+                    organizationStructureDao.selectByPrimaryKey(
+                            userDutiesDao.selectByName(currentUser.getPrincipal().toString()
+                            ).getOrganizationId()
+                    ).getOrganizationName()
+            );
+            //根据组织id查找组织里所有的人员名字
+            users.addAll(organizationStructService.findNameByOrganizationId(userDutiesDao.selectByName(currentUser.getPrincipal().toString()).getOrganizationId()));
+
+        }
+        //跨部 返回公盘，私盘，特盘，封盘；全部部门；全部的人员
+        else if (currentUser.isPermitted("house:add:crossDepartment"))
+        {
+            atrributes.add("公盘");atrributes.add("私盘");atrributes.add("特盘");atrributes.add("封盘");
+ //         返回所有的组织机构名
+            departments.addAll(organizationStructService.findNameAll());
+//            返回所有的人员名称
+            users.addAll(userService.findNameAll());
+
+        }
+        houseAddActionList.setAtrributes(atrributes);
+        houseAddActionList.setDepartments(departments);
+        houseAddActionList.setUsers(users);
+        return houseAddActionList;
     }
 }

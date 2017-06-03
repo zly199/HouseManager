@@ -105,6 +105,16 @@ public class UserServiceImpl implements UserService{
     }
 
     /**
+     * 返回所有的人员名称
+     * @return
+     */
+    @Override
+    public List<String> findNameAll() {
+        return userDutiesDao.selectNameAll();
+    }
+
+
+    /**
      * 把可用的用户信息转换(简化)成用户列表信息
      * @param userAvailables
      * @return

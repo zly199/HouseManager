@@ -74,6 +74,15 @@
       user_persion, user_house_pre
     FROM user_duties
   </select>
+  <select id="selectNameByOrganizationid" resultType="String">
+    SELECT user_duties.user_name
+      FROM user_duties
+    WHERE organization_id=#{organizationId}
+  </select>
+  <select id="selectNameAll" resultType="String">
+    SELECT user_duties.user_name
+      FROM user_duties
+  </select>
   <insert id="insert" parameterType="cn.entity.UserDuties" >
     insert into user_duties (locked, user_id, user_name, 
       organization_id, duties_id, state, 

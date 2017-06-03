@@ -1,12 +1,13 @@
-
-
-<!DOCTYPE html>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<base href="<%=basePath%>">
+<!DOCTYPE html>
+
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -83,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<!-- logo标志 -->
 
-					<a class="brand" href="back/user/index">
+					<a class="brand" href="index.html">
 
 						<img src="media/image/logo.png" alt="logo" />
 
@@ -162,7 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="sidebar-toggler hidden-phone"></div>
 						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 					</li>
-					<li class="start active ">
+						<li class="start active ">
 
 						<a href="#">
 
@@ -242,257 +243,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</ul>
 
 					</li>
-
-					<li class="">
-
-						<a href="javascript:;">
-
-							<i class="icon-table"></i>
-
-							<span class="title">房源跟进</span>
-
-							<span class="arrow "></span>
-
-						</a>
-
-						<ul class="sub-menu">
-
-							<li>
-
-								<a href="#">
-
-									跟进查询</a>
-
-							</li>
-
-							<li>
-
-								<a href="#">
-
-									登记跟进记录</a>
-
-							</li>
-						</ul>
-
-					</li>
-
-					<li class="">
-
-						<a href="javascript:;">
-
-							<i class="icon-th-large"></i>
-
-							<span class="title">合同管理</span>
-
-							<span class="arrow "></span>
-
-						</a>
-
-						<ul class="sub-menu">
-
-							<li>
-
-								<a href="#">
-									出租合同查询</a>
-
-							</li>
-							<li>
-
-								<a href="#">
-									出售合同查询</a>
-
-							</li>
-
-							<li>
-
-								<a href="#">
-									增加合同</a>
-
-							</li>
-						</ul>
-
-					</li>
-
-					<li class="">
-
-						<a href="javascript:;">
-
-							<i class="icon-gift"></i>
-
-							<span class="title">销售管理</span>
-
-							<span class="arrow "></span>
-
-						</a>
-
-						<ul class="sub-menu">
-
-							<li>
-
-								<a href="#">
-
-									销售查询</a>
-
-							</li>
-
-							<li>
-
-								<a href="#">
-
-									增加销售信息</a>
-
-							</li>
-						</ul>
-
-					</li>
-
-					<li>
-
-						<a class="active" href="javascript:;">
-
-							<i class="icon-sitemap"></i>
-
-							<span class="title">新闻管理</span>
-
-							<span class="arrow "></span>
-
-						</a>
-
-						<ul class="sub-menu">
-							<li>
-
-								<a href="#">
-
-									新闻查询</a>
-
-							</li>
-							<li>
-
-								<a href="#">
-
-									增加新闻</a>
-
-							</li>
-
-						</ul>
-
-					</li>
-
-					<li>
-
-						<a href="javascript:;">
-
-							<i class="icon-folder-open"></i>
-
-							<span class="title">综合统计</span>
-
-							<span class="arrow "></span>
-
-						</a>
-
-						<ul class="sub-menu">
-
-							<li>
-
-								<a href="javascript:;">
-
-									<i class="icon-folder-open"></i> 统计房源
-
-									<span class="arrow"></span>
-
-								</a>
-
-								<ul class="sub-menu">
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求租房源 </a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i> 统计求购房源</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i> 统计出租房源</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i> 统计出售房源 </a>
-									</li>
-
-								</ul>
-
-							</li>
-
-							<li>
-
-								<a href="javascript:;">
-
-									<i class="icon-folder-open"></i> 统计客源
-
-									<span class="arrow"></span>
-
-								</a>
-
-								<ul class="sub-menu">
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计出租人员</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计出售人员</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求租人员</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求售人员</a>
-									</li>
-
-								</ul>
-
-							</li>
-
-							<li>
-
-								<a href="#">
-
-									<i class="icon-folder-open"></i> 统计销售额
-									<span class="arrow"></span>
-								</a>
-								<ul class="sub-menu">
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计出租销售额</a>
-									</li>
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计出售销售额</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求租销售额</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求售销售额</a>
-									</li>
-
-								</ul>
-
-							</li>
-
-						</ul>
-
-					</li>
 					<li class="">
 
 						<a href="javascript:;">
 
 							<i class="icon-th"></i>
 
-							<span class="title">客源跟进</span>
+							<span class="title">人事OA</span>
 
 							<span class="arrow "></span>
 
@@ -502,17 +259,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<li>
 
-								<a href="table_basic.html">
+								<a href="userPhone.html">
 
-									查询客源跟进信息</a>
+									通讯录</a>
+
+							</li>
+							<li>
+
+								<a href="departmentPhone.html">
+
+									部门通讯录</a>
 
 							</li>
 
 							<li>
 
-								<a href="table_responsive.html">
+								<a href="authority1.html">
 
-									增加客源跟进信息</a>
+									组织机构</a>
+
+							</li>
+							<li>
+
+								<a href="addstaff.html">
+
+									新增员工</a>
+
+							</li>
+							<li>
+
+								<a href="detailOA.html">
+
+									人事OA详情信息</a>
+
+							</li>
+							<li>
+
+								<a href="new.html">
+
+									新闻/公告查询</a>
+
+							</li>
+							<li>
+
+								<a href="writeNew.html">
+
+									新增新闻/公告</a>
 
 							</li>
 						</ul>
@@ -556,6 +348,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- END SIDEBAR MENU -->
 
 			</div>
+
 
 			<!-- END SIDEBAR -->
 
@@ -674,7 +467,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 									<i class="icon-home"></i>
 
-									<a href="back/user/index">Home</a>
+									<a href="index.html">Home</a>
 
 									<i class="icon-angle-right"></i>
 
@@ -690,226 +483,208 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 
 					</div>
-					<form action="userselect.html" method="post" class="definewidth m20">
-						<div style="width: 100%;">
-							<table class="table  table-hover definewidth m10" style="width: 950px;">
+					<form id = "houseAddForm" class="definewidth m20">
+						<div>
+							<table class="table  table-hover definewidth m10" style="width: 780px;">
 								<tr class="size">
 									<td>房源编号</td>
-									<td><input style="width: 88px;" type="text" name="username" /></td>
+									<td><input id="houseId" style="width: 150px;" readonly="readonly" value="后台自增" type="text" name="houseMessageAvailable.id" /></td>
 								</tr>
 								<tr class="size2">
 									<td>交易</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>出售</option>
-											<option value="">出租</option>
-											<option value="">租售</option>
+										<select name="transaction" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option selected>出售</option>
+											<option>出租</option>
+											<option>租售</option>
 										</select>
 									</td>
 									<td>用途</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>住宅</option>
-											<option value="">商住</option>
-											<option value="">商铺</option>
-											<option value="">网店</option>
-											<option value="">写字楼</option>
-											<option value="">厂房</option>
-											<option value="">写厂</option>
-											<option value="">铺厂</option>
-											<option value="">仓库</option>
-											<option value="">地皮</option>
-											<option value="">车位</option>
-											<option value="">其他</option>
+										<select name="application" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option  selected>住宅</option>
+											<option>商住</option>
+											<option>商铺</option>
+											<option>网店</option>
+											<option>写字楼</option>
+											<option>厂房</option>
+											<option>写厂</option>
+											<option>铺厂</option>
+											<option>仓库</option>
+											<option>地皮</option>
+											<option>车位</option>
+											<option>其他</option>
 										</select>
 									</td>
 								</tr>
 								<tr class="size2">
 									<td>房源地址</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>城区</option>
-											<option value="">宝山区</option>
-											<option value="">常宁区</option>
-											<option value="">崇明县</option>
-											<option value="">奉贤区</option>
-											<option value="">虹口区</option>
-											<option value="">黄浦区</option>
-											<option value="">嘉定区</option>
-											<option value="">金山区</option>
-											<option value="">静安区</option>
-											<option value="">闵行区</option>
-											<option value="">浦东新区</option>
-											<option value="">普陀区</option>
-											<option value="">青浦区</option>
-											<option value="">松江区</option>
-											<option value="">徐汇区</option>
-											<option value="">杨浦区</option>
+										<select name="address[0]" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option  selected>城区</option>
+											<option>宝山区</option>
+											<option>常宁区</option>
+											<option>崇明县</option>
+											<option>奉贤区</option>
+											<option>虹口区</option>
+											<option>黄浦区</option>
+											<option>嘉定区</option>
+											<option>金山区</option>
+											<option>静安区</option>
+											<option>闵行区</option>
+											<option>浦东新区</option>
+											<option>普陀区</option>
+											<option>青浦区</option>
+											<option >松江区</option>
+											<option>徐汇区</option>
+											<option>杨浦区</option>
 										</select>
-										<select style="width: 100px;" id="point" disabled="disabled">
-											<option value="" selected>商圈</option>
+										<select name="address[1]" style="width: 100px;" id="point">
+											<option  selected>商圈</option>
 										</select>
-										<input type="text" name="" / style="width: 88px;" placeholder="楼盘字典" data-toggle="tooltip"  title="此空不能为空" id="point">
-										<input type="text" name="" / style="width: 88px;" placeholder="栋座" data-toggle="tooltip"  title="此空不能为空" id="point">
-										<input type="text" name="" / style="width: 88px;" placeholder="单元" data-toggle="tooltip"  title="此空不能为空" id="point">
-										<input type="text" name="" / style="width: 88px;" placeholder="房号" data-toggle="tooltip"  title="此空不能为空" id="point">
-										<input type="text" name="" / style="width: 88px;" placeholder="楼层" data-toggle="tooltip"  title="此空不能为空" id="point">
-										<input type="text" name="" / style="width: 88px;" placeholder="总层" data-toggle="tooltip"  title="此空不能为空" id="point">
-										
+										<input type="text" name="address[2]" style="width: 88px;" placeholder="楼盘字典" data-toggle="tooltip"  title="此空不能为空" id="point">
+										<input type="text" name="address[3]" style="width: 88px;" placeholder="栋座" data-toggle="tooltip"  title="此空不能为空" id="point">
+										<input type="text" name="address[4]" style="width: 88px;" placeholder="单元" data-toggle="tooltip"  title="此空不能为空" id="point">
+										<input type="text" name="address[5]" style="width: 88px;" placeholder="房号" data-toggle="tooltip"  title="此空不能为空" id="point">
+										<input type="text" name="address[6]" style="width: 88px;" placeholder="楼层" data-toggle="tooltip"  title="此空不能为空" id="point">
+										<input type="text" name="address[7]" style="width: 88px;" placeholder="总层" data-toggle="tooltip"  title="此空不能为空" id="point">
+
 									</td>
 								</tr>
 								<tr class="size2">
 									<td>面积</td>
 									<td>
-										<input id="point" style="width: 88px;" type="text" name="" / data-toggle="tooltip"  title="此空不能为空 ，最多保留两位小数">平米
-								         (套内 <input id="point" style="width: 38px;" type="text" name="" / data-toggle="tooltip"  title="此空不能为空，最多保留两位小数">平米)
+										<input value="0" id="point" style="width: 88px;" type="text" name="area[0]"  data-toggle="tooltip"  title="此空不能为空 ，最多保留两位小数">平米
+								         (套内 <input value="0" id="point" style="width: 38px;" type="text" name="area[1]"  data-toggle="tooltip"  title="此空不能为空，最多保留两位小数">平米)
 									</td>
 									<td>类型</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>请选择</option>
-											<option value="">多层</option>
-											<option value="">高层</option>
-											<option value="">小高层</option>
-											<option value="">多层复式</option>
-											<option value="">高层复式</option>
-											<option value="">多层越式</option>
-											<option value="">裙楼</option>
-											<option value="">高层越式</option>
-											<option value="">独立别墅</option>
-											<option value="">联体别墅</option>
-											<option value="">双拼别墅</option>
-											<option value="">四合院</option>
+										<select name="type" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option  selected>请选择</option>
+											<option>多层</option>
+											<option>高层</option>
+											<option>小高层</option>
+											<option>多层复式</option>
+											<option>高层复式</option>
+											<option>多层越式</option>
+											<option>裙楼</option>
+											<option>高层越式</option>
+											<option>独立别墅</option>
+											<option>联体别墅</option>
+											<option>双拼别墅</option>
+											<option>四合院</option>
 										</select>
 									</td>
+
 								</tr>
 								<tr class="size2">
 									<td>房型</td>
 									<td>
-										<select style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>房</option>
-											<option value="">0房</option>
-											<option value="">1房</option>
-											<option value="">2房</option>
-											<option value="">3房</option>
-											<option value="">4房</option>
-											<option value="">5房</option>
-											<option value="">6房</option>
-											<option value="">7房</option>
-											<option value="">8房</option>
-											<option value="">9房</option>
-											<option value="">*</option>
-											<option value="">1-2房</option>
-											<option value="">2-3房</option>
-											<option value="">3-4房</option>
-											<option value="">4-5房</option>
-											<option value="">6-9房</option>
-										</select>
-										<select style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>厅</option>
-											<option value="">0厅</option>
-											<option value="">1厅</option>
-											<option value="">2厅</option>
-											<option value="">3厅</option>
-											<option value="">4厅</option>
-											<option value="">5厅</option>
-											<option value="">6厅</option>
-										</select>
-										<select style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>卫</option>
-											<option value="">0卫</option>
-											<option value="">1卫</option>
-											<option value="">2卫</option>
-											<option value="">3卫</option>
-											<option value="">4卫</option>
-											<option value="">5卫</option>
-											<option value="">6卫</option>
-										</select>
-										<select style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>阳</option>
-											<option value="">0阳台</option>
-											<option value="">1阳台</option>
-											<option value="">2阳台</option>
-											<option value="">3阳台</option>
-											<option value="">4阳台</option>
-											<option value="">5阳台</option>
-											<option value="">6阳台</option>
-										</select>
+										<select name="houseType[0]" style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option selected>0</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+											<option>7</option>
+											<option>8</option>
+											<option>9</option>
+										</select>房
+										<select name="houseType[1]" style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option selected>0</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+										</select>厅
+										<select name="houseType[2]" style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option selected>0</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+										</select>卫
+										<select name="houseType[3]" style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option selected>0</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+										</select>阳
 									</td>
 									<td>装修</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>请选择</option>
-											<option value="">毛坯</option>
-											<option value="">清水</option>
-											<option value="">简装</option>
-											<option value="">中装</option>
-											<option value="">精装</option>
-											<option value="">豪装</option>
+										<select name="decoration" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option  selected>请选择</option>
+											<option>毛坯</option>
+											<option>清水</option>
+											<option>简装</option>
+											<option>中装</option>
+											<option>精装</option>
+											<option>豪装</option>
 										</select>
 									</td>
 								</tr>
 								<tr class="size2">
 									<td>朝向</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>请选择</option>
-											<option value="">南北</option>
-											<option value="">东西</option>
-											<option value="">南</option>
-											<option value="">北</option>
-											<option value="">东</option>
-											<option value="">西</option>
-											<option value="">东南</option>
-											<option value="">西南</option>
-											<option value="">东北</option>
-											<option value="">西北</option>
+										<select name="orientation" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option  selected>请选择</option>
+											<option>南北</option>
+											<option>东西</option>
+											<option>南</option>
+											<option>北</option>
+											<option>东</option>
+											<option>西</option>
+											<option>东南</option>
+											<option>西南</option>
+											<option>东北</option>
+											<option>西北</option>
 										</select>
 									</td>
 								</tr>
 								<tr class="size2">
 									<td>状态</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>有效</option>
-											<option value="">预定</option>
-											<option value="">已购</option>
-											<option value="">已租</option>
-											<option value="">我购</option>
-											<option value="">我租</option>
-											<option value="">暂缓</option>
-											<option value="">未知</option>
-											<option value="">无效</option>
+										<select name="status" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option  selected>有效</option>
+											<option>预定</option>
+											<option>已购</option>
+											<option>已租</option>
+											<option>我购</option>
+											<option>我租</option>
+											<option>暂缓</option>
+											<option>未知</option>
+											<option>无效</option>
 										</select>
 									</td>
 									<td>售价</td>
 									<td>
-										<input type="text" placeholder="0" value=" " id="point" style="width: 38px;" data-toggle="tooltip"  title="此空不能为空"/>
-										<select style="width: 50px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>万元</option>
-											<option value="">万美</option>
-											<option value="">万港</option>
-											<option value="">万台</option>
-											<option value="">万欧</option>
-											<option value="">万日</option>
-											<option value="">万韩</option>
-										</select>
-										<input type="text" placeholder="0" value=" " id="point" style="width: 38px;"/ data-toggle="tooltip"  title="此空不能为空">元/m^2
+										<input name="sellPrice" type="text" value="x" id="point" style="width: 38px;" data-toggle="tooltip"  title="此空不能为空"/>万元
+
+										<input type="text" id="point" value="x" style="width: 38px;" data-toggle="tooltip"  title="此空不能为空">元/m^2
 									</td>
 								</tr>
 								<tr>
 									<td class="size2">属性</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>公盘</option>
-											<option value="">私盘</option>
-											<option value="">封盘</option>
-											<option value="">特盘</option>
+										<select name="attribute" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<c:forEach items="${houseAddActionList.atrributes}" var="item">
+												<option>${item}</option>
+											</c:forEach>
 										</select>
 									</td>
 									<td class="size">售底价</td>
 									<td>
-		                               <input type="text" name=""  value=""  placeholder="0" style="width:88px ;"/>
+		                               <input type="text" name="sellLowprice" value="0"  placeholder="0" style="width:88px ;"/>
 									</td>
 								</tr>
 								<tr class="size">
@@ -917,136 +692,123 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										购买时间
 									</td>
 									<td>
-										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">不满两年</option>
-											<option value="">满两年</option>
-											<option value="">满五年</option>
-										</select>
-										<input type="date" name="" id="" value="" style="width: 120px;"/>
+										<input  type="date" name="purchasingDate"  style="width: 120px;"/>
 									</td>
 									<td>
 										租价
 									</td>
 									<td>
-										<input type="text" name="" id="" value=""  style="width:38px ;" disabled="disabled"/>
+										<input type="" name="rentPrice"  value=""  style="width:38px ;"/>
 										<select style="width: 50px;" disabled="disabled">
-											<option value="" selected>元/月</option>
+											<option selected>元/月</option>
 										</select>
-										<input type="text" name="" id="" value="" style="width:38px ;" disabled="disabled"/>元/m^2/月
+										<input type="text" name=""  value="" style="width:38px ;"/>元/m^2/月
 									</td>
 								</tr>
 								<tr class="size">
 									<td>唯一住房</td>
 									<td>
-										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="" >是</option>
-											<option value="" >否</option>
+										<select name="uniquehouse" style="width: 100px;">
+											<option selected>true</option>
+											<option>false</option>
 										</select>
 									</td>
 									<td>租底价</td>
 									<td>
-										<input type="text" name="" id="" value="" placeholder="0" style="width: 38px;"/>
+										<input type="text" name="rentLowprice"  value="" placeholder="0" style="width: 38px;"/>
 									</td>
 								</tr>
 								<tr class="size">
 									<td>委托日期</td>
 									<td>
-										<input type="date" name="" id="" value="" style="width: 120px;" id="point" data-toggle="tooltip"  title="此空不能为空"/>
+										<input type="date" name="precatoryDate"  value="0fdsasdf" style="width: 120px;" id="point" data-toggle="tooltip"  title="此空不能为空"/>
 									</td>
-									<td>有贷款</td>
+									<td>贷款金额</td>
 									<td>
-										<select style="width: 70px;">
-											<option value="" selected>请选择</option>
-											<option value="" >是</option>
-											<option value="" >否</option>
-										</select>
-										<input type="text" name="" id="" value="" style="width:48px ;"/>万元
+										<input type="text" name="loan"  value="0.0" style="width:48px ;"/>万元
 									</td>
 								</tr>
 								<tr class="size2">
 									<td>委托方式</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>请选择</option>
-											<option value="">独家</option>
-											<option value="">A-独家</option>
-											<option value="">B-签约</option>
-											<option value="">C-未签</option>
-											<option value="">X-限时</option>
-											<option value="">X-托管</option>
-											<option value="">X-收购</option>
+										<select name="precatoryMethod" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+
+											<option selected>独家</option>
+											<option>A-独家</option>
+											<option>B-签约</option>
+											<option>C-未签</option>
+											<option>X-限时</option>
+											<option>X-托管</option>
+											<option>X-收购</option>
 										</select>
 									</td>
 									<td>来源</td>
 									<td>
-										<select style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-											<option value="" selected>请选择</option>
-											<option value="">来电</option>
-											<option value="">来访</option>
-											<option value="">中介</option>
-											<option value="">朋友</option>
-											<option value="">广告</option>
-											<option value="">扫街</option>
-											<option value="">网络</option>
-											<option value="">搜房</option>
-											<option value="">口碑</option>
+										<select name="resource" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+											<option selected>来电</option>
+											<option>来访</option>
+											<option>中介</option>
+											<option>朋友</option>
+											<option>广告</option>
+											<option>扫街</option>
+											<option>网络</option>
+											<option>搜房</option>
+											<option>口碑</option>
 										</select>
 									</td>
 								</tr>
 								<tr class="size">
 									<td>委托编号</td>
 									<td>
-									<input type="text" name="" id="" value="" style="width: 88px;"/>
+									<input type="text" name="precatoryNumber"  value="" style="width: 88px;"/>
 									</td>
 									<td>交房日期</td>
 									<td>
-										<input type="date" name="" id="" value="" style="width: 120px;"/>
+										<%--<input type="date" name="lunchTime"  value="" style="width: 120px;"/>--%>
 									</td>
 								</tr>
 								<tr class="size">
 									<td>备案号</td>
 									<td>
-									<input type="text" name="" id="" value="" style="width: 88px;"/>
+									<input type="text" name="recordNumber"  value="" style="width: 88px;"/>
 									</td>
 								</tr>
 								<tr class="size">
 									<td>标签</td>
 									<td>
-									<input type="checkbox" name="" id="" value="" />优质房
-									<input type="checkbox" name="" id="" value="" />聚焦房
-									<input type="checkbox" name="" id="" value="" />速销房
+									<input type="checkbox" name="tag[0]"  value="优质房" />优质房
+									<input type="checkbox" name="tag[1]"  value="聚焦房"/>聚焦房
+									<input type="checkbox" name="tag[2]"  value="速销房"/>速销房
 									</td>
 								</tr>
 								<tr class="size">
 									<td>备注</td>
 									<td>
-										<textarea rows="5" cols="100" style="width:350px ;"></textarea>
+										<textarea name="remark" rows="5" cols="100" style="width:350px ;"></textarea>
 									</td>
 								</tr>
 								<tr class="size">
 									<td>建房年代</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>2017</option>
-											<option value="">2016</option>
-											<option value="">2015</option>
-											<option value="">2014</option>
-											<option value="">2013</option>
-											<option value="">2012</option>
-											<option value="">2011</option>
-											<option value="">2010</option>
-											<option value="">2009</option>
-											<option value="">2008</option>
+											<option  selected>2017</option>
+											<option>2016</option>
+											<option>2015</option>
+											<option>2014</option>
+											<option>2013</option>
+											<option>2012</option>
+											<option>2011</option>
+											<option>2010</option>
+											<option>2009</option>
+											<option>2008</option>
 										</select>
 									</td>
 									<td>现状</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>空房</option>
-											<option value="">业主住</option>
-											<option value="">租客住</option>
+											<option  selected>空房</option>
+											<option>业主住</option>
+											<option>租客住</option>
 										</select>
 									</td>
 								</tr>
@@ -1054,23 +816,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>产权</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">商品房</option>
-											<option value="">房改房</option>
-											<option value="">经济适用房</option>
-											<option value="">集体房</option>
-											<option value="">军产房</option>
+											<option  selected>请选择</option>
+											<option>商品房</option>
+											<option>房改房</option>
+											<option>经济适用房</option>
+											<option>集体房</option>
+											<option>军产房</option>
 										</select>
 									</td>
 									<td>配套</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">地砖</option>
-											<option value="">木地砖</option>
-											<option value="">地毯</option>
-											<option value="">地胶</option>
-											<option value="">水泥地</option>
+											<option  selected>请选择</option>
+											<option>地砖</option>
+											<option>木地砖</option>
+											<option>地毯</option>
+											<option>地胶</option>
+											<option>水泥地</option>
 										</select>
 									</td>
 								</tr>
@@ -1078,65 +840,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>包税费</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">各付</option>
-											<option value="">实得</option>
-											<option value="">净得</option>
-											<option value="">包税</option>
+											<option  selected>请选择</option>
+											<option>各付</option>
+											<option>实得</option>
+											<option>净得</option>
+											<option>包税</option>
 										</select>
 									</td>
 									<td>家具</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">无</option>
-											<option value="">少量</option>
-											<option value="">部分</option>
-											<option value="">配套</option>
-											<option value="">全新</option>
-											<option value="">全齐</option>
-											<option value="">可配</option>
+											<option  selected>请选择</option>
+											<option>无</option>
+											<option>少量</option>
+											<option>部分</option>
+											<option>配套</option>
+											<option>全新</option>
+											<option>全齐</option>
+											<option>可配</option>
 										</select>
 									</td>
 								</tr>
 								<tr class="size">
 									<td>原购价</td>
 									<td>
-										<input type="text" name="" id="" value="" style="width: 88px;"/>
+										<input type="text" name=""  value="" style="width: 88px;"/>
 									</td>
 									<td>家电</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">无</option>
-											<option value="">少量</option>
-											<option value="">部分</option>
-											<option value="">配套</option>
-											<option value="">全新</option>
-											<option value="">全齐</option>
-											<option value="">可配</option>
+											<option selected>请选择</option>
+											<option>无</option>
+											<option>少量</option>
+											<option>部分</option>
+											<option>配套</option>
+											<option>全新</option>
+											<option>全齐</option>
+											<option>可配</option>
 										</select>
 									</td>
 								</tr>
 								<tr class="size">
 									<td>管理费</td>
 									<td>
-										<input type="text" name="" id="" value="" style="width: 88px;"/>
+										<input type="text" name=""  value="" style="width: 88px;"/>
 									</td>
 									<td>付佣</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">商议</option>
-											<option value="">给全佣</option>
-											<option value="">九折佣</option>
-											<option value="">八折佣</option>
-											<option value="">七折佣</option>
-											<option value="">六折佣</option>
-											<option value="">五折佣</option>
-											<option value="">四折佣</option>
-											<option value="">三折佣</option>
-											<option value="">不给佣</option>
+											<option  selected>请选择</option>
+											<option>商议</option>
+											<option>给全佣</option>
+											<option>九折佣</option>
+											<option>八折佣</option>
+											<option>七折佣</option>
+											<option>六折佣</option>
+											<option>五折佣</option>
+											<option>四折佣</option>
+											<option>三折佣</option>
+											<option>不给佣</option>
 										</select>
 									</td>
 								</tr>
@@ -1144,24 +906,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>车位</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">自行车</option>
-											<option value="">汽车</option>
-											<option value="">面积</option>
+											<option  selected>请选择</option>
+											<option>自行车</option>
+											<option>汽车</option>
+											<option>面积</option>
 										</select>
-										<input type="text" name="" id="" value="" style="width: 88px;"/>平米
+										<input type="text" name=""  value="" style="width: 88px;"/>平米
 									</td>
 									<td>付款</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">年租</option>
-											<option value="">半年租</option>
-											<option value="">季租</option>
-											<option value="">月租</option>
-											<option value="">一次付清</option>
-											<option value="">按揭方式</option>
-											<option value="">垫资解按</option>
+											<option  selected>请选择</option>
+											<option>年租</option>
+											<option>半年租</option>
+											<option>季租</option>
+											<option>月租</option>
+											<option>一次付清</option>
+											<option>按揭方式</option>
+											<option>垫资解按</option>
 										</select>
 									</td>
 								</tr>
@@ -1169,23 +931,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>看房</td>
 									<td>
 										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">预约</option>
-											<option value="">有匙</option>
-											<option value="">借匙</option>
-											<option value="">直接</option>
+											<option  selected>请选择</option>
+											<option>预约</option>
+											<option>有匙</option>
+											<option>借匙</option>
+											<option>直接</option>
 										</select>
-										<input type="text" name="" id="" value="" style="width: 88px;"/>
+										<input type="text" name=""  value="" style="width: 88px;"/>
 									</td>
 								</tr>
 								<tr class="size">
 									<td>产证号</td>
 									<td>
-										<input type="text" name="" id="" value="" style="width: 88px;"/>
+										<input type="text" name=""  value="" style="width: 88px;"/>
 									</td>
 									<td>产证年限</td>
 									<td>
-										<input type="text" name="" id="" value="" style="width: 88px;"/>
+										<input type="text" name=""  value="" style="width: 88px;"/>
 									</td>
 								</tr>
 							</table>
@@ -1203,45 +965,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr>
 								<tr>
 									<td>
-										身 份:
-										<select style="width: 100px;" id="point" >
-											<option value="" selected>请选择</option>
-											<option value="" >客户</option>
-											<option value="" >联系人</option>
-										</select>
+										姓 名: <input type="text" name="name"  id="point"/>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										姓 名: <input type="text" name="" / id="point">
+										电话1: <input type="text" name="firstPhone" id="point"/>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										电话1: <input type="text" name="" / id="point">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										电话2: <input type="text" name="" />
+										电话2: <input type="text" name="secondPhone" />
 									</td>
 								</tr>
 								<tr>
 									<td>
 										证 件:
-										<select style="width: 100px;">
-											<option value="" selected>请选择</option>
-											<option value="">身份证</option>
-											<option value="">军人证</option>
-											<option value="">港澳通行证</option>
-											<option value="">同胞证</option>
-											<option value="">护照</option>
+										<select name="idCard" style="width: 100px;">
+											<option  selected>身份证</option>
+											<option>军人证</option>
+											<option>港澳通行证</option>
+											<option>同胞证</option>
+											<option>护照</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										备 注:<textarea rows="2" cols="5" style="width:200px ;"></textarea>
+										备 注:<textarea name="comment" rows="2" cols="5" style="width:200px ;"></textarea>
 									</td>
 								</tr>
 								<tr>
@@ -1265,13 +1016,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<tr>
 									<td>
 										归属人1:
-										<select style="width: 100px;" id="point">
-											<option value="" selected>系统管理组</option>
+										<select  style="width: 100px;" id="point">
+											<c:forEach items="${houseAddActionList.departments}" var="item">
+												<option>${item}</option>
+											</c:forEach>
 										</select>
 
-										<select style="width: 100px;" id="point">
-											<option value="" selected>manager</option>
-											<option value="" selected>guest</option>
+										<select name="userId" style="width: 100px;" id="point">
+											<c:forEach items="${houseAddActionList.users}" var="item">
+												<option>${item}</option>
+											</c:forEach>
+
+
 										</select>
 									</td>
 								</tr>
@@ -1279,37 +1035,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>
 										归属人2:
 										<select style="width: 100px;">
-											<option value="" selected>无</option>
-											<option value="" selected>系统管理组</option>
+											<option selected>无</option>
+											<option>系统管理组</option>
 										</select>
 
 										<select style="width: 100px;">
-											<option value="" selected>manager</option>
-											<option value="" selected>guest</option>
+											<option  selected>manager</option>
+											<option>guest</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>
 										归属人3:
-										<select style="width: 100px;" disabled="disabled">
-											<option value="" selected>无</option>
+										<select style="width: 100px;">
+											<option  selected>无</option>
 										</select>
 
-										<select style="width: 100px;" disabled="disabled">
-											<option value="" selected>无</option>
+										<select style="width: 100px;">
+											<option  selected>无</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>
 										拉有效:
-										<select style="width: 100px;" >
-											<option value="" selected>无</option>
+										<select style="width: 100px;">
+											<option  selected>无</option>
 										</select>
 
-										<select style="width: 100px;" >
-											<option value="" selected>无</option>
+										<select style="width: 100px;">
+											<option  selected>无</option>
 										</select>
 									</td>
 								</tr>
@@ -1317,11 +1073,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>
 										钥匙:
 										<select style="width: 100px;" >
-											<option value="" selected>无</option>
+											<option  selected>无</option>
 										</select>
 
 										<select style="width: 100px;" >
-											<option value="" selected>无</option>
+											<option selected>无</option>
 										</select>
 									</td>
 								</tr>
@@ -1329,11 +1085,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>
 										委托:
 										<select style="width: 100px;" >
-											<option value="" selected>无</option>
+											<option  selected>无</option>
 										</select>
 
 										<select style="width: 100px;" >
-											<option value="" selected>无</option>
+											<option  selected>无</option>
 										</select>
 									</td>
 								</tr>
@@ -1341,11 +1097,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>
 										实勘照片:
 										<select style="width: 100px;" >
-											<option value="" selected>无</option>
+											<option  selected>无</option>
 										</select>
 
 										<select style="width: 100px;" >
-											<option value="" selected>无</option>
+											<option  selected>无</option>
 										</select>
 									</td>
 								</tr>
@@ -1354,8 +1110,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</form>
 					<div class="submit-btn" style="text-align: center;">
-						<a href="#" class="btn green">Save </a>
-						<a href="userselect.html" class="btn">Cancel</a>
+						<button type="button" class="btn green" onclick="saveFunc()">保存</button>
+						<button type="button" class="btn green" href="back/user/index">保存</button>
 					</div>
 				</div>
 
@@ -1398,6 +1154,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		</div>
 
+		<script>
+            function saveFunc() {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url:"back/house/addAction",
+                    data:$('#houseAddForm').serialize(),// 你的formid
+                    async: false,
+                    error: function(request) {
+                        alert("保存错误，请检查必填字段");
+                    },
+                    success: function(data) {
+                        if(data!="error")
+                        	{
+                        	    alert("成功!");
+                        		document.getElementById("houseId").value = data;
+                        	}
+                        else{
+                            alert("未保存任何数据");
+                        }
+                    }
+                });
+            }
+
+		</script>
 		<!-- END FOOTER -->
 
 		<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -1470,5 +1251,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				pickerPosition: "bottom-left"
 			});
 		</script>
-
+    </body>
 </html>
