@@ -1381,8 +1381,7 @@
 		<!-- END PAGE LEVEL SCRIPTS -->
 
 		<script type="text/javascript">
-			$(function() {
-
+			$(function () {
 				$('#reportTable').bootstrapTable({
 					method: 'GET',
 					url: 'back/house/getHouseData',
@@ -1536,8 +1535,10 @@
 						valign: "middle",
 						sortable: "true",
 						formatter: function(value, row, index) {
-                            var e = '<a href="back/house/detail/'+row.id +'">' + "查看详情" + '</a>';
-                            return e;
+                            var e = '<a href="back/house/detail/'+row.id +'">' + " 查看详情 " + '</a>';
+
+                            var d = '<a onclick=removeHouse("'  + row.id + '")>' + " 删除 " + '</a>';
+                            return e+d;
                         }
 
 					}],
@@ -1880,6 +1881,20 @@ function request(object,method,methodURL)
 //      	alert(success);
         }
     });			
+ }
+ function removeHouse(houseId) {
+
+     $.ajax({
+         type: "GET",
+         url: 'back/house/delete/'+houseId+'',
+         dataType: "json",
+         success: function(data){
+                 alert(data.errorMessage);
+             $('#reportTable').bootstrapTable('refresh');
+         }
+     });
+
+
  }
 </script>
 	</body>

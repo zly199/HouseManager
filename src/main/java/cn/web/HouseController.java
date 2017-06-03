@@ -1,9 +1,6 @@
 package cn.web;
 
-import cn.dto.FollowUpHouseAvailable;
-import cn.dto.HouseAddActionList;
-import cn.dto.HouseList;
-import cn.dto.HouseMessageAvailable;
+import cn.dto.*;
 import cn.entity.FollowupHouse;
 import cn.entity.HouseOwner;
 import cn.entity.Housemsg;
@@ -104,12 +101,38 @@ public class HouseController {
         HouseOwner houseOwner = houseService.findHouseOwner(houseId);
         houseOwner = permisionService.houseOwnerViewPermission(houseOwner,houseId);
         model.addAttribute("houseOwner",houseOwner);
+        //归属转移部门人员信息下拉列表
+        HouseAddActionList houseAddActionList = permisionService.houseAddPermission();
+        model.addAttribute("houseAddActionList",houseAddActionList);
         //其他相关信息
-//todo：其他信息
+//todo：其他信息 xx区域 xx人
         //照片
         //todo:照片
 //        钥匙
         //todo：钥匙
         return "houseDetail";
+    }
+
+    @RequestMapping("/delete/{houseId}")
+    @ResponseBody
+    public ResultData<Integer> del(@PathVariable String houseId){
+        ResultData<Integer> resultData = houseService.deleteHouse(houseId);
+        return resultData;
+    }
+
+    /**
+     * 修改房源的归属人（员工）
+     * @param houseId
+     * @param houseUserForm
+     * @return 修改条数
+     */
+    @RequestMapping("/ediHouseUser/{houseId}")
+    @ResponseBody
+    public int ediHouseUser(@PathVariable String houseId,HouseUserForm houseUserForm){
+        Subject currentUser = SecurityUtils.getSubject();
+        if (currentUser.isPermitted("house:edi:userMove"))
+            return houseService.editHouseUser(houseId,houseUserForm.getHouseUserName1());
+        else return 0;
+
     }
 }

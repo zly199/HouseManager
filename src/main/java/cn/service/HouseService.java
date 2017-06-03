@@ -3,6 +3,7 @@ package cn.service;
 import cn.dto.FollowUpHouseAvailable;
 import cn.dto.HouseList;
 import cn.dto.HouseMessageAvailable;
+import cn.dto.ResultData;
 import cn.entity.FollowupHouse;
 import cn.entity.HouseOwner;
 import cn.entity.Housemsg;
@@ -64,4 +65,18 @@ public interface HouseService {
      * @return 业主id
      */
     int addHouseOwner(HouseOwner houseOwner);
+
+    /**
+     * 删除房源信息
+     * @param houseId
+     * @return
+     */
+    ResultData<Integer> deleteHouse(String houseId);
+    /**
+     * 修改房源的归属人（员工）
+     * @param houseId
+     * @param houseUserName1
+     * @return 修改条数
+     */
+    int editHouseUser(String houseId, String houseUserName1);
 }

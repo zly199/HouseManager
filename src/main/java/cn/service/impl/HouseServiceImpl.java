@@ -4,10 +4,8 @@ import cn.dao.*;
 import cn.dto.FollowUpHouseAvailable;
 import cn.dto.HouseList;
 import cn.dto.HouseMessageAvailable;
-import cn.entity.FollowupHouse;
-import cn.entity.HouseOwner;
-import cn.entity.Housemsg;
-import cn.entity.UserDuties;
+import cn.dto.ResultData;
+import cn.entity.*;
 import cn.service.HouseService;
 import cn.utils.DataTransferUtil;
 import cn.utils.TinyUtilis;
@@ -15,6 +13,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -146,15 +145,15 @@ public class HouseServiceImpl implements HouseService {
                 houseMessageAvailable.getId(),
                 houseMessageAvailable.getApplication(),
                 houseMessageAvailable.getTransaction(),
-                houseMessageAvailable.getAddress()[0]+"/"+
-                        houseMessageAvailable.getAddress()[1]+"/"+
-                        houseMessageAvailable.getAddress()[2]+"/"+
-                        houseMessageAvailable.getAddress()[3]+"/"+
-                        houseMessageAvailable.getAddress()[4]+"/"+
-                        houseMessageAvailable.getAddress()[5]+"/"+
-                        houseMessageAvailable.getAddress()[6]+"/"+
-                        houseMessageAvailable.getAddress()[7],
-                houseMessageAvailable.getArea()[0]+"/"+
+                ((houseMessageAvailable.getAddress()[0]==null||houseMessageAvailable.getAddress()[0].equals(""))?"-":houseMessageAvailable.getAddress()[0])+"/"+
+                        ((houseMessageAvailable.getAddress()[1]==null||houseMessageAvailable.getAddress()[1].equals(""))?"-":houseMessageAvailable.getAddress()[1])+"/"+
+                        ((houseMessageAvailable.getAddress()[2]==null||houseMessageAvailable.getAddress()[2].equals(""))?"-":houseMessageAvailable.getAddress()[2])+"/"+
+                        ((houseMessageAvailable.getAddress()[3]==null||houseMessageAvailable.getAddress()[3].equals(""))?"-":houseMessageAvailable.getAddress()[3])+"/"+
+                        ((houseMessageAvailable.getAddress()[4]==null||houseMessageAvailable.getAddress()[4].equals(""))?"-":houseMessageAvailable.getAddress()[4])+"/"+
+                        ((houseMessageAvailable.getAddress()[5]==null||houseMessageAvailable.getAddress()[5].equals(""))?"-":houseMessageAvailable.getAddress()[5])+"/"+
+                        ((houseMessageAvailable.getAddress()[6]==null||houseMessageAvailable.getAddress()[6].equals(""))?"-":houseMessageAvailable.getAddress()[6])+"/"+
+                        ((houseMessageAvailable.getAddress()[7]==null||houseMessageAvailable.getAddress()[7].equals(""))?"-":houseMessageAvailable.getAddress()[7]),
+                        houseMessageAvailable.getArea()[0]+"/"+
                         houseMessageAvailable.getArea()[1],
                 houseMessageAvailable.getType(),
                 houseMessageAvailable.getHouseType()[0]+"/"+
@@ -448,6 +447,71 @@ public class HouseServiceImpl implements HouseService {
 
 
         return id;
+    }
+
+    /**
+     * 删除房源信息
+     * @param houseId
+     * @return
+     */
+    @Override
+    @Transactional
+    public ResultData<Integer> deleteHouse(String houseId) {
+        Subject subject = SecurityUtils.getSubject();
+        //判断房源类型，本人，本部，跨部
+        Housemsg housemsg = housemsgDao.selectByPrimaryKey(houseId);
+        if (housemsg==null) return new ResultData<Integer>(false,"未找到房源信息，请刷新重试");
+        UserDuties user = userDutiesDao.selectByName(subject.getPrincipal().toString());
+        //本人房源
+        if (housemsg.getAttribute().equals("私盘")&&housemsg.getUserId().equals(user.getUserId().toString())){
+            if (subject.isPermitted("house:delete:ourselves")||subject.isPermitted("house:delete:ourDepartment")||subject.isPermitted("house:delete:crossDepartment")){
+               int result = housemsgDao.deleteByPrimaryKey(houseId);
+               if (result>0) return new ResultData<Integer>(true,"删除成功");
+               else return new ResultData<Integer>(false,"数据库操作错误，请检查您的网络连接");
+            }else
+                return new ResultData<Integer>(false,"您没有相关权限，请联系管理员");
+        }
+//        本部房源
+        else if (housemsg.getOrganizationId().equals(user.getOrganizationId())){
+            if (subject.isPermitted("house:delete:ourDepartment")||subject.isPermitted("house:delete:crossDepartment")){
+                int result = housemsgDao.deleteByPrimaryKey(houseId);
+                if (result>0) return new ResultData<Integer>(true,"删除成功");
+                else return new ResultData<Integer>(false,"数据库操作错误，请检查您的网络连接");
+            }else
+                return new ResultData<Integer>(false,"您没有相关权限，请联系管理员");
+        }
+
+//        跨部房源
+        else if (!housemsg.getOrganizationId().equals(user.getOrganizationId())){
+            if (subject.isPermitted("house:delete:crossDepartment")){
+                int result = housemsgDao.deleteByPrimaryKey(houseId);
+                if (result>0) return new ResultData<Integer>(true,"删除成功");
+                else return new ResultData<Integer>(false,"数据库操作错误，请检查您的网络连接");
+            }else
+                return new ResultData<Integer>(false,"您没有相关权限，请联系管理员");
+        }
+        else
+            return new ResultData<Integer>(false,"未识别的房源信息，请联系系统管理员");
+
+
+    }
+    /**
+     * 修改房源的归属人（员工）
+     * @param houseId
+     * @param houseUserName1
+     * @return 修改数据条数
+     */
+    @Override
+    public int editHouseUser(String houseId, String houseUserName1) {
+        //获取归属人id和归属人的组织id
+        UserDuties userDuties = userDutiesDao.selectByName(houseUserName1);
+        //获取房源信息
+        Housemsg housemsg = housemsgDao.selectByPrimaryKey(houseId);
+        //修改数据
+        housemsg.setUserId(userDuties.getUserId().toString());
+        housemsg.setOrganizationId(userDuties.getOrganizationId());
+        //返回插入信息
+        return housemsgDao.updateByPrimaryKeySelective(housemsg);
     }
 
     private List<HouseList> HousemsgToHouseListWithNameTransfer( List<Housemsg> housemsgList) {

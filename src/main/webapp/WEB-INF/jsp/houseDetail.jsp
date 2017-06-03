@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -698,7 +699,7 @@
 											</tr>
 
 										</table>
-										<a href="#" data-toggle="modal" data-target="#editfollow">编辑</a>&nbsp;&nbsp;
+										<a data-toggle="modal" data-target="#editfollow">编辑</a>&nbsp;&nbsp;
 
 									</div>
 									<div style="margin-top: 15px;">
@@ -710,7 +711,7 @@
 										</div>
 									</div>
 									<div>
-										<h5 style="font-size: 15px;">相关员工 <span style="float: right;"><a href="#">编辑</a></span></h5>
+										<h5 style="font-size: 15px;">相关员工 <span style="float: right;"><shiro:hasPermission name="house:edi:userMove"><a data-toggle="modal" data-target="#editHouseUser">编辑</a></shiro:hasPermission></span></h5>
 										<p>张瑛区域 张瑛</p>
 										<p>员工</p>
 										<p>首次录入
@@ -1787,6 +1788,102 @@
 			</div>
 		</div>
 
+		<div class="modal fade" id="editHouseUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+								aria-hidden="true "></span></button>
+						<h3 class="modal-title" id="exampleModalLabel ">编辑归属员工</h3>
+					</div>
+					<div class="modal-body">
+                        <form id="houseUser">
+                        <tr>
+                            <td>
+                                归属人1:
+                                <select  style="width: 100px;" id="point">
+                                    <c:forEach items="${houseAddActionList.departments}" var="item">
+                                        <option>${item}</option>
+                                    </c:forEach>
+                                </select>
+
+                                <select name="houseUserName1" style="width: 100px;" id="point">
+                                    <c:forEach items="${houseAddActionList.users}" var="item">
+                                        <option>${item}</option>
+                                    </c:forEach>
+
+
+                                </select>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                归属人2:
+                                <select  style="width: 100px;">
+                                    <option selected>无</option>
+                                    <option>系统管理组</option>
+                                </select>
+
+                                <select name="houseUserName2" style="width: 100px;">
+                                    <option  selected>manager</option>
+                                    <option>guest</option>
+                                </select>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td>
+                                归属人3:
+                                <select  style="width: 100px;">
+                                    <option  selected>无</option>
+                                </select>
+
+                                <select name="houseUserName3" style="width: 100px;">
+                                    <option  selected>无</option>
+                                </select>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        </form>
+					</div>
+
+					<div class="modal-footer">
+                        <button type="button" class="btn green" onclick="saveHouseUser()">保存</button>
+						<button type="button" class="btn green" data-dismiss="modal" aria-hidder="true">取消</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+        <script>
+            /*隐藏时刷新modal，便于下次加载*/
+            $("#editHouseUser").on("hidden", function() {
+                $(this).removeData("modal");
+
+            }
+            );
+            function saveHouseUser() {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url:"back/house/ediHouseUser/${houseDetail.id}",
+                    data:$('#houseUser').serialize(),// 你的formid
+                    async: false,
+                    error: function(request) {
+                        alert("连接错误");
+                    },
+                    success: function(data) {
+                        if(data>0)
+                        {alert("成功!");}
+                        if(data==0){alert("未保存任何数据，请确认您有相关权限");}
+                    }
+                });
+            }
+
+        </script>
 		<script>
 			jQuery(document).ready(function() {
 				$("#follow").css("display", "none");

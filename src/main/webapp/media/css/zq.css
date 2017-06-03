@@ -119,13 +119,7 @@
 	background-color: green;
 }
 
-/*td {
-	text-align: center;
-	/*设置水平居中*/
-	/*vertical-align: middle;*/
-	/*设置垂直居中*/
-}
-*/
+
 
 /*房源详情页*/
 
@@ -192,15 +186,18 @@
 }
 
 .detail9 {
-	margin-left: 120px;
+	margin-left: 15px;
+    font-size: 15px;
 }
 
 #sp13 {
-	padding-left: 20px;
+	padding-left: 15px;
+
 }
 
 #sp14 {
-	padding-left: 100px;
+	padding-left: 10px;
+
 }
 #sp15
 {
