@@ -245,6 +245,11 @@ public class HouseMessageAvailable implements Serializable {
      */
     private String userId;
 
+    /*
+    * 部门或者名称
+    * */
+    private String organizationId;
+
     public String getOrganizationId() {
         return organizationId;
     }
@@ -253,10 +258,7 @@ public class HouseMessageAvailable implements Serializable {
         this.organizationId = organizationId;
     }
 
-    /*
-        * 部门id
-        * */
-    private String organizationId;
+
     @Override
     public String toString() {
         return "HouseMessageAvailable{" +

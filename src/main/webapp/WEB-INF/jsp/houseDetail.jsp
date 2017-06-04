@@ -712,7 +712,7 @@
 									</div>
 									<div>
 										<h5 style="font-size: 15px;">相关员工 <span style="float: right;"><shiro:hasPermission name="house:edi:userMove"><a data-toggle="modal" data-target="#editHouseUser">编辑</a></shiro:hasPermission></span></h5>
-										<p>张瑛区域 张瑛</p>
+										<p>${houseDetail.organizationId} ${houseDetail.userId}</p>
 										<p>员工</p>
 										<p>首次录入
 										</p>

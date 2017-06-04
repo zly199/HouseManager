@@ -232,6 +232,28 @@ public class PermisionServiceImpl implements PermisionService {
             houseMessageAvailable.setSellLowprice(0.00);
             houseMessageAvailable.setRentLowprice(0.00);
         }
+
+        //用途
+        if (!currentUser.isPermitted("house:detail:userage:residence")&&houseMessageAvailable.getApplication().equals("住宅"))
+            houseMessageAvailable.setApplication("****");
+        else if (!currentUser.isPermitted("house:detail:userage:shops")&&houseMessageAvailable.getApplication().equals("商铺"))
+            houseMessageAvailable.setApplication("****");
+        else if (!currentUser.isPermitted("house:detail:userage:commercial")&&houseMessageAvailable.getApplication().equals("商住"))
+            houseMessageAvailable.setApplication("****");
+        else if (!currentUser.isPermitted("house:detail:userage:officeBuilding")&&houseMessageAvailable.getApplication().equals("写字楼"))
+            houseMessageAvailable.setApplication("****");
+        else if (!currentUser.isPermitted("house:detail:userage:factoryShop")&&houseMessageAvailable.getApplication().equals("铺厂"))
+            houseMessageAvailable.setApplication("****");
+        else if (!currentUser.isPermitted("house:detail:userage:writeFactory")&&houseMessageAvailable.getApplication().equals("写厂"))
+            houseMessageAvailable.setApplication("****");
+        else if (!currentUser.isPermitted("house:detail:userage:parkinLot")&&houseMessageAvailable.getApplication().equals("车位"))
+            houseMessageAvailable.setApplication("****");
+        else if (!currentUser.isPermitted("house:detail:userage:land")&&houseMessageAvailable.getApplication().equals("地皮"))
+            houseMessageAvailable.setApplication("****");
+        else if (!currentUser.isPermitted("house:detail:userage:warehouse")&&houseMessageAvailable.getApplication().equals("厂房"))
+            houseMessageAvailable.setApplication("****");
+
+
         return houseMessageAvailable;
     }
     //根据权限返回新增房源的公盘私盘列表，以及部门人员信息下拉列表

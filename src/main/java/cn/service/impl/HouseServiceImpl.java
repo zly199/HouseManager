@@ -376,6 +376,9 @@ public class HouseServiceImpl implements HouseService {
     public HouseMessageAvailable findById(String houseId) {
         Housemsg result = housemsgDao.selectByPrimaryKey(houseId);
         HouseMessageAvailable houseMessageAvailable = DataTransferUtil.HousemsgToHouseMessageAvailable(result);
+        //员工和组织id转名称
+        houseMessageAvailable.setUserId(userDutiesDao.selectByUserId(Long.parseLong(houseMessageAvailable.getUserId())).getUserName());
+        houseMessageAvailable.setOrganizationId(organizationStructureDao.selectByPrimaryKey(houseMessageAvailable.getOrganizationId()).getOrganizationName());
         return houseMessageAvailable;
     }
 

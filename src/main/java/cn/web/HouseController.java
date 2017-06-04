@@ -104,8 +104,9 @@ public class HouseController {
         //归属转移部门人员信息下拉列表
         HouseAddActionList houseAddActionList = permisionService.houseAddPermission();
         model.addAttribute("houseAddActionList",houseAddActionList);
-        //其他相关信息
-//todo：其他信息 xx区域 xx人
+
+        //其他相关信息 s首次跟进等
+
         //照片
         //todo:照片
 //        钥匙
