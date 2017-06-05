@@ -776,9 +776,9 @@
 								<tr class="size">
 									<td>标签</td>
 									<td>
-									<input type="checkbox" name="tag[0]"  value="优质房" />优质房
-									<input type="checkbox" name="tag[1]"  value="聚焦房"/>聚焦房
-									<input type="checkbox" name="tag[2]"  value="速销房"/>速销房
+									<shiro:hasPermission name="house:detail:qualityRoom"><input type="checkbox" name="tag[0]"  value="优质房" />优质房</shiro:hasPermission>
+									<shiro:hasPermission name="house:detail:focusingRoom"><input type="checkbox" name="tag[1]"  value="聚焦房"/>聚焦房</shiro:hasPermission>
+									<shiro:hasPermission name="house:detail:soShopRoom"><input type="checkbox" name="tag[2]"  value="速销房"/>速销房</shiro:hasPermission>
 									</td>
 								</tr>
 								<tr class="size">

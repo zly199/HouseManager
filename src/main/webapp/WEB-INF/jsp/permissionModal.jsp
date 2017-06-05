@@ -269,8 +269,7 @@
                             <div style="margin-top: 10px;">
                                 <input type="checkbox" name="permissionSet" value="house:followup:add:ourselves" <c:if test="${permissionSet.contains('house:followup:add:ourselves')}"> checked="checked"</c:if>/>跟进新增【本人】
                             </div>
-                            <input type="checkbox" name="permissionSet" value="house:followup:edi:ourselves" <c:if test="${permissionSet.contains('house:followup:edi:ourselves')}"> checked="checked"</c:if>/>跟进修改【本人】
-                            </br>
+
                             跟进删除:
                             <select style="width: 60px;" name="permissionSet">
                                 <option>无</option>
@@ -294,13 +293,6 @@
                             </br>
                             <input type="checkbox" name="permissionSet" value="house:key:delete" <c:if test="${permissionSet.contains('house:key:delete')}"> checked="checked"</c:if>/>删除
                             </br>
-                            <input type="checkbox" name="permissionSet" value="house:key:borrow" <c:if test="${permissionSet.contains('house:key:borrow')}"> checked="checked"</c:if>/>借出
-                            </br>
-                            <input type="checkbox" name="permissionSet" value="house:key:return" <c:if test="${permissionSet.contains('house:key:return')}"> checked="checked"</c:if>/>归还
-                            </br>
-                            <input type="checkbox" name="permissionSet" value="house:key:getBack" <c:if test="${permissionSet.contains('house:key:getBack')}"> checked="checked"</c:if>/>收回
-                            </br>
-                            <input type="checkbox" name="permissionSet" value="house:key:passwordView" <c:if test="${permissionSet.contains('house:key:passwordView')}"> checked="checked"</c:if>/>查看密码
                         </div>
                     </div>
 

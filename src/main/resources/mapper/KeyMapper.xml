@@ -17,15 +17,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from key
+    from `key`
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByHouseId" resultType="cn.entity.Key">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM `key`
+    WHERE name=#{houseId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from key
+    delete from `key`
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.entity.Key" >
-    insert into key (id, number, name, 
+    insert into `key` (id, number, name,
       type, organizationid, userid, 
       status, remark)
     values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
@@ -33,7 +39,7 @@
       #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.Key" >
-    insert into key
+    insert into `key`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -88,7 +94,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.entity.Key" >
-    update key
+    update `key`
     <set >
       <if test="number != null" >
         number = #{number,jdbcType=VARCHAR},
@@ -115,7 +121,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.entity.Key" >
-    update key
+    update `key`
     set number = #{number,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},

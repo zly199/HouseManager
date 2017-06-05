@@ -5,6 +5,10 @@ import java.util.Date;
 
 public class FollowUpHouseAvailable implements Serializable {
     /**
+     * id
+     */
+    private Long houseFollowupId;
+    /**
      * 跟进内容
      */
     private String content;
@@ -31,7 +35,16 @@ public class FollowUpHouseAvailable implements Serializable {
      */
     private String method;
 
-    public FollowUpHouseAvailable(String content, String userName, String userDuties, String userDepartment, Date time, String method) {
+    public Long getHouseFollowupId() {
+        return houseFollowupId;
+    }
+
+    public void setHouseFollowupId(Long houseFollowupId) {
+        this.houseFollowupId = houseFollowupId;
+    }
+
+    public FollowUpHouseAvailable(Long houseFollowupId, String content, String userName, String userDuties, String userDepartment, Date time, String method) {
+        this.houseFollowupId = houseFollowupId;
         this.content = content;
         this.userName = userName;
         this.userDuties = userDuties;

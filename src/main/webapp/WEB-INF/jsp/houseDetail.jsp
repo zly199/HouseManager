@@ -1,3 +1,5 @@
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Calendar" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
@@ -545,8 +547,11 @@
                                 <a href="#" style="color: green;">${houseDetail.address[2]}</a> ${houseDetail.address[3]} ${houseDetail.address[5]} ${houseDetail.address[6]}/${houseDetail.address[7]}层 </p>
                             <p class="detail3">${houseDetail.id}</p>
                             <p class="detail5">
-                                <span>*</span><span id="detail6">${houseDetail.tag[0]}</span><span id="detail7">${houseDetail.tag[1]}</span><span id="detail8">${houseDetail.tag[2]}</span> ${houseDetail.sellPrice}万元 ${houseDetail.area[0]}m²(套内${houseDetail.area[1]}m²) ${houseDetail.houseType[0]}房${houseDetail.houseType[1]}厅${houseDetail.houseType[2]}卫${houseDetail.houseType[3]}阳台 ${houseDetail.orientation} ${houseDetail.application} ${houseDetail.type} ${houseDetail.decoration}</p>
-                        </div>
+                                <span>*</span><span id="detail6">${houseDetail.tag[0]}</span><span id="detail7">${houseDetail.tag[1]}</span><span id="detail8">${houseDetail.tag[2]}</span> ${houseDetail.sellPrice}万元 ${houseDetail.area[0]}m²(套内${houseDetail.area[1]}m²) ${houseDetail.houseType[0]}房${houseDetail.houseType[1]}厅${houseDetail.houseType[2]}卫${houseDetail.houseType[3]}阳台 ${houseDetail.orientation} ${houseDetail.application} ${houseDetail.type} ${houseDetail.decoration}
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="back/house/detail/edit/${houseDetail.id}"> + 编辑 + </a>
+							</p>
+
+						</div>
 
 						<div>
 							<div style="margin-top: 10px;">
@@ -589,7 +594,7 @@
                                             ${houseDetail.recordNumber}
 												</span> </td>
 										<td><span id="sp14">交房日期</span></td>
-										<td><span id="sp13"><fmt:formatDate value="${houseDetail.lunchTime}" pattern="yyyy-mm-dd"/></span> </td>
+										<td><span id="sp13"><fmt:formatDate value="${houseDetail.lunchTime}" pattern="yyyy-MM-dd"/></span> </td>
 										<td><span id="sp14">唯一住房</span></td>
 										<td> <span id="sp13">
                                             ${houseDetail.uniquehouse}
@@ -600,7 +605,7 @@
 										<td><span id="sp13">${houseDetail.seeTheHouse}</span> </td>
 										<td><span id="sp14">购买时间</span></td>
 										<td> <span id="sp13">
-                                            <fmt:formatDate value="${houseDetail.purchasingDate}" pattern="yyyy-mm-dd"/>
+                                            <fmt:formatDate value="${houseDetail.purchasingDate}" pattern="yyyy-MM-dd"/>
 												</span> </td>
 										<td><span id="sp14">有贷款</span></td>
 										<td><span id="sp13">${houseDetail.loan}</span> </td>
@@ -616,7 +621,7 @@
                                         <td><span id="sp13">${houseDetail.precatoryMethod}</span> </td>
                                         <td><span id="sp14">委托日期</span></td>
                                         <td> <span id="sp13">
-                                            <fmt:formatDate value="${houseDetail.precatoryDate}" pattern="yyyy-mm-dd"/>
+                                            <fmt:formatDate value="${houseDetail.precatoryDate}" pattern="yyyy-MM-dd"/>
 												</span> </td>
 									</tr>
                                     <tr><td>&nbsp </td> </tr>
@@ -736,7 +741,7 @@
 								<div class="tabbable tabbable-custom tabbable-full-width" style="width: 800px; margin-left: -30px; margin-top: -180px;">
 									<ul class="nav nav-tabs">
 										<li>
-											<a href="#tab1" data-toggle="tab">跟进记录(1)</a>
+											<a href="#tab1" data-toggle="tab">跟进记录</a>
 										</li>
 
 										<li>
@@ -752,7 +757,7 @@
 											<a href="#tab5" data-toggle="tab">房源描述 </a>
 										</li>
 										<li>
-											<a href="#tab6" data-toggle="tab">钥匙(0) </a>
+                                            <a href="#tab6" data-toggle="tab" id="keyCount">钥匙</a>
 										</li>
 										<li>
 											<a href="#tab7" data-toggle="tab">地铁 (0)</a>
@@ -791,7 +796,7 @@
 												<input type="text" name="" id="" value="" placeholder="关键词" style="width: 45px;" />
 												<input type="checkbox" name="" id="" value="" />有录音
 												<input type="checkbox" name="" id="" value="" />有短信
-												<span style="float: right;"><a href="#" data-toggle="modal" data-target="#follow">写跟进</a></span>
+												<span style="float: right;"><a data-toggle="modal" data-target="#house_follow">写跟进</a></span>
 											</div>
 											<div>
 												<div class="htmleaf-container">
@@ -803,12 +808,13 @@
 																	<img src="media/image/star.svg" alt="">
 																</div>
 																<div class="timeline-content">
-																	<h5><fmt:formatDate value="${followUp.time}" pattern="yyyy-mm-dd"/></h5>
+																	<h5><fmt:formatDate value="${followUp.time}" pattern="yyyy-MM-dd"/></h5>
 																	<p>
 																		【${followUp.method}】${followUp.content}
 																	</p>
-																	<p><fmt:formatDate value="${followUp.time}" pattern="yyyy-mm-dd HH:mm:ss"/> 　${followUp.userDepartment} ${followUp.userName}（${followUp.userDuties}）
-																		<a href="#">删除</a>
+																	<p><fmt:formatDate value="${followUp.time}" pattern="yyyy-MM-dd HH:mm:ss"/> 　${followUp.userDepartment} ${followUp.userName}（${followUp.userDuties}）
+																		<button type="button" onclick="delHouseFollowUp(${followUp.houseFollowupId})">删除  </button>
+
 																	</p>
 																</div>
 
@@ -1014,7 +1020,7 @@
 
 										<div class="tab-pane row-fluid profile-account" id="tab6">
 
-											<a href="#" data-toggle="modal" data-target="#addkey">新增钥匙</a>
+                                            <shiro:hasPermission name="house:key:add"><a href="#" data-toggle="modal" data-target="#addkey">新增钥匙</a></shiro:hasPermission>
 											<a href="#" style="float: right;" data-toggle="modal" data-target="#recoder">操作记录</a>
 											<table id="keytable">
 
@@ -1173,40 +1179,42 @@
 		<script type="text/javascript">
 			$(function() {
 				$('#keytable').bootstrapTable({
-					method: 'POST',
-					url: '',
+					method: 'GET',
+					url: 'back/house/key/list/${houseDetail.id}',
 					cache: false,
 					striped: true,
 					pagination: true,
 					pageSize: 5,
 					pageNumber: 1,
 					pageList: [10, 20, 50, 100, 200, 500],
-					columns: [{
-						field: "custom_id",
+					columns: [
+                        {
+                            field: "keyId",
+                            title: "钥匙编号",
+                            align: "center",
+                            valign: "middle",
+                            sortable: "true",
+                            visible:true
+                        },{
+						field: "keyNumber",
 						title: "钥匙编号",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_name",
-						title: "钥匙名称",
-						align: "center",
-						valign: "middle",
-						sortable: "true"
-					}, {
-						field: "custom_eamil",
+						field: "keyType",
 						title: "钥匙类别",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_phone",
+						field: "keyOrganazation",
 						title: "保管门店",
 						align: "center",
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_state",
+						field: "keyUser",
 						title: "收取人",
 						align: "center",
 						valign: "middle",
@@ -1218,7 +1226,7 @@
 						valign: "middle",
 						sortable: "true"
 					}, {
-						field: "custom_min_acreage",
+						field: "keyRemark",
 						title: "备注",
 						align: "center",
 						valign: "middle",
@@ -1230,44 +1238,16 @@
 						valign: "middle",
 						sortable: "true",
 						formatter: function(value, row, index) {
-							var e = '<a href="#" data-toggle="modal" data-target="#editkey">修改</a> ';
-							var i = '<a href="#" >删除</a> ';
-							var g = '<a href="#" data-toggle="modal" data-target="#detailKey">查询详情</a> ';
-							return e + i + g;
+                                <shiro:hasPermission name="house:key:edi">var e = '<a href="#" data-toggle="modal" data-target="#editkey">修改</a> ';</shiro:hasPermission>
+								<shiro:hasPermission name="house:key:delete">var i = '<a  onclick="delHouseKey('+row.keyId+')">删除</a> ';</shiro:hasPermission>
+
+                            var g = '<a href="#" data-toggle="modal" data-target="#detailKey">查询详情</a> ';
+
+							return <shiro:hasPermission name="house:key:edi">e+</shiro:hasPermission>  <shiro:hasPermission name="house:key:delete">  i+</shiro:hasPermission>  g;
 						}
 
 					}],
-					data: [{
-						"user_email": "20dai.rikon@gmail.com",
-						"user_company": "",
-						"user_dates": "2014-10-13 13:35:51",
-						"user_lastlogintime": "0",
-						"user_version": "0",
-						"user_isv2": "0",
-						"userstatus_usertype": "0",
-						"userstatus_package_id": "100014",
-						"userstatus_end_time": "NULL"
-					}, {
-						"user_email": "20140416@xxxxddffg.com",
-						"user_company": "NULL",
-						"user_dates": "2014-10-13 13:35:51",
-						"user_lastlogintime": "0",
-						"user_version": "1",
-						"user_isv2": "0",
-						"userstatus_usertype": "0",
-						"userstatus_package_id": "100001",
-						"userstatus_end_time": "NULL"
-					}, {
-						"user_email": "20083matsumoto-hs@polus.co.jp",
-						"user_company": "",
-						"user_dates": "2014-10-31 13:02:47",
-						"user_lastlogintime": "1414726074",
-						"user_version": "0",
-						"user_isv2": "1",
-						"userstatus_usertype": "0",
-						"userstatus_package_id": "100014",
-						"userstatus_end_time": "0"
-					}],
+					data: [],
 					onPageChange: function(size, number) {
 						//$("#pageSizeInput ").val(size);
 						//$("#pageNumberInput ").val(number);
@@ -1291,6 +1271,7 @@
 
 				$(window).resize(function() {
 					$('#keytable').bootstrapTable('resetView');
+
 				});
 			});
 		</script>
@@ -1332,7 +1313,7 @@
 	时间：2017-05-25
 	描述：写跟进
 -->
-		<div class="modal fade" id="follow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal fade" id="house_follow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -1341,21 +1322,22 @@
 						<h3 class="modal-title" id="exampleModalLabel">写跟进 </h3>
 					</div>
 					<div class="modal-body">
+						<form id="houseFollow">
 						<table>
 
 							<tr>
 								<td>跟进时间</td>
-								<td><span id="sp13">0</span></td>
+								<td><span id="sp13" >标准系统时间</span></td>
 							</tr>
 							<tr>
 								<td>跟进人</td>
-								<td><span id="sp13">0</span></td>
-								<td><span id="sp13">0</span></td>
+								<td><span id="sp13">${houseDetail.organizationId}</span></td>
+								<td><span id="sp13">${houseDetail.userId}</span></td>
 							</tr>
 							<tr>
 								<td>跟进方式</td>
 								<td>
-									<select>
+									<select name="method">
 										<option>请选择</option>
 										<option>去电</option>
 										<option>来电</option>
@@ -1382,9 +1364,7 @@
 							<tr style="margin-top: 100px;">
 								<td>跟进内容</td>
 								<td>
-									<textarea rows="3" cols="50" style="width:300px ;">
-										
-									</textarea>
+									<textarea rows="3" cols="50" style="width:300px ;" name="content"></textarea>
 								</td>
 
 							</tr>
@@ -1397,7 +1377,7 @@
 								<tr>
 									<td>提醒时间</td>
 									<td>
-										<input type="date" name=" " id=" " value=" " style="width: 70px;" />
+										<input type="date" style="width: 70px;" />
 									</td>
 									<td>提醒范围</td>
 									<td>
@@ -1432,10 +1412,11 @@
 								</tr>
 							</table>
 						</table>
+						</form>
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn green">保存</button>
+						<button type="button" class="btn green" onclick="saveHouseFollowup()">保存</button>
 						<button type="button" class="btn green" data-dismiss="modal" aria-hidder="true">取消</button>
 
 					</div>
@@ -1519,15 +1500,19 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true"></span></button>
-						<h3 class="modal-title" id="exampleModalLabel">新增钥匙 </h3>
+						<shiro:hasPermission name="house:key:add"><h3 class="modal-title" id="exampleModalLabel">新增钥匙 </h3></shiro:hasPermission>
 					</div>
+
 					<div class="modal-body">
+                        <form id = "keyForm">
+
+
 						<table>
 							<tr>
 								<td>钥匙类型</td>
 								<td>
-									<select>
-										<option>请选择</option>
+									<select name="keyType">
+
 										<option>机械锁</option>
 										<option>密码锁</option>
 									</select>
@@ -1535,63 +1520,47 @@
 							</tr>
 							<tr>
 								<td>钥匙编号</td>
-								<td><input type="text" name=" " id=" " value=" " /></td>
-							</tr>
-							<tr>
-								<td>钥匙名称</td>
-								<td><input type="text" name=" " id=" " value=" " /></td>
-
+								<td><input type="text" name="keyNumber"  value=" " /></td>
 							</tr>
 							<tr>
 								<td>保管门店</td>
 								<td>
-									<select>
-										<option selected="selected">总部</option>
-										<option>张瑛区域</option>
-										<option>中兴路店</option>
-										<option>共和新路店</option>
-										<option>财务</option>
-										<option>软件开发</option>
-										<option>系统管理组</option>
+									<select name="keyOrganazation">
+                                        <c:forEach items="${houseAddActionList.departments}" var="item">
+                                            <option>${item}</option>
+                                        </c:forEach>
 									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>收取人</td>
 								<td>
-									<select style="width: 110px;">
-										<option selected="selected">总部</option>
-										<option>张瑛区域</option>
-										<option>中兴路店</option>
-										<option>共和新路店</option>
-										<option>财务</option>
-										<option>软件开发</option>
-										<option>系统管理组</option>
+									<select name="userid" style="width: 110px;">
+                                        <c:forEach items="${houseAddActionList.departments}" var="item">
+                                            <option>${item}</option>
+                                        </c:forEach>
 									</select>
-									<select style="width: 110px;">
-										<option selected="selected">zlysb</option>
-										<option>zq</option>
-										<option>zq</option>
-										<option>yf</option>
-										<option>xzw</option>
-										<option>zlysb</option>
-										<option>zlysb</option>
+									<select name="keyUser" style="width: 110px;">
+                                        <c:forEach items="${houseAddActionList.users}" var="item">
+                                            <option>${item}</option>
+                                        </c:forEach>
 									</select>
 								</td>
 							</tr>
 							<tr style="margin-top: 100px; ">
 								<td>备注</td>
 								<td>
-									<textarea rows="3" cols="50" style="width:300px ; height: 30px;">	
-									</textarea>
+									<textarea name="keyRemark" rows="3" cols="50" style="width:300px ; height: 30px;"></textarea>
 								</td>
 
 							</tr>
 						</table>
+
+                        </form>
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn green">保存</button>
+                        <button type="button" class="btn green" onclick="addHouseKey('${houseDetail.id}')">保存</button>
 						<button type="button" class="btn green" data-dismiss="modal" aria-hidder="true">取消</button>
 
 					</div>
@@ -1653,11 +1622,7 @@
 								<td>钥匙编号</td>
 								<td><input type="text" name=" " id=" " value=" " /></td>
 							</tr>
-							<tr>
-								<td>钥匙名称</td>
-								<td><input type="text" name=" " id=" " value=" " /></td>
 
-							</tr>
 							<tr>
 								<td>保管门店</td>
 								<td>
@@ -1892,6 +1857,8 @@
 				$("#editkey").css("display", "none");
 				$("#recoder").css("display", "none");
 				$("#modifyHouse").css("display", "none");
+				$("#house_follow").css("display","none");
+
 			});
 		</script>
 
@@ -2000,6 +1967,77 @@
 				});
 			});
 		</script>
+	<script>
+		function saveHouseFollowup() {
+
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:"back/house/followUp/add/${houseDetail.id}",
+                data:$('#houseFollow').serialize(),// 你的formid
+                async: false,
+                error: function(request) {
+                    alert("连接错误");
+                },
+                success: function(data) {
+                    if(data>0)
+                    {alert("成功!");}
+                    if(data==0){alert("未保存任何数据，请确认您有相关权限");}
+                }
+            });
+
+        }
+        function delHouseFollowUp(houseFollowId) {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:"back/house/followUp/del/"+houseFollowId+"",
+                async: false,
+                error: function(request) {
+                    alert("连接错误");
+                },
+                success: function(data) {
+                    if(data>0)
+                    {alert("成功!");}
+                    if(data==0){alert("重复操作，或者您没有相关权限");}
+                }
+            });
+        }
+        function addHouseKey(houseId){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:"back/house/key/add/"+houseId+"",
+                data:$('#keyForm').serialize(),
+                async: false,
+                error: function(request) {
+                    alert("连接错误");
+                },
+                success: function(data) {
+                    if(data>0)
+                    {alert("成功!");}
+                    if(data==0){alert("重复操作，或者您没有相关权限");}
+                }
+            });
+        }
+        function delHouseKey(keyId){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:"back/house/key/del/"+keyId+"",
+                async: false,
+                error: function(request) {
+                    alert("连接错误");
+                },
+                success: function(data) {
+                    if(data>0)
+                    {alert("成功!");}
+                    if(data==0){alert("重复操作，或者您没有相关权限");}
+                }
+            });
+        }
+
+	</script>
 	</body>
 
 	<!-- END BODY -->

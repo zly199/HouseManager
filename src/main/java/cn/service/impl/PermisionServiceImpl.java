@@ -4,8 +4,8 @@ import cn.dao.*;
 import cn.dto.FollowUpHouseAvailable;
 import cn.dto.HouseAddActionList;
 import cn.dto.HouseMessageAvailable;
-import cn.entity.HouseOwner;
-import cn.entity.OrganizationStructure;
+import cn.dto.KeyForm;
+import cn.entity.*;
 import cn.service.HouseService;
 import cn.service.OrganizationStructService;
 import cn.service.PermisionService;
@@ -32,9 +32,16 @@ public class PermisionServiceImpl implements PermisionService {
     @Autowired
     OrganizationStructureMapper organizationStructureDao;
     @Autowired
+    UserMapper userDao;
+    @Autowired
+    FollowupHouseMapper followupHouseDao;
+    @Autowired
     UserService userService;
     @Autowired
     OrganizationStructService organizationStructService;
+    @Autowired
+    HouseService houseService;
+
     /**
      * 通过userId修改权限
      *
@@ -309,5 +316,65 @@ public class PermisionServiceImpl implements PermisionService {
         houseAddActionList.setDepartments(departments);
         houseAddActionList.setUsers(users);
         return houseAddActionList;
+    }
+
+    /**
+     * 跟进新增
+     * @param houseId
+     * @param followupHouse
+     * @return
+     */
+    @Override
+    public int houseFollowUpAdd(String houseId, FollowupHouse followupHouse) {
+        Subject currentUser = SecurityUtils.getSubject();
+        //判断是否为本人的房源
+        Housemsg housemsg = housemsgDao.selectByPrimaryKey(houseId);
+        User user = userDao.selectByUserName(currentUser.getPrincipal().toString());
+        if(currentUser.isPermitted("house:followup:add:ourselves")&&(housemsg.getUserId().equals(user.getUserId().toString())))
+            return houseService.addHouseFollowup(houseId,followupHouse);
+        else
+            return 0;
+    }
+
+    /**
+     * 跟进权限删除
+     * @param followUpId
+     * @return
+     */
+    @Override
+    public int houseFollowUpDel(Long followUpId) {
+        Subject currentUser = SecurityUtils.getSubject();
+        FollowupHouse followupHouse = followupHouseDao.selectByPrimaryKey(followUpId);
+        //本人
+        UserDuties user = userDutiesDao.selectByName(currentUser.getPrincipal().toString());
+        //跟进所属人员
+        UserDuties followUser = userDutiesDao.selectByUserId(followupHouse.getUserid());
+
+        //本人跟进可删除
+        if(currentUser.isPermitted("house:followUp:delete:ourselves")&&(followupHouse.getUserid().equals(user.getUserId().toString())))
+            return houseService.delFollowHouse(followUpId);
+        //本部跟进可删除
+        else if (currentUser.isPermitted("house:followUp:delete:ourDepartment")&&(user.getOrganizationId().equals(followUser.getOrganizationId())))
+            return houseService.delFollowHouse(followUpId);
+//        跨部跟进可删除
+        else if(currentUser.isPermitted("house:followUp:delete:crossDepartment"))
+            return houseService.delFollowHouse(followUpId);
+        else
+            return 0;
+
+    }
+    /**
+     * 增加钥匙
+     * @param houseId
+     * @param keyForm
+     * @return
+     */
+    @Override
+    public int addHouseKey(KeyForm keyForm, String houseId) {
+        Subject subject = SecurityUtils.getSubject();
+        if (subject.isPermitted("house:key:add"))
+            return houseService.addHouseKey(keyForm,houseId);
+        else
+            return 0;
     }
 }

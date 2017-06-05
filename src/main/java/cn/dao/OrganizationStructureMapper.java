@@ -45,4 +45,6 @@ public interface OrganizationStructureMapper {
      * @return
      */
     List<String> selectNameAll();
+
+    String selectByName(String organizationName);
 }

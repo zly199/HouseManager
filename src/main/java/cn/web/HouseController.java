@@ -120,6 +120,11 @@ public class HouseController {
         ResultData<Integer> resultData = houseService.deleteHouse(houseId);
         return resultData;
     }
+    @RequestMapping("/detail/edit/{houseId}")
+    public String ediHouseDetail(@PathVariable String houseId){
+
+        return "houseEdit";
+    }
 
     /**
      * 修改房源的归属人（员工）
@@ -134,6 +139,59 @@ public class HouseController {
         if (currentUser.isPermitted("house:edi:userMove"))
             return houseService.editHouseUser(houseId,houseUserForm.getHouseUserName1());
         else return 0;
+
+    }
+
+    /**
+     * 新增跟进信息
+     * @param houseId
+     * @param followupHouse
+     * @return
+     */
+    @RequestMapping("/followUp/add/{houseId}")
+    @ResponseBody
+    public int followUpAdd(@PathVariable String houseId,FollowupHouse followupHouse){
+        return permisionService.houseFollowUpAdd(houseId,followupHouse);
+    }
+
+    /**
+     * 跟进删除
+     * @param followUpId
+     * @return
+     */
+    @RequestMapping("/followUp/del/{followUpId}")
+    @ResponseBody
+    public int followUpDel(@PathVariable Long followUpId){
+        return permisionService.houseFollowUpDel(followUpId);
+    }
+
+    /**
+     * 增加钥匙
+     * @param houseId
+     * @param keyForm
+     * @return
+     */
+    @RequestMapping("/key/add/{houseId}")
+    @ResponseBody
+    public int keyAdd(@PathVariable String houseId,KeyForm keyForm){
+
+        return permisionService.addHouseKey(keyForm,houseId);
+    }
+
+    /**
+     * 根据房源查找房源钥匙
+     * @param houseId
+     * @return
+     */
+    @RequestMapping("/key/list/{houseId}")
+    @ResponseBody
+    public List<KeyForm> getKeyList(@PathVariable String houseId){
+        return houseService.findKeyByHouseId(houseId);
+    }
+    @RequestMapping("/key/del/{keyId}")
+    @ResponseBody
+    public int delKey(@PathVariable String keyId){
+        return houseService.delHouseKey(keyId);
 
     }
 }

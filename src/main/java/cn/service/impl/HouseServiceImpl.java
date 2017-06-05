@@ -1,10 +1,7 @@
 package cn.service.impl;
 
 import cn.dao.*;
-import cn.dto.FollowUpHouseAvailable;
-import cn.dto.HouseList;
-import cn.dto.HouseMessageAvailable;
-import cn.dto.ResultData;
+import cn.dto.*;
 import cn.entity.*;
 import cn.service.HouseService;
 import cn.utils.DataTransferUtil;
@@ -39,6 +36,8 @@ public class HouseServiceImpl implements HouseService {
 //    用户职务
     @Autowired
     UserDutiesMapper userDutiesDao;
+    @Autowired
+    KeyMapper keyDao;
     //楼盘字典dao
     @Autowired
     HousesDictionaryMapper housesDictionaryDao;
@@ -46,6 +45,7 @@ public class HouseServiceImpl implements HouseService {
     EnterpriseDutiesMapper enterpriseDutiesDao;
     @Autowired
     HouseOwnerMapper houseOwnerDao;
+
 
 
     /**
@@ -404,6 +404,7 @@ public class HouseServiceImpl implements HouseService {
         for (FollowupHouse followupHouse:followupHouses){
             result.add(
                     new FollowUpHouseAvailable(
+                            followupHouse.getId(),
                             followupHouse.getContent(),
                             userDao.selectByPrimaryKey(followupHouse.getUserid()).getUserName(),
                             enterpriseDutiesDao.selectByPrimaryKey(userDutiesDao.selectByUserId(followupHouse.getUserid()).getDutiesId()).getDutiesName(),
@@ -515,6 +516,104 @@ public class HouseServiceImpl implements HouseService {
         housemsg.setOrganizationId(userDuties.getOrganizationId());
         //返回插入信息
         return housemsgDao.updateByPrimaryKeySelective(housemsg);
+    }
+
+    /**
+     * 新增房源信息
+     * @param houseId
+     * @param followupHouse
+     * @return
+     */
+    @Override
+    @Transactional
+    public int addHouseFollowup(String houseId, FollowupHouse followupHouse) {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.CHINA);
+        //获取时间
+        try {
+            followupHouse.setTime(simpleDateFormat.parse(simpleDateFormat.format(new Date())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //获取员工id
+        followupHouse.setUserid(userDao.selectByUserName(SecurityUtils.getSubject().getPrincipal().toString()).getUserId());
+        //存入房源id
+        followupHouse.setHouseid(houseId);
+        return followupHouseDao.insertSelective(followupHouse);
+    }
+    /**
+     * 删除房源跟进
+     * @param followUpId
+     * @return
+     */
+    @Override
+    public int delFollowHouse(Long followUpId) {
+        return followupHouseDao.deleteByPrimaryKey(followUpId);
+    }
+    /**
+     * 增加钥匙
+     * @param keyForm
+     * @param houseId
+     * @return
+     */
+    @Override
+    public int addHouseKey(KeyForm keyForm, String houseId) {
+        //组织名转换
+
+        //用户名转换
+       Key key = new Key(
+                null,
+                keyForm.getKeyNumber(),
+                houseId,
+                keyForm.getKeyType(),
+                organizationStructureDao.selectByName(keyForm.getKeyOrganazation()),
+                userDao.selectByUserName(keyForm.getKeyUser()).getUserId(),
+                null,
+                keyForm.getKeyRemark()
+        );
+
+        return keyDao.insert(key);
+    }
+    /**
+     * 根据房源查找房源钥匙
+     * @param houseId
+     * @return
+     */
+    @Override
+    public List<KeyForm> findKeyByHouseId(String houseId) {
+        //查找房源的所有钥匙
+        List<Key> keyList = keyDao.selectByHouseId(houseId);
+
+        //转换格式
+        return keyListToKeyForm(keyList);
+    }
+
+    /**
+     * 删除钥匙
+     * @param keyId
+     * @return
+     */
+    @Override
+    public int delHouseKey(String keyId) {
+        return keyDao.deleteByPrimaryKey(Integer.parseInt(keyId));
+    }
+
+    private List<KeyForm> keyListToKeyForm(List<Key> keyList) {
+        List<KeyForm> keyFormList = new ArrayList<>();
+
+        for (Key key:keyList){
+            KeyForm keyForm = new KeyForm();
+            keyForm.setKeyId(key.getId().toString());
+            keyForm.setHouseId(key.getName());
+            keyForm.setKeyNumber(key.getNumber());
+            keyForm.setKeyOrganazation(organizationStructureDao.selectByPrimaryKey(key.getOrganizationid()).getOrganizationName());
+            keyForm.setKeyRemark((key.getRemark()==null)?"":key.getRemark());
+            keyForm.setKeyType(key.getType());
+            keyForm.setKeyUser(userDao.selectByPrimaryKey(key.getUserid()).getUserName());
+            keyFormList.add(keyForm);
+
+        }
+        return keyFormList;
     }
 
     private List<HouseList> HousemsgToHouseListWithNameTransfer( List<Housemsg> housemsgList) {

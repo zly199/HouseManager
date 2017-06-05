@@ -1,9 +1,6 @@
 package cn.service;
 
-import cn.dto.FollowUpHouseAvailable;
-import cn.dto.HouseList;
-import cn.dto.HouseMessageAvailable;
-import cn.dto.ResultData;
+import cn.dto.*;
 import cn.entity.FollowupHouse;
 import cn.entity.HouseOwner;
 import cn.entity.Housemsg;
@@ -79,4 +76,40 @@ public interface HouseService {
      * @return 修改条数
      */
     int editHouseUser(String houseId, String houseUserName1);
+
+    /**
+     * 新增房源跟进信息
+     * @param houseId
+     * @param followupHouse
+     * @return
+     */
+    int addHouseFollowup(String houseId, FollowupHouse followupHouse);
+
+    /**
+     * 删除房源跟进
+     * @param followUpId
+     * @return
+     */
+    int delFollowHouse(Long followUpId);
+
+    /**
+     * 增加钥匙
+     * @param keyForm
+     * @param houseId
+     * @return
+     */
+    int addHouseKey(KeyForm keyForm, String houseId);
+    /**
+     * 根据房源查找房源钥匙
+     * @param houseId
+     * @return
+     */
+    List<KeyForm> findKeyByHouseId(String houseId);
+
+    /**
+     * 删除钥匙
+     * @param keyId
+     * @return
+     */
+    int delHouseKey(String keyId);
 }

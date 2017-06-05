@@ -1,5 +1,7 @@
 package cn.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class FollowupHouse {
@@ -26,6 +28,7 @@ public class FollowupHouse {
     /**
      * 跟进时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date time;
 
     /**

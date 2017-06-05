@@ -33,7 +33,7 @@
         <link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		
 		<link href="media/css/bootstrap.css" rel="stylesheet" type="text/css" />
-		
+
 		
 		
 
@@ -1845,6 +1845,7 @@ $(function(){
 				});
 			});
 		</script>
+
 <script type="text/javascript"> 
  function Favorites(id,FavoritesName,source)
  {
