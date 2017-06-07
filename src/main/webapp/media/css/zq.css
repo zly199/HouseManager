@@ -120,7 +120,6 @@
 }
 
 
-
 /*房源详情页*/
 
 .detail1 {
@@ -186,18 +185,17 @@
 }
 
 .detail9 {
-	margin-left: 15px;
-    font-size: 13px;
+	margin-left: 120px;
 }
 
 #sp13 {
 	padding-left: 15px;
-
+	font-size: 13px;
 }
 
 #sp14 {
-	padding-left: 10px;
-
+	padding-left: 15px;
+	font-size: 13px;
 }
 #sp15
 {

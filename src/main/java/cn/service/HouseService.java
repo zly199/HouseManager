@@ -112,4 +112,19 @@ public interface HouseService {
      * @return
      */
     int delHouseKey(String keyId);
+
+    /**
+     * 编辑业主
+     * @param houseOwner
+     * @return
+     */
+    int editHouseOwener(HouseOwner houseOwner);
+
+    /**
+     * 房源编辑
+     * @param
+     * @param
+     * @return
+     */
+    int editHouse(HouseMessageAvailable houseMessageAvailable);
 }

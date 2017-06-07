@@ -1892,7 +1892,7 @@
 								<div class="tab-pane row-fluid active tab-pane profile-classic row-fluid" id="tab11">
 
 									<div>
-										<h5>$(zlysb)  &nbsp; $(zlysb) 将调动到新部门
+										<h5>$(userName)  &nbsp; $(userName) 将调动到新部门
                                     		<select style="width: 100px;">
                                     			<option >总部</option>
                                     			<option >张瑛区域</option>
@@ -2109,7 +2109,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true"></span></button>
-						<h3 class="modal-title" id="exampleModalLabel">【zlysb】修改部门权限(权限)</h3>
+						<h3 class="modal-title" id="exampleModalLabel">【userName】修改部门权限(权限)</h3>
 					</div>
 					<div class="modal-body">
 						<div class="tabbable tabbable-custom tabbable-full-width">
@@ -2233,7 +2233,7 @@
 												<th><input type="checkbox" name="box" id="" />客源看跟进</th>
 											</tr>
 											<tr id="watch4">
-												<td><input type="checkbox" name="box" id="" />zlysb</td>
+												<td><input type="checkbox" name="box" id="" />userName</td>
 												<td><input type="checkbox" name="box" id="" /></td>
 												<td><input type="checkbox" name="box" id="" /></td>
 												<td><input type="checkbox" name="box" id="" /></td>
@@ -2312,7 +2312,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true"></span></button>
-						<h3 class="modal-title" id="exampleModalLabel">将【zlysb】行政跨部权限保存到：</h3>
+						<h3 class="modal-title" id="exampleModalLabel">将【userName】行政跨部权限保存到：</h3>
 					</div>
 					<div class="modal-body">
 						<input type="text" name="" id="" value="请输入部门名称" /> <button type="button" class="btn green" style="margin-bottom: 10px;">查询</button>
@@ -2324,7 +2324,7 @@
 							</tr>
 							<tr id="watch4">
 
-								<td>zlysb</td>
+								<td>userName</td>
 								<td><input type="checkbox" name="" id="" /></td>
 
 							</tr>
@@ -2373,11 +2373,11 @@
 							</tr>
 							<tr id="watch4">
 
-								<td>zlysb</td>
-								<td>zlysb</td>
-								<td>zlysb</td>
-								<td>zlysb</td>
-								<td>zlysb</td>
+								<td>userName</td>
+								<td>userName</td>
+								<td>userName</td>
+								<td>userName</td>
+								<td>userName</td>
 								<td><input type="checkbox" name="" id="" /></td>
 								<td><input type="checkbox" name="" id="" /></td>
 								<td><input type="checkbox" name="" id="" /></td>
@@ -2495,13 +2495,13 @@
 								<option>系统管理组</option>
 							</select>
 							<select>
-								<option selected="selected">zlysb</option>
-								<option>zlysb</option>
-								<option>zlysb</option>
-								<option>zlysb</option>
-								<option>zlysb</option>
-								<option>zlysb</option>
-								<option>zlysb</option>
+								<option selected="selected">userName</option>
+								<option>userName</option>
+								<option>userName</option>
+								<option>userName</option>
+								<option>userName</option>
+								<option>userName</option>
+								<option>userName</option>
 							</select>
 						</div>
 					</div>
@@ -2546,10 +2546,10 @@
 							</tr>
 							<tr>
 
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
 								<td>
 									<select style="width: 70px;">
 										<option value="请选择">请选择</option>
@@ -2612,10 +2612,10 @@
 							</tr>
 							<tr>
 
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
 								<td>
 									<select style="width: 70px;">
 										<option value="请选择">请选择</option>
@@ -2683,10 +2683,10 @@
 							</tr>
 							<tr>
 
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
-								<td><input type="text" name="" id="" value="zlysb" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
+								<td><input type="text" name="" id="" value="userName" style="width: 60px;" /></td>
 								<td>
 									<select style="width: 70px;">
 										<option value="请选择">请选择</option>

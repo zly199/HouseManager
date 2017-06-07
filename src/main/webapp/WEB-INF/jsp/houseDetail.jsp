@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -548,14 +549,14 @@
                             <p class="detail3">${houseDetail.id}</p>
                             <p class="detail5">
                                 <span>*</span><span id="detail6">${houseDetail.tag[0]}</span><span id="detail7">${houseDetail.tag[1]}</span><span id="detail8">${houseDetail.tag[2]}</span> ${houseDetail.sellPrice}万元 ${houseDetail.area[0]}m²(套内${houseDetail.area[1]}m²) ${houseDetail.houseType[0]}房${houseDetail.houseType[1]}厅${houseDetail.houseType[2]}卫${houseDetail.houseType[3]}阳台 ${houseDetail.orientation} ${houseDetail.application} ${houseDetail.type} ${houseDetail.decoration}
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="back/house/detail/edit/${houseDetail.id}"> + 编辑 + </a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="back/client/detail/edit/${clientDetail.id}"> + 编辑 + </a>
 							</p>
 
 						</div>
 
 						<div>
 							<div style="margin-top: 10px;">
-								<img src="media/image/zlysbb.jpeg" style="width: 100px; height: 100px; float: left;" />
+								<img src="media/image/userNameb.jpeg" style="width: 100px; height: 100px; float: left;" />
 								<table class="detail9" >
 									<tr>
 										<td>状态</td>
@@ -683,7 +684,7 @@
 									<div id="hide1">
 										<table>
 											<tr>
-												<td>联系人</td>
+												<td>名称</td>
 												<td><span id="sp13">${houseOwner.name}</span></td>
 											</tr>
 											<tr>
@@ -700,7 +701,7 @@
 											</tr>
 											<tr>
 												<td>备注</td>
-												<td><span id="sp13">${houseOwner.comment}</span></td>
+												<td><span id="sp13" >${houseOwner.comment}</span></td>
 											</tr>
 
 										</table>
@@ -785,13 +786,13 @@
 													<option>系统管理组</option>
 												</select>
 												<select style="width: 90px;">
-													<option selected="selected">zlysb</option>
+													<option selected="selected">userName</option>
 													<option>zq</option>
 													<option>zq</option>
 													<option>yf</option>
 													<option>xzw</option>
-													<option>zlysb</option>
-													<option>zlysb</option>
+													<option>userName</option>
+													<option>userName</option>
 												</select>
 												<input type="text" name="" id="" value="" placeholder="关键词" style="width: 45px;" />
 												<input type="checkbox" name="" id="" value="" />有录音
@@ -1038,66 +1039,7 @@
 										</div>
 									</div>
 								</div>
-								<!-- 详情页包含详情页信息和tab切换-->
 
-								<!--<div class="button11">
-									<button type="button " class="btn green " id="clickme1 ">看业主</button>
-									<button type="button " class="btn green " data-toggle="modal " data-target="#follow ">写跟进</button>
-									<div id="hide1 ">
-										<table>
-											<tr>
-												<td>联系人</td>
-												<td><span id="sp13 ">0</span></td>
-											</tr>
-											<tr>
-												<td>电话1</td>
-												<td><span id="sp13 ">0</span></td>
-											</tr>
-											<tr>
-												<td>电话2</td>
-												<td><span id="sp13 ">0</span></td>
-											</tr>
-											<tr>
-												<td>证件</td>
-												<td><span id="sp13 ">0</span></td>
-											</tr>
-											<tr>
-												<td>备注</td>
-												<td><span id="sp13 ">0</span></td>
-											</tr>
-
-										</table>
-										<a href="# ">新增业主和联系人</a> &nbsp;&nbsp;
-										<a href="# " data-toggle="modal " data-target="#editfollow ">编辑</a>&nbsp;&nbsp;
-										<a href="# ">禁止查看业主</a>&nbsp;&nbsp;
-									</div>
-									<div style="margin-top: 15px; ">
-										<button type="button " class="btn ">发送请报</button>
-										<button type="button " class="btn ">发布到微门店</button>
-										<div style="margin-top: 10px; ">
-											<button type="button " class="btn ">收藏</button>
-											<button type="button " class="btn btn-large ">禁止发布到门店</button>
-										</div>
-									</div>
-									<div>
-										<h5 style="font-size: 15px; ">相关员工 <span style="float: right; "><a href="# ">编辑</a></span></h5>
-										<p>张瑛区域 张瑛</p>
-										<p>员工</p>
-										<p>首次录入
-										</p>
-										<p>2017-05-03 20:31:07 张瑛区域 张瑛</p>
-										<p>最后跟进</p>
-										<p>2017-05-03 20:46:07 张瑛区域 张瑛</p>
-										<p>最后修改</p>
-										<p>2017-05-13 20:34:45 共和新路店 庞盼盼</p>
-
-									</div>
-						</div>-->
-								<!--
-                        	作者：zq
-                        	时间：2017-05-24
-                        	描述：右边栏
-                        -->
 							</div>
 
 						</div>
@@ -1391,13 +1333,13 @@
 											<option>系统管理组</option>
 										</select>
 										<select style="width: 70px;">
-											<option selected="selected">zlysb</option>
+											<option selected="selected">userName</option>
 											<option>zq</option>
 											<option>zq</option>
 											<option>yf</option>
 											<option>xzw</option>
-											<option>zlysb</option>
-											<option>zlysb</option>
+											<option>userName</option>
+											<option>userName</option>
 										</select>
 									</td>
 								</tr>
@@ -1474,10 +1416,10 @@
 						描述标题:<input type="text" name=" " id=" " value="111" />
 						</br>
 						房源描述:<textarea name="area3" id="area2" style="width: 400px; height: 150px;">
-	                             zlysbbbbbbbbbbbbbbb
+	                             userNamebbbbbbbbbbbbbb
                                    </textarea>
 						</br>
-						最后修改:zlysb
+						最后修改:userName
 					</div>
 
 					<div class="modal-footer">
@@ -1650,13 +1592,13 @@
 										<option>系统管理组</option>
 									</select>
 									<select style="width: 110px;">
-										<option selected="selected">zlysb</option>
+										<option selected="selected">userName</option>
 										<option>zq</option>
 										<option>zq</option>
 										<option>yf</option>
 										<option>xzw</option>
-										<option>zlysb</option>
-										<option>zlysb</option>
+										<option>userName</option>
+										<option>userName</option>
 									</select>
 								</td>
 							</tr>
@@ -1691,40 +1633,31 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true "></span></button>
-						<h3 class="modal-title" id="exampleModalLabel ">编辑业主或联系人 </h3>
+						<h3 class="modal-title" id="exampleModalLabel ">编辑业主或联系人</h3>
 					</div>
 					<div class="modal-body">
+						<form id = "houseOwner">
+                            <input type="text" value="${houseOwner.id}" style="display: none"/>
 						<table>
 							<tr>
-								<td>身份1</td>
-								<td>
-									<select>
-										<option>请选择</option>
-										<option>业主</option>
-										<option>联系人</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
 								<td>姓名</td>
-								<td><input type="text" name=" " id=" " value=" " style="height: 30px; margin-left: -15px;"/></td>
+								<td><input type="text" name="name" value="${houseOwner.name}" style="height: 30px;"/></td>
 							</tr>
 							<tr>
 								<td>电话1</td>
-								<td><input type="text" name=" " id=" " value=" " style="height: 30px; margin-left: -15px;"/></td>
+								<td><input type="text" name="firstPhone"  value="${houseOwner.firstPhone}" style="height: 30px; "/></td>
 
 							</tr>
 							<tr>
 								<td>电话2</td>
-								<td>
-									<input type="text" name=" " id=" " value=" " style="height: 30px; margin-left: -15px;"/>
+
+                                <td><input type="text" name="secondPhone" value="${houseOwner.secondPhone}" style="height: 30px; ">
 								</td>
 							</tr>
 							<tr>
 								<td>证件</td>
 								<td>
-									<select>
-										<option>请选择</option>
+									<select name="IdCard">
 										<option>身份证</option>
 										<option>军人证</option>
 										<option>护照</option>
@@ -1736,18 +1669,17 @@
 							<tr style="margin-top: 100px;">
 								<td>备注</td>
 								<td>
-									<textarea rows="3" cols="50" style="width:300px ; height: 50px;">	
-									</textarea>
+									<textarea name="comment" rows="3" cols="50" style="width:300px ; height: 50px;">${houseOwner.comment}</textarea>
 								</td>
 
 							</tr>
 						</table>
+                            </form>
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn green">保存</button>
+						<button type="button" class="btn green" onclick="saveHouseOwner(${houseOwner.id})">保存</button>
 						<button type="button" class="btn green" data-dismiss="modal" aria-hidder="true">取消</button>
-
 					</div>
 				</div>
 			</div>
@@ -2036,7 +1968,23 @@
                 }
             });
         }
-
+        function saveHouseOwner(houseOwnerid){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:"back/house/owner/edi/"+houseOwnerid,
+                data:$('#houseOwner').serialize(),
+                async: false,
+                error: function(request) {
+                    alert("连接错误");
+                },
+                success: function(data) {
+                    if(data>0)
+                    {alert("成功!");}
+                    if(data==0){alert("已经修改，或者您没有相关权限");}
+                }
+            });
+        }
 	</script>
 	</body>
 

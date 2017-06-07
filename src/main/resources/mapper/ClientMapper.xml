@@ -11,7 +11,6 @@
     <result column="attribute" property="attribute" jdbcType="VARCHAR" />
     <result column="purchasing_price" property="purchasingPrice" jdbcType="VARCHAR" />
     <result column="precatory_date" property="precatoryDate" jdbcType="DATE" />
-    <result column="rent_price" property="rentPrice" jdbcType="VARCHAR" />
     <result column="precatory_method" property="precatoryMethod" jdbcType="VARCHAR" />
     <result column="rank" property="rank" jdbcType="VARCHAR" />
     <result column="source" property="source" jdbcType="VARCHAR" />
@@ -31,13 +30,21 @@
     <result column="payment_commission" property="paymentCommission" jdbcType="VARCHAR" />
     <result column="client_age" property="clientAge" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="organizationName" property="organizationname" jdbcType="VARCHAR" />
+    <result column="clientName" property="clientname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, transaction, application, willing_address, status, area, attribute, purchasing_price, 
-    precatory_date, rent_price, precatory_method, rank, source, type, deadline, intention, 
-    maturity, remark, housetype, decoration, gener, development, orientation, floor, 
-    payment, now_address, payment_commission, client_age, address
+    precatory_date, precatory_method, rank, source, type, deadline, intention, maturity, 
+    remark, housetype, decoration, gener, development, orientation, floor, payment, now_address, 
+    payment_commission, client_age, address, userName, organizationName, clientName
   </sql>
+  <select id="selectAll" resultType="cn.entity.Client">
+    SELECT
+    <include refid="Base_Column_List" />
+    from client
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -52,23 +59,25 @@
     insert into client (id, transaction, application, 
       willing_address, status, area, 
       attribute, purchasing_price, precatory_date, 
-      rent_price, precatory_method, rank, 
-      source, type, deadline, 
-      intention, maturity, remark, 
-      housetype, decoration, gener, 
-      development, orientation, floor, 
-      payment, now_address, payment_commission, 
-      client_age, address)
+      precatory_method, rank, source, 
+      type, deadline, intention, 
+      maturity, remark, housetype, 
+      decoration, gener, development, 
+      orientation, floor, payment, 
+      now_address, payment_commission, client_age, 
+      address, userName, organizationName, 
+      clientName)
     values (#{id,jdbcType=INTEGER}, #{transaction,jdbcType=VARCHAR}, #{application,jdbcType=VARCHAR}, 
       #{willingAddress,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
       #{attribute,jdbcType=VARCHAR}, #{purchasingPrice,jdbcType=VARCHAR}, #{precatoryDate,jdbcType=DATE}, 
-      #{rentPrice,jdbcType=VARCHAR}, #{precatoryMethod,jdbcType=VARCHAR}, #{rank,jdbcType=VARCHAR}, 
-      #{source,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{deadline,jdbcType=VARCHAR}, 
-      #{intention,jdbcType=VARCHAR}, #{maturity,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}, 
-      #{housetype,jdbcType=VARCHAR}, #{decoration,jdbcType=VARCHAR}, #{gener,jdbcType=VARCHAR}, 
-      #{development,jdbcType=VARCHAR}, #{orientation,jdbcType=VARCHAR}, #{floor,jdbcType=INTEGER}, 
-      #{payment,jdbcType=VARCHAR}, #{nowAddress,jdbcType=VARCHAR}, #{paymentCommission,jdbcType=VARCHAR}, 
-      #{clientAge,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})
+      #{precatoryMethod,jdbcType=VARCHAR}, #{rank,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{deadline,jdbcType=VARCHAR}, #{intention,jdbcType=VARCHAR}, 
+      #{maturity,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}, #{housetype,jdbcType=VARCHAR}, 
+      #{decoration,jdbcType=VARCHAR}, #{gener,jdbcType=VARCHAR}, #{development,jdbcType=VARCHAR}, 
+      #{orientation,jdbcType=VARCHAR}, #{floor,jdbcType=INTEGER}, #{payment,jdbcType=VARCHAR}, 
+      #{nowAddress,jdbcType=VARCHAR}, #{paymentCommission,jdbcType=VARCHAR}, #{clientAge,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{organizationname,jdbcType=VARCHAR}, 
+      #{clientname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.Client" >
     insert into client
@@ -99,9 +108,6 @@
       </if>
       <if test="precatoryDate != null" >
         precatory_date,
-      </if>
-      <if test="rentPrice != null" >
-        rent_price,
       </if>
       <if test="precatoryMethod != null" >
         precatory_method,
@@ -160,6 +166,15 @@
       <if test="address != null" >
         address,
       </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="organizationname != null" >
+        organizationName,
+      </if>
+      <if test="clientname != null" >
+        clientName,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -188,9 +203,6 @@
       </if>
       <if test="precatoryDate != null" >
         #{precatoryDate,jdbcType=DATE},
-      </if>
-      <if test="rentPrice != null" >
-        #{rentPrice,jdbcType=VARCHAR},
       </if>
       <if test="precatoryMethod != null" >
         #{precatoryMethod,jdbcType=VARCHAR},
@@ -249,6 +261,15 @@
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationname != null" >
+        #{organizationname,jdbcType=VARCHAR},
+      </if>
+      <if test="clientname != null" >
+        #{clientname,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.entity.Client" >
@@ -277,9 +298,6 @@
       </if>
       <if test="precatoryDate != null" >
         precatory_date = #{precatoryDate,jdbcType=DATE},
-      </if>
-      <if test="rentPrice != null" >
-        rent_price = #{rentPrice,jdbcType=VARCHAR},
       </if>
       <if test="precatoryMethod != null" >
         precatory_method = #{precatoryMethod,jdbcType=VARCHAR},
@@ -338,6 +356,15 @@
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationname != null" >
+        organizationName = #{organizationname,jdbcType=VARCHAR},
+      </if>
+      <if test="clientname != null" >
+        clientName = #{clientname,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -351,7 +378,6 @@
       attribute = #{attribute,jdbcType=VARCHAR},
       purchasing_price = #{purchasingPrice,jdbcType=VARCHAR},
       precatory_date = #{precatoryDate,jdbcType=DATE},
-      rent_price = #{rentPrice,jdbcType=VARCHAR},
       precatory_method = #{precatoryMethod,jdbcType=VARCHAR},
       rank = #{rank,jdbcType=VARCHAR},
       source = #{source,jdbcType=VARCHAR},
@@ -370,7 +396,10 @@
       now_address = #{nowAddress,jdbcType=VARCHAR},
       payment_commission = #{paymentCommission,jdbcType=VARCHAR},
       client_age = #{clientAge,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR}
+      address = #{address,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      organizationName = #{organizationname,jdbcType=VARCHAR},
+      clientName = #{clientname,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

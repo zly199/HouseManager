@@ -195,7 +195,7 @@
 
 					<i class="icon-user"></i> 
 
-					<span class="title">用户管理</span>
+					<span class="title">客户管理</span>
 
 					<span class="arrow "></span>
 
@@ -205,9 +205,9 @@
 
 						<li >
 
-							<a href="userselect.html">
+							<a href="back/client/view">
 
-							用户查询</a>
+								客户查询</a>
 
 						</li>
 
@@ -215,7 +215,7 @@
 
 							<a href="addUser.html">
 
-							添加用户</a>
+							添加客户</a>
 
 						</li>
 					</ul>
@@ -327,7 +327,7 @@
 
 						<li >
 
-							<a href="#">
+							<a href="http://123.207.86.52:8080/bdmap/#/?x=121.466709&y=31.227474" target="_Blank">
 
 							房源地图查询</a>
 

@@ -200,8 +200,8 @@ public class HouseServiceImpl implements HouseService {
                 null,
                 null,
                 houseMessageAvailable.getClientId(),
-                userDao.selectByUserName(houseMessageAvailable.getUserId()).getUserId().toString(),
-                userDutiesDao.selectByName(houseMessageAvailable.getUserId()).getOrganizationId()
+                houseMessageAvailable.getUserId()==null?null:userDao.selectByUserName(houseMessageAvailable.getUserId()).getUserId().toString(),
+                houseMessageAvailable.getUserId()==null?null:userDutiesDao.selectByName(houseMessageAvailable.getUserId()).getOrganizationId()
 
         );
     }
@@ -596,6 +596,27 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public int delHouseKey(String keyId) {
         return keyDao.deleteByPrimaryKey(Integer.parseInt(keyId));
+    }
+    /**
+     * 编辑业主
+     * @param houseOwner
+     * @return
+     */
+    @Override
+    public int editHouseOwener(HouseOwner houseOwner) {
+        return houseOwnerDao.updateByPrimaryKey(houseOwner);
+    }
+
+    /**
+     * 房源编辑
+     * @param
+     * @param
+     * @return
+     */
+    @Override
+    public int editHouse(HouseMessageAvailable houseMessageAvailable) {
+
+        return housemsgDao.updateByPrimaryKeySelective(houseMessageAvailableToHousemsg(houseMessageAvailable));
     }
 
     private List<KeyForm> keyListToKeyForm(List<Key> keyList) {

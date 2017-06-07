@@ -4,6 +4,7 @@
 %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <base href="<%=basePath%>">
 <!DOCTYPE html>
@@ -265,19 +266,13 @@
 
 					</li>
 					<li>
-
 						<a href="departmentPhone.html">
-
 							部门通讯录</a>
-
 					</li>
 
 					<li>
-
 						<a href="authority1.html">
-
 							组织机构</a>
-
 					</li>
 					<li>
 
@@ -483,18 +478,19 @@
 				</div>
 
 			</div>
-			<form id = "houseAddForm" class="definewidth m20">
+			<form id = "houseEditForm" class="definewidth m20">
 				<div>
 					<table class="table  table-hover definewidth m10" style="width: 780px;">
 						<tr class="size">
 							<td>房源编号</td>
-							<td><input id="houseId" style="width: 150px;" readonly="readonly" value="后台自增" type="text" name="houseMessageAvailable.id" /></td>
+							<td><input id="houseId" style="width: 150px;height: 28px" readonly="readonly" value="${houseAvailable.id}" type="text" name="id" /></td>
 						</tr>
 						<tr class="size2">
 							<td>交易</td>
 							<td>
 								<select name="transaction" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option selected>出售</option>
+									<option selected>${houseAvailable.transaction}</option>
+									<option>出售</option>
 									<option>出租</option>
 									<option>租售</option>
 								</select>
@@ -502,7 +498,8 @@
 							<td>用途</td>
 							<td>
 								<select name="application" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option  selected>住宅</option>
+									<option selected> ${houseAvailable.application}</option>
+									<option>住宅</option>
 									<option>商住</option>
 									<option>商铺</option>
 									<option>网店</option>
@@ -521,7 +518,7 @@
 							<td>房源地址</td>
 							<td>
 								<select name="address[0]" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option  selected>城区</option>
+									<option selected>${houseAvailable.address[0]}</option>
 									<option>宝山区</option>
 									<option>常宁区</option>
 									<option>崇明县</option>
@@ -540,27 +537,28 @@
 									<option>杨浦区</option>
 								</select>
 								<select name="address[1]" style="width: 100px;" id="point">
-									<option  selected>商圈</option>
+									<option selected>${houseAvailable.address[1]}</option>
+									<option>商圈</option>
 								</select>
-								<input type="text" name="address[2]" style="width: 88px;" placeholder="楼盘字典" data-toggle="tooltip"  title="此空不能为空" id="point">
-								<input type="text" name="address[3]" style="width: 88px;" placeholder="栋座" data-toggle="tooltip"  title="此空不能为空" id="point">
-								<input type="text" name="address[4]" style="width: 88px;" placeholder="单元" data-toggle="tooltip"  title="此空不能为空" id="point">
-								<input type="text" name="address[5]" style="width: 88px;" placeholder="房号" data-toggle="tooltip"  title="此空不能为空" id="point">
-								<input type="text" name="address[6]" style="width: 88px;" placeholder="楼层" data-toggle="tooltip"  title="此空不能为空" id="point">
-								<input type="text" name="address[7]" style="width: 88px;" placeholder="总层" data-toggle="tooltip"  title="此空不能为空" id="point">
+								<input type="text" name="address[2]" value="${houseAvailable.address[2]}" style="width: 88px;height: 28px" placeholder="楼盘字典" data-toggle="tooltip"  title="此空不能为空" id="point">
+								<input type="text" name="address[3]" value="${houseAvailable.address[3]}" style="width: 88px;height: 28px" placeholder="栋座" data-toggle="tooltip"  title="此空不能为空" id="point">
+								<input type="text" name="address[4]" value="${houseAvailable.address[4]}" style="width: 88px;height: 28px" placeholder="单元" data-toggle="tooltip"  title="此空不能为空" id="point">
+								<input type="text" name="address[5]" value="${houseAvailable.address[5]}" style="width: 88px;height: 28px" placeholder="房号" data-toggle="tooltip"  title="此空不能为空" id="point">
+								<input type="text" name="address[6]" value="${houseAvailable.address[6]}" style="width: 88px;height: 28px" placeholder="楼层" data-toggle="tooltip"  title="此空不能为空" id="point">
+								<input type="text" name="address[7]" value="${houseAvailable.address[7]}" style="width: 88px;height: 28px" placeholder="总层" data-toggle="tooltip"  title="此空不能为空" id="point">
 
 							</td>
 						</tr>
 						<tr class="size2">
 							<td>面积</td>
 							<td>
-								<input value="0" id="point" style="width: 88px;" type="text" name="area[0]"  data-toggle="tooltip"  title="此空不能为空 ，最多保留两位小数">平米
-								(套内 <input value="0" id="point" style="width: 38px;" type="text" name="area[1]"  data-toggle="tooltip"  title="此空不能为空，最多保留两位小数">平米)
+								<input value="${houseAvailable.area[0]}" id="point" style="width: 88px;height: 28px" type="text" name="area[0]"  data-toggle="tooltip"  title="此空不能为空 ，最多保留两位小数">平米
+								(套内 <input value="${houseAvailable.area[1]}" id="point" style="width: 38px;" type="text" name="area[1]"  data-toggle="tooltip"  title="此空不能为空，最多保留两位小数">平米)
 							</td>
 							<td>类型</td>
 							<td>
 								<select name="type" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option  selected>请选择</option>
+									<option selected>${houseAvailable.type}</option>
 									<option>多层</option>
 									<option>高层</option>
 									<option>小高层</option>
@@ -581,7 +579,8 @@
 							<td>房型</td>
 							<td>
 								<select name="houseType[0]" style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option selected>0</option>
+                                    <option selected>${houseAvailable.houseType[0]}</option>
+									<option>0</option>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -593,7 +592,8 @@
 									<option>9</option>
 								</select>房
 								<select name="houseType[1]" style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option selected>0</option>
+                                    <option selected>${houseAvailable.houseType[1]}</option>
+									<option>0</option>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -602,7 +602,8 @@
 									<option>6</option>
 								</select>厅
 								<select name="houseType[2]" style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option selected>0</option>
+                                    <option selected>${houseAvailable.houseType[2]}</option>
+									<option>0</option>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -611,7 +612,8 @@
 									<option>6</option>
 								</select>卫
 								<select name="houseType[3]" style="width: 70px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option selected>0</option>
+                                    <option selected>${houseAvailable.houseType[3]}</option>
+									<option>0</option>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -623,7 +625,7 @@
 							<td>装修</td>
 							<td>
 								<select name="decoration" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option  selected>请选择</option>
+									<option  selected>${houseAvailable.decoration}</option>
 									<option>毛坯</option>
 									<option>清水</option>
 									<option>简装</option>
@@ -637,7 +639,7 @@
 							<td>朝向</td>
 							<td>
 								<select name="orientation" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option  selected>请选择</option>
+									<option  selected>${houseAvailable.orientation}</option>
 									<option>南北</option>
 									<option>东西</option>
 									<option>南</option>
@@ -655,7 +657,8 @@
 							<td>状态</td>
 							<td>
 								<select name="status" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option  selected>有效</option>
+                                    <option selected>${houseAvailable.status}</option>
+									<option>有效</option>
 									<option>预定</option>
 									<option>已购</option>
 									<option>已租</option>
@@ -668,15 +671,16 @@
 							</td>
 							<td>售价</td>
 							<td>
-								<input name="sellPrice" type="text" value="x" id="point" style="width: 38px;" data-toggle="tooltip"  title="此空不能为空"/>万元
+								<input name="sellPrice" type="text" value="${houseAvailable.sellPrice}" id="point" style="width: 38px;" data-toggle="tooltip"  title="此空不能为空"/>万元
 
-								<input type="text" id="point" value="x" style="width: 38px;" data-toggle="tooltip"  title="此空不能为空">元/m^2
+								<input type="text" id="point" value="<fmt:formatNumber pattern="#######.###" value="${houseAvailable.sellPrice*10000/houseAvailable.area[0]}"/>" style="width: 38px;" data-toggle="tooltip"  title="此空不能为空">元/m^2
 							</td>
 						</tr>
 						<tr>
 							<td class="size2">属性</td>
 							<td>
 								<select name="attribute" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
+                                    <option selected>${houseAvailable.attribute}</option>
 									<c:forEach items="${houseAddActionList.atrributes}" var="item">
 										<option>${item}</option>
 									</c:forEach>
@@ -684,7 +688,7 @@
 							</td>
 							<td class="size">售底价</td>
 							<td>
-								<input type="text" name="sellLowprice" value="0"  placeholder="0" style="width:88px ;"/>
+								<input type="text" name="sellLowprice" value="${houseAvailable.sellLowprice}"  placeholder="0" style="width:88px ;"/>
 							</td>
 						</tr>
 						<tr class="size">
@@ -692,48 +696,49 @@
 								购买时间
 							</td>
 							<td>
-								<input  type="date" name="purchasingDate"  style="width: 120px;"/>
+								<input  type="date" name="purchasingDate"  style="width: 120px;height: 30px" value="${houseAvailable.purchasingDate}"/>
 							</td>
 							<td>
 								租价
 							</td>
 							<td>
-								<input type="" name="rentPrice"  value=""  style="width:38px ;"/>
+								<input type="" name="rentPrice"  value="${houseAvailable.rentPrice}"  style="width:38px ;"/>
 								<select style="width: 50px;" disabled="disabled">
 									<option selected>元/月</option>
 								</select>
-								<input type="text" name=""  value="" style="width:38px ;"/>元/m^2/月
+								<input type="text" name=""  value="<fmt:formatNumber pattern="#######.###" value="${houseAvailable.rentPrice/houseAvailable.area[0]}"/>" style="width:38px ;"/>元/m^2/月
 							</td>
 						</tr>
 						<tr class="size">
 							<td>唯一住房</td>
 							<td>
 								<select name="uniquehouse" style="width: 100px;">
-									<option selected>true</option>
+                                    <option selected>${houseAvailable.uniquehouse}</option>
+									<option>true</option>
 									<option>false</option>
 								</select>
 							</td>
 							<td>租底价</td>
 							<td>
-								<input type="text" name="rentLowprice"  value="" placeholder="0" style="width: 38px;"/>
+								<input type="text" name="rentLowprice"  value="${houseAvailable.rentLowprice}" placeholder="0" style="width: 38px;"/>
 							</td>
 						</tr>
 						<tr class="size">
 							<td>委托日期</td>
 							<td>
-								<input type="date" name="precatoryDate"  value="0fdsasdf" style="width: 120px;" id="point" data-toggle="tooltip"  title="此空不能为空"/>
+								<input type="date" name="precatoryDate"  value="${houseAvailable.precatoryDate}" style="width: 120px;height: 30px" id="point" data-toggle="tooltip"  title="此空不能为空"/>
 							</td>
 							<td>贷款金额</td>
 							<td>
-								<input type="text" name="loan"  value="0.0" style="width:48px ;"/>万元
+								<input type="text" name="loan"  value="${houseAvailable.loan}" style="width:48px ;"/>万元
 							</td>
 						</tr>
 						<tr class="size2">
 							<td>委托方式</td>
 							<td>
 								<select name="precatoryMethod" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-
-									<option selected>独家</option>
+                                    <option selected>${houseAvailable.precatoryMethod}</option>
+									<option>独家</option>
 									<option>A-独家</option>
 									<option>B-签约</option>
 									<option>C-未签</option>
@@ -745,7 +750,8 @@
 							<td>来源</td>
 							<td>
 								<select name="resource" style="width: 100px;" id="point" data-toggle="tooltip"  title="此空不能为空">
-									<option selected>来电</option>
+                                    <option selected>${houseAvailable.resource}</option>
+									<option>来电</option>
 									<option>来访</option>
 									<option>中介</option>
 									<option>朋友</option>
@@ -760,31 +766,31 @@
 						<tr class="size">
 							<td>委托编号</td>
 							<td>
-								<input type="text" name="precatoryNumber"  value="" style="width: 88px;"/>
+								<input type="text" name="precatoryNumber"  value="${houseAvailable.precatoryNumber}" style="width: 88px;height: 28px"/>
 							</td>
 							<td>交房日期</td>
 							<td>
-								<%--<input type="date" name="lunchTime"  value="" style="width: 120px;"/>--%>
+								<%--<input type="date" name="lunchTime"  value="${houseAvailable.lunchTime}" style="width: 120px;height: 30px"/>--%>
 							</td>
 						</tr>
 						<tr class="size">
 							<td>备案号</td>
 							<td>
-								<input type="text" name="recordNumber"  value="" style="width: 88px;"/>
+								<input type="text" name="recordNumber"  value="${houseAvailable.recordNumber}" style="width: 88px;height: 28px"/>
 							</td>
 						</tr>
 						<tr class="size">
 							<td>标签</td>
 							<td>
-								<input type="checkbox" name="tag[0]"  value="优质房" />优质房
-								<input type="checkbox" name="tag[1]"  value="聚焦房"/>聚焦房
-								<input type="checkbox" name="tag[2]"  value="速销房"/>速销房
+                                <input type="checkbox" name="tag[0]" <c:if test="${houseAvailable.tag[0].equals('优质房')}" > checked="checked"</c:if> value="优质房" />优质房
+								<input type="checkbox" name="tag[1]" <c:if test="${houseAvailable.tag[0].equals('聚焦房')}" > checked="checked"</c:if> value="聚焦房"/>聚焦房
+								<input type="checkbox" name="tag[2]" <c:if test="${houseAvailable.tag[0].equals('速销房')}" > checked="checked"</c:if> value="速销房"/>速销房
 							</td>
 						</tr>
 						<tr class="size">
 							<td>备注</td>
 							<td>
-								<textarea name="remark" rows="5" cols="100" style="width:350px ;"></textarea>
+								<textarea name="remark" rows="5" cols="100" style="width:350px ;">${houseAvailable.remark}</textarea>
 							</td>
 						</tr>
 						<tr class="size">
@@ -864,7 +870,7 @@
 						<tr class="size">
 							<td>原购价</td>
 							<td>
-								<input type="text" name=""  value="" style="width: 88px;"/>
+								<input type="text" name=""  value="" style="width: 88px;height: 28px"/>
 							</td>
 							<td>家电</td>
 							<td>
@@ -883,7 +889,7 @@
 						<tr class="size">
 							<td>管理费</td>
 							<td>
-								<input type="text" name=""  value="" style="width: 88px;"/>
+								<input type="text" name=""  value="" style="width: 88px;height: 28px"/>
 							</td>
 							<td>付佣</td>
 							<td>
@@ -911,7 +917,7 @@
 									<option>汽车</option>
 									<option>面积</option>
 								</select>
-								<input type="text" name=""  value="" style="width: 88px;"/>平米
+								<input type="text" name=""  value="" style="width: 88px;height: 28px"/>平米
 							</td>
 							<td>付款</td>
 							<td>
@@ -937,175 +943,21 @@
 									<option>借匙</option>
 									<option>直接</option>
 								</select>
-								<input type="text" name=""  value="" style="width: 88px;"/>
+								<input type="text" name=""  value="" style="width: 88px;height: 28px"/>
 							</td>
 						</tr>
 						<tr class="size">
 							<td>产证号</td>
 							<td>
-								<input type="text" name=""  value="" style="width: 88px;"/>
+								<input type="text" name=""  value="" style="width: 88px;height: 28px"/>
 							</td>
 							<td>产证年限</td>
 							<td>
-								<input type="text" name=""  value="" style="width: 88px;"/>
-							</td>
-						</tr>
-					</table>
-					<!--
-作者：zq
-时间：2017-05-01
-描述：右边框
--->
-
-					<table class="table table-bordered  definewidth m10 taright2 ">
-						<tr class="size">
-							<td>
-								业主及联系人
-							</td>
-						</tr>
-						<tr>
-							<td>
-								姓 名: <input type="text" name="name"  id="point"/>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								电话1: <input type="text" name="firstPhone" id="point"/>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								电话2: <input type="text" name="secondPhone" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								证 件:
-								<select name="idCard" style="width: 100px;">
-									<option  selected>身份证</option>
-									<option>军人证</option>
-									<option>港澳通行证</option>
-									<option>同胞证</option>
-									<option>护照</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								备 注:<textarea name="comment" rows="2" cols="5" style="width:200px ;"></textarea>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<a href="#">+新增客户/联系人</a>
+								<input type="text" name=""  value="" style="width: 88px;height: 28px"/>
 							</td>
 						</tr>
 					</table>
 
-					<!--
-作者：zq
-时间：2017-05-02
-描述：归属人
--->
-					<table class="table table-bordered  definewidth m10 taright3 ">
-						<tr class="size">
-							<td>
-								相关员工
-							</td>
-						</tr>
-						<tr>
-							<td>
-								归属人1:
-								<select  style="width: 100px;" id="point">
-									<c:forEach items="${houseAddActionList.departments}" var="item">
-										<option>${item}</option>
-									</c:forEach>
-								</select>
-
-								<select name="userId" style="width: 100px;" id="point">
-									<c:forEach items="${houseAddActionList.users}" var="item">
-										<option>${item}</option>
-									</c:forEach>
-
-
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								归属人2:
-								<select style="width: 100px;">
-									<option selected>无</option>
-									<option>系统管理组</option>
-								</select>
-
-								<select style="width: 100px;">
-									<option  selected>manager</option>
-									<option>guest</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								归属人3:
-								<select style="width: 100px;">
-									<option  selected>无</option>
-								</select>
-
-								<select style="width: 100px;">
-									<option  selected>无</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								拉有效:
-								<select style="width: 100px;">
-									<option  selected>无</option>
-								</select>
-
-								<select style="width: 100px;">
-									<option  selected>无</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								钥匙:
-								<select style="width: 100px;" >
-									<option  selected>无</option>
-								</select>
-
-								<select style="width: 100px;" >
-									<option selected>无</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								委托:
-								<select style="width: 100px;" >
-									<option  selected>无</option>
-								</select>
-
-								<select style="width: 100px;" >
-									<option  selected>无</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								实勘照片:
-								<select style="width: 100px;" >
-									<option  selected>无</option>
-								</select>
-
-								<select style="width: 100px;" >
-									<option  selected>无</option>
-								</select>
-							</td>
-						</tr>
-					</table>
 
 				</div>
 			</form>
@@ -1159,8 +1011,8 @@
         $.ajax({
             cache: true,
             type: "POST",
-            url:"back/house/addAction",
-            data:$('#houseAddForm').serialize(),// 你的formid
+            url:"back/house/editAction",
+            data:$('#houseEditForm').serialize(),// 你的formid
             async: false,
             error: function(request) {
                 alert("保存错误，请检查必填字段");

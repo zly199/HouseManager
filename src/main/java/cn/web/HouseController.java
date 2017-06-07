@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,7 +53,6 @@ public class HouseController {
 
     @RequestMapping("/add")
     public String houseAdd(Model model){
-
         Subject subject = SecurityUtils.getSubject();
         //根据权限返回新增房源的公盘私盘列表，以及部门人员信息下拉列表
         HouseAddActionList houseAddActionList = permisionService.houseAddPermission();
@@ -81,9 +81,9 @@ public class HouseController {
 
 
     @RequestMapping("ediHouse/{houseId}")
-    public  String houseEdi(@PathVariable String houseId){
-        System.out.println(houseId);
-        return "houseDetail";
+    public  String houseEdi(@PathVariable String houseId,Model model){
+
+        return "";
     }
 
     @RequestMapping("/detail/{houseId}")
@@ -121,9 +121,27 @@ public class HouseController {
         return resultData;
     }
     @RequestMapping("/detail/edit/{houseId}")
-    public String ediHouseDetail(@PathVariable String houseId){
-
+    public String ediHouseDetail(@PathVariable String houseId,Model model){
+        //房源信息-查找-权限判断-返回
+        HouseMessageAvailable result = houseService.findById(houseId);
+        result = permisionService.houseDetailViewPermission(result,houseId);
+        model.addAttribute("houseAvailable",result);
+        //根据权限返回新增房源的公盘私盘列表，以及部门人员信息下拉列表
+        HouseAddActionList houseAddActionList = permisionService.houseAddPermission();
+        model.addAttribute("houseAddActionList",houseAddActionList);
         return "houseEdit";
+    }
+
+    /**
+     * 房源编辑
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/editAction")
+    @ResponseBody
+    public int editHouse(HouseMessageAvailable houseMessageAvailable){
+        return houseService.editHouse(houseMessageAvailable);
     }
 
     /**
@@ -192,6 +210,14 @@ public class HouseController {
     @ResponseBody
     public int delKey(@PathVariable String keyId){
         return houseService.delHouseKey(keyId);
+
+    }
+    @RequestMapping("/owner/edi/{houseOwnerId}")
+    @ResponseBody
+    public int ediHouseOwner(@PathVariable String houseOwnerId, HouseOwner houseOwner){
+        houseOwner.setId(Integer.parseInt(houseOwnerId));
+
+        return houseService.editHouseOwener(houseOwner);
 
     }
 }

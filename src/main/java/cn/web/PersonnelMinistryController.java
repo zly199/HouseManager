@@ -36,7 +36,6 @@ public class PersonnelMinistryController {
         //todo:根据组织名查询员工
         List<UserOa> userOaList =new ArrayList<>();
         userOaList = userService.getUserOaList("全部");
-
         if (organizationName.equals("全部"))userOaList= userService.getUserOaList("全部");
         else userOaList = userService.getUserOaList(organizationName);
 
