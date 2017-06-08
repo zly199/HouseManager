@@ -640,7 +640,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         -->					
 								<div class="button11">
 									<button type="button" class="btn green" id="clickme1">看客户</button>
-									<button type="button" class="btn green" data-toggle="modal" data-target="#userfollow">写跟进</button>
+									<button type="submit" class="btn green" onclick="location.href='back/personnelMinistry/user/tapeWatch/${client.id}'" >写带看</button>
 									<div id="hide1">
 										<table>
 											<tr>
@@ -753,7 +753,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																<div class="timeline-content">
 																	<h5>2017-5-30</h5>
 																	<p>
-																		【去电】精装修 满五年唯一 房东欠钱 急售 小区同等户型在卖980万 还有一套1300万 这套最便宜 报价860万 价格可以谈 有照片可以自己看 目前空关 房子需要看的话 提前电话联系 小区是2005年竣工很新 户型也很好 唯一的缺陷是没有电梯 复试 六楼复七楼
+																		【来电】700万以内的两房 小区要新一点的 比较中意中兴财富 礼拜天有时间看房
 																	</p>
 																	<p>20:46:07　张瑛区域 张瑛（区域经理）
 																		<a href="#">删除</a>
@@ -865,8 +865,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript">
 			$(function() {
 				$('#seeHouse').bootstrapTable({
-					method: 'POST',
-					url: '',
+					method: 'GET',
+					url: 'back/client/${client.id}/takeWatch/list',
 					cache: false,
 					striped: true,
 					pagination: true,
@@ -874,70 +874,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					pageNumber: 1,
 					pageList: [10, 20, 50, 100, 200, 500],
 					columns: [{
-							field: "custom_id",
-							title: "最后带看",
-							align: "center",
-							valign: "middle",
-							sortable: "true"
-						}, {
-							field: "custom_name",
-							title: "带看次数",
-							align: "center",
-							valign: "middle",
-							sortable: "true"
-						}, {
-							field: "custom_eamil",
+                        field: "takeNumber",
+                        title: "带看编号",
+                        align: "center",
+                        valign: "middle",
+                        sortable: "true"
+                    }, {
+							field: "inspector",
 							title: "房源编号",
 							align: "center",
 							valign: "middle",
 							sortable: "true"
-						}, {
-							field: "custom_phone",
-							title: "楼盘字典",
-							align: "center",
-							valign: "middle",
-							sortable: "true"
-						}, {
-							field: "custom_state",
-							title: "栋座",
-							align: "center",
-							valign: "middle",
-							sortable: "true"
-						}, {
-							field: "custom_date",
-							title: "房号",
-							align: "center",
-							valign: "middle",
-							sortable: "true"
-						}, {
-							field: "custom_min_acreage",
-							title: "房型",
-							align: "center",
-							valign: "middle",
-							sortable: "true"
 						},
-						{
-							field: "custom_min_acreage",
-							title: "面积",
-							align: "center",
-							valign: "middle",
-							sortable: "true"
-						},
-						{
-							field: "custom_min_acreage",
-							title: "带看编号",
-							align: "center",
-							valign: "middle",
-							sortable: "true"
-						}, {
+                        {
+                            field: "lastTime",
+                            title: "创建时间",
+                            align: "center",
+                            valign: "middle",
+                            sortable: "true"
+                        },
+                        {
+                            field: "status",
+                            title: "状态",
+                            align: "center",
+                            valign: "middle",
+                            sortable: "true"
+                        },
+
+                        {
 							field: "id",
 							title: "操作",
 							align: "center",
 							valign: "middle",
 							sortable: "true",
 							formatter: function(value, row, index) {
-								var e = '<a href="#" data-toggle="modal" data-target="#userfollow">写跟进</a>';
-								var g = '<a href="#">看跟进</a>';
+								var e = '<a href="#" data-toggle="modal" data-target="#userfollow">查看详情   </a>';
+								var g = '<a href="#">删除</a>';
 								return e + g;
 							}
 

@@ -2,6 +2,7 @@ package cn.service;
 
 import cn.dto.HouseList;
 import cn.dto.PositionForm;
+import cn.entity.Position;
 
 import java.util.List;
 
@@ -21,4 +22,11 @@ public interface MapService {
      * @return
      */
     HouseList getHouseMessageByPosition(PositionForm positionForm);
+
+    /**
+     * 根据房源id获取坐标信息
+     * @param houseId
+     * @return
+     */
+    Position findPositionByHouseId(String houseId);
 }

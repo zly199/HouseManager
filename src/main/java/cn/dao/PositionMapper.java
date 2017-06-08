@@ -54,4 +54,10 @@ public interface PositionMapper {
      * @return
      */
     Position selectByPositionXAndPositionY(@Param("x") String x, @Param("y") String y);
+    /**
+     * 根据房源id获取坐标信息
+     * @param houseId
+     * @return
+     */
+    Position selectByHouseId(String houseId);
 }

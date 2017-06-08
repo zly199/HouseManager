@@ -104,6 +104,32 @@ public class UserDto implements Serializable{
      */
     private String userHousePre;
 
+    public UserDto() {
+    }
+
+    public UserDto(String locked, Long userId, String userName, String organizationId, String dutiesId, String state, Date entryTime, Date dimissionTime, String omni, String source, String technicalTitle, String record, String mainBuildings, String chiefId, String connecttionWay, String password, Date workingTime, Date closingTime, Long userPersion, String userHousePre) {
+        this.locked = locked;
+        this.userId = userId;
+        this.userName = userName;
+        this.organizationId = organizationId;
+        this.dutiesId = dutiesId;
+        this.state = state;
+        this.entryTime = entryTime;
+        this.dimissionTime = dimissionTime;
+        this.omni = omni;
+        this.source = source;
+        this.technicalTitle = technicalTitle;
+        this.record = record;
+        this.mainBuildings = mainBuildings;
+        this.chiefId = chiefId;
+        this.connecttionWay = connecttionWay;
+        this.password = password;
+        this.workingTime = workingTime;
+        this.closingTime = closingTime;
+        this.userPersion = userPersion;
+        this.userHousePre = userHousePre;
+    }
+
     public String getLocked() {
         return locked;
     }

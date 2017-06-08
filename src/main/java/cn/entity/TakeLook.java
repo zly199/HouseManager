@@ -63,6 +63,24 @@ public class Takelook {
      */
     private Date inspectTime;
 
+    public Takelook() {
+    }
+
+    public Takelook(Integer id, Date lastTime, Integer lookTimes, Integer houseid, Integer housesid, String takeNumber, String trail, Long houseNumber, String status, Date creatTime, String inspector, Date inspectTime) {
+        this.id = id;
+        this.lastTime = lastTime;
+        this.lookTimes = lookTimes;
+        this.houseid = houseid;
+        this.housesid = housesid;
+        this.takeNumber = takeNumber;
+        this.trail = trail;
+        this.houseNumber = houseNumber;
+        this.status = status;
+        this.creatTime = creatTime;
+        this.inspector = inspector;
+        this.inspectTime = inspectTime;
+    }
+
     /**
      * 
      * @return id 

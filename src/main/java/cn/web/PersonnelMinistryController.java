@@ -3,11 +3,15 @@ package cn.web;
 import cn.dto.HouseAddActionList;
 import cn.dto.UserDto;
 import cn.dto.UserOa;
+import cn.entity.Client;
 import cn.entity.User;
+import cn.service.ClientService;
 import cn.service.PermisionService;
 import cn.service.UserService;
 import cn.utils.TinyUtilis;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -36,6 +40,8 @@ public class PersonnelMinistryController {
     UserService userService;
     @Autowired
     PermisionService permisionService;
+    @Autowired
+    ClientService clientService;
 
     /**
      * 组织机构列表
@@ -108,4 +114,53 @@ public class PersonnelMinistryController {
         else return 0;
     }
 
+    /**
+     *用户信息
+     * @param model
+     * @return
+     */
+    @RequestMapping("/user/detail")
+    public String userDetail(Model model){
+        //用户信息
+        model.addAttribute("userDetail",userService.findCurrentUser());
+        return "detailOA";
+    }
+
+    @RequestMapping("/user/photo")
+    public void showImage(HttpServletRequest re,HttpServletResponse response){
+        //获取本人的路径(名称)
+        String picUrl = userService.getCurrentPic();
+        String pic_addr = "C://userPhoto//"+picUrl;
+        //response.setContentType("text/html; charset=UTF-8");
+        response.setContentType("image/*");
+        FileInputStream fis = null;
+        OutputStream os = null;
+        try {
+            fis = new FileInputStream(pic_addr);
+            os = response.getOutputStream();
+            int count = 0;
+            byte[] buffer = new byte[1024*8];
+            while ( (count = fis.read(buffer)) != -1 ){
+                os.write(buffer, 0, count);
+                os.flush();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                fis.close();
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @RequestMapping("/user/tapeWatch/{clientId}")
+    public String tapeWatch(@PathVariable int clientId, Model model){
+        //查询客源信息
+        Client client = clientService.findById(clientId);
+        model.addAttribute("client",client);
+        return "usertapeWatch";
+    }
 }

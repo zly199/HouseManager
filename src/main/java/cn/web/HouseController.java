@@ -220,4 +220,9 @@ public class HouseController {
         return houseService.editHouseOwener(houseOwner);
 
     }
+    @RequestMapping("/getHouseMsg/{houseId}")
+    @ResponseBody
+    public HouseMessageAvailable getOneHouseMsg(@PathVariable String houseId){
+        return houseService.findById(houseId);
+    }
 }

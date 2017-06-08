@@ -66,4 +66,16 @@ public interface UserService {
      * @return 插入数据库的主键
      */
     int addUserPhone(String fileName,int photoId);
+
+    /**
+     * 查找当前用户的详细信息
+     * @return
+     */
+    UserDto findCurrentUser();
+
+    /**
+     * 获取本人的路径
+     * @return
+     */
+    String getCurrentPic();
 }

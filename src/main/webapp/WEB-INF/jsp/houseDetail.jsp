@@ -752,7 +752,7 @@
 											<a href="#tab3" data-toggle="tab">协议附件(0) </a>
 										</li>
 										<li>
-											<a href="#tab4" data-toggle="tab">全景看房 </a>
+											<a href="#tab4" data-toggle="tab">地图 </a>
 										</li>
 										<li>
 											<a href="#tab5" data-toggle="tab">房源描述 </a>
@@ -988,7 +988,7 @@
                             -->
 
 										<div class="tab-pane row-fluid profile-account" id="tab4">
-											<button type="button" class="btn green">添加关联</button>
+											<a href="api/map/getHouseMap/${houseDetail.id}" class="btn green">查看周边</a>
 										</div>
 										<!--
                             	作者：zq

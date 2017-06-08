@@ -13,6 +13,8 @@ import cn.service.UserService;
 import cn.utils.CryptographyUtil;
 import cn.utils.TinyUtilis;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,7 @@ public class UserServiceImpl implements UserService{
     UserDutiesMapper userDutiesDao;
     @Autowired
     PhotoMapper photoDao;
+
 
     /**
      * 通过用户名查询用户
@@ -172,6 +175,53 @@ public class UserServiceImpl implements UserService{
                 fileName,
                 null
         ));
+    }
+    /**
+     * 查找当前用户的详细信息
+     * @return
+     */
+    @Override
+    public UserDto findCurrentUser() {
+        Subject currentUser = SecurityUtils.getSubject();
+        //查找用户UserDuties
+        UserDuties userDuties = userDutiesDao.selectByName(currentUser.getPrincipal().toString());
+        //转换成UserDto
+        return new UserDto(
+                userDuties.getLocked()==null?null:userDuties.getLocked().toString(),
+                userDuties.getUserId()==null?null:userDuties.getUserId(),
+                userDuties.getUserName()==null?null:userDuties.getUserName(),
+                userDuties.getOrganizationId()==null?null:organizationStructureDao.selectByPrimaryKey(userDuties.getOrganizationId()).getOrganizationName(),
+                userDuties.getDutiesId()==null?null:enterpriseDutiesDao.selectByPrimaryKey(userDuties.getDutiesId()).getDutiesName(),
+                userDuties.getState()==null?null:userDuties.getState(),
+                userDuties.getEntryTime()==null?null:userDuties.getEntryTime(),
+                userDuties.getDimissionTime()==null?null:userDuties.getDimissionTime(),
+                userDuties.getOmni()==null?null:userDuties.getOmni(),
+                userDuties.getSource()==null?null:userDuties.getSource(),
+                userDuties.getTechnicalTitle()==null?null:userDuties.getTechnicalTitle(),
+                userDuties.getRecord()==null?null:userDuties.getRecord(),
+                userDuties.getMainBuildings()==null?null:userDuties.getMainBuildings(),
+                userDuties.getChiefId()==null?null:userDutiesDao.selectByUserId(userDuties.getChiefId()).getUserName(),
+                userDuties.getConnecttionWay()==null?null:userDuties.getConnecttionWay().toString(),
+                userDuties.getPassword()==null?null:userDuties.getPassword(),
+                userDuties.getWorkingTime()==null?null:userDuties.getWorkingTime(),
+                userDuties.getClosingTime()==null?null:userDuties.getClosingTime(),
+                userDuties.getUserPersion()==null?null:userDuties.getUserPersion(),
+                userDuties.getUserHousePre()==null?null:userDuties.getUserHousePre()
+        );
+    }
+    /**
+     * 获取本人的头像名称
+     * @return
+     */
+    @Override
+    public String getCurrentPic() {
+        Subject currentUser = SecurityUtils.getSubject();
+        User user = userMapper.selectByUserName(currentUser.getPrincipal().toString());
+        Photo photo = photoDao.selectByUserId(user.getUserId());
+        if (photo!=null){
+            return photo.getUrl();
+        }
+        return "defult.jpg";
     }
 
     /**

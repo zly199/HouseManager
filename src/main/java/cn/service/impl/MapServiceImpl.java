@@ -80,6 +80,15 @@ public class MapServiceImpl implements MapService {
             return new HouseList();
 
     }
+    /**
+     * 根据房源id获取坐标信息
+     * @param houseId
+     * @return
+     */
+    @Override
+    public Position findPositionByHouseId(String houseId) {
+        return positionDao.selectByHouseId(houseId);
+    }
 
     /**
      * 计算地球上任意两点(经纬度)距离

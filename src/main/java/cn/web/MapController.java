@@ -2,9 +2,11 @@ package cn.web;
 
 import cn.dto.HouseList;
 import cn.dto.PositionForm;
+import cn.entity.Position;
 import cn.service.MapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,5 +50,20 @@ public class MapController {
     @ResponseBody
     public HouseList getHouseMessageByPosition(@RequestBody PositionForm positionForm){
          return mapService.getHouseMessageByPosition(positionForm);
+    }
+
+    /**
+     * 根据houseID跳转到地图
+     * @param houseId
+     * @return
+     */
+    @RequestMapping("/getHouseMap/{houseId}")
+    public String getHouseMap(@PathVariable String houseId){
+        //获取坐标信息
+        Position position = mapService.findPositionByHouseId(houseId);
+        if (position!=null)
+            return "redirect:http://123.207.86.52:8080/bdmap/#/?x="+position.getPosizitionx()+"&y="+position.getPosizitiony();
+        else
+            return "error404";
     }
 }

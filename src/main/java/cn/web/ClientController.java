@@ -1,6 +1,7 @@
 package cn.web;
 
 import cn.entity.Client;
+import cn.entity.Takelook;
 import cn.service.ClientService;
 import cn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,24 @@ public class ClientController {
     public String editClient(@PathVariable int clientDtailId){
 
         return "useredit";
+    }
+    /**
+     * 带看单增加
+     */
+    @RequestMapping("/{userId}/takeWatch/{houseId}")
+    @ResponseBody
+    public int userTakeWatchAdd(@PathVariable("userId") Long userId,@PathVariable("houseId") String houseId){
+        return clientService.addTakeWatch(userId,houseId);
+    }
+
+    /**
+     * 根据客源编号获取带看信息
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/{userId}/takeWatch/list")
+    @ResponseBody
+    public List<Takelook> getTakeWatchByUserId(@PathVariable Long userId){
+        return clientService.findTakeWatchByuserId(userId);
     }
 }

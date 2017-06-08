@@ -548,7 +548,6 @@
 								<li><a href="#tab_1_3" data-toggle="tab">异动记录</a></li>
 
 							</ul>
-
 							<div class="tab-content">
 								<!--
                                 	作者：zq
@@ -558,58 +557,57 @@
 								<div class="tab-pane row-fluid active tab-pane profile-classic row-fluid" id="tab_1_2">
 								<div id="">
 									<h4 style="color: green;">职务信息</h4>
+                                    <div style="float: right;margin-right: 160px">
+                                        <span id="sp3">
+													<img src="back/personnelMinistry/user/photo"  style="width: 200px; height: 150px;"/>
+												</span>
+                                    </div>
 									<table>
 											<tr>
 												<td>员工姓名:</td>
-												<td><span id="sp3">0</span> </td>
-												<td><span id="sp4">照片：</span></td>
-												<td> <span id="sp3">
-													<img src="media/image/bg/3.jpg"  style="width: 100px; height: 50px;"/>
-												</span> </td>
+												<td><span id="sp3">${userDetail.userName}</span> </td>
 											</tr>
 											<tr>
 												<td>所属部门:</td>
-												<td> <span id="sp3">0</span> </td>
+												<td> <span id="sp3">${userDetail.organizationId}</span> </td>
 												
 											</tr>
 											<tr>
 												<td>员工编号:</td>
-												<td> <span id="sp3">0</span> </td>
+												<td> <span id="sp3">${userDetail.userId}</span> </td>
 											</tr>
 											<tr>
 												<td>职务:</td>
-												<td> <span id="sp3">0</span> </td>
+												<td> <span id="sp3">${userDetail.dutiesId}</span> </td>
 											</tr>
 											<tr>
 												<td>状态:</td>
-												<td> <span id="sp3">0</span> </td>
+												<td> <span id="sp3">${userDetail.state}</span> </td>
 											</tr>
 											<tr>
 												<td>座席:</td>
-												<td> <span id="sp3">0</span> </td>
+												<td> <span id="sp3">${userDetail.omni}</span> </td>
 											</tr>
 											<tr>
 												<td>上级:</td>
-												<td> <span id="sp3">0</span> </td>
+												<td> <span id="sp3">${userDetail.chiefId}</span> </td>
 											</tr>
 											<tr>
 												<td>来源:</td>
-												<td><span id="sp3">0</span> </td>
+												<td><span id="sp3">${userDetail.source}</span> </td>
 												<td><span id="sp4">入职时间：</span></td>
-												<td> <span id="sp3">0</span> </td>
+												<td> <span id="sp3">${userDetail.entryTime}</span> </td>
 											</tr>
 											<tr>
 												<td>职称:</td>
-												<td><span id="sp3">0</span> </td>
+												<td><span id="sp3">${userDetail.technicalTitle}</span> </td>
 												<td><span id="sp4">离职时间：</span></td>
-												<td> <span id="sp3">0</span> </td>
+												<td> <span id="sp3">${userDetail.dimissionTime}</span> </td>
 											</tr>
 											<tr>
 												<td>档案:</td>
-												<td><span id="sp3">0</span> </td>
-												<td><span id="sp4">工龄：</span></td>
-												<td> <span id="sp3">0</span> </td>
-											</tr>
+												<td><span id="sp3">${userDetail.record}</span> </td>
+												</tr>
 										</table>
 								</div>
                                   <div>
@@ -618,7 +616,7 @@
                                   		<option value="手机">手机</option>
                                   		<option value="固定">固定</option>
                                   	</select>
-                                  	<input type="text" name="" id="" value="13838383" style="width: 100px;"/>
+                                  	<input type="text" name="" id="" value="${userDetail.connecttionWay}" style="width: 100px;"/>
                                   </br>
                                                                    移动端:未绑定 <button type="button" class="btn green">申请绑定微信</button> <button type="button" class="btn green">申请绑APP</button>
                                   </div>
@@ -690,9 +688,9 @@
 											</tr>
 											<tr>
 												<td>密码:</td>
-												<td><span id="sp3">0</span> </td>
+												<td><span id="sp3">******</span> </td>
 												<td><span id="sp4">确认密码：</span></td>
-												<td> <span id="sp3">0</span> </td>
+												<td> <span id="sp3">******</span> </td>
 											</tr>
 										
 										</table>

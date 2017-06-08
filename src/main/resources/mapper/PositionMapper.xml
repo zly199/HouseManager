@@ -27,6 +27,12 @@
     <include refid="Base_Column_List" />
     from posizition
   </select>
+  <select id="selectByHouseId" resultType="cn.entity.Position">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM posizition
+    WHERE house_positionId = #{houseId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from posizition
     where posizitionId = #{posizitionid,jdbcType=VARCHAR}

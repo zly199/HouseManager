@@ -107,7 +107,7 @@
 
 						<ul class="dropdown-menu">
 
-							<li><a href="profile.html"><i class="icon-user"></i> 个人信息</a></li>
+							<li><a href="back/personnelMinistry/user/detail"><i class="icon-user"></i> 个人信息</a></li>
 							<li><a href="back/user/loginOut"><i class="icon-key"></i> Log Out</a></li>
 
 						</ul>
@@ -297,13 +297,6 @@
 							<a href="back/personnelMinistry/user/add">
 
 								新增员工</a>
-
-						</li>
-						<li>
-
-							<a href="detailOA.html">
-
-								人事OA详情信息</a>
 
 						</li>
 					</ul>

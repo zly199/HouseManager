@@ -38,4 +38,11 @@ public interface PhotoMapper {
      * @mbggenerated 2017-06-08
      */
     int updateByPrimaryKey(Photo record);
+
+    /**
+     * 通过用户id查询照片信息
+     * @param userId
+     * @return
+     */
+    Photo selectByUserId(Long userId);
 }

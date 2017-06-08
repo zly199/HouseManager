@@ -25,6 +25,12 @@
     from takelook
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserid" resultType="cn.entity.Takelook">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM takelook
+    WHERE trail=#{userId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from takelook
     where id = #{id,jdbcType=INTEGER}
