@@ -88,9 +88,9 @@
 
 					<!-- logo标志 -->
 
-					<a class="brand" href="index.html">
+					<a class="brand" href="back/user/index">
 
-						<img src="media/image/logo.png" alt="logo" />
+						<img src="media/image/logo.png" alt="logo"/>
 
 					</a>
 
@@ -110,6 +110,7 @@
 
 					<ul class="nav pull-right">
 
+
 						<!-- 开始右边用户信息以及图像-->
 
 						<li class="dropdown user">
@@ -118,7 +119,7 @@
 
 								<img alt="" src="media/image/avatar1_small.jpg" />
 
-								<span class="username">Bob Nilson</span>
+								<span class="username"><shiro:principal/></span>
 
 								<i class="icon-angle-down"></i>
 
@@ -126,12 +127,8 @@
 
 							<ul class="dropdown-menu">
 
-								<li>
-									<a href="#"><i class="icon-user"></i> 个人信息</a>
-								</li>
-								<li>
-									<a href="login.html"><i class="icon-key"></i> Log Out</a>
-								</li>
+								<li><a href="back/personnelMinistry/user/detail"><i class="icon-user"></i> 个人信息</a></li>
+								<li><a href="back/user/loginOut"><i class="icon-key"></i> Log Out</a></li>
 
 							</ul>
 
@@ -177,6 +174,29 @@
 						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
 					</li>
+					<!--去除搜素框-->
+					<!--<li>
+
+                         BEGIN RESPONSIVE QUICK SEARCH FORM
+
+                        <form class="sidebar-search">
+
+                            <div class="input-box">
+
+                                <a href="javascript:;" class="remove"></a>
+
+                                <input type="text" placeholder="Search..." />
+
+                                <input type="button" class="submit" value=" " />
+
+                            </div>
+
+                        </form>
+
+                        <!-- END RESPONSIVE QUICK SEARCH FORM -->
+
+					<!--</li>-->
+
 					<li class="start active ">
 
 						<a href="#">
@@ -197,7 +217,7 @@
 
 							<i class="icon-user"></i>
 
-							<span class="title">用户管理</span>
+							<span class="title">客户管理</span>
 
 							<span class="arrow "></span>
 
@@ -205,19 +225,19 @@
 
 						<ul class="sub-menu">
 
-							<li>
+							<li >
 
-								<a href="userselect.html">
+								<a href="back/client/view">
 
-									用户查询</a>
+									客户查询</a>
 
 							</li>
 
-							<li>
+							<li >
 
 								<a href="addUser.html">
 
-									添加用户</a>
+									添加客户</a>
 
 							</li>
 						</ul>
@@ -238,17 +258,17 @@
 
 						<ul class="sub-menu">
 
-							<li>
+							<li >
 
-								<a href="#">
+								<a href="back/house/view">
 
 									房源查询</a>
 
 							</li>
 
-							<li>
+							<li >
 
-								<a href="#">
+								<a href="back/house/add">
 
 									增加房源</a>
 
@@ -257,6 +277,7 @@
 						</ul>
 
 					</li>
+
 					<li class="">
 
 						<a href="javascript:;">
@@ -288,42 +309,23 @@
 
 							<li>
 
-								<a href="authority1.html">
+								<a href="back/personnelMinistry/organization">
 
 									组织机构</a>
 
 							</li>
 							<li>
 
-								<a href="addstaff.html">
+								<a href="back/personnelMinistry/user/add">
 
 									新增员工</a>
-
-							</li>
-							<li>
-
-								<a href="detailOA.html">
-
-									人事OA详情信息</a>
-
-							</li>
-							<li>
-
-								<a href="new.html">
-
-									新闻/公告查询</a>
-
-							</li>
-							<li>
-
-								<a href="writeNew.html">
-
-									新增新闻/公告</a>
 
 							</li>
 						</ul>
 
 					</li>
+
+
 					<li class="">
 
 						<a href="javascript:;">
@@ -338,15 +340,15 @@
 
 						<ul class="sub-menu">
 
-							<li>
+							<li >
 
-								<a href="#">
+								<a href="http://123.207.86.52:8080/bdmap/#/?x=121.466709&y=31.227474" target="_Blank">
 
 									房源地图查询</a>
 
 							</li>
 
-							<li>
+							<li >
 
 								<a href="#">
 

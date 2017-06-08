@@ -84,78 +84,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- BEGIN HEADER -->
 
-		<div class="header navbar navbar-inverse navbar-fixed-top">
+        <div class="header navbar navbar-inverse navbar-fixed-top">
 
-			<!-- BEGIN TOP NAVIGATION BAR -->
+            <!-- BEGIN TOP NAVIGATION BAR -->
 
-			<div class="navbar-inner">
+            <div class="navbar-inner">
 
-				<div class="container-fluid">
+                <div class="container-fluid">
 
-					<!-- logo标志 -->
+                    <!-- logo标志 -->
 
-					<a class="brand" href="index.html">
+                    <a class="brand" href="back/user/index">
 
-						<img src="media/image/logo.png" alt="logo" />
+                        <img src="media/image/logo.png" alt="logo"/>
 
-					</a>
+                    </a>
 
-					<!-- END LOGO -->
+                    <!-- END LOGO -->
 
-					<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
 
-					<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                    <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
 
-						<img src="media/image/menu-toggler.png" alt="" />
+                        <img src="media/image/menu-toggler.png" alt="" />
 
-					</a>
+                    </a>
 
-					<!-- END RESPONSIVE MENU TOGGLER -->
+                    <!-- END RESPONSIVE MENU TOGGLER -->
 
-					<!-- BEGIN TOP NAVIGATION MENU -->
+                    <!-- BEGIN TOP NAVIGATION MENU -->
 
-					<ul class="nav pull-right">
+                    <ul class="nav pull-right">
 
-						<!-- 开始右边用户信息以及图像-->
 
-						<li class="dropdown user">
+                        <!-- 开始右边用户信息以及图像-->
 
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <li class="dropdown user">
 
-								<img alt="" src="media/image/avatar1_small.jpg" />
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-								<span class="username">Bob Nilson</span>
+                                <img alt="" src="media/image/avatar1_small.jpg" />
 
-								<i class="icon-angle-down"></i>
+                                <span class="username"><shiro:principal/></span>
 
-							</a>
+                                <i class="icon-angle-down"></i>
 
-							<ul class="dropdown-menu">
+                            </a>
 
-								<li>
-									<a href="profile.html"><i class="icon-user"></i> 个人信息</a>
-								</li>
-								<li>
-									<a href="login.html"><i class="icon-key"></i> Log Out</a>
-								</li>
+                            <ul class="dropdown-menu">
 
-							</ul>
+                                <li><a href="back/personnelMinistry/user/detail"><i class="icon-user"></i> 个人信息</a></li>
+                                <li><a href="back/user/loginOut"><i class="icon-key"></i> Log Out</a></li>
 
-						</li>
+                            </ul>
 
-						<!-- END USER LOGIN DROPDOWN -->
+                        </li>
 
-					</ul>
+                        <!-- END USER LOGIN DROPDOWN -->
 
-					<!-- END TOP NAVIGATION MENU -->
+                    </ul>
 
-				</div>
+                    <!-- END TOP NAVIGATION MENU -->
 
-			</div>
+                </div>
 
-			<!-- END TOP NAVIGATION BAR -->
+            </div>
 
-		</div>
+            <!-- END TOP NAVIGATION BAR -->
+
+        </div>
 
 		<!-- END HEADER -->
 		<div class="copyrights">Collect from
@@ -168,229 +165,211 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<!-- BEGIN SIDEBAR -->
 
-			<div class="page-sidebar nav-collapse collapse">
+            <div class="page-sidebar nav-collapse collapse">
 
-				<!-- BEGIN SIDEBAR MENU -->
+                <!-- BEGIN SIDEBAR MENU -->
 
-				<ul class="page-sidebar-menu">
+                <ul class="page-sidebar-menu">
 
-					<li>
+                    <li>
 
-						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
-						<div class="sidebar-toggler hidden-phone"></div>
+                        <div class="sidebar-toggler hidden-phone"></div>
 
-						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
-					</li>
-					<!--去除搜素框-->
-					<!--<li>
+                    </li>
+                    <!--去除搜素框-->
+                    <!--<li>
 
-					 BEGIN RESPONSIVE QUICK SEARCH FORM 
+                         BEGIN RESPONSIVE QUICK SEARCH FORM
 
-					<form class="sidebar-search">
+                        <form class="sidebar-search">
 
-						<div class="input-box">
+                            <div class="input-box">
 
-							<a href="javascript:;" class="remove"></a>
+                                <a href="javascript:;" class="remove"></a>
 
-							<input type="text" placeholder="Search..." />
+                                <input type="text" placeholder="Search..." />
 
-							<input type="button" class="submit" value=" " />
+                                <input type="button" class="submit" value=" " />
 
-						</div>
+                            </div>
 
-					</form>
+                        </form>
 
-					<!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        <!-- END RESPONSIVE QUICK SEARCH FORM -->
 
-					<!--</li>-->
+                    <!--</li>-->
 
-					<li class="start active ">
+                    <li class="start active ">
 
-						<a href="#">
+                        <a href="#">
 
-							<i class="icon-home"></i>
+                            <i class="icon-home"></i>
 
-							<span class="title">主页</span>
+                            <span class="title">主页</span>
 
-							<span class="selected"></span>
+                            <span class="selected"></span>
 
-						</a>
+                        </a>
 
-					</li>
+                    </li>
 
-					<li class="">
+                    <li class="">
 
-						<a href="javascript:;">
+                        <a href="javascript:;">
 
-							<i class="icon-user"></i>
+                            <i class="icon-user"></i>
 
-							<span class="title">用户管理</span>
+                            <span class="title">客户管理</span>
 
-							<span class="arrow "></span>
+                            <span class="arrow "></span>
 
-						</a>
+                        </a>
 
-						<ul class="sub-menu">
+                        <ul class="sub-menu">
 
-							<li>
+                            <li >
 
-								<a href="userselect.html">
+                                <a href="back/client/view">
 
-									用户查询</a>
+                                    客户查询</a>
 
-							</li>
+                            </li>
 
-							<li>
+                            <li >
 
-								<a href="addUser.html">
+                                <a href="addUser.html">
 
-									添加用户</a>
+                                    添加客户</a>
 
-							</li>
-						</ul>
+                            </li>
+                        </ul>
 
-					</li>
+                    </li>
 
-					<li class="">
+                    <li class="">
 
-						<a href="javascript:;">
+                        <a href="javascript:;">
 
-							<i class="icon-bookmark-empty"></i>
+                            <i class="icon-bookmark-empty"></i>
 
-							<span class="title">房源管理</span>
+                            <span class="title">房源管理</span>
 
-							<span class="arrow "></span>
+                            <span class="arrow "></span>
 
-						</a>
+                        </a>
 
-						<ul class="sub-menu">
+                        <ul class="sub-menu">
 
-							<li>
+                            <li >
 
-								<a href="#">
+                                <a href="back/house/view">
 
-									房源查询</a>
+                                    房源查询</a>
 
-							</li>
+                            </li>
 
-							<li>
+                            <li >
 
-								<a href="#">
+                                <a href="back/house/add">
 
-									增加房源</a>
+                                    增加房源</a>
 
-							</li>
+                            </li>
 
-						</ul>
+                        </ul>
 
-					</li>
-					<li class="">
+                    </li>
 
-						<a href="javascript:;">
+                    <li class="">
 
-							<i class="icon-th"></i>
+                        <a href="javascript:;">
 
-							<span class="title">人事OA</span>
+                            <i class="icon-th"></i>
 
-							<span class="arrow "></span>
+                            <span class="title">人事OA</span>
 
-						</a>
+                            <span class="arrow "></span>
 
-						<ul class="sub-menu">
+                        </a>
 
-							<li>
+                        <ul class="sub-menu">
 
-								<a href="userPhone.html">
+                            <li>
 
-									通讯录</a>
+                                <a href="userPhone.html">
 
-							</li>
-							<li>
+                                    通讯录</a>
 
-								<a href="departmentPhone.html">
+                            </li>
+                            <li>
 
-									部门通讯录</a>
+                                <a href="departmentPhone.html">
 
-							</li>
+                                    部门通讯录</a>
 
-							<li>
+                            </li>
 
-								<a href="authority1.html">
+                            <li>
 
-									组织机构</a>
+                                <a href="back/personnelMinistry/organization">
 
-							</li>
-							<li>
+                                    组织机构</a>
 
-								<a href="addstaff.html">
+                            </li>
+                            <li>
 
-									新增员工</a>
+                                <a href="back/personnelMinistry/user/add">
 
-							</li>
-							<li>
+                                    新增员工</a>
 
-								<a href="detailOA.html">
+                            </li>
+                        </ul>
 
-									人事OA详情信息</a>
+                    </li>
 
-							</li>
-							<li>
 
-								<a href="new.html">
+                    <li class="">
 
-									新闻/公告查询</a>
+                        <a href="javascript:;">
 
-							</li>
-							<li>
+                            <i class="icon-map-marker"></i>
 
-								<a href="writeNew.html">
+                            <span class="title">Maps</span>
 
-									新增新闻/公告</a>
+                            <span class="arrow "></span>
 
-							</li>
-						</ul>
+                        </a>
 
-					</li>
-					<li class="">
+                        <ul class="sub-menu">
 
-						<a href="javascript:;">
+                            <li >
 
-							<i class="icon-map-marker"></i>
+                                <a href="http://123.207.86.52:8080/bdmap/#/?x=121.466709&y=31.227474" target="_Blank">
 
-							<span class="title">Maps</span>
+                                    房源地图查询</a>
 
-							<span class="arrow "></span>
+                            </li>
 
-						</a>
+                            <li >
 
-						<ul class="sub-menu">
+                                <a href="#">
 
-							<li>
+                                    学区房地图查询</a>
 
-								<a href="#">
+                            </li>
 
-									房源地图查询</a>
+                        </ul>
 
-							</li>
+                    </li>
+                </ul>
 
-							<li>
+                <!-- END SIDEBAR MENU -->
 
-								<a href="#">
-
-									学区房地图查询</a>
-
-							</li>
-
-						</ul>
-
-					</li>
-				</ul>
-
-				<!-- END SIDEBAR MENU -->
-
-			</div>
+            </div>
 
 			<!-- END SIDEBAR -->
 

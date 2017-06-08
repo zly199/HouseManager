@@ -92,7 +92,7 @@
 
 					<a class="brand" href="back/user/index">
 
-						<img src="media/image/logo.png" alt="logo" />
+						<img src="media/image/logo.png" alt="logo"/>
 
 					</a>
 
@@ -112,6 +112,7 @@
 
 					<ul class="nav pull-right">
 
+
 						<!-- 开始右边用户信息以及图像-->
 
 						<li class="dropdown user">
@@ -120,7 +121,7 @@
 
 								<img alt="" src="media/image/avatar1_small.jpg" />
 
-								<span class="username">Bob Nilson</span>
+								<span class="username"><shiro:principal/></span>
 
 								<i class="icon-angle-down"></i>
 
@@ -128,12 +129,8 @@
 
 							<ul class="dropdown-menu">
 
-								<li>
-									<a href="#"><i class="icon-user"></i> 个人信息</a>
-								</li>
-								<li>
-									<a href="login.html"><i class="icon-key"></i> Log Out</a>
-								</li>
+								<li><a href="back/personnelMinistry/user/detail"><i class="icon-user"></i> 个人信息</a></li>
+								<li><a href="back/user/loginOut"><i class="icon-key"></i> Log Out</a></li>
 
 							</ul>
 
@@ -179,6 +176,29 @@
 						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
 					</li>
+					<!--去除搜素框-->
+					<!--<li>
+
+                         BEGIN RESPONSIVE QUICK SEARCH FORM
+
+                        <form class="sidebar-search">
+
+                            <div class="input-box">
+
+                                <a href="javascript:;" class="remove"></a>
+
+                                <input type="text" placeholder="Search..." />
+
+                                <input type="button" class="submit" value=" " />
+
+                            </div>
+
+                        </form>
+
+                        <!-- END RESPONSIVE QUICK SEARCH FORM -->
+
+					<!--</li>-->
+
 					<li class="start active ">
 
 						<a href="#">
@@ -199,27 +219,27 @@
 
 							<i class="icon-user"></i>
 
-							<span class="title">用户管理</span>
+							<span class="title">客户管理</span>
 
-							<span class="arrow"></span>
+							<span class="arrow "></span>
 
 						</a>
 
 						<ul class="sub-menu">
 
-							<li>
+							<li >
 
-								<a href="userselect.html">
+								<a href="back/client/view">
 
-									用户查询</a>
+									客户查询</a>
 
 							</li>
 
-							<li>
+							<li >
 
 								<a href="addUser.html">
 
-									添加用户</a>
+									添加客户</a>
 
 							</li>
 						</ul>
@@ -234,23 +254,23 @@
 
 							<span class="title">房源管理</span>
 
-							<span class="arrow"></span>
+							<span class="arrow "></span>
 
 						</a>
 
 						<ul class="sub-menu">
 
-							<li>
+							<li >
 
-								<a href="#">
+								<a href="back/house/view">
 
 									房源查询</a>
 
 							</li>
 
-							<li>
+							<li >
 
-								<a href="#">
+								<a href="back/house/add">
 
 									增加房源</a>
 
@@ -264,252 +284,9 @@
 
 						<a href="javascript:;">
 
-							<i class="icon-table"></i>
-
-							<span class="title">房源跟进</span>
-
-							<span class="arrow "></span>
-
-						</a>
-
-						<ul class="sub-menu">
-
-							<li>
-
-								<a href="#">
-
-									跟进查询</a>
-
-							</li>
-
-							<li>
-
-								<a href="#">
-
-									登记跟进记录</a>
-
-							</li>
-						</ul>
-
-					</li>
-
-					<li class="">
-
-						<a href="javascript:;">
-
-							<i class="icon-th-large"></i>
-
-							<span class="title">合同管理</span>
-
-							<span class="arrow "></span>
-
-						</a>
-
-						<ul class="sub-menu">
-
-							<li>
-
-								<a href="#">
-									出租合同查询</a>
-
-							</li>
-							<li>
-
-								<a href="#">
-									出售合同查询</a>
-
-							</li>
-
-							<li>
-
-								<a href="#">
-									增加合同</a>
-
-							</li>
-						</ul>
-
-					</li>
-
-					<li class="">
-
-						<a href="javascript:;">
-
-							<i class="icon-gift"></i>
-
-							<span class="title">销售管理</span>
-
-							<span class="arrow"></span>
-
-						</a>
-
-						<ul class="sub-menu">
-
-							<li>
-
-								<a href="#">
-
-									销售查询</a>
-
-							</li>
-
-							<li>
-
-								<a href="#">
-
-									增加销售信息</a>
-
-							</li>
-						</ul>
-
-					</li>
-
-					<li>
-
-						<a class="active" href="javascript:;">
-
-							<i class="icon-sitemap"></i>
-
-							<span class="title">新闻管理</span>
-
-							<span class="arrow"></span>
-
-						</a>
-
-						<ul class="sub-menu">
-							<li>
-
-								<a href="#">
-
-									新闻查询</a>
-
-							</li>
-							<li>
-
-								<a href="#">
-
-									增加新闻</a>
-
-							</li>
-
-						</ul>
-
-					</li>
-
-					<li>
-
-						<a href="javascript:;">
-
-							<i class="icon-folder-open"></i>
-
-							<span class="title">综合统计</span>
-
-							<span class="arrow "></span>
-
-						</a>
-
-						<ul class="sub-menu">
-
-							<li>
-
-								<a href="javascript:;">
-
-									<i class="icon-folder-open"></i> 统计房源
-
-									<span class="arrow"></span>
-
-								</a>
-
-								<ul class="sub-menu">
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求租房源 </a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i> 统计求购房源</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i> 统计出租房源</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i> 统计出售房源 </a>
-									</li>
-
-								</ul>
-
-							</li>
-
-							<li>
-
-								<a href="javascript:;">
-
-									<i class="icon-folder-open"></i> 统计客源
-
-									<span class="arrow"></span>
-
-								</a>
-
-								<ul class="sub-menu">
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计出租人员</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计出售人员</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求租人员</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求售人员</a>
-									</li>
-
-								</ul>
-
-							</li>
-
-							<li>
-
-								<a href="#">
-
-									<i class="icon-folder-open"></i> 统计销售额
-									<span class="arrow"></span>
-								</a>
-								<ul class="sub-menu">
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计出租销售额</a>
-									</li>
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计出售销售额</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求租销售额</a>
-									</li>
-
-									<li>
-										<a href="#"><i class="icon-globe"></i>统计求售销售额</a>
-									</li>
-
-								</ul>
-
-							</li>
-
-						</ul>
-
-					</li>
-					<li class="">
-
-						<a href="javascript:;">
-
 							<i class="icon-th"></i>
 
-							<span class="title">客源跟进</span>
+							<span class="title">人事OA</span>
 
 							<span class="arrow "></span>
 
@@ -519,22 +296,38 @@
 
 							<li>
 
-								<a href="table_basic.html">
+								<a href="userPhone.html">
 
-									查询客源跟进信息</a>
+									通讯录</a>
+
+							</li>
+							<li>
+
+								<a href="departmentPhone.html">
+
+									部门通讯录</a>
 
 							</li>
 
 							<li>
 
-								<a href="table_responsive.html">
+								<a href="back/personnelMinistry/organization">
 
-									增加客源跟进信息</a>
+									组织机构</a>
+
+							</li>
+							<li>
+
+								<a href="back/personnelMinistry/user/add">
+
+									新增员工</a>
 
 							</li>
 						</ul>
 
 					</li>
+
+
 					<li class="">
 
 						<a href="javascript:;">
@@ -549,15 +342,15 @@
 
 						<ul class="sub-menu">
 
-							<li>
+							<li >
 
-								<a href="#">
+								<a href="http://123.207.86.52:8080/bdmap/#/?x=121.466709&y=31.227474" target="_Blank">
 
 									房源地图查询</a>
 
 							</li>
 
-							<li>
+							<li >
 
 								<a href="#">
 
