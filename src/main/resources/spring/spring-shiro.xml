@@ -17,7 +17,7 @@
         <!-- 身份认证失败，则跳转到登录页面的配置 -->
         <property name="loginUrl" value="/back/user/login"/>
         <!-- 权限认证失败，则跳转到指定页面 todo:权限认证失败页面-->
-        <property name="unauthorizedUrl" value="/unauthor.jsp"/>
+        <property name="unauthorizedUrl" value="/back/permission/permissionError"/>
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <property name="filterChainDefinitions">
             <value>
@@ -32,7 +32,9 @@
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
     <!-- 开启Shiro注解 -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true" />
+    </bean>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>

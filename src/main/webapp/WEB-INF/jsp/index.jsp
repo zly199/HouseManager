@@ -3,9 +3,10 @@
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<base href="<%=basePath%>">
 <!DOCTYPE html>
-
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -107,7 +108,7 @@
 
 						<ul class="dropdown-menu">
 
-							<li><a href="profile.html"><i class="icon-user"></i> 个人信息</a></li>
+							<li><a href="back/personnelMinistry/user/detail"><i class="icon-user"></i> 个人信息</a></li>
 							<li><a href="back/user/loginOut"><i class="icon-key"></i> Log Out</a></li>
 
 						</ul>
@@ -195,7 +196,7 @@
 
 					<i class="icon-user"></i> 
 
-					<span class="title">用户管理</span>
+					<span class="title">客户管理</span>
 
 					<span class="arrow "></span>
 
@@ -205,9 +206,9 @@
 
 						<li >
 
-							<a href="userselect.html">
+							<a href="back/client/view">
 
-							用户查询</a>
+								客户查询</a>
 
 						</li>
 
@@ -215,7 +216,7 @@
 
 							<a href="addUser.html">
 
-							添加用户</a>
+							添加客户</a>
 
 						</li>
 					</ul>
@@ -294,16 +295,9 @@
 						</li>
 						<li>
 
-							<a href="addstaff.html">
+							<a href="back/personnelMinistry/user/add">
 
 								新增员工</a>
-
-						</li>
-						<li>
-
-							<a href="detailOA.html">
-
-								人事OA详情信息</a>
 
 						</li>
 					</ul>
@@ -327,7 +321,7 @@
 
 						<li >
 
-							<a href="#">
+							<a href="http://123.207.86.52:8080/bdmap/#/?x=121.466709&y=31.227474" target="_Blank">
 
 							房源地图查询</a>
 

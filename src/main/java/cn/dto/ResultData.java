@@ -20,6 +20,7 @@ public class ResultData<T> implements Serializable {
         this.errorMessage = errorMessage;
     }
 
+
     public boolean isSuccess() {
         return isSuccess;
     }

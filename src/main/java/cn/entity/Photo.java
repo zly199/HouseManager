@@ -12,9 +12,18 @@ public class Photo {
     private String url;
 
     /**
-     * 房源id
+     * 不是房源
      */
-    private Integer houseid;
+    private Long userid;
+
+    public Photo(Integer id, String url, Long userid) {
+        this.id = id;
+        this.url = url;
+        this.userid = userid;
+    }
+
+    public Photo() {
+    }
 
     /**
      * 图片id
@@ -49,18 +58,18 @@ public class Photo {
     }
 
     /**
-     * 房源id
-     * @return houseid 房源id
+     * 不是房源
+     * @return userId 不是房源
      */
-    public Integer getHouseid() {
-        return houseid;
+    public Long getUserid() {
+        return userid;
     }
 
     /**
-     * 房源id
-     * @param houseid 房源id
+     * 不是房源
+     * @param userid 不是房源
      */
-    public void setHouseid(Integer houseid) {
-        this.houseid = houseid;
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 }

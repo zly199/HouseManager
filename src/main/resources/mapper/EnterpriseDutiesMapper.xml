@@ -17,6 +17,12 @@
     from enterprise_duties
     where enterprise_duties_id = #{enterpriseDutiesId,jdbcType=TINYINT}
   </select>
+  <select id="selectPrimaryByName" resultType="cn.entity.EnterpriseDuties">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM enterprise_duties
+    WHERE duties_name=#{dutiesId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
     delete from enterprise_duties
     where enterprise_duties_id = #{enterpriseDutiesId,jdbcType=TINYINT}

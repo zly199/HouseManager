@@ -74,6 +74,15 @@
       user_persion, user_house_pre
     FROM user_duties
   </select>
+  <select id="selectNameByOrganizationid" resultType="String">
+    SELECT user_duties.user_name
+      FROM user_duties
+    WHERE organization_id=#{organizationId}
+  </select>
+  <select id="selectNameAll" resultType="String">
+    SELECT user_duties.user_name
+      FROM user_duties
+  </select>
   <insert id="insert" parameterType="cn.entity.UserDuties" >
     insert into user_duties (locked, user_id, user_name, 
       organization_id, duties_id, state, 
@@ -88,7 +97,7 @@
       #{source,jdbcType=VARCHAR}, #{technicalTitle,jdbcType=VARCHAR}, #{record,jdbcType=VARCHAR}, 
       #{mainBuildings,jdbcType=VARCHAR}, #{chiefId,jdbcType=BIGINT}, #{connecttionWay,jdbcType=INTEGER}, 
       #{password,jdbcType=VARCHAR}, #{workingTime,jdbcType=TIME}, #{closingTime,jdbcType=TIME}, 
-      #{userPersion,jdbcType=BIGINT},#{userHousePre,jdbcType=VARCHAR})
+      #{userPersion,jdbcType=BIGINT}, #{userHousePre,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.UserDuties" >
     insert into user_duties
@@ -213,7 +222,7 @@
         #{userPersion,jdbcType=BIGINT},
       </if>
       <if test="userHousePre !=null">
-        user_house_pre,
+        #{userHousePre,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>

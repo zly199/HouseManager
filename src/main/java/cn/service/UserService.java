@@ -1,8 +1,10 @@
 package cn.service;
 
+import cn.dto.UserDto;
 import cn.dto.UserOa;
 import cn.entity.User;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -44,4 +46,36 @@ public interface UserService {
      */
     User getUserById(Long userId);
 
+
+    /**
+     * 返回所有的人员名称
+     * @return
+     */
+    List<String> findNameAll();
+
+    /**
+     * 添加用户
+     * @return
+     * @param userDto
+     */
+    Long addUserDuties(UserDto userDto,int photoId);
+
+    /**
+     * 增加用户的照片
+     * @param fileName
+     * @return 插入数据库的主键
+     */
+    int addUserPhone(String fileName,int photoId);
+
+    /**
+     * 查找当前用户的详细信息
+     * @return
+     */
+    UserDto findCurrentUser();
+
+    /**
+     * 获取本人的路径
+     * @return
+     */
+    String getCurrentPic();
 }

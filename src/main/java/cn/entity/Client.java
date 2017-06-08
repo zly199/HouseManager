@@ -49,11 +49,6 @@ public class Client {
     private Date precatoryDate;
 
     /**
-     * 租金单价：***-****
-     */
-    private String rentPrice;
-
-    /**
      * 委托方式
      */
     private String precatoryMethod;
@@ -104,7 +99,7 @@ public class Client {
     private String decoration;
 
     /**
-     * 
+     * 类型
      */
     private String gener;
 
@@ -147,6 +142,21 @@ public class Client {
      * 现住址
      */
     private String address;
+
+    /**
+     * 
+     */
+    private String username;
+
+    /**
+     * 
+     */
+    private String organizationname;
+
+    /**
+     * 
+     */
+    private String clientname;
 
     /**
      * 客源编号
@@ -290,22 +300,6 @@ public class Client {
      */
     public void setPrecatoryDate(Date precatoryDate) {
         this.precatoryDate = precatoryDate;
-    }
-
-    /**
-     * 租金单价：***-****
-     * @return rent_price 租金单价：***-****
-     */
-    public String getRentPrice() {
-        return rentPrice;
-    }
-
-    /**
-     * 租金单价：***-****
-     * @param rentPrice 租金单价：***-****
-     */
-    public void setRentPrice(String rentPrice) {
-        this.rentPrice = rentPrice == null ? null : rentPrice.trim();
     }
 
     /**
@@ -469,16 +463,16 @@ public class Client {
     }
 
     /**
-     * 
-     * @return gener 
+     * 类型
+     * @return gener 类型
      */
     public String getGener() {
         return gener;
     }
 
     /**
-     * 
-     * @param gener 
+     * 类型
+     * @param gener 类型
      */
     public void setGener(String gener) {
         this.gener = gener == null ? null : gener.trim();
@@ -610,5 +604,53 @@ public class Client {
      */
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    /**
+     * 
+     * @return userName 
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * 
+     * @param username 
+     */
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
+    }
+
+    /**
+     * 
+     * @return organizationName 
+     */
+    public String getOrganizationname() {
+        return organizationname;
+    }
+
+    /**
+     * 
+     * @param organizationname 
+     */
+    public void setOrganizationname(String organizationname) {
+        this.organizationname = organizationname == null ? null : organizationname.trim();
+    }
+
+    /**
+     * 
+     * @return clientName 
+     */
+    public String getClientname() {
+        return clientname;
+    }
+
+    /**
+     * 
+     * @param clientname 
+     */
+    public void setClientname(String clientname) {
+        this.clientname = clientname == null ? null : clientname.trim();
     }
 }

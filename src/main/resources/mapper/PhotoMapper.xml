@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="cn.entity.Photo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="houseid" property="houseid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, url, houseid
+    id, url, userId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -15,17 +15,24 @@
     from photo
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserId" resultType="cn.entity.Photo">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM photo
+    WHERE photo.userId = #{userId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from photo
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.entity.Photo" >
-    insert into photo (id, url, houseid
+  <insert id="insert" parameterType="cn.entity.Photo">
+    insert into photo (id, url, userId
       )
-    values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{houseid,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.Photo" >
+
     insert into photo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -34,8 +41,8 @@
       <if test="url != null" >
         url,
       </if>
-      <if test="houseid != null" >
-        houseid,
+      <if test="userid != null" >
+        userId,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -45,10 +52,11 @@
       <if test="url != null" >
         #{url,jdbcType=VARCHAR},
       </if>
-      <if test="houseid != null" >
-        #{houseid,jdbcType=INTEGER},
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
       </if>
     </trim>
+
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.entity.Photo" >
     update photo
@@ -56,8 +64,8 @@
       <if test="url != null" >
         url = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="houseid != null" >
-        houseid = #{houseid,jdbcType=INTEGER},
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -65,7 +73,7 @@
   <update id="updateByPrimaryKey" parameterType="cn.entity.Photo" >
     update photo
     set url = #{url,jdbcType=VARCHAR},
-      houseid = #{houseid,jdbcType=INTEGER}
+      userId = #{userid,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

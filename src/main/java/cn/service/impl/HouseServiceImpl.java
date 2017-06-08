@@ -1,19 +1,16 @@
 package cn.service.impl;
 
 import cn.dao.*;
-import cn.dto.FollowUpHouseAvailable;
-import cn.dto.HouseList;
-import cn.dto.HouseMessageAvailable;
-import cn.entity.FollowupHouse;
-import cn.entity.HouseOwner;
-import cn.entity.Housemsg;
-import cn.entity.UserDuties;
+import cn.dto.*;
+import cn.entity.*;
 import cn.service.HouseService;
 import cn.utils.DataTransferUtil;
+import cn.utils.TinyUtilis;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,6 +36,8 @@ public class HouseServiceImpl implements HouseService {
 //    用户职务
     @Autowired
     UserDutiesMapper userDutiesDao;
+    @Autowired
+    KeyMapper keyDao;
     //楼盘字典dao
     @Autowired
     HousesDictionaryMapper housesDictionaryDao;
@@ -46,6 +45,8 @@ public class HouseServiceImpl implements HouseService {
     EnterpriseDutiesMapper enterpriseDutiesDao;
     @Autowired
     HouseOwnerMapper houseOwnerDao;
+
+
 
     /**
      * 根据当前登录用户权限查询房源信息
@@ -77,6 +78,132 @@ public class HouseServiceImpl implements HouseService {
 
             return HousemsgToHouseListWithNameTransfer(DataTransferUtil.setToList(housemegSet));
 
+    }
+
+
+    /**
+     * 返回增加房源的主键
+     * @param houseMessageAvailable
+     * @return
+     */
+
+    @Override
+    public String add(HouseMessageAvailable houseMessageAvailable) {
+        Housemsg housemsg = houseMessageAvailableToHousemsg(houseMessageAvailable);
+        //生成主键
+        housemsg = addHousePrimaryKey(housemsg);
+        int i = housemsgDao.insertSelective(housemsg);
+        //主键重复，重新生成
+        if (i<=0){
+            for(i=-1;i<=0;i=housemsgDao.insertSelective(housemsg)){
+                housemsg = addHousePrimaryKey(housemsg);
+            }
+        }
+        return housemsg.getId();
+    }
+    /**
+     * 生成房源主键
+     * @param housemsg
+     * @return
+     */
+    private Housemsg addHousePrimaryKey(Housemsg housemsg) {
+        String houseId;
+        UserDuties userDuties = userDutiesDao.selectByUserId(Long.parseLong(housemsg.getUserId()));
+        String departmentHouseIdPre = organizationStructureDao.selectByPrimaryKey(userDuties.getOrganizationId()).getNumberPre();
+        String userHouseIdPre = userDuties.getUserHousePre();
+            //公盘时 组织前缀+数字随机(9)
+            if (housemsg.getAttribute().equals("公盘")) {
+                houseId = departmentHouseIdPre + TinyUtilis.getNumberRandom(9);
+            }
+            //私盘时 组织前缀+个人前缀+数字随机(6)
+            else {
+                houseId = departmentHouseIdPre + userHouseIdPre + TinyUtilis.getNumberRandom(6);
+            }
+            housemsg.setId(houseId);
+
+        //todo:封盘，特盘
+        return housemsg;
+    }
+
+    private Housemsg houseMessageAvailableToHousemsg(HouseMessageAvailable houseMessageAvailable) {
+        //解决tag数组过短的问题
+        if (houseMessageAvailable.getTag()==null){
+            houseMessageAvailable.setTag(new String[3]);
+        }
+       else if (houseMessageAvailable.getTag().length==1){
+            String[] tags = new String[3];
+            tags[0]=houseMessageAvailable.getTag()[0];
+            houseMessageAvailable.setTag(tags);
+        }
+        else if (houseMessageAvailable.getTag().length==2){
+            String[] tags = new String[3];
+            tags[0]=houseMessageAvailable.getTag()[0];
+            tags[1]=houseMessageAvailable.getTag()[1];
+            houseMessageAvailable.setTag(tags);
+        }
+        return new Housemsg(
+                houseMessageAvailable.getId(),
+                houseMessageAvailable.getApplication(),
+                houseMessageAvailable.getTransaction(),
+                ((houseMessageAvailable.getAddress()[0]==null||houseMessageAvailable.getAddress()[0].equals(""))?"-":houseMessageAvailable.getAddress()[0])+"/"+
+                        ((houseMessageAvailable.getAddress()[1]==null||houseMessageAvailable.getAddress()[1].equals(""))?"-":houseMessageAvailable.getAddress()[1])+"/"+
+                        ((houseMessageAvailable.getAddress()[2]==null||houseMessageAvailable.getAddress()[2].equals(""))?"-":houseMessageAvailable.getAddress()[2])+"/"+
+                        ((houseMessageAvailable.getAddress()[3]==null||houseMessageAvailable.getAddress()[3].equals(""))?"-":houseMessageAvailable.getAddress()[3])+"/"+
+                        ((houseMessageAvailable.getAddress()[4]==null||houseMessageAvailable.getAddress()[4].equals(""))?"-":houseMessageAvailable.getAddress()[4])+"/"+
+                        ((houseMessageAvailable.getAddress()[5]==null||houseMessageAvailable.getAddress()[5].equals(""))?"-":houseMessageAvailable.getAddress()[5])+"/"+
+                        ((houseMessageAvailable.getAddress()[6]==null||houseMessageAvailable.getAddress()[6].equals(""))?"-":houseMessageAvailable.getAddress()[6])+"/"+
+                        ((houseMessageAvailable.getAddress()[7]==null||houseMessageAvailable.getAddress()[7].equals(""))?"-":houseMessageAvailable.getAddress()[7]),
+                        houseMessageAvailable.getArea()[0]+"/"+
+                        houseMessageAvailable.getArea()[1],
+                houseMessageAvailable.getType(),
+                houseMessageAvailable.getHouseType()[0]+"/"+
+                        houseMessageAvailable.getHouseType()[1]+"/"+
+                        houseMessageAvailable.getHouseType()[2]+"/"+
+                        houseMessageAvailable.getHouseType()[3],
+                houseMessageAvailable.getDecoration(),
+                houseMessageAvailable.getOrientation(),
+                houseMessageAvailable.getStatus(),
+                houseMessageAvailable.getSellPrice(),
+                houseMessageAvailable.getAttribute(),
+                houseMessageAvailable.getSellLowprice(),
+                houseMessageAvailable.getPurchasingDate(),
+                houseMessageAvailable.getRentPrice(),
+                houseMessageAvailable.getUniquehouse(),
+                houseMessageAvailable.getRentLowprice(),
+                houseMessageAvailable.getPrecatoryDate(),
+                houseMessageAvailable.getLoan(),
+                houseMessageAvailable.getPrecatoryMethod(),
+                houseMessageAvailable.getResource(),
+                houseMessageAvailable.getPrecatoryNumber(),
+                houseMessageAvailable.getLunchTime(),
+                houseMessageAvailable.getRecordNumber(),
+                houseMessageAvailable.getTag()[0]+"/"+
+                        houseMessageAvailable.getTag()[1]+"/"+
+                        houseMessageAvailable.getTag()[2],
+                houseMessageAvailable.getRemark(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                houseMessageAvailable.getClientId(),
+                houseMessageAvailable.getUserId()==null?null:userDao.selectByUserName(houseMessageAvailable.getUserId()).getUserId().toString(),
+                houseMessageAvailable.getUserId()==null?null:userDutiesDao.selectByName(houseMessageAvailable.getUserId()).getOrganizationId()
+
+        );
     }
 
     /**
@@ -229,13 +356,6 @@ public class HouseServiceImpl implements HouseService {
     }
 
 
-    /**
-     * @return
-     */
-    @Override
-    public int add() {
-        return 0;
-    }
 
     /**
      * 查找全部房源到房源列表
@@ -256,6 +376,9 @@ public class HouseServiceImpl implements HouseService {
     public HouseMessageAvailable findById(String houseId) {
         Housemsg result = housemsgDao.selectByPrimaryKey(houseId);
         HouseMessageAvailable houseMessageAvailable = DataTransferUtil.HousemsgToHouseMessageAvailable(result);
+        //员工和组织id转名称
+        houseMessageAvailable.setUserId(userDutiesDao.selectByUserId(Long.parseLong(houseMessageAvailable.getUserId())).getUserName());
+        houseMessageAvailable.setOrganizationId(organizationStructureDao.selectByPrimaryKey(houseMessageAvailable.getOrganizationId()).getOrganizationName());
         return houseMessageAvailable;
     }
 
@@ -281,6 +404,7 @@ public class HouseServiceImpl implements HouseService {
         for (FollowupHouse followupHouse:followupHouses){
             result.add(
                     new FollowUpHouseAvailable(
+                            followupHouse.getId(),
                             followupHouse.getContent(),
                             userDao.selectByPrimaryKey(followupHouse.getUserid()).getUserName(),
                             enterpriseDutiesDao.selectByPrimaryKey(userDutiesDao.selectByUserId(followupHouse.getUserid()).getDutiesId()).getDutiesName(),
@@ -304,6 +428,213 @@ public class HouseServiceImpl implements HouseService {
     public HouseOwner findHouseOwner(String houseId) {
 
         return houseOwnerDao.selectByPrimaryKey(housemsgDao.selectByPrimaryKey(houseId).getClientId());
+    }
+
+    /**
+     * 增加业主信息
+     * @param houseOwner
+     * @return 业主id
+     */
+    @Override
+    public int addHouseOwner(HouseOwner houseOwner) {
+        Long time = System.currentTimeMillis() / 1000;
+        int id = time.intValue();
+        houseOwner.setId(id);
+        int i=houseOwnerDao.insertSelective(houseOwner);
+        if (i<=0){
+            for(i=-1;i<=0;i = houseOwnerDao.insertSelective(houseOwner)){
+                time = System.currentTimeMillis() / 1000;
+                id = time.intValue();
+                houseOwner.setId(id);
+            }
+        }
+
+
+        return id;
+    }
+
+    /**
+     * 删除房源信息
+     * @param houseId
+     * @return
+     */
+    @Override
+    @Transactional
+    public ResultData<Integer> deleteHouse(String houseId) {
+        Subject subject = SecurityUtils.getSubject();
+        //判断房源类型，本人，本部，跨部
+        Housemsg housemsg = housemsgDao.selectByPrimaryKey(houseId);
+        if (housemsg==null) return new ResultData<Integer>(false,"未找到房源信息，请刷新重试");
+        UserDuties user = userDutiesDao.selectByName(subject.getPrincipal().toString());
+        //本人房源
+        if (housemsg.getAttribute().equals("私盘")&&housemsg.getUserId().equals(user.getUserId().toString())){
+            if (subject.isPermitted("house:delete:ourselves")||subject.isPermitted("house:delete:ourDepartment")||subject.isPermitted("house:delete:crossDepartment")){
+               int result = housemsgDao.deleteByPrimaryKey(houseId);
+               if (result>0) return new ResultData<Integer>(true,"删除成功");
+               else return new ResultData<Integer>(false,"数据库操作错误，请检查您的网络连接");
+            }else
+                return new ResultData<Integer>(false,"您没有相关权限，请联系管理员");
+        }
+//        本部房源
+        else if (housemsg.getOrganizationId().equals(user.getOrganizationId())){
+            if (subject.isPermitted("house:delete:ourDepartment")||subject.isPermitted("house:delete:crossDepartment")){
+                int result = housemsgDao.deleteByPrimaryKey(houseId);
+                if (result>0) return new ResultData<Integer>(true,"删除成功");
+                else return new ResultData<Integer>(false,"数据库操作错误，请检查您的网络连接");
+            }else
+                return new ResultData<Integer>(false,"您没有相关权限，请联系管理员");
+        }
+
+//        跨部房源
+        else if (!housemsg.getOrganizationId().equals(user.getOrganizationId())){
+            if (subject.isPermitted("house:delete:crossDepartment")){
+                int result = housemsgDao.deleteByPrimaryKey(houseId);
+                if (result>0) return new ResultData<Integer>(true,"删除成功");
+                else return new ResultData<Integer>(false,"数据库操作错误，请检查您的网络连接");
+            }else
+                return new ResultData<Integer>(false,"您没有相关权限，请联系管理员");
+        }
+        else
+            return new ResultData<Integer>(false,"未识别的房源信息，请联系系统管理员");
+
+
+    }
+    /**
+     * 修改房源的归属人（员工）
+     * @param houseId
+     * @param houseUserName1
+     * @return 修改数据条数
+     */
+    @Override
+    public int editHouseUser(String houseId, String houseUserName1) {
+        //获取归属人id和归属人的组织id
+        UserDuties userDuties = userDutiesDao.selectByName(houseUserName1);
+        //获取房源信息
+        Housemsg housemsg = housemsgDao.selectByPrimaryKey(houseId);
+        //修改数据
+        housemsg.setUserId(userDuties.getUserId().toString());
+        housemsg.setOrganizationId(userDuties.getOrganizationId());
+        //返回插入信息
+        return housemsgDao.updateByPrimaryKeySelective(housemsg);
+    }
+
+    /**
+     * 新增房源信息
+     * @param houseId
+     * @param followupHouse
+     * @return
+     */
+    @Override
+    @Transactional
+    public int addHouseFollowup(String houseId, FollowupHouse followupHouse) {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.CHINA);
+        //获取时间
+        try {
+            followupHouse.setTime(simpleDateFormat.parse(simpleDateFormat.format(new Date())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //获取员工id
+        followupHouse.setUserid(userDao.selectByUserName(SecurityUtils.getSubject().getPrincipal().toString()).getUserId());
+        //存入房源id
+        followupHouse.setHouseid(houseId);
+        return followupHouseDao.insertSelective(followupHouse);
+    }
+    /**
+     * 删除房源跟进
+     * @param followUpId
+     * @return
+     */
+    @Override
+    public int delFollowHouse(Long followUpId) {
+        return followupHouseDao.deleteByPrimaryKey(followUpId);
+    }
+    /**
+     * 增加钥匙
+     * @param keyForm
+     * @param houseId
+     * @return
+     */
+    @Override
+    public int addHouseKey(KeyForm keyForm, String houseId) {
+        //组织名转换
+
+        //用户名转换
+       Key key = new Key(
+                null,
+                keyForm.getKeyNumber(),
+                houseId,
+                keyForm.getKeyType(),
+                organizationStructureDao.selectByName(keyForm.getKeyOrganazation()),
+                userDao.selectByUserName(keyForm.getKeyUser()).getUserId(),
+                null,
+                keyForm.getKeyRemark()
+        );
+
+        return keyDao.insert(key);
+    }
+    /**
+     * 根据房源查找房源钥匙
+     * @param houseId
+     * @return
+     */
+    @Override
+    public List<KeyForm> findKeyByHouseId(String houseId) {
+        //查找房源的所有钥匙
+        List<Key> keyList = keyDao.selectByHouseId(houseId);
+
+        //转换格式
+        return keyListToKeyForm(keyList);
+    }
+
+    /**
+     * 删除钥匙
+     * @param keyId
+     * @return
+     */
+    @Override
+    public int delHouseKey(String keyId) {
+        return keyDao.deleteByPrimaryKey(Integer.parseInt(keyId));
+    }
+    /**
+     * 编辑业主
+     * @param houseOwner
+     * @return
+     */
+    @Override
+    public int editHouseOwener(HouseOwner houseOwner) {
+        return houseOwnerDao.updateByPrimaryKey(houseOwner);
+    }
+
+    /**
+     * 房源编辑
+     * @param
+     * @param
+     * @return
+     */
+    @Override
+    public int editHouse(HouseMessageAvailable houseMessageAvailable) {
+
+        return housemsgDao.updateByPrimaryKeySelective(houseMessageAvailableToHousemsg(houseMessageAvailable));
+    }
+
+    private List<KeyForm> keyListToKeyForm(List<Key> keyList) {
+        List<KeyForm> keyFormList = new ArrayList<>();
+
+        for (Key key:keyList){
+            KeyForm keyForm = new KeyForm();
+            keyForm.setKeyId(key.getId().toString());
+            keyForm.setHouseId(key.getName());
+            keyForm.setKeyNumber(key.getNumber());
+            keyForm.setKeyOrganazation(organizationStructureDao.selectByPrimaryKey(key.getOrganizationid()).getOrganizationName());
+            keyForm.setKeyRemark((key.getRemark()==null)?"":key.getRemark());
+            keyForm.setKeyType(key.getType());
+            keyForm.setKeyUser(userDao.selectByPrimaryKey(key.getUserid()).getUserName());
+            keyFormList.add(keyForm);
+
+        }
+        return keyFormList;
     }
 
     private List<HouseList> HousemsgToHouseListWithNameTransfer( List<Housemsg> housemsgList) {

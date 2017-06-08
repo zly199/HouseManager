@@ -41,6 +41,20 @@ public class Key {
      */
     private String remark;
 
+    public Key() {
+    }
+
+    public Key(Integer id, String number, String name, String type, String organizationid, Long userid, String status, String remark) {
+        this.id = id;
+        this.number = number;
+        this.name = name;
+        this.type = type;
+        this.organizationid = organizationid;
+        this.userid = userid;
+        this.status = status;
+        this.remark = remark;
+    }
+
     /**
      * id
      * @return id id

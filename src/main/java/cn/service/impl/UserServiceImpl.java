@@ -1,25 +1,27 @@
 package cn.service.impl;
 
-import cn.dao.EnterpriseDutiesMapper;
-import cn.dao.OrganizationStructureMapper;
-import cn.dao.UserDutiesMapper;
-import cn.dao.UserMapper;
+import cn.dao.*;
 import cn.dto.UserAvailable;
+import cn.dto.UserDto;
 import cn.dto.UserOa;
+import cn.entity.EnterpriseDuties;
+import cn.entity.Photo;
 import cn.entity.User;
 import cn.entity.UserDuties;
 import cn.service.UserService;
-import cn.utils.DataTransferUtil;
-import javafx.scene.input.DataFormat;
+
+import cn.utils.CryptographyUtil;
+import cn.utils.TinyUtilis;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by ZLY on 2017-05-19.
@@ -35,6 +37,9 @@ public class UserServiceImpl implements UserService{
     EnterpriseDutiesMapper enterpriseDutiesDao;
     @Autowired
     UserDutiesMapper userDutiesDao;
+    @Autowired
+    PhotoMapper photoDao;
+
 
     /**
      * 通过用户名查询用户
@@ -105,14 +110,182 @@ public class UserServiceImpl implements UserService{
     }
 
     /**
+     * 返回所有的人员名称
+     * @return
+     */
+    @Override
+    public List<String> findNameAll() {
+        return userDutiesDao.selectNameAll();
+    }
+    /**
+     * 添加用户
+     * @return
+     * @param userDto
+     */
+    @Override
+    public Long addUserDuties(UserDto userDto,int photoId) {
+        //转换格式
+        UserDuties userDuties = userDtoToUserDuties(userDto);
+        userDuties = addUserPrimaryKey(userDuties);
+        //加密密码
+        userDuties.setPassword(CryptographyUtil.md5(userDuties.getPassword(),userDuties.getUserName()));
+        //生成个人房源前缀
+            //搜索本人组织所有人
+        List<UserDuties> userDutiesList=
+                    organizationStructureDao.selectUserDutisByOrganizationId(userDuties.getOrganizationId());
+            //查询都有人的前缀
+        Set<String> userPreSet=new HashSet<>();
+            for (UserDuties user:userDutiesList){
+                userPreSet.add(user.getUserHousePre());
+            }
+            //uuid生成，截取前三位字符 //对比无冲突
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i =0;i==0||userPreSet.contains(stringBuilder.toString())||!Character.isLowerCase(stringBuilder.toString().charAt(0));i++) {
+            stringBuilder.delete(0,stringBuilder.length());
+            stringBuilder.append(UUID.randomUUID().toString());
+        }
+        //设置前缀
+        userDuties.setUserHousePre(stringBuilder.toString().substring(0,3));
+        //主键重复，重新生成
+        int i = userDutiesDao.insertSelective(userDuties);
+        if (i<=0){
+            for(i=-1;i<=0;i=userDutiesDao.insertSelective(userDuties)){
+                userDuties = addUserPrimaryKey(userDuties);
+            }
+        }
+        //修改照片
+        if (photoId!=1){
+            Photo photo = photoDao.selectByPrimaryKey(photoId);
+            photo.setUserid(userDuties.getUserId());
+            photoDao.updateByPrimaryKey(photo);
+        }
+
+        //返回主键
+        return userDuties.getUserId();
+    }
+    /**
+     * 增加用户的照片
+     * @param fileName
+     * @return 插入数据库的主键
+     */
+    @Override
+    public int addUserPhone(String fileName,int photoId) {
+        return photoDao.insert(new Photo(
+                photoId,
+                fileName,
+                null
+        ));
+    }
+    /**
+     * 查找当前用户的详细信息
+     * @return
+     */
+    @Override
+    public UserDto findCurrentUser() {
+        Subject currentUser = SecurityUtils.getSubject();
+        //查找用户UserDuties
+        UserDuties userDuties = userDutiesDao.selectByName(currentUser.getPrincipal().toString());
+        //转换成UserDto
+        return new UserDto(
+                userDuties.getLocked()==null?null:userDuties.getLocked().toString(),
+                userDuties.getUserId()==null?null:userDuties.getUserId(),
+                userDuties.getUserName()==null?null:userDuties.getUserName(),
+                userDuties.getOrganizationId()==null?null:organizationStructureDao.selectByPrimaryKey(userDuties.getOrganizationId()).getOrganizationName(),
+                userDuties.getDutiesId()==null?null:enterpriseDutiesDao.selectByPrimaryKey(userDuties.getDutiesId()).getDutiesName(),
+                userDuties.getState()==null?null:userDuties.getState(),
+                userDuties.getEntryTime()==null?null:userDuties.getEntryTime(),
+                userDuties.getDimissionTime()==null?null:userDuties.getDimissionTime(),
+                userDuties.getOmni()==null?null:userDuties.getOmni(),
+                userDuties.getSource()==null?null:userDuties.getSource(),
+                userDuties.getTechnicalTitle()==null?null:userDuties.getTechnicalTitle(),
+                userDuties.getRecord()==null?null:userDuties.getRecord(),
+                userDuties.getMainBuildings()==null?null:userDuties.getMainBuildings(),
+                userDuties.getChiefId()==null?null:userDutiesDao.selectByUserId(userDuties.getChiefId()).getUserName(),
+                userDuties.getConnecttionWay()==null?null:userDuties.getConnecttionWay().toString(),
+                userDuties.getPassword()==null?null:userDuties.getPassword(),
+                userDuties.getWorkingTime()==null?null:userDuties.getWorkingTime(),
+                userDuties.getClosingTime()==null?null:userDuties.getClosingTime(),
+                userDuties.getUserPersion()==null?null:userDuties.getUserPersion(),
+                userDuties.getUserHousePre()==null?null:userDuties.getUserHousePre()
+        );
+    }
+    /**
+     * 获取本人的头像名称
+     * @return
+     */
+    @Override
+    public String getCurrentPic() {
+        Subject currentUser = SecurityUtils.getSubject();
+        User user = userMapper.selectByUserName(currentUser.getPrincipal().toString());
+        Photo photo = photoDao.selectByUserId(user.getUserId());
+        if (photo!=null){
+            return photo.getUrl();
+        }
+        return "defult.jpg";
+    }
+
+    /**
+     * 增加用户主键
+     * @param userDuties
+     * @return
+     */
+    private UserDuties addUserPrimaryKey(UserDuties userDuties) {
+        StringBuilder stringBuilder = new StringBuilder("0");
+        //剔除首个数字为0的情况
+        for (;stringBuilder.charAt(0)=='0';){
+            stringBuilder.replace(0,9,TinyUtilis.getNumberRandom(10));
+
+        }
+        userDuties.setUserId(Long.parseLong(stringBuilder.toString()));
+        return userDuties;
+    }
+
+    /**
+     * 前端封装到后台数据的转换
+     * @param userDto
+     * @return
+     */
+    private UserDuties userDtoToUserDuties(UserDto userDto) {
+        //部门转id
+        userDto.setOrganizationId(organizationStructureDao.selectByName(userDto.getOrganizationId()));
+        //职务转id
+            //职务信息
+        EnterpriseDuties enterpriseDuties = enterpriseDutiesDao.selectPrimaryByName(userDto.getDutiesId());
+        userDto.setDutiesId(enterpriseDuties.getEnterpriseDutiesId().toString());
+        //上级user名转id
+        userDto.setChiefId(userMapper.selectByUserName(userDto.getChiefId()).getUserId().toString());
+        return new UserDuties(
+                false,
+                userDto.getUserId(),
+                userDto.getUserName(),
+                userDto.getOrganizationId(),
+                Byte.parseByte(userDto.getDutiesId()),//todo 输入异常处理
+                userDto.getState(),
+                userDto.getEntryTime(),
+                userDto.getDimissionTime(),
+                userDto.getOmni(),
+                userDto.getSource(),
+                userDto.getTechnicalTitle(),
+                userDto.getRecord(),
+                userDto.getMainBuildings(),
+                Long.parseLong(userDto.getChiefId()),//todo 输入异常处理
+                null,//todo 输入异常处理
+                userDto.getPassword(),
+                userDto.getWorkingTime(),
+                userDto.getClosingTime(),
+                userDto.getUserPersion(),
+                userDto.getUserHousePre()
+        );
+    }
+
+
+    /**
      * 把可用的用户信息转换(简化)成用户列表信息
      * @param userAvailables
      * @return
      */
     private List<UserOa> userAvailableToUserOa(List<UserAvailable> userAvailables) {
         List<UserOa> userOaList = new ArrayList<>();
-
-
         for (UserAvailable userAvailable:userAvailables){
             userOaList.add(
                     new UserOa(

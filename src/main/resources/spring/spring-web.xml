@@ -48,8 +48,20 @@
     <context:component-scan base-package="cn.web"/>
     <!--5静态资源的获取-->
     <mvc:resources mapping="media" location="/media"/>
+<!--6.捕获shiro认证失败页面异常，shiro过滤器没用的临时解决方案-->
+    <bean
+            class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.AuthorizationException">
+                    permissionError
+                </prop>
+            </props>
+        </property>
+    </bean>
 
-
-
-
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+      p:defaultEncoding="UTF-8"
+      p:maxUploadSize="5242880"
+      p:uploadTempDir="file:/c:userPhoto"/>
 </beans>

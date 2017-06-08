@@ -38,4 +38,11 @@ public interface EnterpriseDutiesMapper {
      * @mbggenerated 2017-05-18
      */
     int updateByPrimaryKey(EnterpriseDuties record);
+
+    /**
+     * 根据职务名称查找职务
+     * @param dutiesId 职务名
+     * @return
+     */
+    EnterpriseDuties selectPrimaryByName(String dutiesId);
 }

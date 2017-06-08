@@ -80,6 +80,9 @@
         <servlet-name>springMVC</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
+    <error-page>
+        <error-code>404</error-code>
+        <location>/back/permission/error404</location>
+    </error-page>
 
 </web-app>

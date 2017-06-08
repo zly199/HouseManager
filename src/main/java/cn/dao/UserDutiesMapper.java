@@ -38,4 +38,15 @@ public interface UserDutiesMapper {
     List<UserDuties> selectAll();
 
     UserDuties selectByUserId(Long userId);
+    /**
+     * 根据组织id查找组织里所有的人员名字
+     * @param organizationId
+     * @return
+     */
+    List<String> selectNameByOrganizationid(String organizationId);
+    /**
+     * 返回所有的人员名称
+     * @return
+     */
+    List<String> selectNameAll();
 }

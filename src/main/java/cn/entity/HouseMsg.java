@@ -238,6 +238,61 @@ public class Housemsg {
      */
     private String organizationId;
 
+    public Housemsg() {
+    }
+
+    public Housemsg(String id, String application, String transaction, String address, String area, String type, String houseType, String decoration, String orientation, String status, Double sellPrice, String attribute, Double sellLowprice, Date purchasingDate, Double rentPrice, Boolean uniquehouse, Double rentLowprice, Date precatoryDate, Double loan, String precatoryMethod, String resource, String precatoryNumber, Date lunchTime, String recordNumber, String tag, String remark, Date buildYear, String statusQuo, String propertyright, String development, String including, String furniture, Double originalyPurchasingPrice, Double managementCost, String householdApplicances, String paymentHas, String parkingPlot, String paymentMethod, String seeTheHouse, String productionLicenseNumber, Date yearOfPropertyRight, String certificateOfHouseProperty, String idCard, String precatoryBook, Integer clientId, String userId, String organizationId) {
+
+        this.id = id;
+        this.application = application;
+        this.transaction = transaction;
+        this.address = address;
+        this.area = area;
+        this.type = type;
+        this.houseType = houseType;
+        this.decoration = decoration;
+        this.orientation = orientation;
+        this.status = status;
+        this.sellPrice = sellPrice;
+        this.attribute = attribute;
+        this.sellLowprice = sellLowprice;
+        this.purchasingDate = purchasingDate;
+        this.rentPrice = rentPrice;
+        this.uniquehouse = uniquehouse;
+        this.rentLowprice = rentLowprice;
+        this.precatoryDate = precatoryDate;
+        this.loan = loan;
+        this.precatoryMethod = precatoryMethod;
+        this.resource = resource;
+        this.precatoryNumber = precatoryNumber;
+        this.lunchTime = lunchTime;
+        this.recordNumber = recordNumber;
+        this.tag = tag;
+        this.remark = remark;
+        //
+        this.buildYear = buildYear;
+        this.statusQuo = statusQuo;
+        this.propertyright = propertyright;
+        this.development = development;
+        this.including = including;
+        this.furniture = furniture;
+        this.originalyPurchasingPrice = originalyPurchasingPrice;
+        this.managementCost = managementCost;
+        this.householdApplicances = householdApplicances;
+        this.paymentHas = paymentHas;
+        this.parkingPlot = parkingPlot;
+        this.paymentMethod = paymentMethod;
+        this.seeTheHouse = seeTheHouse;
+        this.productionLicenseNumber = productionLicenseNumber;
+        this.yearOfPropertyRight = yearOfPropertyRight;
+        this.certificateOfHouseProperty = certificateOfHouseProperty;
+        this.idCard = idCard;
+        this.precatoryBook = precatoryBook;
+        this.clientId = clientId;
+        this.userId = userId;
+        this.organizationId = organizationId;
+    }
+
     /**
      * 房源id
      * @return id 房源id

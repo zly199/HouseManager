@@ -48,5 +48,23 @@ public class PermissionController {
         return permisionService.ediPermissionsById(userId,permissionList);
     }
 
+    /**
+     * 404错误页面
+     * @return
+     */
+    @RequestMapping("/error404")
+    public String error404(){
+        return "error404";
+    }
+
+    /**
+     * 权限错误页面
+     * @return
+     */
+    @RequestMapping("/permissionError")
+    public String permissionError(){
+        return "permissionError";
+    }
+
 
 }

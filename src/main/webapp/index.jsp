@@ -8,11 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>安全验证</title>
 </head>
 <body>
-    <a href="back/user/login">登录页面</a>
-    <a href="http://localhost:8080/HouseManagerV2/back/user/index">主页</a>
-
+<p>页面安全检测中...</p>
+<script>window.location.href='back/user/index';</script>
 </body>
+
+
 </html>

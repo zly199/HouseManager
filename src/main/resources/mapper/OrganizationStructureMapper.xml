@@ -33,6 +33,27 @@
     from organization_structure
     where organization_id = #{organizationId,jdbcType=VARCHAR}
   </select>
+  <select id="selectByName" resultType="String">
+    SELECT organization_id
+      FROM organization_structure
+    WHERE organization_name=#{organizationName}
+  </select>
+<select id="selectNameAll" resultType="String">
+  SELECT organization_structure.organization_name
+    FROM organization_structure
+</select>
+  <select id="selectUserDutisByOrganizationId" resultType="cn.entity.UserDuties">
+    SELECT
+      locked, user_id, user_name,
+      organization_id, duties_id, state,
+      entry_time, dimission_time, omni,
+      source, technical_title, record,
+      main_buildings, chief_id, connecttion_way,
+      password, working_time, closing_time,
+      user_persion, user_house_pre
+    FROM user_duties
+    WHERE user_duties.organization_id=#{organizationId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from organization_structure
     where organization_id = #{organizationId,jdbcType=VARCHAR}
