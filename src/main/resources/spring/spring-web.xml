@@ -54,12 +54,14 @@
         <property name="exceptionMappings">
             <props>
                 <prop key="org.apache.shiro.authz.AuthorizationException">
-                    /index
+                    permissionError
                 </prop>
             </props>
         </property>
     </bean>
 
-
-
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+      p:defaultEncoding="UTF-8"
+      p:maxUploadSize="5242880"
+      p:uploadTempDir="file:/c:userPhoto"/>
 </beans>

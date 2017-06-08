@@ -16,6 +16,12 @@
     from posizition
     where posizitionId = #{posizitionid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByPositionXAndPositionY" resultType="cn.entity.Position">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM posizition
+    WHERE posizition.posizitionX=#{x} AND posizitionY=#{y}
+  </select>
   <select id="selectAll" resultType="cn.entity.Position">
     SELECT
     <include refid="Base_Column_List" />

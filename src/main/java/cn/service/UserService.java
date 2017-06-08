@@ -1,5 +1,6 @@
 package cn.service;
 
+import cn.dto.UserDto;
 import cn.dto.UserOa;
 import cn.entity.User;
 
@@ -51,4 +52,18 @@ public interface UserService {
      * @return
      */
     List<String> findNameAll();
+
+    /**
+     * 添加用户
+     * @return
+     * @param userDto
+     */
+    Long addUserDuties(UserDto userDto,int photoId);
+
+    /**
+     * 增加用户的照片
+     * @param fileName
+     * @return 插入数据库的主键
+     */
+    int addUserPhone(String fileName,int photoId);
 }

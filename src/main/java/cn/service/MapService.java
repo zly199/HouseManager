@@ -1,5 +1,6 @@
 package cn.service;
 
+import cn.dto.HouseList;
 import cn.dto.PositionForm;
 
 import java.util.List;
@@ -14,4 +15,10 @@ public interface MapService {
      * @return
      */
     List<PositionForm> findNearby(PositionForm positionForm);
+    /**
+     * 通过坐标查询房源信息
+     * @param positionForm
+     * @return
+     */
+    HouseList getHouseMessageByPosition(PositionForm positionForm);
 }

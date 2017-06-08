@@ -1,6 +1,7 @@
 package cn.dao;
 
 import cn.entity.Position;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -46,4 +47,11 @@ public interface PositionMapper {
      * @return
      */
     List<Position> selectAll();
+
+    /**
+     * 通过坐标查询房源信息
+     * @param x,y
+     * @return
+     */
+    Position selectByPositionXAndPositionY(@Param("x") String x, @Param("y") String y);
 }

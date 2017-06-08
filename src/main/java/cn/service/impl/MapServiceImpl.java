@@ -1,9 +1,13 @@
 package cn.service.impl;
 
+import cn.dao.HousemsgMapper;
 import cn.dao.PositionMapper;
+import cn.dto.HouseList;
 import cn.dto.PositionForm;
+import cn.entity.Housemsg;
 import cn.entity.Position;
 import cn.service.MapService;
+import cn.utils.DataTransferUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,9 @@ import java.util.List;
 public class MapServiceImpl implements MapService {
     @Autowired
     PositionMapper positionDao;
+    @Autowired
+    HousemsgMapper housemsgDao;
+
 
     /**
      * 根据坐标返回旁边的坐标列表
@@ -52,6 +59,28 @@ public class MapServiceImpl implements MapService {
         }
         return result;
     }
+    /**
+     * 通过坐标查询房源信息
+     * @param positionForm
+     * @return
+     */
+    @Override
+    public HouseList getHouseMessageByPosition(PositionForm positionForm) {
+        //获取坐标信息
+        Position position = positionDao.selectByPositionXAndPositionY(positionForm.x,positionForm.y);
+        if (position!=null){
+            //通过坐标获取房源id
+            String houseId = position.getHousePositionid();
+            //查询房源信息
+            Housemsg housemsg = housemsgDao.selectByPrimaryKey(houseId);
+
+            //转换成相应格式返回
+            return DataTransferUtil.HouseMsgToHouseList(housemsg);
+        }else
+            return new HouseList();
+
+    }
+
     /**
      * 计算地球上任意两点(经纬度)距离
      *

@@ -97,7 +97,7 @@
       #{source,jdbcType=VARCHAR}, #{technicalTitle,jdbcType=VARCHAR}, #{record,jdbcType=VARCHAR}, 
       #{mainBuildings,jdbcType=VARCHAR}, #{chiefId,jdbcType=BIGINT}, #{connecttionWay,jdbcType=INTEGER}, 
       #{password,jdbcType=VARCHAR}, #{workingTime,jdbcType=TIME}, #{closingTime,jdbcType=TIME}, 
-      #{userPersion,jdbcType=BIGINT},#{userHousePre,jdbcType=VARCHAR})
+      #{userPersion,jdbcType=BIGINT}, #{userHousePre,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.entity.UserDuties" >
     insert into user_duties
@@ -222,7 +222,7 @@
         #{userPersion,jdbcType=BIGINT},
       </if>
       <if test="userHousePre !=null">
-        user_house_pre,
+        #{userHousePre,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>

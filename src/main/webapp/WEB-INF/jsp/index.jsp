@@ -294,7 +294,7 @@
 						</li>
 						<li>
 
-							<a href="addstaff.html">
+							<a href="back/personnelMinistry/user/add">
 
 								新增员工</a>
 

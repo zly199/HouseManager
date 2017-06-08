@@ -549,7 +549,7 @@
                             <p class="detail3">${houseDetail.id}</p>
                             <p class="detail5">
                                 <span>*</span><span id="detail6">${houseDetail.tag[0]}</span><span id="detail7">${houseDetail.tag[1]}</span><span id="detail8">${houseDetail.tag[2]}</span> ${houseDetail.sellPrice}万元 ${houseDetail.area[0]}m²(套内${houseDetail.area[1]}m²) ${houseDetail.houseType[0]}房${houseDetail.houseType[1]}厅${houseDetail.houseType[2]}卫${houseDetail.houseType[3]}阳台 ${houseDetail.orientation} ${houseDetail.application} ${houseDetail.type} ${houseDetail.decoration}
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="back/client/detail/edit/${clientDetail.id}"> + 编辑 + </a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="back/house/detail/edit/${houseDetail.id}"> + 编辑 + </a>
 							</p>
 
 						</div>
