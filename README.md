@@ -1,180 +1,93 @@
-# Dillinger
-
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-
-Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
-
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
-
-# New Features!
-
-  - Import a HTML file and watch it magically convert to Markdown
-  - Drag and drop images (requires your Dropbox account be linked)
+#房产中介管理系统<br>
 
 
-You can also:
-  - Import and save files from GitHub, Dropbox, Google Drive and One Drive
-  - Drag and drop markdown and HTML files into Dillinger
-  - Export documents as Markdown, HTML and PDF
+*房产中介管理系统是一个用于房产中介公司内部业务工作的系统，系统功能包括房源管理，客源管理，人事管理，以及权限管理。<br>
+*项目使用了`Spring`+`SpringMvc`+`mybatis`+`MySQL`的架构，前端主要使用了`jQuery`，`bootstrap`。整合了`shiro`框架。<br>
 
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
+##version 0.0.1<br>
 
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
-
-### Tech
-
-Dillinger uses a number of open source projects to work properly:
-
-* [AngularJS] - HTML enhanced for web apps!
-* [Ace Editor] - awesome web-based text editor
-* [markdown-it] - Markdown parser done right. Fast and easy to extend.
-* [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
-* [Gulp] - the streaming build system
-* [Breakdance](http://breakdance.io) - HTML to Markdown converter
-* [jQuery] - duh
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
-### Installation
-
-Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
-
-Install the dependencies and devDependencies and start the server.
-
-```sh
-$ cd dillinger
-$ npm install -d
-$ node app
-```
-
-For production environments...
-
-```sh
-$ npm install --production
-$ npm run predeploy
-$ NODE_ENV=production node app
-```
-
-### Plugins
-
-Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md] [PlDb] |
-| Github | [plugins/github/README.md] [PlGh] |
-| Google Drive | [plugins/googledrive/README.md] [PlGd] |
-| OneDrive | [plugins/onedrive/README.md] [PlOd] |
-| Medium | [plugins/medium/README.md] [PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md] [PlGa] |
-
-
-### Development
-
-Want to contribute? Great!
-
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantanously see your updates!
-
-Open your favorite Terminal and run these commands.
-
-First Tab:
-```sh
-$ node app
-```
-
-Second Tab:
-```sh
-$ gulp watch
-```
-
-(optional) Third:
-```sh
-$ karma test
-```
-#### Building for source
-For production release:
-```sh
-$ gulp build --prod
-```
-Generating pre-built zip archives for distribution:
-```sh
-$ gulp build dist --prod
-```
-### Docker
-Dillinger is very easy to install and deploy in a Docker container.
-
-By default, the Docker will expose port 80, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
-
-```sh
-cd dillinger
-docker build -t joemccann/dillinger:${package.json.version}
-```
-This will create the dillinger image and pull in the necessary dependencies. Be sure to swap out `${package.json.version}` with the actual version of Dillinger.
-
-Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 8000 of the host to port 80 of the Docker (or whatever port was exposed in the Dockerfile):
-
-```sh
-docker run -d -p 8000:8080 --restart="always" <youruser>/dillinger:${package.json.version}
-```
-
-Verify the deployment by navigating to your server address in your preferred browser.
-
-```sh
-127.0.0.1:8000
-```
-
-#### Kubernetes + Google Cloud
-
-See [KUBERNETES.md](https://github.com/joemccann/dillinger/blob/master/KUBERNETES.md)
-
-
-### Todos
-
- - Write MOAR Tests
- - Add Night Mode
-
-License
-----
-
-MIT
-
-
-**Free Software, Hell Yeah!**
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+>>项目骨架搭建完成。<br>
+>>增加了基本的登录表sql。<br>
+>>delete file of idea。<br>
+>>对做个项目的目录重构，采用更加简洁优雅的目录结构。<br>
+>>完成前端登录和主页面的整合。<br>
+>>完成dao层的基本开发整合。<br>
+<br>
+##开发版 1.0<br>
+---
+>>整合数据库和前端登录界面。<br>
+>>修改登录传值方式，采用session存储用户登录信息。<br>
+>>修复了用户名可以为空的bug。<br>
+>>采用了邮箱作为登录账号。<br>
+>>修改了user表的phone属性，删除了sex属性，并重写了uesr的dao层。<br>
+<br>
+version 3.0<br>
+---
+>>增加了注册功能，采用了邮箱发送验证邮件，点击链接激活的方式。<br>
+>>替换了新的登录页面。<br>
+>>修复发送邮件乱码问题。<br>
+>>使用枚举封装了文字。<br>
+>>优化数据源，配置相关参数解决mysql的“8小时问题”。<br>
+>>优化注册页面错误提示，采用js验证注册信息的可用性，采用ajax异步验证邮箱的可用性。<br>
+>>修复数据库关闭时的closed异常。<br>
+<br>
+version 4.0<br>
+---
+>>整合用户添加，用户查询，用户信息管理。<br>
+>>房源添加，房源查询。<br>
+>>综合统计-出售统计，综合统计-出租统计。<br>
+<br>
+version 5.0<br>
+---
+>>用新需求重新设计了数据库。<br>
+>>修复了数据库注释引起的xiaobug。<br>
+>>项目目录重构rebuild。<br>
+>>数据库权限系统重新设计。<br>
+>>整合了shiro框架。<br>
+>>实现登录功能。<br>
+>>数据库的小改动，增加了一些测试数据。<br>
+>>增加了房源查询列表功能。<br>
+>>完善了权限系统。<br>
+>>公盘 跨部重构前版本 ，新增了权限管理页面。<br>
+<br>
+version 6.0<br>
+---
+>>权限系统重构完毕。<br>
+>>实现了房源权限1前端的增删查改功能。<br>
+>>实现了根据权限查看列表的房源功能。<br>
+>>实现了房源列表字段查看的权限。<br>
+>>增加业主信息表。<br>
+>>整合房源详情页。<br>
+>>实现业主查看权限。<br>
+>>实现跟进查看权限。<br>
+>>房源详情字段的控制权限的实现。<br>
+>>完成房源1页的权限实现。<br>
+<br>
+version 7.0<br>
+---
+>>房源权限页2整合。<br>
+>>房源新增页面整合。<br>
+>>房源新增权限实现。<br>
+>>修复了登录界面背景不显示问题和错误logo 问题。<br>
+>>修复了房源详情页面字体现实问题。<br>
+>>房源归属转移权限实现。<br>
+>>增加了房源详情页相关员工的显示
+>>房源详情页房源用途查看权限的实现。<br>
+>>修复了钥匙dao层的数据库访问bug。<br>
+>>增加了按照名字查找组织的功能。<br>
+>>钥匙的增删查改功能以及权限系统的实现。<br>
+>>新增根据坐标座位房源的api。<br>
+>>增加了业主信息表。<br>
+>>增加了用户详情页。<br>
+>>修复了一些bug。<br>
+>>增加了统一的权限认证失败页面和404页面。<br>
+>>增加员工功能。<br>
+>>修复了员工信息表增加出错的bug。<br>
+>>增加了员工照片上传功能。<br>
+>>员工照片展示功能。<br>
+>>增加根据房源查找位置以及周边房源信息的功能。<br>
+>>带看单查看功能。<br>
+>>带看单增加。<br>
+>>其他bug修复。<br>
+>>修复左边链接栏的指向性问题。<br>
+>>主页直接跳转。<br>
